@@ -1,0 +1,7 @@
+
+<% form_tag :action => 'update', :id => @person do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Save' %>
+<% end %>
+
+<%= link_to 'Show Person Info', :action => 'show', :id => @person %>

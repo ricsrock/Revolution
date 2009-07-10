@@ -1,0 +1,7 @@
+<%= error_messages_for 'phone' %>
+
+<!--[form:phone]-->
+<p><label for="phone_number">Number</label><br/>
+<%= text_field 'phone', 'number'  %></p>
+<!--[eoform:phone]-->
+

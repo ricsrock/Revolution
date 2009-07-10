@@ -1,0 +1,22 @@
+<div>
+	<%= link_to "stats", :action => "stats" %> | 
+	<%= link_to "statements", :action => 'statements' %>
+</div><br>
+
+<%= link_to 'new batch', :action => 'new_batch' %>
+
+<% @batches = Batch.find(:all, :conditions => Tool.range_condition("Year To Date", "batches","created_at").to_sql, :order => ['date_collected DESC']) %>
+
+<% @batches.each do |batch| %>
+	<div>
+		<span>
+			<%= batch.date_collected.strftime('%m/%d/%Y') %>
+		</span>
+		<span id="batch_<%= batch.id %>_links">
+			<%= render :partial => "batch_links", :locals => {:batch => batch} %>
+		</span>
+		<span id="work_batch_<%= batch.id %>">
+			<%= render :partial => "work_batch", :locals => {:batch => batch} %>
+		</span>
+	</div>
+<% end %>

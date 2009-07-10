@@ -1,0 +1,22 @@
+<% form_tag :action => 'create_in_mass' do %>
+	<label>
+		Create
+	</label>
+	<%= select(:event, :number, (1..12)) %>
+	<label>
+		consecutive
+	</label>
+	<%= collection_select(:event, :type_id, EventType.find(:all), :id, :name) %>
+	<label>
+		event types
+	</label><br>
+	<label>
+		each week on	
+	</label>
+	<%= select(:event, :weekday, Date::DAYNAMES) %>
+	<label>
+		beginning on
+	</label>
+	<%= date_field(:event, :start_date, :format => '%b %d %Y') %>
+	<%= submit_tag 'Mass Create' %>
+<% end %>

@@ -1,0 +1,21 @@
+<%= error_messages_for 'person' %>
+
+<!--[form:person]-->
+<p><label for="person_last_name">Last name</label><br/>
+<%= text_field 'person', 'last_name'  %></p>
+
+<p><label for="person_first_name">First name</label><br/>
+<%= text_field 'person', 'first_name'  %></p>
+
+<p><label for="person_gender">Gender</label><br/>
+<%= text_field 'person', 'gender'  %></p>
+
+<p><label for="person_birthdate">Birthdate</label><br/>
+<%= date_select 'person', 'birthdate'  %></p>
+
+<p><label for="person_household_position">Household position</label><br/>
+<%= text_field 'person', 'household_position'  %></p>
+
+<p><label for="person_allergies">Allergies</label><br/>
+<%= text_area 'person', 'allergies'  %></p>
+<!--[eoform:person]-->

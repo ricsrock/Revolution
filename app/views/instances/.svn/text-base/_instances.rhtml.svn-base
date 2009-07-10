@@ -1,0 +1,6 @@
+
+<% @event.instances.each do |instance| %>
+<div id="instance_detail">
+	<%= instance.instance_type.name %> <%= link_to 'Show', :controller => 'instances', :action => 'show', :id => instance %>
+</div>
+<% end %>

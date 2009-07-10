@@ -1,0 +1,10 @@
+<%= error_messages_for 'attendance' %>
+
+<!--[form:attendance]-->
+<p><label for="attendance_checkin_time">Checkin time</label><br/>
+<%= datetime_select 'attendance', 'checkin_time'  %></p>
+
+<p><label for="attendance_checkout_time">Checkout time</label><br/>
+<%= datetime_select 'attendance', 'checkout_time'  %></p>
+<!--[eoform:attendance]-->
+

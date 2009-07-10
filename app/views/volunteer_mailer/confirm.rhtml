@@ -1,0 +1,15 @@
+Dear <%= @involvement.person.first_name %>,
+
+Your email address is: <%= @involvement.person.household.best_email.email rescue nil %>
+
+This is to confirm your upcoming volunteer ministry assignments.
+
+Here are your upcoming assignments...
+
+<%= render(:partial => "./assignment" , :collection => @involvement.assignments.sort {|a,b| a.date <=> b.date}) %>
+
+
+Thank you very much for your passion to turn everyday people into whole-hearted followers of Christ.
+
+Peace And Grace to you!
+RVC

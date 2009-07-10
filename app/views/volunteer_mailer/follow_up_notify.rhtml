@@ -1,0 +1,16 @@
+Hello <%= @user.first_name rescue nil %>!
+
+A contact that you created has a new follow-up...
+
+Contact Type: <%= @contact.contact_type.name rescue nil%>
+Attributed To: <%= @contact.attributed_to rescue nil %>
+Comments: <%= @contact.comments rescue nil %>
+Created By: <%= @contact.created_by rescue nil %>
+
+All Follow-Ups:
+<% @contact.follow_ups.sort_by(&:created_at).each do |f| %>
+<%= f.created_at.strftime('%m/%d/%Y') rescue nil %> :: <%= f.created_by %> :: <%= f.follow_type.name rescue nil %> :: <%= f.notes %><% end %>
+
+This contact's current status is "<%= @contact.status %>".
+
+Peace!

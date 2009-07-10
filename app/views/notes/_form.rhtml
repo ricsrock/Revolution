@@ -1,0 +1,19 @@
+<%= error_messages_for 'note' %>
+
+<!--[form:note]-->
+<p><label for="note_text">Text</label><br/>
+<%= text_area 'note', 'text'  %></p>
+
+<p><label for="note_created_by">Created by</label><br/>
+<%= text_field 'note', 'created_by'  %></p>
+
+<p><label for="note_updated_by">Updated by</label><br/>
+<%= text_field 'note', 'updated_by'  %></p>
+
+<p><label for="note_updated_at">Updated at</label><br/>
+<%= datetime_select 'note', 'updated_at'  %></p>
+
+<p><label for="note_noteable_type">Noteable type</label><br/>
+<%= text_field 'note', 'noteable_type'  %></p>
+<!--[eoform:note]-->
+

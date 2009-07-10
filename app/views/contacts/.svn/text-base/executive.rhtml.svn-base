@@ -1,0 +1,7 @@
+
+<%= render :partial => "search_controls" %>
+
+<div id="contacts-list">
+	<%= render :partial => "contacts_list" %>
+</div>
+

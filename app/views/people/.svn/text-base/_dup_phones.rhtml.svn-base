@@ -1,0 +1,7 @@
+<div><strong>Phones</strong><span id="message-black"> (Only checked values will be retained)</span></div>
+<% @duplicate.phones.each do |p| %>
+<div>
+	<%= check_box_tag 'dup_phones_to_keep[]', p.id %>
+	<%= number_to_phone p.number %>
+</div>
+<% end %>

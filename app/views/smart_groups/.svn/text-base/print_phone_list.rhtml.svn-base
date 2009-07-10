@@ -1,0 +1,41 @@
+<h3>Smart Group Phone List for: <%= @smart_group.name rescue nil %></h3>
+This Smart Group Finds People...<br>
+<span  class="tiny" style="margin-bottom:.5em;">
+	<%= @smart_group.smart_group_rules.collect {|r| r.prose} %>
+</span>
+<br>
+
+<div id="message-black">
+	This report shows all phones and emails associated with each individual's household.
+</div>
+
+<table border="0" cellspacing="1" cellpadding="4">
+	<tr>
+		<th>Person</th>
+		<th>Address</th>
+		<th>Phones</th>
+		<th>Emails</th>
+	</tr>
+	
+	<% @smart_group.found_people.sort_by(&:last_first_name).each do |p| %>
+	
+	<tr>
+		<td>
+			<%= p.full_name %>
+		</td>
+		<td>
+			<%= p.household.address_block rescue nil %>
+		</td>
+		<td>
+			<% p.household.phones.each do |phone| %>
+				<%= phone.s_formatted rescue nil %>(<%= phone.comm_type.name rescue nil%>)<br>
+			<% end %>
+		</td>
+		<td>
+			<% p.household.emails.each do |email| %>
+				<%= email.email %>(<%= email.comm_type.name rescue nil %>)<br>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>

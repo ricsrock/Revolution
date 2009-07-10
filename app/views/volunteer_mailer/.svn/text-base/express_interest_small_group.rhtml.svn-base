@@ -1,0 +1,13 @@
+Hello <%= @group.small_group_leader.first_name rescue nil %>,
+Someone has expressed interest in your small group (<%= @group.name rescue nil %>) through the RVC web site. Here's their info so you can follow-up directly with them.
+
+========================================
+Name: <%= @person_name rescue nil %>
+Email: <%= @person_email rescue nil %>
+Message:
+<%= @person_message rescue nil %>
+=======================================
+
+Thank you for your leadership and servant's heart. Please let us know if we can help in any way.
+
+Rusty Foster

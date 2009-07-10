@@ -1,0 +1,43 @@
+<div style="float:none;clear:both;">
+	
+
+
+<h2>Sending Message To: <%= @group.name %></h2>
+
+<% form_tag({:action => 'send_group_contact', :group_id => @group}, :id => 'this_form') do %>
+
+<div style="float:left;width:48%;">
+	<fieldset><legend><strong>Select Group Members</strong></legend>
+		<input type='submit' value='Check All' onClick="$$('#this_form input.check').each(function(box){box.checked=true});return false;" />
+		<input type='submit' value='Uncheck All' onClick="$$('#this_form input.check').each(function(box){box.checked=false});return false;" />
+		<% @group.current_enrollments.each do |e| %>
+			<div id="person_id_<%= e.person.id %>">
+				<span id="checkbox_id_<%= e.person.id %>">
+				<%= check_box_tag 'included_people[]', e.person.id, ! e.person.best_email.nil?, {:class => 'check', :disabled => e.person.no_best_email? } %></span>
+				<%= e.person.full_name %>
+				<span id="message-black">
+					<%= e.person.best_email.email rescue nil %>
+				</span>
+			</div>
+		<% end %>
+	</fieldset>
+</div>
+
+<div style="float:right;width:48%;">
+	<fieldset><legend><strong>Create Message</strong></legend>
+		<label>Subject:</label><br>
+		<%= text_field 'email', 'subject' %><br>
+		<label>Message:</label><br>
+		<%= text_area 'email', 'message', :rows => 20, :cols => 30 %>
+	
+		<span style="float:left;">
+				<%= submit_tag 'Send Mail' %>
+		</span>
+	</fieldset>	
+</div>
+
+<% end %>
+&nbsp;
+<div id="empty" style="float:none;clear:both;"></div>
+</div>
+

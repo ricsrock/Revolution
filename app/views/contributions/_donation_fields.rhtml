@@ -1,0 +1,17 @@
+ <div id="donation_<%= index %>">
+	<div id="donation-errors">
+		
+	</div>
+ <% fields_for "donations[#{index}]", donation do |f| %>
+<table border="0" cellspacing="1" cellpadding="1">
+
+	<tr>
+		<td>Fund: </td>
+		<td><%= collection_select 'donations', 'fund_id', Fund.find(:all), 'id', 'name', {}, :index => index %></td>
+		<td>Amount: </td>
+		<td>$<%= f.text_field :amount, :size => 9 %><%= error_message_on('donation', 'amount') %></td>
+		<td><%= link_to_remote 'remove', :url => { :action => 'remove_donation', :index => index } %></td>
+	</tr>
+</table>
+ <% end %>
+ </div>

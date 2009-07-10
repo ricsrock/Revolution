@@ -1,0 +1,53 @@
+<strong><%= @event.formatted_date rescue nil %></strong>
+
+<% form_tag ({:action => 'update_counts', :event_id => @event}, :id => 'this_form') do %>
+
+<% @event.instances.sort_by {|a| a.instance_type.name}.each do |i| %>
+	<div style="height:25px;">
+		<h3><%= i.instance_type.name %></h3>
+	</div><hr>
+	<%= hidden_field 'instances', i.id %>
+	<div>
+		<% cell_style = "float:left;width:20%;" %>
+		<div style="float:none;clear:both;">
+			<div style="float:none;clear:both;">
+				<div style="<%= cell_style %>"><b>Group</b></div>
+				<div style="<%= cell_style %>"><b># Leaders</b></div>
+				<div style="<%= cell_style %>"><b># participants</b></div>
+				<div style="<%= cell_style %>"><b>Meeting Total</b></div>
+				
+			</div>
+			<% i.meetings.sort_by {|m| m.group.name}.each do |m| %>
+			<% fields_for "meetings[#{m.id}]", m do |f| %>
+			<div style="float:none;clear:both;">
+				<div style="<%= cell_style %>"><%= m.group.name %></div>
+				<div style="<%= cell_style %>" id="row_<%= m.id %>_leaders"><%= f.text_field 'leaders_count', {:size => 15} %></div>
+				<div style="<%= cell_style %>"
+					 id="row_<%= m.id %>_participants"><%= f.text_field 'participants_count', {:size => 15} %></div>
+				<div style="<%= cell_style %>"
+					 id="row_<%= m.id %>_total"><%= render :partial => "row_total", :locals => {:meeting => m} %></div>
+				<%= observe_field "meetings[#{m.id}]_leaders_count",
+				 				 :url => {:action => 'leaders_changed',
+					                      :id => m.id,
+					                      :instance => i.id },
+					 			 :with => 'leaders_count' %>
+				<%= observe_field "meetings[#{m.id}]_participants_count",
+				 				 :url => {:action => 'participants_changed',
+					                      :id => m.id,
+					                      :instance => i.id },
+					 			 :with => 'participants_count' %>
+			</div>
+			<% end %>
+			<% end %>
+		</div>
+		<div style="float:none;clear:both;text-align:right;" id="instance_<%= i.id %>_total">
+			<%= render :partial => "instance_total", :locals => {:i => i} %>
+		</div>
+	</div><br>
+<% end %>
+<div style="float:none;clear:both;">
+<%= submit_tag 'Save' %> | <%= link_to 'cancel', :action => 'show_counts', :id => @event %></div>
+<% end %>
+
+<%# observe_form 'this_form',
+ 	:url => {:action => 'counts_form_changed'} %>

@@ -1,0 +1,27 @@
+<h1>Listing relationship_roles</h1>
+
+<table>
+  <tr>
+  <% for column in RelationshipRole.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for relationship_role in @relationship_roles %>
+  <tr>
+  <% for column in RelationshipRole.content_columns %>
+    <td><%=h relationship_role.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => relationship_role %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => relationship_role %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => relationship_role }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @relationship_role_pages.current.previous } if @relationship_role_pages.current.previous %>
+<%= link_to 'Next page', { :page => @relationship_role_pages.current.next } if @relationship_role_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New relationship_role', :action => 'new' %>

@@ -1,0 +1,15 @@
+<% relationship_node = relationship %>
+<div style="float:left;">
+<%= picture_for(relationship.person,:tiny) %>
+<%= link_to "#{relationship_node.person.full_name}", :action => 'relationships_tree', :id => relationship_node.person %> 
+is <%= Tool.articlyze(relationship_node.relationship_type.name) %> (<%= relationship_node.relationship_type.name %>) 
+<%= relationship_node.person_role.name %> of 
+<%= picture_for(relationship.related_person, :tiny) %>
+<%= link_to "#{relationship_node.related_person.full_name}", :action => 'relationships_tree', :id => relationship_node.related_person %> (<%= relationship_node.relates_to_role.name %>)
+</div>
+
+<div style="float:right;">
+	<%= link_to_remote (image_tag "zoom_16x16.gif", :size => "12x12", :border => 0, :title => 'Show Details'), :url => {:action => 'relationship_details', :id => relationship_node.id, :person_id => @person} unless session[:tree_tag].include? "tree" %>
+</div>
+<div style="float:none;clear:both;">
+</div>

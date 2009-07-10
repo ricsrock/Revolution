@@ -1,0 +1,2 @@
+Transfer To:<%= check_box_tag('transfer_contact', true, @transfer_checked || false, {:id => "transfer-contact-box", :disabled => @transfer_disabled}) %> 
+<%= collection_select 'contact', 'responsible_user_id', User.find(:all), 'id', 'full_name', {:prompt => true}, :disabled => @transfer_disabled %>

@@ -1,0 +1,15 @@
+Hello <%= @user.first_name rescue nil %>!
+
+A contact has been transferred to you...
+
+This contact is now <%= time_ago_in_words @contact.created_at rescue nil %> old.
+
+Transferred by: <%= @contact.updated_by %>
+Contact Type: <%= @contact.contact_type.name rescue nil%>
+Attributed To: <%= @contact.attributed_to rescue nil %>
+Comments: <%= @contact.comments rescue nil %>
+Created By: <%= @contact.created_by rescue nil %>
+
+Log into your Revolution account at http://portal.rivervalleychurch.net/dashboard to follow-up.
+
+Peace!

@@ -1,0 +1,1 @@
+page.replace_html("tabs-area", :partial => "people/tags", :locals => {:person => @person})

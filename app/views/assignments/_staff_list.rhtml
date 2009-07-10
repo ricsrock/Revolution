@@ -1,0 +1,38 @@
+<% if @set_meeting.nil? %>
+<div id="message-black">
+	Please select a meeting.
+</div>
+<% else %>
+
+<% @found_staff = Involvement.find(:all) %>
+
+	<% if @found_staff.length == 0 %>
+		There are no staff members assigned to this ministry team.
+	<% else %>
+
+
+
+	<% @found_staff.each do |i| %>
+		<div id="involvement-row" class="<%= cycle("even", "odd") %>">
+		<div id="involvement-<%= i.id %>">
+
+			<% form_remote_tag :url => {:action => "add_assignment", :involvement_id => i.id,
+																	 :meeting_id => @set_meeting.id,
+																	 :month => @month,
+																	 :year => @year } do %>
+				<span class="person-name-space">
+					<%= link_to("#{i.person.full_name}", :controller => 'people', :action => 'show', :id => i) %>
+				</span>
+				<span class="cell">
+			
+				</span>
+				<span class="cell">
+					<%= submit_tag 'Schedule' %>
+				</span>
+			<% end %>
+
+		</div>
+		</div>
+	<% end %>
+	<% end %>
+<% end %>

@@ -1,0 +1,27 @@
+<h1>Listing taggings</h1>
+
+<table>
+  <tr>
+  <% for column in Tagging.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for tagging in @taggings %>
+  <tr>
+  <% for column in Tagging.content_columns %>
+    <td><%=h tagging.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => tagging %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => tagging %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => tagging }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @tagging_pages.current.previous } if @tagging_pages.current.previous %>
+<%= link_to 'Next page', { :page => @tagging_pages.current.next } if @tagging_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New tagging', :action => 'new' %>

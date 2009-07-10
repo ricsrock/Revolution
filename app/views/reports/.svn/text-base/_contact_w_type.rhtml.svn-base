@@ -1,0 +1,8 @@
+<div id="contact-info" style="margin-left:3em;float:none;clear:both;">
+	<span class="cell" style="width:120px;">
+		<%= contact_w_type.contact_type.name rescue nil %>
+	</span>
+	<span class="cell" style="width:400px;">
+		<%= contact_w_type.comments rescue nil %>
+	</span>
+</div>

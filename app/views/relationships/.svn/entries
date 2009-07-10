@@ -1,0 +1,88 @@
+8
+
+dir
+7
+https://revolution-church-management.googlecode.com/svn/trunk/app/views/relationships
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+create.rjs
+file
+
+
+
+
+2008-12-04T22:25:31.000000Z
+0639a65fa971be49707719dd0eb97844
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+list.rhtml
+file
+
+
+
+
+2008-11-24T22:26:19.000000Z
+bb1161dc2a81d0a80e097eb4fe689ad2
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+show.rhtml
+file
+
+
+
+
+2008-11-24T22:26:19.000000Z
+d4a0163b0ae4975b4b9ea2d859336201
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+_form.rhtml
+file
+
+
+
+
+2008-11-24T22:26:19.000000Z
+ad52a852f9dfb4ed2d3b4edf74b826b1
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+edit.rhtml
+file
+
+
+
+
+2008-11-24T22:26:19.000000Z
+1476c4709465f76f2fdf66539d013487
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+new.rhtml
+file
+
+
+
+
+2008-11-24T22:26:19.000000Z
+ab1e4f731c0b1537a951f6fa620f69d6
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+

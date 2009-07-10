@@ -1,0 +1,4 @@
+page.replace_html("assign-rotation", :partial => 'assign_rotation', :locals => {:set_team => @set_team})
+page.replace_html(:calendar_panel, :partial => 'calendar_grid', :locals => {:month => @month, :year => @year})
+page.replace_html("dashboard", :partial => 'volunteer_reports', :locals => {:set_team => @set_team})
+

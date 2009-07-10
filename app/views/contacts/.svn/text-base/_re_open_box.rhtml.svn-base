@@ -1,0 +1,2 @@
+Re-Open Contact:<%= check_box_tag ('reopen_contact',true,@re_open_checked, {:disabled => @re_open_box_disabled || false}) %> 
+	In <%= select('reopen','days', (1..30), {},{:disabled => @re_open_box_disabled || false}) %> Days

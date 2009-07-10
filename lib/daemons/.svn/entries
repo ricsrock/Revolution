@@ -1,0 +1,42 @@
+8
+
+dir
+7
+https://revolution-church-management.googlecode.com/svn/trunk/lib/daemons
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+test.rb
+file
+
+
+
+
+2008-12-10T21:43:16.000000Z
+2c128795c11a00e2383cf5083f9af389
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+test_ctl
+file
+
+
+
+
+2008-12-10T21:42:39.000000Z
+194f1f3c2d3f3a20c40e7e1ed9dd3c01
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+

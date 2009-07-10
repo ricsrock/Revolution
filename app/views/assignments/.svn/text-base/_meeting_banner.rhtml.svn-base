@@ -1,0 +1,10 @@
+<% if @set_meeting.nil? %>
+<div id="message-black">
+	Please select a meeting.	
+</div>
+
+<% else %>
+
+Now assignment staff for: <%= @set_meeting.instance.event.formatted_date %>, <%= @set_meeting.instance.instance_type.name %> <%= @set_meeting.group.name %>
+
+<% end %>

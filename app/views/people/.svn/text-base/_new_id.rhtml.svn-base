@@ -1,0 +1,1 @@
+<%= hidden_field_tag :new_household_id, @new.id rescue nil %>

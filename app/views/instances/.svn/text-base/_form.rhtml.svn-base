@@ -1,0 +1,11 @@
+<%= error_messages_for 'instance' %>
+
+<!--[form:instance]-->
+<p><label for="instance_auto_create">Auto create</label><br/>
+<select id="instance_auto_create" name="instance[auto_create]"><option value="false">False</option><option value="true">True</option></select></p>
+<% @instance_types = InstanceType.find(:all) %>
+<p>
+<%= collection_select 'instance', 'instance_type_id', @instance_types, 'id', 'name' %>
+</p>
+<!--[eoform:instance]-->
+

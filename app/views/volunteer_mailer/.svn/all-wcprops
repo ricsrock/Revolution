@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer
+END
+contact.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/contact.rhtml
+END
+contact_us_copy.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/7/trunk/app/views/volunteer_mailer/contact_us_copy.rhtml
+END
+confirm.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/confirm.rhtml
+END
+follow_up_notify.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/follow_up_notify.rhtml
+END
+group_text.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/group_text.rhtml
+END
+team_contact.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/team_contact.rhtml
+END
+index.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/index.rhtml
+END
+group_contact.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/group_contact.rhtml
+END
+_assignment.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/_assignment.rhtml
+END
+sent.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/sent.rhtml
+END
+express_interest_small_group.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/express_interest_small_group.rhtml
+END
+smart_group_contact.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/smart_group_contact.rhtml
+END
+group_contact_portlet.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/group_contact_portlet.rhtml
+END
+send_emails.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/send_emails.rhtml
+END
+contact_notify.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/contact_notify.rhtml
+END
+meeting_created_message.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/17/trunk/app/views/volunteer_mailer/meeting_created_message.rhtml
+END
+test_email.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/test_email.rhtml
+END
+contact_transfer_notify.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/5/trunk/app/views/volunteer_mailer/contact_transfer_notify.rhtml
+END

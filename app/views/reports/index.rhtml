@@ -1,0 +1,45 @@
+<h3>Reports Index</h3>
+
+<table border="0" cellspacing="0" cellpadding="3">
+	<tr>
+		<td>
+			<%= link_to "Meeting Rosters", :action => 'rosters' %>
+		</td>
+		<td>
+			Print a list of all active attendances in every current meeting.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= link_to "Weekly Guest-Flow Contacts", :action => 'weekly_contacts' %>
+		</td>
+		<td>
+			Print a list of this week's contacts related to guest flow.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= link_to "Weekly Prayer Requests & Praise Reports", :action => 'weekly_prayer_praise' %>
+		</td>
+		<td>
+			Print a list of this week's prayer request &amp; praise report contacts.
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<%= link_to "Weekly Status Advance/Decline Report", :action => "weekly_status_advance_decline" %>
+		</td>		
+		<td>
+			Print this week's status advance/decline activity.
+		</td>
+	</tr>
+	<tr>
+		<td><%= link_to "Contact Status Report", :action => 'contact_status' %></td>
+		<td>Print a report on the status of all open contacts for all users who are staff members.</td>
+	</tr>
+	<tr>
+		<td><%= link_to "Where's Waldo", :action => 'wheres_waldo' %></td>
+		<td>Print Where's Waldo. Lists all "actives" and "guests" enrolled in Adult Worship for marking attendance.</td>
+	</tr>
+	
+</table>

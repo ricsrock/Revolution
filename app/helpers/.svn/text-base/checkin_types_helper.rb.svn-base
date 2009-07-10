@@ -1,0 +1,2 @@
+module CheckinTypesHelper
+end

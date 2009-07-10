@@ -1,0 +1,2 @@
+session[:flavor] = params[:fund_id]
+page.replace_html("graph", :partial => 'graph')

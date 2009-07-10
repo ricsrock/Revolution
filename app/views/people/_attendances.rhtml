@@ -1,0 +1,32 @@
+<div style="float:none;clear:both;">
+	
+<fieldset><legend><strong>Attendance History</strong></legend>
+<% @groups = @person.groups_attended %>
+
+<div style="padding-bottom:.5em;">
+	<% form_remote_tag :url => {:action => 'filter_attendances', :person => @person} do %>
+	<%= collection_select(:filter, :group_id, @groups, :id, :name, {:include_blank => "All"}) %>
+	<%= select(:filter, :range, Contact::RANGES) %>
+	<%= submit_tag "Filter" %>
+	<% end %>
+</div>
+
+<table class="list">
+	<tr>
+		<th>Event Type</th>
+		<th>Instance Type</th>
+		<th>Group</th>
+		<th>Date</th>
+	</tr>
+	<% @person.list_attendances(chosen_group ||= '%', chosen_range ||= "All", @person.id).each do |a| %>
+	<tr class="<%= cycle "even", "odd" %>">
+		<td><%= a.meeting.instance.event.event_type.name rescue nil %></td>
+		<td><%= a.meeting.instance.instance_type.name rescue nil %></td>
+		<td><%= link_to "#{a.meeting.group.name}", :controller => 'meetings', :action => 'detail', :id => a.meeting.id rescue nil %></td>
+		<td><%= a.meeting.instance.event.date.strftime('%m/%d/%Y') rescue nil %></td>	
+	</tr>
+	<% end %>
+</table>
+</fieldset>
+
+</div>

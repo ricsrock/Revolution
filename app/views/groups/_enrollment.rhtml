@@ -1,0 +1,3 @@
+<div id ="enrollment_id_<%= enrollment.id %>" class="<%= cycle("even_only","odd_only") %>" style="margin-left:<%= enrollment.group.more_level %>em;">
+	<%= link_to "#{enrollment.person.full_name}", :controller => 'people', :action => 'show', :id => enrollment.person.id %>
+</div>

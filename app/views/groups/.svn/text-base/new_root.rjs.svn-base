@@ -1,0 +1,12 @@
+page.replace_html("all-groups", :partial => 'all_groups')
+page.select('form').each { |f| f.reset }
+page.replace_html("notices", :partial => 'group_errors')
+
+if @root
+  @g_group = Group.find(@root)
+
+  @g_group.all_children.each do |c|
+    page.show("group_id_#{c.id}")
+  end
+end
+

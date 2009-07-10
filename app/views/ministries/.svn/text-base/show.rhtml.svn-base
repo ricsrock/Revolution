@@ -1,0 +1,85 @@
+<h3><%= link_to "#{@ministry.department.name}", :controller => 'departments', :action => 'show', :id => @ministry.department.id %> Department</h3>
+<h2>Ministry: <%= @ministry.name %></h2>
+
+<fieldset>
+	<legend>
+		<strong>Ministry Info</strong>
+	</legend>
+
+<table border="0" cellspacing="0" cellpadding="2">
+	<tr>
+		<td><strong><%= @ministry.responsible_person_title %>:</strong></td>
+		<td>
+				<% if @ministry.responsible_person.nil? %>
+				None assigned
+				<% else %>
+				<%= @ministry.responsible_person.full_name %>
+				<% end %>
+		</td>
+	</tr>
+	<tr>
+		<td><strong>Purpose:</strong></td>
+		<td><%= @ministry.purpose %></td>
+	</tr>
+	<tr>
+		<td><strong>Win:</strong></td>
+		<td><%= @ministry.win %></td>
+	</tr>
+</table>
+
+<%= link_to 'Edit', :action => 'edit', :id => @ministry %>
+</fieldset>
+
+<%= render :partial => "contacts" %>
+
+<h3>Teams for This Ministry</h3>
+
+<table class="list">
+	<tr>
+		<th>Team Name</th>
+		<th>Responsible Person</th>
+		<th># of Jobs</th>
+		<th># Involved</th>
+	</tr>
+
+<% if @ministry.teams.empty? %>
+</table>
+	<div id="message">
+		There are no teams for this ministry.	
+	</div>
+
+
+<% else %>
+
+<% @ministry.teams.each do |t| %>
+
+	<tr>
+		<td><%= link_to "#{t.name}", :controller => 'teams', :action => 'show', :id => t.id %></td>
+		<td>
+				<% if t.responsible_person.nil? %>
+				None assigned
+				<% else %>
+				<%= t.responsible_person.full_name %>
+				<% end %>
+		</td>
+		<td>
+			<%= t.jobs.length rescue nil %>
+		</td>
+		<td>
+			<%= t.involvements.length rescue nil %>
+		</td>
+	</tr>
+	
+	<% end %>
+	
+</table>
+
+<% end %>
+
+<%= link_to "Add Team", :controller => 'teams', :action => 'new', :ministry_id => @ministry.id %>
+
+<% content_for :dashboard do %>
+<div>
+	<%= render :partial => "involvements", :locals => {:ministry => @ministry} %>
+</div>
+<% end %>

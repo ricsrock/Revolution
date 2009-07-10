@@ -1,0 +1,14 @@
+FormBuilders
+============
+
+The form_builders plugin provides a few standard form styles for you to use
+with +form_for+ or +remote_form_for+. So far, we just have +tabular_form_for+
+which produces a form inside a table, with two columns, one which has the
+labelled human name of the field, one of which has the actual field input box.
+
+TODO
+====
+
+* Write some documentation!
+* Write some tests!
+* Create some more form styles.

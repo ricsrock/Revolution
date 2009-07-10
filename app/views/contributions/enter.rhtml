@@ -1,0 +1,61 @@
+<% @item = @batch %>
+<%= render :partial => "shared/admin_box" %>
+<h3>Entering Contributions for Batch #: <%= @batch.id %></h3>
+<label>Date Collected: </label><%= @batch.date_collected.strftime('%m/%d/%Y') rescue nil %>
+
+<div id="count" style="float:none;clear:both;">
+ <%= render :partial => "count_total", :locals => {:batch => @batch} %>
+</div>
+
+<div style="height:20px">
+	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</div>
+
+<div id="contribution" style="float:none;clear:both;">
+	<% form_remote_for :contribution, :url => { :action => 'create', :batch_id => @batch.id } do |f| %>
+
+	<fieldset class="money-green"><legend style="background-color:#F6FFE5;color:#666666"><strong>Contribution Info</strong></legend>
+		
+		<div id="contributor-pane" style="float:left;">
+			<%= render :partial => "contributor_pane", :locals => {:person => @person} %>
+		</div>
+
+		<div id="check_date" style="float:right;">
+			<span>
+				<label>Check #: </label>
+				<%= f.text_field :check_num, :size => 7 %><%= error_message_on('contribution', 'check_num') %>
+			</span><br>
+			<span>
+				<label>Date: </label>
+				<%= date_field (:contribution, :date, {:format => '%b %d %Y', :size => 10 }) %><%= error_message_on('contribution', 'date') %>
+			</span>
+		</div>
+
+		<div id="contributor-info">
+			<%= render :partial => "contributor_id" %>
+		</div>
+
+	</fieldset>
+	
+	<fieldset class="money-green"><legend style="background-color:#F6FFE5;color:#666666"><strong>Donations for This Contribution</strong></legend>
+	   <div id="donations">
+		<%= render :partial => "donations_partial", :locals => {:contribution => @contribution} %>
+	   </div>
+	   <%= render :partial => 'add_donation_link', :locals => { :index => @contribution.donations.size } %>
+	</fieldset>
+
+	   <div style="float:none;clear:both;">
+			<span style="float:left;">
+				<%= submit_tag 'Create Contribution' %> <% end %>
+			</span>
+			<span style="float:right;">
+				<%= button_to 'Lock & Done', :action => 'lock_and_done', :batch_id => @batch.id %>
+			</span>
+		</div>
+	 
+	
+</div>
+&nbsp;
+<div id="contributions-list" style="float:none;clear:both;">
+	<%= render :partial => "contributions_list", :locals => {:batch => @batch} %>
+</div>

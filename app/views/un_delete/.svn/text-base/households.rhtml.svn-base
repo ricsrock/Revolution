@@ -1,0 +1,12 @@
+<table border="0" cellspacing="0" cellpadding="3">
+	
+<% @deleted_households.each do |h| %>
+	<tr class="<%= cycle("even","odd") %>">
+		<td><%= h.household_name rescue nil %></td>
+		<td>
+			<%= link_to 'un-delete', :action => 'un_delete_household', :id => h %>
+		</td>
+	</tr>
+<% end %>
+</table>
+

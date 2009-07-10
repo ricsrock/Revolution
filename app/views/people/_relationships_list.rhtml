@@ -1,0 +1,5 @@
+<% @person.all_relationships.each do |relationship| %>
+	<div class="<%= cycle("odd","even") %>">
+		<%= render :partial => "relationship", :locals => {:relationship => relationship, :person => @person} %>
+	</div>
+<% end %>

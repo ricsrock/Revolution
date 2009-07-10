@@ -1,0 +1,26 @@
+<h3>All Contacts for <%= @person.full_name %></h3>
+
+<% @person.contacts.sort_by {|c| [c.created_at, c.contact_type.name]}.each do |contact| %>
+<hr>
+	<div>
+		<b>Date: </b><%= contact.created_at.strftime("%m/%d/%Y") rescue nil %>   
+		<b>Contact Type: </b><%= contact.contact_type.name rescue nil %>   
+		<b>Created By: </b><%= contact.created_by rescue nil %>
+	</div>
+	<div>
+		<b>Comments: </b><span id="message-black"><%= contact.comments %></span>
+	</div>
+	<div style="margin-left:1em;">
+		<b>Follow-Ups:</b>
+		<% contact.follow_ups.sort_by {|s| s.created_at}.each do |f| %>
+			<div style="margin-left:2em;">
+				<b>Follow-Up Type: </b><%= f.follow_up_type.name rescue nil %>   
+				<b>Date: </b><%= f.created_at.strftime("%m/%d/%Y") rescue nil %>
+				<b>Created By: </b><%= f.created_by rescue nil %>
+				<div style="margin-left:3em;">
+					<b>Notes: </b><%= f.notes rescue nil %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% end %>

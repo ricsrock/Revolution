@@ -1,0 +1,38 @@
+<h3>Group Phone List for: <%= @group.name rescue nil %></h3><hr>
+
+<br>
+
+<div id="message-black">
+	This report shows all phones associated with each person's household and the best email for that person.
+</div>
+
+<table border="0" cellspacing="2" cellpadding="5">
+	<tr>
+		<th>Person</th>
+		<th>Address</th>
+		<th>Phones</th>
+		<th>Email</th>
+	</tr>
+	
+	<% @group.people.sort_by(&:last_first_name).each do |p| %>
+	
+	<tr>
+		<td>
+			<%= p.full_name %>
+		</td>
+		<td>
+			<%= p.household.address_block rescue nil %>
+		</td>
+		<td>
+			<% unless p.household.nil? %>
+			<% p.household.phones.each do |phone| %>
+				<%= phone.s_formatted rescue nil %> (<%= phone.comm_type.name rescue nil%>)<br>
+			<% end %>
+			<% end %>
+		</td>
+		<td>
+			<%= p.best_email_smart rescue nil %>
+		</td>
+	</tr>
+	<% end %>
+</table>

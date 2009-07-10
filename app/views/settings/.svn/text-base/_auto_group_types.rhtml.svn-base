@@ -1,0 +1,17 @@
+<% unless @instance_type.nil? %>
+<div id="message">
+	When an instance of this type (<%= @instance_type.name %>) is created. Meetings for the following groups will be created automatically.
+</div>
+<% @instance_type.auto_groups.each do |a| %>
+	<div id="auto_group_type">
+		<span>
+			<%= a.group.name %>
+		</span>
+		<span>
+			<%= link_to_remote "X", :url => { :action => 'delete_auto_group_type', :id => a.id } %>
+		</span>
+	</div>
+<% end %>
+<% end %>
+
+<%= link_to_remote "Add", :url => { :action => 'show_add_auto_group_form', :instance_type => @instance_type } %>

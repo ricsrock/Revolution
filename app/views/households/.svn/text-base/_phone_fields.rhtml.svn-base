@@ -1,0 +1,28 @@
+ <div id="phone_<%= index %>">
+ <% fields_for "phones[#{index}]", phone do |f| %>
+ <% @phone = phone %>
+<table border="0" cellspacing="1" cellpadding="1">
+
+	<tr>
+		<td>Phone Number:</td>
+		<td>Primary?</td>
+		<td>Type:</td>
+		<td>Carrier (if cell):</td>
+		<td>Comments:</td>
+	</tr>
+	<tr>
+		<td>
+			<%= f.text_field :number, :size => 20 %><%= error_message_on('phone', 'number') %><br>
+			<div class="tiny">
+				Include area code, no dashes or spaces.
+			</div>
+		</td>
+		<td><%= f.check_box :primary %></td>
+		<td><%= f.select( :comm_type_id, CommType.find(:all).collect {|p| [p.name, p.id]}, {}) %></td>
+		<td><%= f.select( :sms_setup_id, SmsSetup.find(:all).collect {|p| [p.carrier_name, p.id]}, {}) %></td>
+		<td><%= f.text_field :comments, :size => 20 %></td>
+		<td><%= link_to_remote (image_tag "delete_16x16.gif", :size => "12x12", :border => 0, :title => "Remove this phone"), :url => { :action => 'remove_phone', :index => index } %></td>
+	</tr>
+</table>
+ <% end %>
+ </div>

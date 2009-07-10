@@ -1,0 +1,52 @@
+8
+
+dir
+5
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/role_requirement/generators/role/templates
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+23cefa1c-6352-0410-ae0e-a5aea8c5d16c
+
+_user_functions.erb
+file
+
+
+
+
+2008-11-24T22:07:24.000000Z
+8093e8521639c30a5c1fb441de56ddf2
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+001_add_role_to_users_migration.rb.erb
+file
+
+
+
+
+2008-11-24T22:07:24.000000Z
+8b2b166f628a23635c0f418fe5eead3a
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+

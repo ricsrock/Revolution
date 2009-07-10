@@ -1,0 +1,31 @@
+<h1>Listing All Groups</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+	<th>Created_at</th>
+	<th>Created_by</th>
+	<th>CheckIn Group</th>
+	<th>Show On Web</th>
+  </tr>
+  
+<% for group in @groups %>
+  <tr>
+    <td><%=h group.name %></td>
+	<td><%=h group.created_at.strftime('%m/%d/%Y') rescue nil  %></td>
+	<td><%=h group.created_by rescue nil  %></td>
+	<td><%= check_box_tag :group, group.checkin_group, group.checkin_group, :disabled => true %></td>
+	<td><%= check_box_tag :group, group.show_on_web, group.show_on_web, :disabled => true %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => group %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => group %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => group }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @group_pages.current.previous } if @group_pages.current.previous %>
+<%= link_to 'Next page', { :page => @group_pages.current.next } if @group_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New group', :action => 'new' %>

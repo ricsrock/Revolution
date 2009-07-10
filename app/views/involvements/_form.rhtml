@@ -1,0 +1,15 @@
+<%= error_messages_for 'involvement' %>
+
+<h3><%= @involvement.job.title rescue nil %></h3>
+<h3><%= @involvement.person.full_name rescue nil %></h3>
+
+<p>
+	<label>Start Date </label><br>
+	<%= date_field :involvement, :start_date, :value => @involvement.start_date, :format => '%d %b %Y' %>
+</p>
+
+<p>
+	<label>End Date </label><br>
+	<%= date_field :involvement, :end_date, :value => @involvement.end_date, :format => '%d %b %Y' %>
+</p>
+

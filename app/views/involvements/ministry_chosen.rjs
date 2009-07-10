@@ -1,0 +1,2 @@
+page.replace_html("teams", :partial => 'teams', :locals => {:department => @department, :ministry => @ministry})
+page.replace_html("jobs", :partial => 'jobs', :locals => {:department => @department, :ministry => @ministry, :team => @team})

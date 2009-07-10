@@ -1,0 +1,70 @@
+<table border="0" cellspacing="3" cellpadding="3" width="100%">
+	<tr>
+		<td>
+			<b>Relationship Type: </b><br>
+			<%= @relationship.relationship_type.name rescue nil %>
+		</td>
+		<td>
+			<b>Created By: </b><br>
+			<%= @relationship.created_by rescue nil %>
+		</td>
+		<td>
+			<b>Updated By: </b><br>
+			<%= @relationship.updated_by rescue nil %>
+		</td>
+		<td>
+			<b>Created At: </b><br>
+			<%= @relationship.created_at.strftime("%m/%d/%Y") rescue nil %>
+		</td>
+		<td>
+			<b>Updated At: </b><br>
+			<%= @relationship.updated_at.strftime("%m/%d/%Y") rescue nil %>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<b>Person: </b><br>
+			<%= @relationship.person.full_name rescue nil %>
+		</td>
+		<td>
+			<b>Role: </b><br>
+			<%= @relationship.person_role.name rescue nil %>
+		</td>
+		
+	</tr>
+	<tr>
+		<td>
+			<b>Related Person: </b><br>
+			<%= @relationship.related_person.full_name rescue nil %>
+		</td>
+		<td>
+			<b>Role: </b><br>
+			<%= @relationship.relates_to_role.name rescue nil %>
+		</td>
+		
+	</tr>
+	<tr>
+		<td><b>Start Date: </b><br>
+			<%= @relationship.start_date.strftime("%m/%d/%Y") rescue nil %>
+		</td>
+		<td><b>End Date: </b><br>
+			<%= @relationship.end_date.strftime("%m/%d/%Y") rescue nil %>
+		</td>
+		<td>
+			<b>Inactive?: </b><br>
+			<%= check_box_tag 'relationship[active?]', "0", ! @relationship.active?, :disabled => true %>
+		</td>
+		<td>
+			<b>Web Access?: </b><br>
+			<%= check_box 'relationship', :web_access, :disabled => true %>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="4">
+			<b>Comments: </b><%= @relationship.comments %>
+		</td>
+	</tr>
+</table>
+
+<%= link_to_remote 'edit', :url => { :action => 'edit_relationship', :id => @relationship, :person => @person} %> | 
+<%= link_to_remote "Relationships", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "relationships" } %>

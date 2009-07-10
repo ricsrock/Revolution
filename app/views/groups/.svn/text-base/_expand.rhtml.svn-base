@@ -1,0 +1,4 @@
+<% @group = group || false %>
+<% if group.has_children? %>
+	<%= link_to_remote (image_tag "triangle_rt.jpg", :size => "12x12", :border => 0, :title => 'Expand This Branch'), :url => {:action => 'show_children', :id => group.id} %>
+<% end %>

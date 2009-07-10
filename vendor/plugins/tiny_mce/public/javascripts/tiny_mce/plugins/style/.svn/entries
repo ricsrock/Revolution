@@ -1,0 +1,64 @@
+8
+
+dir
+7
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/tiny_mce/public/javascripts/tiny_mce/plugins/style
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+editor_plugin.js
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+a33cf070cce70e0aaa4dd395366d9911
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+langs
+dir
+
+editor_plugin_src.js
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+10ec7b919444e93153ff183260e64453
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+css
+dir
+
+props.htm
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+d4e3d92f757881513ad4200472b1e87c
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+js
+dir
+

@@ -1,0 +1,12 @@
+<h1>New department</h1>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= link_to 'Manage Ministries', :controller => 'ministries', :action => 'manage' %>
+
+
+
+

@@ -1,0 +1,2 @@
+<label>Select Instance Type:</label><br>
+<%= collection_select('instance_type', 'id', @event_type.instance_types, 'id', 'name', options = {:prompt => "--select an instance type--"})%>

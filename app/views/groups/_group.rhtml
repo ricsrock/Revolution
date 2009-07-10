@@ -1,0 +1,41 @@
+	<div id ="group_id_<%= group.id %>" style="margin-left:<%= group.more_level %>em;display:none;align:left;">
+		<div id="group_id_<%= group.id %>_triangle" style="width: 30px;display:inline;">
+			<%= render :partial => "expand", :locals => {:group => group} %>
+		</div>
+		<span style="width: 30px;">
+		<%= image_tag "search_icon_group.png", :size => "16x18" unless group.has_children? %>
+		</span>
+		<span class="<%= group.archived? ? "archived_group" : nil %>">
+		<strong><%= group.name %></strong>
+		<%= link_to_remote (image_tag "settings2_16x16.gif", :size => "12x12", :border => 0, :title => 'Show Controls'), :url => {:action => 'toggle_controls', :id => group.id} %>
+		<%= link_to (image_tag "zoom_16x16.gif", :size => "12x12", :border => 0, :title => 'Show Details'), :action => 'show', :id => group.id %>
+		<%= link_to_remote (image_tag "search_icon_person.png", :size => "12x12", :border => 0, :title => 'Show Enrollments'), :url => {:action => 'show_enrollments', :group_id => group.id } if group.has_enrollments? %>
+		</span>
+
+		<div id="group_<%= group.id %>_controls" style="display:none;background-color:#F4EBC4;padding:.5em;float:none;clear:both;">
+		<%= render :partial => "group_controls", :locals => {:group => group} %>
+		</div>
+	
+	</div>
+
+	<div id="group_<%= group.id %>_enrollments" style="display:none;float:none;clear:both;">
+		<div id="enrollments-controls" style="margin-left:<%= group.more_level %>em;align:left;float:none;clear:both;">
+			<span><%= cool_button_id('print phone list', 'groups', 'print_phone_list', group.id) %></span>
+			<span><%= cool_button_id('export csv','reports','export_group', group.id) %></span>
+			<span><%= cool_button_id('email','groups','new_group_contact',group.id) %></span>
+			<span><%= cool_button_id('txt','groups','new_group_text',group.id) %></span>
+			<span><%= cool_button_id('export vcards','vcard','get_group_cards',group.id) %></span>
+		</div>&nbsp;
+		<hr>
+	
+		<div id="group_<%= group.id %>_enrollments_list" style="float:none;clear:both;">
+			<!-- this space for enrollments list !-->
+		</div>
+		<hr>
+		<br>
+	</div>
+
+
+
+<%= render :partial => "group", :collection => group.children(:scope => current_user.group_scope).sort {|a,b| a.name <=> b.name} %>
+

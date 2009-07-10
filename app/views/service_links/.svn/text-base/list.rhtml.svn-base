@@ -1,0 +1,27 @@
+<h1>Listing service_links</h1>
+
+<table>
+  <tr>
+  <% for column in ServiceLink.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for service_link in @service_links %>
+  <tr>
+  <% for column in ServiceLink.content_columns %>
+    <td><%=h service_link.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => service_link %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => service_link %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => service_link }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @service_link_pages.current.previous } if @service_link_pages.current.previous %>
+<%= link_to 'Next page', { :page => @service_link_pages.current.next } if @service_link_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New service_link', :action => 'new' %>

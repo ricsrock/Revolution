@@ -1,0 +1,30 @@
+<h1>Listing Note Types</h1>
+
+<table class="list">
+  <tr>
+  <% for column in NoteType.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+	<th></th>
+	<th></th>
+	<th></th>
+  </tr>
+  
+<% for note_type in @note_types %>
+  <tr>
+  <% for column in NoteType.content_columns %>
+    <td><%=h note_type.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => note_type %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => note_type %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => note_type }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @note_type_pages.current.previous } if @note_type_pages.current.previous %>
+<%= link_to 'Next page', { :page => @note_type_pages.current.next } if @note_type_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New note_type', :action => 'new' %>

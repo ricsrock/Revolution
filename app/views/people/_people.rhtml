@@ -1,0 +1,32 @@
+<table class="list">
+	<tr>
+		<th>Name</th>
+		<th>Position</th>
+		<th>Age</th>
+		<th>Checkin Group</th>
+		<th>Status</th>
+	</tr>
+	
+<% if ! @peoples.people.empty? %>
+	
+	<% @peoples.people.sort_by(&:sort_order).each do |p| %>
+		<tr class="<%= cycle("even", "odd") %>">
+			<td><%= link_to "#{p.full_name}", :controller => 'people', :action => 'show', :id => p %></td>
+			<td><%= p.household_position rescue nil %></td>
+            <td><%= p.age rescue nil %></td>
+			<td><%= p.default_group.name rescue nil %></td>
+			<td><%= p.household.attendance_status rescue nil %></td>
+		</tr>
+	<% end %>
+</table>
+
+<% else %>
+
+</table>
+<div id="message-black">
+	There are no people in this household.
+</div>
+
+<% end %>
+
+

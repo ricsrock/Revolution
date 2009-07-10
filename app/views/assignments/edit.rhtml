@@ -1,0 +1,9 @@
+<h1>Editing assignment</h1>
+
+<% form_tag :action => 'update', :id => @assignment do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show Assignment', :action => 'show', :id => @assignment %> |
+<%= link_to 'Schedule Staff', :controller => 'assignments', :action => 'manage' %>

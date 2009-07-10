@@ -1,0 +1,7 @@
+<%= error_messages_for 'instance_type' %>
+
+<!--[form:instance_type]-->
+<p><label for="instance_type_name">Name</label><br/>
+<%= text_field 'instance_type', 'name'  %></p>
+<!--[eoform:instance_type]-->
+

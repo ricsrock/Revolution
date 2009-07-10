@@ -1,0 +1,8 @@
+<%= error_messages_for 'auto_instance_type' %>
+
+<% @instance_types = InstanceType.find(:all) %>
+<%= collection_select('auto_instance_type', 'instance_type_id', @instance_types, 'id', 'name') %>
+
+<!--[form:auto_instance_type]-->
+<!--[eoform:auto_instance_type]-->
+

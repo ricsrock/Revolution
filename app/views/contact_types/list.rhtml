@@ -1,0 +1,33 @@
+<h1>Listing Contact Types</h1>
+
+<table border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <th>Name</th>
+	<th>Created at</th>
+	<th>Updated at</th>
+	<th>Created by</th>
+	<th>Updated by</th>
+	<th>Multi Close?</th>
+  </tr>
+ 
+  <% for c in @contact_types %>
+  <tr class="<%= cycle("even","odd") %>">
+    <td><%=h c.name %></td>
+	<td><%= c.created_at.strftime('%m/%d/%Y') %></td>
+	<td><%= c.updated_at.strftime('%m/%d/%Y') %></td>
+	<td><%= c.created_by %></td>
+	<td><%= c.updated_by %></td>
+	<td><%= c.multiple_close %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => c %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => c %></td>
+    <td><%= link_to 'X', { :action => 'destroy', :id => c }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @contact_type_pages.current.previous } if @contact_type_pages.current.previous %>
+<%= link_to 'Next page', { :page => @contact_type_pages.current.next } if @contact_type_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New Contact Type', :action => 'new' %>

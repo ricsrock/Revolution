@@ -1,0 +1,2 @@
+class SpecialRequirement < GroupChoice
+end

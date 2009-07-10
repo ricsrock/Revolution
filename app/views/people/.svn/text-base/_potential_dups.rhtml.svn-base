@@ -1,0 +1,5 @@
+<% @found_people.each do |p| %>
+	<div>
+		<%= link_to_remote "#{p.full_name}", :url => {:action => 'choose_dup', :id => p.id} %> (#<%= p.id rescue nil %>)
+	</div>
+<% end %>

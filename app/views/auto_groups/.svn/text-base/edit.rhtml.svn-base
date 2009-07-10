@@ -1,0 +1,9 @@
+<h1>Editing auto_group</h1>
+
+<% form_tag :action => 'update', :id => @auto_group do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @auto_group %> |
+<%= link_to 'Back', :action => 'list' %>

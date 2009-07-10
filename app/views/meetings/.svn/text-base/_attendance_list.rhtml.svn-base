@@ -1,0 +1,29 @@
+
+
+<table class="list">
+		<tr>
+			<th>Person</th>
+			<th>CheckIn Time</th>
+			<th>Security Code</th>
+			<th>Checked In As</th>
+			<th>Check Out</th>
+		</tr>
+<% if not @meeting.active_attendances.empty? %>
+		
+	<% @meeting.active_attendances.each do |attendance| %>
+		<tr class="<%= cycle("even", "odd") %>">
+			<td><%= attendance.person.full_name rescue nil %></td>
+			<td><%= attendance.checkin_time.strftime('%I:%M')  rescue nil %></td>
+			<td><%= attendance.security_code rescue nil %></td>
+			<td><%= attendance.checkin_type.name rescue nil %></td>
+			<td><%= button_to "Checkout", :action => "checkout", :controller => "checkin", :person_id => attendance.person.id %></td>
+		</tr>
+<% end %>
+	</table>
+
+<% else %>
+	</table>
+	<div id="message-black">
+		There are no active attendances for this meeting.
+	</div>
+<% end %>

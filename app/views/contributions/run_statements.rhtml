@@ -1,0 +1,89 @@
+<% if @donations.empty? %>
+	<div id="message-black">
+		No results.
+	</div>
+<% else %>
+
+<% @grouped = @donations.group_by {|d,p| d.contribution.last_first_name rescue nil} %>
+
+<% @grouped.sort_by {|p,d| p.to_s}.each do |person,donations| %>
+
+	<div style="float:none;clear:both;">&nbsp;</div>
+	
+	<div style="float:none;clear:both;page-break-after:always;">
+		<div style="float:left;">
+			<b><%= person rescue nil %></b><br>
+			<%= donations.first.contribution.person.household.address_block rescue nil %>
+		</div>
+		<div style="float:right;">
+			<b>River Valley Church</b><br>
+			PO Box 72685<br>
+			Bossier City, LA  71172
+		</div>
+		<div style="float:none;clear:both;text-align:center;">
+			Statement of contributions for <%= @start_date.strftime('%m/%d/%y') rescue nil %> through <%= @end_date.strftime('%m/%d/%Y') %>.
+		</div>
+		<div style="float:none;clear:both;"></div>
+		<hr>
+		
+		<% @grouped_donations = donations.group_by {|d| d.contribution} %>
+		
+		<% style = "float:left;width:20%;" %>
+		<div style="margin-left:1em;float:none;clear:both;">
+			<div style="<%= style %>">
+				<b>Date</b>
+			</div>
+			<div style="<%= style %>">
+				<b>Check #</b>
+			</div>
+			<div style="<%= style %>">
+				<b>Amount</b>
+			</div>
+		</div>
+		<% line = 1 %>
+		<% @grouped_donations.sort_by {|a,b| a.date}.each do |contribution,donations_b| %>
+		<% page_break = line == 45 ? "page-break-after:always;" : "" %>
+		<div style="margin-left:1em;float:none;clear:both;<%= page_break %>">
+			<div style="<%= style %>">
+				<%= contribution.date.strftime('%m/%d/%Y') rescue nil %>
+			</div>
+			<div style="<%= style %>">
+				<%= contribution.check_num? ? contribution.check_num : "none" rescue nil %>
+			</div>
+			<div style="<%= style %>">
+				<%= number_to_currency contribution.total rescue nil %>
+			</div>
+		</div>
+		<% if line == 45 %>
+			<div style="float:none;clear:both;">
+				&nbsp;
+			</div>
+		<% end %>
+		<% line = line+1 %>
+		<% end %>
+		<div style="float:none;clear:both;">
+			&nbsp;
+		</div>
+		<div style="margin-left:1em;float:none;clear:both;">
+			<b>Totals</b><br><hr>
+			<% donations.group_by {|d,fund_gifts| d.fund.name rescue nil}.each do |fund, gifts| %>
+				<div style="<%= style %>">
+					<b><%= fund %></b><br>
+					<%= number_to_currency gifts.collect {|a| a.amount}.sum rescue nil %>
+				</div>
+			<% end %>
+				<div style="<%= style %>">
+					<b>Combined</b><br>
+					<%= number_to_currency donations.collect {|a| a.amount}.sum rescue nil %>
+				</div>
+				
+			&nbsp;
+		</div>
+		<div style="float:none;clear:both;">
+			&nbsp;
+		</div>
+	</div>
+
+<% end %>
+
+<% end %>

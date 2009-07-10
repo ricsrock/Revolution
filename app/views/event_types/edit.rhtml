@@ -1,0 +1,9 @@
+<h1>Editing Event Type</h1>
+
+<% form_tag :action => 'update', :id => @event_type do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @event_type %> |
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,17 @@
+<% unless @event_type.nil? %>
+<div id="message">
+	When an event of this type (<%= @event_type.name %>) is created. Instances of the following types will be created automatically.
+</div>
+<% @event_type.auto_instance_types.each do |a| %>
+	<div id="auto_instance_type">
+		<span>
+			<%= a.instance_type.name %>
+		</span>
+		<span>
+			<%= link_to_remote "X", :url => { :action => 'delete_auto_instance_type', :id => a.id } %>
+		</span>
+	</div>
+<% end %>
+<% end %>
+
+<%= link_to_remote "Add", :url => { :action => 'show_add_auto_instance_form', :event_type => @event_type } %>

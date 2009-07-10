@@ -1,0 +1,41 @@
+<% inside_layout 'application' do -%>
+
+<div style="float:none;clear:both;">
+	<div id="setup_menu" style="text-align:bottom;">
+		<ul style="vertical-align:bottom;">
+			<li><%= link_to_remote "Event Types", :url => { :controller => 'settings', :action => 'show_event_types' } %></li>
+			<li><%= link_to_remote "Instance Types", :url => { :controller => 'settings', :action => 'show_instance_types' } %></li>
+			<li class="<%= menu_class("rooms") %>"><%= link_to "Rooms", :controller => 'rooms', :action => 'list' %></li>
+			<li class="<%= menu_class("checkin_types") %>"><%= link_to "Check-In Types", :controller => 'checkin_types', :action => 'list' %></li>
+			<li class="<%= menu_class("groups") %>"><%= link_to "Groups", :controller => 'groups', :action => 'list' %></li>
+			<li class="<%= menu_class("comm_types") %>"><%= link_to "Communication Types", :controller => 'comm_types', :action => 'list' %></li>
+			<li class="<%= menu_class("attendances") %>"><%= link_to "Attendances", :controller => 'attendances', :action => 'list' %></li>
+			<li class="<%= menu_class("tag_groups") %>"><%= link_to "Tag Groups", :controller => 'tag_groups', :action => 'list' %></li>
+			<li class="<%= menu_class("tags") %>"><%= link_to "Tags", :controller => 'tags', :action => 'list' %></li>
+			<li class="<%= menu_class("roles") %>"><%= link_to 'Roles', :controller => 'roles', :action => 'list' %></li>
+			<li class="<%= menu_class("users") %>"><%= link_to 'Users', :controller => 'users', :action => 'list' %></li>
+			<li class="<%= menu_class("contact_types") %>"><%= link_to 'Contact Types', :controller => 'contact_types' %></li>
+			<li class="<%= menu_class("contact_forms") %>"><%= link_to 'Contact Forms', :controller => 'contact_forms' %></li>
+			<li class="<%= menu_class("web_categories") %>"><%= link_to 'Web Categories', :controller => 'web_categories' %></li>
+			<li class="<%= menu_class("un_delete") %>"><%= link_to 'Un-Delete', :controller => 'un_delete' %></li>
+			<li class="<%= menu_class("sms_setups") %>"><%= link_to 'SMS Setups', :controller => 'sms_setups' %></li>
+			<li class="<%= menu_class("animals") %>"><%= link_to 'Animals', :controller => 'animals' %></li>
+			<li class="<%= menu_class("my_colors") %>"><%= link_to 'Colors', :controller => 'my_colors' %></li>
+			<li class="<%= menu_class("adjectives") %>"><%= link_to 'Adjectives', :controller => 'adjectives' %></li>
+			<li class="<%= menu_class("relationship_types") %>"><%= link_to 'Relationship Types', :controller => 'relationship_types' %></li>
+			
+			
+			
+
+			
+		</ul>
+	</div>
+&nbsp;
+	<div id="configuration_area">
+	        <%= yield %>
+	&nbsp;
+	</div>
+&nbsp;
+</div>
+
+<% end -%>

@@ -1,0 +1,26 @@
+<% @households = Household.find_all_by_attendance_status("Active") %>
+
+<h2>Directory</h2><hr>
+
+<table border="0" cellspacing="3" cellpadding="2">
+	
+<% @households.each do |h| %>	
+
+	<tr>
+		<td>
+			<strong><%= h.household_name rescue nil %></strong><br>
+			<%= h.address_block %>
+		</td>
+		<td>
+			<strong>Phones</strong><br>
+			<% h.phones.each do |p| %>
+			<div>
+				<%= p.s_formatted %>
+			</div>
+			<% end %>
+		</td>
+	</tr>
+	
+<% end %>
+	
+</table>

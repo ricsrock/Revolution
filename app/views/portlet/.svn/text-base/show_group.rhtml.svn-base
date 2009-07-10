@@ -1,0 +1,24 @@
+<h3>Group Name: <%= @group.name rescue nil %></h3>
+
+<div id="group-menu" style="height:30px;">
+	<span>
+		<%= link_to 'dashboard', {:action => 'index'}, {:title => "Choose which of your groups you want to manage"} %>
+	</span>
+	<span>
+		<%= link_to_remote("#{@group.name}", {:url => {:action => 'home', :id => @group}}, :title => "Show group members") %>
+	</span>
+	<span>
+		<%= link_to_remote('email group', {:url => {:action => 'email_group', :id => @group}}, :title => "Contact group members by email") %>
+	</span>
+	<span>
+		<%= link_to_remote('new meeting', {:url => {:action => 'new_meeting', :id => @group}}, :title => "Record meeting attendance")  %>
+	</span>
+	<span>
+		<%= link_to('print roster', {:action => 'roster', :id => @group}, {:popup => true, :title => "Print a group roster. Opens a new window."}) %>
+	</span>
+	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</div>
+
+<div id="work-area">
+	<%= render :partial => "home", :locals => {:group => @group} %>
+</div>

@@ -1,0 +1,2 @@
+class LeaderNameForPrinting < GroupChoice
+end

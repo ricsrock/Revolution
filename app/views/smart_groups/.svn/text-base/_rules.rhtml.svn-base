@@ -1,0 +1,11 @@
+
+<% @smart_group.smart_group_rules.each do |r| %>
+	<div style="float:none; clear:both;">
+	<span style="float:left;">
+		<%= r.prose rescue nil %>
+	</span>
+		<span style="float:right">
+		<%= link_to (image_tag "delete_16x16.gif", :size => "12x12", :border => 0, :title => "Delete this rule"), :controller => 'smart_groups', :action => 'delete_rule', :rule_id => r.id, :smart_group_id => @smart_group.id %>
+		</span>
+	</div>
+<% end %>

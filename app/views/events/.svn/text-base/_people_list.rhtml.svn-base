@@ -1,0 +1,33 @@
+<table border="0" cellspacing="0" cellpadding="4" width="100%">
+	<tr style="background-color:#536A97;color:#FFFFFF;">
+		<th>Breakfast</th>
+		<th>1st Service</th>
+		<th>2nd service</th>
+		<th>Person</th>
+		<th>Age</th>
+		<th>Address</th>
+	</tr>
+	
+<% if ! @show_people.empty? %>
+	
+<% @show_people.each do |p| %>
+	
+	<tr class="<%= cycle("even","odd") %>">
+		<td><%= check_box_tag "breakfast_people[]", p.id, p.breakfast, :disabled => p.breakfast rescue nil %></td>
+		<td><%= check_box_tag "first_service_people[]", p.id, p.first, :disabled => p.first rescue nil %></td>
+		<td><%= check_box_tag "second_service_people[]", p.id, p.second, :disabled => p.second rescue nil %></td>
+		<td><%= p.full_name rescue nil %></td>
+		<td><%= p.age rescue nil %></td>
+		<td><%= p.household.address1 rescue nil %></td>
+	</tr>
+	
+<% end %>
+
+</table>
+
+<% else %>
+<div id="message-black">
+	No results.
+</div>
+</table>
+<% end %>

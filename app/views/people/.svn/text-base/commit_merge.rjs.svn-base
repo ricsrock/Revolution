@@ -1,0 +1,2 @@
+page.replace_html("notice", :partial => 'shared/notices')
+page.redirect_to :action => 'merge_duplicates', :id => @keeper

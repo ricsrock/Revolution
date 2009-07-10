@@ -1,0 +1,2 @@
+page.replace_html("notices", :partial => 'shared/smart_notices')
+page.replace_html("work-area", :partial => 'home', :locals => {:group => @group})

@@ -1,0 +1,18 @@
+<fieldset><legend><strong>Web Categories</strong></legend>
+<h3>Web Categories for This Group</h3>
+<div id="categories-area">
+<table>
+<% WebCategory.find(:all, :order => :name).each do |w| %>
+    <tr>
+        <td>
+            <%= check_box_tag "group[web_category_ids][]",w.id, @group.web_categories.include?(w), :disabled => true %>
+        </td>
+        <td>
+            <%= w.name %>
+        </td>
+    </tr>
+<% end %>
+</table>
+<%= link_to_remote 'Edit Categories', :url => {:action => 'show_edit_categories_form', :group => @group} %>
+</div>
+</fieldset>

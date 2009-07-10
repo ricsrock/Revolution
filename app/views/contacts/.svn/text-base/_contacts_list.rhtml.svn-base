@@ -1,0 +1,25 @@
+<table border="0" cellspacing="0" cellpadding="4" width="100%">
+	<tr>
+		<th>Manage</th>
+		<th>Assigned To</th>
+		<th>Attributed To</th>
+		<th>Contact Type</th>
+		<th>Opened On</th>
+		<th>Updated On</th>
+		<th>Status</th>
+	</tr>
+	
+<% @contacts.each do |c| %>
+	
+	<tr class="<%= cycle("even","odd") %>">
+		<td><%= link_to "[follow-up]", :action => 'follow_up', :id => c.id %></td>
+		<td><%= c.assigned_to rescue nil %></td>
+		<td><%= c.attributed_to rescue nil %></td>
+		<td><%= c.contact_type.name rescue nil %></td>
+		<td><%= c.created_at.strftime('%m/%d/%Y') rescue nil %></td>
+		<td><%= c.updated_at.strftime('%m/%d/%Y') rescue nil %></td>
+		<td><%= c.status rescue nil %></td>
+	</tr>
+	
+<% end %>
+</table>

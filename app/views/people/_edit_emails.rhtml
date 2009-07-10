@@ -1,0 +1,34 @@
+
+<% @person = Person.find(entity) %>
+
+ <% form_tag :action => 'update_emails', :id => entity do %>
+<table class="list">
+	<tr>
+		<th>Address</th>
+		<th>Primary?</th>
+		<th>Type</th>
+		<th>Comments</th>
+		<th></th>
+	</tr>
+<% for @email in @person.emails %>
+   <%= error_messages_for :email %>
+   <% fields_for "email[]" do |f| %>
+<tr class=<%= cycle("even", "odd") %>>
+	<td><%= f.text_field :email %></td>
+	<td><%= f.check_box :primary %></td>
+	<td><%= f.select( :comm_type_id, CommType.find(:all).collect {|p| [p.name, p.id]}, {}) %></td>
+	<td><%= f.text_field :comments %></td>
+	<td><%= link_to "X", :action => 'delete_email', :id => @email, :person => @person %></td>
+</tr>
+   <% end %>
+ <% end %>
+<tr>
+	<td><%= submit_tag 'Update' %> | <%= link_to "Cancel", :action => 'show', :id => @person %></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+</table>  
+ <% end %>
+
+

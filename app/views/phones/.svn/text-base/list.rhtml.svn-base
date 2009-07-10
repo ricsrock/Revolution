@@ -1,0 +1,27 @@
+<h1>Listing phones</h1>
+
+<table>
+  <tr>
+  <% for column in Phone.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for phone in @phones %>
+  <tr>
+  <% for column in Phone.content_columns %>
+    <td><%=h phone.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => phone %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => phone %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => phone }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @phone_pages.current.previous } if @phone_pages.current.previous %>
+<%= link_to 'Next page', { :page => @phone_pages.current.next } if @phone_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New phone', :action => 'new' %>

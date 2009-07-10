@@ -1,0 +1,2 @@
+module SmartGroupRulesHelper
+end

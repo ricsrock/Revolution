@@ -1,0 +1,23 @@
+<% @meetings ||= @group.meetings_for_range(session[:range] || "Year To Date") %>
+
+<% unless @meetings.empty? %>
+	<table class="list">
+		<% @meetings.sort_by(&:date_sort).each do |m| %>
+		<tr class="<%= cycle "even", "odd" %>">
+			<td><%= link_to "#{m.instance.event.formatted_date rescue nil}", :controller => 'meetings',
+																			 :action => 'detail',
+																			 :id => m.id %></td>
+			<td><%= m.instance.event.event_type.name %></td>
+			<td><%= m.instance.instance_type.name %></td>
+			<td><%= m.complete_attendances.length %></td>
+			<td><%= link_to (image_tag "mark_attendance.gif", :size => "12x12", :border => 0, :title => "Mark attendance for this meeting"), :controller => 'meetings', :action => 'mark', :id => m %></td>
+			<td><%= link_to_remote (image_tag "delete_16x16.gif", :size => "12x12", :border => 0, :title => "Delete this meeting"),
+			 						:url => {:action => 'delete_meeting', :id => m.id, :group_id => @group}, :confirm => "Are you sure you want to permanently delete this meeting and all it's associated attendance records?" %></td>
+		</tr>
+		<% end %>
+	</table>
+<% else %>
+<div id="message-black">
+	This group has no meetings.
+</div>
+<% end %>

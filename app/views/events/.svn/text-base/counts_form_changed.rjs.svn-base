@@ -1,0 +1,10 @@
+
+params[:meetings].each do |id,m|
+  meeting = Meeting.find(id)
+  page.replace_html("row_#{id}_total", :partial => 'row_total', :locals => {:meeting => meeting})
+end
+
+  params[:instances].each do |id,instance|
+    instance = Instance.find(id)
+    page.replace_html("instance_#{id}_total", :partial => 'instance_total', :locals => {:i => instance})
+  end

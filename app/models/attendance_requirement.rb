@@ -1,0 +1,2 @@
+class AttendanceRequirement < GroupChoice
+end

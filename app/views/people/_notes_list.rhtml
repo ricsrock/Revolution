@@ -1,0 +1,30 @@
+<table class="list">
+	<tr>
+		<th>Date</th>
+		<th>Note Type</th>
+		<th>Created By</th>
+		<th>Confidential</th>
+		<th>View</th>
+	</tr>
+<% if ! @person.notes.empty? %>
+<% @person.notes.each do |note| %>	
+	<tr>
+		<td><%= note.created_at.strftime('%m/%d/%Y') rescue nil %></td>
+		<td><%= note.note_type.name rescue nil %></td>
+		<td><%= note.created_by %></td>
+		<td><%= check_box_tag 'note', note[:confidential], note[:confidential], :disabled => true %></td>
+		<td><%= link_to_remote('view', :url => {:action => 'view_note', :id => note.id, :person_id => @person}) %></td>
+	</tr>
+<% end %>
+</table>
+
+<% else %>
+	<tr>
+		<td><div id="message-black">No notes</div></td>
+	</tr>
+	</table>
+<% end %>
+
+<div>
+	<%= link_to_remote 'new note', :url => {:action => 'new_note', :id => @person} %>
+</div>

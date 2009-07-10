@@ -1,0 +1,3 @@
+@group = Group.find(params[:id])
+
+page.replace_html("small_group_fields", :partial => 'edit_small_group_fields', :locals => {:group => @group})

@@ -1,0 +1,12 @@
+<div id="wrap", class="view-port">
+	<% @team.involvements.sort_by {|s| s.person ? s.person.last_first_name : false }.each do |i| %>
+	<div id="involvement_id_<%= i.id %>", class="view-port-collapse">
+		<%= i.person.full_name %> (<%= i.job.title %>)
+	</div>
+	<% end %>
+	
+	<div id="controls">
+		<%= link_to "Send Confirm Email", :controller => 'test', :action => 'confirm_team', :team_id => @team.id %>
+	</div>
+	
+</div>

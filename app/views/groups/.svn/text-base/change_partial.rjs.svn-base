@@ -1,0 +1,2 @@
+page.replace_html("tabs-area", :partial => "#{session[:group_partial]}", :locals => {:group => @group})
+page.replace_html("group-tabs", :partial => "group_tabs")

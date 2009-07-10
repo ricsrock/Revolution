@@ -1,0 +1,8 @@
+<% form_remote_tag :url => {:action => 'search'} do %>
+	<%= text_field 'search', 'text' %>
+	<%= submit_to_remote 'sumbit_btn', 'Go', :url => {:action => 'search'} %>
+<% end %>
+
+<div id="people-list">
+	<%= render :partial => "people_list" %>
+</div>

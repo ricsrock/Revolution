@@ -1,0 +1,27 @@
+<h1>Listing rotations</h1>
+
+<table>
+  <tr>
+  <% for column in Rotation.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for rotation in @rotations %>
+  <tr>
+  <% for column in Rotation.content_columns %>
+    <td><%=h rotation.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => rotation %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => rotation %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => rotation }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @rotation_pages.current.previous } if @rotation_pages.current.previous %>
+<%= link_to 'Next page', { :page => @rotation_pages.current.next } if @rotation_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New rotation', :action => 'new' %>

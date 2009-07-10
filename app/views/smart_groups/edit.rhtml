@@ -1,0 +1,15 @@
+<h1>Editing Smart Group</h1>
+
+<% form_tag :action => 'update', :id => @smart_group do %>
+  <%# render :partial => 'form' %>
+
+<p><label>Name:</label><br>
+<%= text_field :smart_group, :name %></p>
+<p><label>Definition:</label><br>
+<%= text_area :smart_group, :definition, :rows => 3, :cols => 50 %></p>
+
+  <%= submit_tag 'Save Changes' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @smart_group %> |
+<%= link_to 'Back', :action => 'list' %>

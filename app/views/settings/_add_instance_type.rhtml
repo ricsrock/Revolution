@@ -1,0 +1,9 @@
+<%= error_messages_for 'instance_type' %>
+
+<% form_remote_tag :url => { :controller => 'settings', :action => 'create_instance_type' } do %>
+<!--[form:event_type]-->
+<p><label for="instance_type_name">Name</label><br/>
+<%= text_field 'instance_type', 'name'  %></p>
+<!--[eoform:event_type]-->  
+  <%= submit_tag "Create" %>
+<% end %>

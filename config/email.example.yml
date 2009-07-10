@@ -1,0 +1,14 @@
+development:
+  server: mail.domain.com
+  port: 25
+  domain: domain.com
+  authentication: login
+  username: email_account_login
+  password: email_account_password
+production:
+  server: mail.domain.com
+  port: 25
+  domain: domain.com
+  authentication: login
+  username: email_account_login
+  password: email_account_password

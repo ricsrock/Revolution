@@ -1,0 +1,38 @@
+<h3>Team: <%= link_to "#{@rotation.team.name}", :controller => 'teams', :action => 'show', :id => @rotation.team %></h3>
+
+<% for column in Rotation.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @rotation.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @rotation %>
+
+<div style="float:none;clear:both;">
+	&nbsp;
+</div>
+<div style="float:none;clear:both;min-height:300px;">
+	
+<div id="add-remove" style="float:none;clear:both;">
+<span><h3 style="display:inline;">Add/Remove Team Members</h3></span>   <span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+<div style="float:none;clear:both;">
+	&nbsp;
+</div>
+<div style="float:none;clear:both;">
+
+	<div id="left-column" style="width:48%;">
+		<%= render :partial => "available_people", :locals => { :rotation => @rotation } %>
+	</div>
+	<div id="right-column" style="width:48%;text-align:right;">
+		<%= render :partial => "deployed_people" %>
+	</div>
+</div>
+</div>
+</div>
+
+<% content_for :dashboard do %>
+<span><strong><%= @rotation.team.name %> Rotations</strong></span>
+	<div id="dashboard-content">
+		<%= render :partial => "teams/rotations_panel", :locals => {:team => @team} %>	
+	</div>	
+<% end %>

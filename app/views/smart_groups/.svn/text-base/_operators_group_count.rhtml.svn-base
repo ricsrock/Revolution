@@ -1,0 +1,3 @@
+<% @operators =  @property.operators %>
+<label>Choose Group: </label> <%= collection_select :rule, :extra, Group.all_leaves, :id, :name, {}, {:index => index} %>
+<label>is</label><%= collection_select 'rule', 'operator_id', @operators, 'id', 'prose', {}, {"index" => index} %>

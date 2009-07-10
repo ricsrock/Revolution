@@ -1,0 +1,15 @@
+<div><strong>Reports for Team: <%= session[:set_team].name rescue nil %></strong></div>
+
+<% unless session[:set_team].nil? %>
+
+<div>
+	<%= link_to "Reminder Call List", :action => 'reminder_call_list', :team_id => session[:set_team] %>
+</div>
+<div>
+	<%= link_to "Team Phone List", :controller => 'teams', :action => 'phone_list', :team_id => session[:set_team] %>
+</div>
+<div>
+	<%= link_to "Schedule Mailer", :action => 'schedule_mailer', :team_id => session[:set_team] %>
+</div>
+
+<% end %>

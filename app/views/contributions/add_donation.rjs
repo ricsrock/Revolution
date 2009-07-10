@@ -1,0 +1,6 @@
+page.insert_html :bottom, :donations, :partial => 'donation_fields',
+                 :locals => { :donation => @donation, :index => params[:index] }
+                  
+# page << "$('people[#{params[:index]}]_last_name').value = $('household_name').value"
+ 
+page.replace :add_donation_link, :partial => 'add_donation_link', :locals => { :index => (params[:index].to_i + 1) }

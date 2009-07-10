@@ -1,0 +1,121 @@
+8
+
+dir
+5
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/calendar_helper
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+23cefa1c-6352-0410-ae0e-a5aea8c5d16c
+
+test
+dir
+
+History.txt
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+82e239f94b32725a31a459e847370bb8
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+Rakefile
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+a4d7ea27986d162c693a91152cc25aa1
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+Manifest.txt
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+5125feac16ff6edf2453db994b323590
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+init.rb
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+c581ffa7cedb72e5770630db463a5fb4
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+lib
+dir
+
+generators
+dir
+
+MIT-LICENSE
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+ab9b97df69fac2311dca359eb541485e
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+about.yml
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+38932fdc5649982ac9960fdb1e8615bf
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+README.txt
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+9d4c7a31ff4ad120d2396a4493f4b51d
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+

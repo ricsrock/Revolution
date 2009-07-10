@@ -1,0 +1,38 @@
+<div style="height:100%">
+<fieldset><legend><strong>New Mass Contact</strong></legend>
+
+<h3 style="background-color:#536A97;color:#FFFFFF;padding:.3em;">Contact For Smart Group: <%= @smart_group.name rescue nil %></h3>
+
+<% form_tag({:action => 'add_mass_contacts'}, {:id => 'this_form'}) do %>
+
+<div id="names" style="width:20%;float:left;">
+	<%= render :partial => 'people_list' %>
+</div>
+
+<div id="mass_contact_form" style="width:75%;float:left;">
+<% @contact_types = ContactType.find(:all) %>
+<% @form_id = ContactForm.find(:first).id %>
+<p style="border-bottom: solid #999999 2px;padding-bottom: 5px;height:28px;"><label>Select A Form: </label>
+<%= collection_select 'contact_form', 'id', ContactForm.find(:all), 'id', 'name', options = {:prompt => '---select a contact form---'} %>
+<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</p>
+
+<%= observe_field 'contact_form_id',
+ 				  :url => {:action => 'form_changed'},
+				  :update => 'contacts-list',
+				  :with => 'id' %>
+
+<div id="contacts-list">
+	<%= render :partial => "form" %>
+</div>
+
+
+</div>
+<div style="background-color:#536A97;color:#FFFFFF;padding:.3em;float:none;clear:both;">
+	<div><%= submit_tag 'Create Contacts' %></div>
+	
+</div>
+<% end %>
+</fieldset>
+<br>
+</div>

@@ -1,0 +1,6 @@
+<div><%= render :partial => "choose_fund" %></div><hr><br>
+
+<div id="graph">
+	<%= render :partial => "graph" %>
+</div>
+

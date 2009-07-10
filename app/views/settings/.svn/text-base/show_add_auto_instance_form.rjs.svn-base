@@ -1,0 +1,1 @@
+page.insert_html :bottom, :event_type_setup, :partial => "add_auto_instance", :locals => { :event_type => @event_type }

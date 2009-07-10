@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/5/trunk/test/unit
+END
+adjective_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/5/trunk/test/unit/adjective_test.rb
+END
+color_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/test/unit/color_test.rb
+END
+adjectives_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/5/trunk/test/unit/adjectives_test.rb
+END
+animal_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/test/unit/animal_test.rb
+END
+colors_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/test/unit/colors_test.rb
+END
+relationship_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/7/trunk/test/unit/relationship_test.rb
+END
+attendance_tracker_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/16/trunk/test/unit/attendance_tracker_test.rb
+END
+relationship_role_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/7/trunk/test/unit/relationship_role_test.rb
+END
+relationship_type_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/7/trunk/test/unit/relationship_type_test.rb
+END
+my_color_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/test/unit/my_color_test.rb
+END
+animals_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/5/trunk/test/unit/animals_test.rb
+END

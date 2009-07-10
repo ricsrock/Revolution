@@ -1,0 +1,30 @@
+
+	<div id="new-child" style="float:none;clear:both;">
+		
+			<% form_remote_tag :url => {:action => 'new_child', :parent_id => group.id, :root_id => group.root} do %>
+			Add New Child Group: <%= text_field 'child_group', 'new_name' %>
+		
+		<%= submit_tag "Create" %><% end %>
+	</div>
+	
+	<div id="move-group" style="float:none;clear:both;">
+		
+		<% form_remote_tag :url => {:action => 'make_child_of', :id => group.id} do %>
+		Make This Group a Child of: <%= collection_select('new', 'parent_group', Group.find(:all, :order => :name), 'id', 'name',
+		 								options = {:prompt => '---select new parent group---'}) %>
+		
+		<%= submit_tag 'Go' %><% end %>
+	</div>
+	
+	<div id="move-enrollments" style="float:none;clear:both;">
+		
+		<% form_remote_tag :url => {:action => 'move_enrollments', :id => group.id} do %>
+			Move All Enrollments to: <%= collection_select('new', 'group_idee', Group.find(:all, :order => :name), 'id', 'name',
+			 						 options = {:prompt => "---select new group---"}) %>
+		
+		<%= submit_tag 'Move Em All' %><% end %>	
+	</div>
+	
+	<div id="delete-group" style="float:none;clear:both;">
+		Delete This Group <%= link_to_remote "Delete", :url => {:action => 'destroy_from_tree', :id => group.id} %>
+	</div>

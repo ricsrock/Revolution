@@ -1,0 +1,2 @@
+page.replace_html("calendar_panel", :partial => "calendar_grid", :locals => {:month => @month, :year => @year})
+page.replace_html "notice", :partial => "shared/notices"

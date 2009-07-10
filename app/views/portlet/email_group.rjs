@@ -1,0 +1,2 @@
+page.replace_html("work-area", :partial => 'email_group', :locals => {:group => @group})
+page.replace_html("notices", "")

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/vendor/plugins/flextimes/doc/classes
+END
+FlexTimes.html
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/5/trunk/vendor/plugins/flextimes/doc/classes/FlexTimes.html
+END
+FlexTimesTest.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/5/trunk/vendor/plugins/flextimes/doc/classes/FlexTimesTest.html
+END
+ActionView.html
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/5/trunk/vendor/plugins/flextimes/doc/classes/ActionView.html
+END
+ActiveRecord.html
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/5/trunk/vendor/plugins/flextimes/doc/classes/ActiveRecord.html
+END
+ModelWithDate.html
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/5/trunk/vendor/plugins/flextimes/doc/classes/ModelWithDate.html
+END

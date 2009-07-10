@@ -1,0 +1,8 @@
+<% for column in SmartGroupRule.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @smart_group_rule.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @smart_group_rule %> |
+<%= link_to 'Back', :action => 'list' %>

@@ -1,0 +1,18 @@
+<h3>Marking Attendance for: <%= @event.event_type.name %> :: <%= @event.formatted_date rescue nil %></h3>
+
+<div id="search-controls">
+	<%= render :partial => "search_controls" %>
+</div>
+
+<div id="results-definition">
+	<%= render :partial => "all_definition" %>
+</div>
+
+<% form_tag :action => 'mark_attendance', :event_id => @event.id do %>
+
+<div id="people-list">
+	<%= render :partial => "people_list" %>
+</div>
+
+<%= submit_tag 'Mark Selected' %>
+<% end %>

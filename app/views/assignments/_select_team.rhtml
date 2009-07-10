@@ -1,0 +1,7 @@
+<% @available_teams = Team.find_by_ministry_id(ministry_id) %>
+<%= collection_select ('team', 'id', @available_teams, 'id', 'name',
+						options = {:prompt => "– Select a Team –"})%>
+
+<%= observe_field 'team_id',
+				 :url => {:action => 'set_team'},
+				 :with => 'id' %>

@@ -1,0 +1,2 @@
+<% @operators =  @property.operators %>
+<%= collection_select 'rule', 'operator_id', @operators, 'id', 'prose', {}, {"index" => index} %>

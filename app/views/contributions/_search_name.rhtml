@@ -1,0 +1,7 @@
+<%= check_box(:search, :name, {:checked => @name_disabled ? false : true}) %>
+<%= text_field(:range, :search_name, {:disabled => @name_disabled,
+									  :value => "Leave blank to find all"}) %>
+
+<%= observe_field 'search_name',
+ 				:url => {:action => 'enable_search_name'},
+ 				:with => 'search_name' %>

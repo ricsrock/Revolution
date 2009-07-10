@@ -1,0 +1,103 @@
+8
+
+dir
+7
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/tiny_mce/public/javascripts/tiny_mce/plugins/table
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+editor_plugin.js
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+aa25f98e7fc772c84c3a5e822417c781
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+langs
+dir
+
+cell.htm
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+44bdd56658d8afd1b17bb8f0b36a3eda
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+editor_plugin_src.js
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+57332e1871a88dbbee43c63b5b11628b
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+css
+dir
+
+merge_cells.htm
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+e2c8360c37f1a4f7492ee555a9d2ff40
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+js
+dir
+
+row.htm
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+862dcb05201061bea985b7ba8c26a013
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+table.htm
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+8eaf68b57c9322259402021fbf6b057a
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+

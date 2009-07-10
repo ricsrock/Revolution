@@ -1,0 +1,8 @@
+<% for column in AutoGroup.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @auto_group.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @auto_group %> |
+<%= link_to 'Back', :action => 'list' %>

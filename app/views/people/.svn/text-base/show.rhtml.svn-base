@@ -1,0 +1,128 @@
+<h2>Individual Information for <%= @person.full_name %> (<%= @person.attendance_status rescue nil %>)</h2>
+
+<div style="float:none;clear:both;">
+
+
+<div id="picture" style="float:left;padding-right:.5em;">
+	
+	<%= picture_for(@person, :large) %>
+	<div style="text-align:center;">
+		<%= link_to 'change picture', :action => 'new_picture', :id => @person %><br>
+		<%= link_to 'get vcard', :controller => 'vcard', :action => 'get_card', :id => @person %>
+	</div>
+</div>
+
+<% unless @person.household.nil? %>
+
+<div id="household-info">
+	<fieldset style="background-color:#EEEEEE"><legend><strong>The <%= link_to "#{@person.household.name unless @person.household.nil?}", {:controller => 'households',
+	 																	   :action => 'show',
+																		   :id => @person.household}, :style => "color:#FFFFFF" %> Household (<%= @person.household.attendance_status rescue nil %>)</strong></legend>
+	<strong>
+		<small><%= @person.household.people.sort_by(&:sort_order).collect {|p| 
+															link_to "#{p.family_name}", :action => 'show', :id => p.id}.to_sentence %>
+		</small>
+	</strong>
+	<div style="float:left;">
+	<span class="cell"><small><strong>Household Address</strong></small><br>
+		<%= @person.household.address_block %></span>
+	<span class="cell"><small><strong>Household Phones</strong></small>
+		<% @person.household.phones.collect do |p| %>
+				<div>
+					<%= p.s_formatted %>
+				</div>
+			<% end %>
+	</span>
+	<span class="cell"><small><strong>Household Emails</strong></small>
+		<% @person.household.emails.collect do |e| %>
+				<div>
+					<%= mail_to e.email %>
+				</div>
+			<% end %>
+	</span>
+	</div>
+	</fieldset>
+</div>
+
+<% end %>
+												
+</div>
+
+<div style="float:none;clear:both;"></div>
+
+
+
+<div id="person-links" style="text-align:center;">
+	<%= link_to 'add a contact', :controller => 'contacts', :action => 'new_contact', :person_id => @person.id %> | 
+	<%= link_to 'merge duplicates', :action => 'merge_duplicates', :id => @person.id %> | 
+	<%= link_to 'print fact sheet', :action => 'fact_sheet', :id => @person %> | 
+	<%= link_to "move person", {:controller => "people", :action => "move_person", :id => @person},
+							   {:title => 'move this person to a different household'} %>
+</div>
+
+
+
+
+<fieldset><legend><strong>General Information</strong></legend>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+	<tr>
+		<td><label>First Name:</label></td>
+		<td><label>Last Name:</label></td>
+		<td><label>Household Position:</label></td>
+		<% if current_user.has_role?("admin") %>
+		<td><label>User Login</label></td>
+		<% end %>
+	</tr>
+	<tr>
+		<td>
+			<%= @person.first_name %>
+		</td>
+		<td>
+			<%= @person.last_name %>
+		</td>
+		<td>
+			<%= @person.household_position %>
+		</td>
+		<% if current_user.has_role?("admin") %>
+		<td>
+			<%= @person.user.login rescue nil %>
+		</td>
+		<% end %>
+	</tr>
+	<tr>
+		<td><label>Birthdate:</label></td>
+		<td><label>Age:</label></td>
+		<td><label>Default Checkin Group:</label></td>
+		<td>
+			<label>Status:</label>
+		</td>
+	</tr>
+	<tr>
+		<td><%= @person.formatted_birthdate rescue nil %></td>
+		<td><%= @person.age rescue nil %></td>
+		<td><%= @person.default_group.name rescue nil %></td>
+		<td><%= @person.attendance_status %></td>
+	</tr>
+</table>
+<%= link_to 'Edit', :action => 'edit', :id => @person %>
+</fieldset>
+
+<br>
+<div id="person-tabs" style="float:none;clear:both;width:100%;">
+	<%= render :partial => "person_tabs", :locals => {:person_id => @person} %>	
+</div>
+
+<div id="tabs-area" style="background-color:#EEEEEE;float:none; clear:both;">
+	<%= render :partial => "#{session[:person_partial]}", :locals => {:person => @person} %>
+</div>
+
+
+
+<% content_for :dashboard do %>
+<div>
+	<% @item = @person %>
+	<%= render :partial => "shared/admin_box" %>
+</div>
+<% end %>
+
+

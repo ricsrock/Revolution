@@ -1,0 +1,25 @@
+<fieldset><legend style="background-color:#406694"><strong>Search for a Group</strong></legend>
+<%= render :partial => "search_panel" %>
+</fieldset>
+<br>
+
+<% if ! @groups.empty? %>
+
+<% @groups.each do |g| %>
+	<div id="group_id_<%= g.id %>" style="padding-bottom:10px;">
+		<div class="group-name" style="font-size:14px;font-style:bold;color: #555;">
+			<strong><%= link_to "#{g.name}", :action => 'show_group', :id => g.id %></strong>
+		</div>
+		<div id="group-description">
+			<%= h g.blurb %>
+		</div>
+	</div>
+<% end %>
+
+<% else %>
+
+<div id="message-black">
+	There are no groups that match the search criteria.
+</div>
+
+<% end %>

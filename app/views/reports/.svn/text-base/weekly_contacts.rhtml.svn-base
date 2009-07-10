@@ -1,0 +1,24 @@
+<h3 style="display:inline;">Weekly Guest-Flow Contacts for <%= Time.now.strftime('%m/%d/%Y') %></h3>
+<hr>
+
+<br><br>
+<% if ! @contacts.empty? %>
+<% @contacts.group_by(&:contact_type_id).sort.each do |ct, contacts| %>	
+<div id="contact-type">
+	<label><%= ContactType.find(ct).name %></label>   &nbsp;&nbsp;&nbsp;Count: <%= contacts.length %>
+	<hr>
+	<%= render :partial => "contact", :collection => contacts.sort_by(&:name_sort) %>
+</div><br>
+<% end %>
+
+
+<% else %>
+<div id="message-black">
+	There are no contacts.
+</div>
+<% end %>
+
+
+
+
+

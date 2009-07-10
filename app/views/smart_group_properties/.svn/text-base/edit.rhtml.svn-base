@@ -1,0 +1,9 @@
+<h1>Editing smart_group_properties</h1>
+
+<% form_tag :action => 'update', :id => @smart_group_property do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @smart_group_property %> |
+<%= link_to 'Back', :action => 'list' %>

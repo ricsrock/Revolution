@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/app/views/contact_forms
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/app/views/contact_forms/list.rhtml
+END
+add_contact_type.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5/trunk/app/views/contact_forms/add_contact_type.rjs
+END
+_available_contact_types.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/5/trunk/app/views/contact_forms/_available_contact_types.rhtml
+END
+show.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/app/views/contact_forms/show.rhtml
+END
+remove_contact_type.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5/trunk/app/views/contact_forms/remove_contact_type.rjs
+END
+_form.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/5/trunk/app/views/contact_forms/_form.rhtml
+END
+edit.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/app/views/contact_forms/edit.rhtml
+END
+_joined_contact_types.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/5/trunk/app/views/contact_forms/_joined_contact_types.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/5/trunk/app/views/contact_forms/new.rhtml
+END

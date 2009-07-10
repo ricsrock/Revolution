@@ -1,0 +1,27 @@
+<% form_remote_tag :url => {:action => 'search_contacts'} do %>
+
+<table border="0" cellspacing="3" cellpadding="3">
+	<tr>
+		<td>
+			<label>Select User</label><br>
+			<%= collection_select('user', 'login', User.find(:all), 'login', 'full_name', options = {:prompt => "All Users"}) %>
+		</td>
+		<td>
+			<label>Select Status</label><br>
+			<%= select('contact', 'status', Contact::STATUS) %>
+		</td>
+		<td>
+			<label>Range</label><br>
+			<%= select('contact', 'range', Contact::RANGES) %>
+		</td>
+		<td>
+			<label>Sort By</label><br>
+			<%= select('contact', 'sort', Contact::SORT_BY) %>
+		</td>
+		<td>
+			<%= submit_tag 'Search' %><span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+		</td>
+	</tr>
+</table>
+
+<% end %>

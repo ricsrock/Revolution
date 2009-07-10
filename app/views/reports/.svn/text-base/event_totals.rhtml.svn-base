@@ -1,0 +1,19 @@
+<% @events = Event.find(:all) %>
+
+<table border="0" cellspacing="5" cellpadding="5">
+	<tr>
+		<th>Date</th>
+		<th>Total</th>
+	</tr>
+	
+	<% @events.sort_by {|e| e.date}.each do |e| %>
+
+	<tr>
+		<td><%= e.date %></td>
+		<td><%= e.head_count['head_count'] rescue nil %></td>
+	</tr>
+	
+	<% end %>
+
+</table>
+	

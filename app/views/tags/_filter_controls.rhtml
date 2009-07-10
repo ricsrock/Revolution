@@ -1,0 +1,39 @@
+<fieldset>
+	<legend>
+		<strong>
+			Filter & Sort Tags
+		</strong>
+	</legend>
+	
+	<% form_remote_tag(:url => {:action => 'filter'}) do %>
+	
+	<div style="float:none;clear:both;">
+		
+		<span class="cell"><label>Select Tag Group</label><br>
+		<%= collection_select :filter, :tag_group_id, TagGroup.find(:all), :id, :name %></span>
+		
+		<%= observe_field 'filter_tag_group_id',
+						 :url => {:action => 'tag_group_changed'},
+						 :with => 'id' %>
+		
+		<span class="cell" id="tags">
+			<%= render :partial => "tag_selector" %>
+		</span>
+	
+	
+		<span class="cell"><label>Sort By</label><br>
+		<%= select('filter', 'sort', Tagging::SORT_BY) %></span>
+	
+	
+		<span class="cell"><label>Range</label><br>
+		<%= select('filter','range', Contact::RANGES) %></span>
+	
+	
+		<span class="cell"><%= submit_tag 'Go' %><span id='progress' style='display:none;'><img src='/images/working.gif'></span></span>
+			
+	</div>
+	
+	
+	<% end %>
+	
+</fieldset>

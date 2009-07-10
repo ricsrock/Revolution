@@ -1,0 +1,1 @@
+page.replace_html :instance_type_setup, :partial => 'auto_group_types'

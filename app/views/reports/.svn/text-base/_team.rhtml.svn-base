@@ -1,0 +1,9 @@
+<div style="margin-left:1em;float:none;clear:both;">
+	<label>
+		Team: 
+	</label><%= team.name %><br>
+	<div style="margin-left:1.5em;">
+		<label>Jobs</label>
+	</div>
+	<%= render :partial => "job", :collection => team.jobs.sort_by(&:title) %>
+</div>

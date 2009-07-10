@@ -1,0 +1,49 @@
+8
+
+dir
+5
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/role_requirement/generators
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+23cefa1c-6352-0410-ae0e-a5aea8c5d16c
+
+role
+dir
+
+roles
+dir
+
+shared_templates
+dir
+
+role_generator_helpers.rb
+file
+
+
+
+
+2008-11-24T22:07:24.000000Z
+435c74bcaae5c7dae6a13ed0dba93c6c
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+

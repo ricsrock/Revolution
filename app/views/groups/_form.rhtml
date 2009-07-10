@@ -1,0 +1,37 @@
+<%= error_messages_for 'group' %>
+
+<!--[form:group]-->
+<p><label for="group_name">Name</label><br/>
+<%= text_field 'group', 'name'  %></p>
+
+<p><label for="group_staff_ratio">Staff ratio</label><br/>
+<%= text_field 'group', 'staff_ratio'  %></p>
+
+<% @rooms = Room.find(:all) %>
+<p><label for="group_default_room">Default Room</label><br>
+	<%= collection_select 'group', 'default_room_id', @rooms, 'id', 'name' %>
+</p>
+
+<p><label for="group_meeting_is_called">Meeting is called</label><br/>
+<%= text_field 'group', 'meeting_is_called'  %></p>
+
+<p><label for="group_checkin_group">Checkin Group?</label><br/>
+<%= check_box 'group', 'checkin_group'  %></p>
+
+<p><label for="group_show_on_web">Show This Group On Web?</label><br>
+<%= check_box 'group', 'show_on_web' %></p>
+
+<p><label for="group_staff_person_responsible_id">Staff Person Responsible</label><br>
+<%= collection_select :group, :staff_person_responsible_id, User.find(:all), :id, :full_name %></p>
+
+<p><label for="group_responsible_person_id">Responsible Person</label><br>
+<%= collection_select :group, :responsible_person_id, User.find(:all), :id, :full_name %></p>
+
+<p><label for="group_archived_on">Archived?</label><br>
+<%= check_box_tag 'group_archived', true, @group.archived? %></p>
+
+<p><%= hidden_field 'group', 'updated_by', :value => current_user.login %></p>
+<p><%= hidden_field 'group', 'updated_at', :value => Time.now %></p>
+
+<!--[eoform:group]-->
+

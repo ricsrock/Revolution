@@ -1,0 +1,3 @@
+<%= debug(@totals) rescue nil %>
+
+<%= debug(@totals.each {|s| s[:total]}) rescue nil %>

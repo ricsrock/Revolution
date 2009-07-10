@@ -1,0 +1,2 @@
+module AutoGroupsHelper
+end

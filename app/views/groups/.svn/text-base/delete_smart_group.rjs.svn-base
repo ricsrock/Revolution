@@ -1,0 +1,9 @@
+page.replace_html("notice", :partial => 'shared/notices')
+page.visual_effect :fade, :notice, :delay => 5
+
+page.replace_html("smart-groups", :partial => 'smart_groups')
+
+page.delay(5) do
+ page.replace_html("notice", '')
+ end
+ 

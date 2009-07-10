@@ -1,0 +1,19 @@
+<% fields_for :contact_type do |f| %>
+
+<div id="contact_type_id_<%= contact_type.id %>" style="">
+	<div style="position:relative:top:80%;width:22px;float:left;">
+		<%= f.check_box 'included', :index => index %>
+	</div>
+	<div style="position:relative:top:80%;width:200px;float:left;">
+		<%= contact_type.name %>	
+	</div>
+	<div style="position:relative:top:80%;width:150px;float:left;">
+		<label>Responsible User: </label><br><%= f.select(:responsible_user_id, User.find(:all).sort_by(&:last_first_name).collect {|u| [u.full_name, u.id]}, {:prompt => "-- accept default --"}, {:index => index}) %>
+	</div>
+	<div style="position:relative;top:80%;float:left;width:270px;">
+		<label>Comments: </label><br><%= f.text_area :comments, :rows => 2, :cols => 35, :index => index %>	
+	</div>
+	<%= f.hidden_field :contact_type_id, :value => contact_type.id, :index => index %>
+</div>
+
+<% end %>

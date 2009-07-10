@@ -1,0 +1,6 @@
+<div><strong>Involved In</strong></div>
+<% @duplicate.involvements.each do |i| %>
+<div>
+	<%= i.job.team.name rescue nil %> (<%= i.job.title rescue nil %>)
+</div>
+<% end %>

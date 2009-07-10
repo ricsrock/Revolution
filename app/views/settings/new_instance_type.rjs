@@ -1,0 +1,2 @@
+page.insert_html :bottom, :instance_types_list, :partial => 'add_instance_type'
+

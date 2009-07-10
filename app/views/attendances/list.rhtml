@@ -1,0 +1,29 @@
+<h1>Listing attendances</h1>
+
+<%= link_to "Checkout All", :action => "checkout_all" %>
+
+<table>
+  <tr>
+  <% for column in Attendance.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for attendance in @attendances %>
+  <tr>
+  <% for column in Attendance.content_columns %>
+    <td><%=h attendance.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => attendance %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => attendance %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => attendance }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @attendance_pages.current.previous } if @attendance_pages.current.previous %>
+<%= link_to 'Next page', { :page => @attendance_pages.current.next } if @attendance_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New attendance', :action => 'new' %>

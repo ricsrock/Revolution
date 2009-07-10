@@ -1,0 +1,22 @@
+<%= error_messages_for 'sms_setup' %>
+
+<!--[form:sms_setup]-->
+<p><label for="sms_setup_carrier_name">Carrier name</label><br/>
+<%= text_field 'sms_setup', 'carrier_name'  %></p>
+
+<p><label for="sms_setup_config">Config</label><br/>
+<%= text_field 'sms_setup', 'config'  %></p>
+
+<p><label for="sms_setup_created_at">Created at</label><br/>
+<%= datetime_select 'sms_setup', 'created_at'  %></p>
+
+<p><label for="sms_setup_updated_at">Updated at</label><br/>
+<%= datetime_select 'sms_setup', 'updated_at'  %></p>
+
+<p><label for="sms_setup_created_by">Created by</label><br/>
+<%= text_field 'sms_setup', 'created_by'  %></p>
+
+<p><label for="sms_setup_updated_by">Updated by</label><br/>
+<%= text_field 'sms_setup', 'updated_by'  %></p>
+<!--[eoform:sms_setup]-->
+

@@ -1,0 +1,18 @@
+<% if @results %>
+
+<% if @results.empty?  %>
+	<div id="message-black">
+		No results
+	</div>
+
+<% else %>
+
+<% @results.each do |r| %>
+<div id="name">
+	<%= link_to_remote "#{r.full_name}", :url => {:action => 'person_chosen', :id => r.id} %> (#<%= r.id rescue nil %>)
+</div>
+<% end %>
+
+<% end %>
+
+<% end %>

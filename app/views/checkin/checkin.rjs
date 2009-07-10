@@ -1,0 +1,25 @@
+if @message.empty?
+    
+    if @success == "true"
+
+        page.replace_html("person-#{@person.id}", :partial => "people/checkin_person", :locals => {:person => @person})
+        #page.visual_effect(:highlight, "person-#{@person.id}", :duration => 3, :startcolor => "\'#DDDDDD\'", :endcolor => "\'#EEEEEE\'")
+        page.visual_effect(:highlight, "group_id_#{@meeting.group.id}")
+
+        page.replace_html("wristband-wrap", :partial => "wristband_sports", :attendance => @attendance)
+
+
+
+        page.delay(10) do
+         page.replace_html("pickup-receipt-wrap", :partial => "pickup_receipt", :attendance => @attendance)
+         end
+    end
+
+else
+  page.alert @message
+end
+
+
+page.replace_html :dashboard, :partial => "dashboard"
+
+page.replace_html :notice, :partial => "shared/notices"

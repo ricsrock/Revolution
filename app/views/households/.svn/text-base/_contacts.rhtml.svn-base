@@ -1,0 +1,34 @@
+<fieldset>
+	<legend>
+		<strong>Contacts</strong>
+	</legend>
+
+<table class="list">
+	<tr>
+		<th>Date</th>
+		<th>Type</th>
+		<th>Status</th>
+		<th>Comments</th>
+	</tr>
+<% if @household.contacts.empty? %>
+</table>
+<div id="message-black">
+	No contacts
+</div>
+
+
+
+<% else %>
+<% @household.contacts.each do |c| %>
+
+	<tr>
+		<td><%= c.created_at.strftime('%m/%d/%y') rescue nil %></td>
+		<td><%= c.contact_type.name rescue nil %></td>
+		<td><%= c.status rescue nil %></td>
+		<td><%= link_to "#{c.comments[0..10]}...", {:controller => 'contacts', :action => 'follow_up', :id => c}, {:title => "#{c.comments}"} rescue nil %></td>
+	</tr>
+<% end %>
+</table>
+<% end %>
+	
+</fieldset>

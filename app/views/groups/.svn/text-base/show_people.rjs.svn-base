@@ -1,0 +1,12 @@
+g = SmartGroup.find(params[:id])
+@g = g
+page.replace_html("smart_group_id_#{g.id}_controls", :partial => "smart_group_controls", :locals => {:g => @g.id})
+
+@found_people = g.found_people
+
+if ! @found_people.empty?
+    @people = @found_people.sort_by {|p| p.last_first_name}
+    page.replace_html("smart_group_#{g.id}_people", :partial => 'smart_group_people', :locals => {:people => @people})
+else
+    page.replace_html("smart_group_#{g.id}_people", "No results")
+end

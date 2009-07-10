@@ -1,0 +1,36 @@
+<h1>New Smart Group</h1>
+
+<% form_for :smart_group, :url => { :action => 'create' } do %>
+
+<%= error_messages_for 'smart_group' %>
+
+<!--[form:smart_group]-->
+<p><label for="smart_group_name">Name</label><br/>
+<%= text_field 'smart_group', 'name'  %></p>
+
+<p><label for="smart_group_definition">Definition</label><br/>
+<%= text_area 'smart_group', 'definition', :rows => 3, :cols => 50  %></p>
+
+<!--[eoform:smart_group]-->
+
+
+<%= link_to 'Tree View', :controller => 'groups', :action => 'tree_view' %>
+<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+
+
+<fieldset><legend><strong>Rules for This Smart Group</strong></legend>
+<div style"float:none;clear:both;">
+
+	<div id="rules" style="float:left;display:inline;max-width:90%;">
+		<% @smart_group.smart_group_rules.each_with_index do |rule, index| %>
+			<%= render :partial => 'rule_fields', :locals => { :rule => rule, :index => index } %>
+		<% end %>
+	</div>
+	<div style="display:inline;float:right;">
+		<%= render :partial => "add_rule_link", :locals => { :index => @smart_group.smart_group_rules.size } %>
+	</div>
+</div>
+</fieldset>
+
+  <p><%= submit_tag "Create" %></p>
+<% end %>

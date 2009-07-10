@@ -1,0 +1,10 @@
+Hello <%= @first rescue nil %>!
+
+As you requested, we are sending you a copy of the recent message you sent through our website.
+
+Your message was sent on <%= Time.now.strftime('%A, %B %e, %Y') rescue nil %> at <%= Time.now.strftime('%r') rescue nil %>
+
+Message Type: <%= @contact_type.name %>
+Your Name: <%= @first %> <%= @last %>
+Message Text: <%= @message %>
+

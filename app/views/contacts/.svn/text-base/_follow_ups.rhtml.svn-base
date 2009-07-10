@@ -1,0 +1,31 @@
+<table class="list">
+	<tr>
+		<th>Date</th>
+		<th>Follow-Up Type</th>
+		<th>Notes</th>
+		<th>By</th>
+		<th>Show</th>
+	</tr>
+	
+<% if @contact.follow_ups.length < 1 %>
+</table>
+	<div id="message-black">
+		This contact has no follow-ups.
+	</div>
+
+
+<% else %>
+
+<% @contact.follow_ups.each do |f| %>
+	<tr>
+		<td><%= f.created_at.strftime('%m/%d/%Y') rescue nil %></td>
+		<td><%= f.follow_up_type.name rescue nil %></td>
+		<td><%= f.notes %></td>
+		<td><%= f.created_by %></td>
+		<td><%= zoom_helper(current_user,f) %></td>
+	</tr>
+	
+<% end %>
+</table>
+
+<% end %>

@@ -1,0 +1,29 @@
+<h2>Marking Attendance for Meeting:</h2>
+<h3 style="display:inline;">Group: <%= @meeting.group.name rescue nil %></h3><br>
+<h3>Date: <%= @meeting.instance.event.date.strftime('%m/%d/%Y') rescue nil %></h3><hr>
+
+
+<% form_tag ({:action => 'mark_selected', :meeting_id => @meeting}, :id => 'this_form') do  %>
+
+<fieldset>
+	<legend>
+		<strong>Group Members</strong>
+	</legend>
+	
+	<input type='submit' value='Check All' onClick="$$('#this_form input.check').each(function(box){box.checked=true});return false;" />
+	<input type='submit' value='Uncheck All' onClick="$$('#this_form input.check').each(function(box){box.checked=false});return false;" />
+
+	<% @meeting.group.enrollments.sort_by {|e| [e.person.last_name, e.person.first_name]}.each do |e| %>
+		<div id="person_id_<%= e.person.id %>">
+			<span id="checkbox_id_<%= e.person.id %>">
+			<%= check_box_tag 'present_people[]', e.person.id, e.person.attended_meeting?(@meeting.id), {:class => 'check', :disabled => e.person.attended_meeting?(@meeting.id)} rescue nil %></span>
+			<%= e.person.full_name %>
+		</div>
+	<% end %>
+	</fieldset><br>
+
+	<%= submit_tag 'Mark Selected' %>
+	<% end %>
+
+	<%= link_to 'cancel', :controller => 'groups', :action => 'show', :id => @meeting.group %>
+

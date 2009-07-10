@@ -1,0 +1,48 @@
+<div id="manage_wrap">
+
+<div style="height:18px;float:none;clear:both;">
+	<%= render :partial => "filter_controls" %>
+	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</div>
+
+<div id="empty" style="float:none;clear:both;">
+	&nbsp;
+</div>	
+
+	<div style="height:500px;" class="third-panel">
+		<div class="column-header">
+			Events
+		</div>
+		<div id="events" class="inner">
+			<%= render :partial => "events_list" %>
+		</div>
+	</div>
+
+	<div style="height:500px;" class="third-panel">
+		<div class="column-header">
+			Instances
+		</div>
+		<div id="instances" class="inner">
+			<%= render :partial => "instances_list" %>
+		</div>
+	</div>
+
+	<div style="height:500px;" class="third-panel">
+		<div class="column-header">
+			Meetings
+		</div>
+		<div id="meetings" class="inner">
+			<%= render :partial => "meetings_list" %>
+		</div>
+	</div>
+
+&nbsp;
+</div>
+
+<div id="empty" style="float:none;clear:both;">
+	&nbsp;
+</div>
+
+<div>
+	<%= link_to "New Event", :action => "new" %>
+</div>

@@ -1,0 +1,12 @@
+<% form_remote_tag( :url => {:controller => 'service_links', :action => 'create', :group_id => @group }) do %>
+
+<% @teams = Team.find(:all, :select => ['name, id']) %>
+
+<span class="cell">
+	<%= collection_select 'team', 'id', @teams, :id, :name, options = {:prompt => '-- select a team --'} %>
+</span>
+<span class="cell">
+	<%= submit_tag "Create Link" %>	
+</span>
+
+<% end %>

@@ -1,0 +1,23 @@
+page.replace_html("all-groups", :partial => 'all_groups')
+page.alert = "This is an alert."
+
+
+unless session[:sticky_group].nil?
+#do something
+
+@parent = Group.find(session[:sticky_group]).root
+
+#page.replace_html("root_#{@root.id}_groups", :partial => 'group', :collection => @root.children )
+#page.select('form').each { |f| f.reset }
+
+page.show("root_#{@parent.id}_groups")
+
+@parent.all_children.collect do |c|
+  page.show("group_id_#{c.id}")
+end
+
+
+else
+  #do nothing
+  page[:alert] = "This is an alert."
+end

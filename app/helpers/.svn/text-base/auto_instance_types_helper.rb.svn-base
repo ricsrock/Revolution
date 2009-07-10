@@ -1,0 +1,2 @@
+module AutoInstanceTypesHelper
+end

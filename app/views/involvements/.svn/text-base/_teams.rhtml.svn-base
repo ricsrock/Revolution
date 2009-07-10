@@ -1,0 +1,6 @@
+<% @teams = Team.find_by_department_ministry(@department,@ministry) %>
+<%  @teams.sort_by(&:name).each do |t| %>
+	<div class="row-block">
+		<%= link_to_remote "#{t.name}", :url => {:action => 'team_chosen', :team_id => t.id} %>
+	</div>
+<% end %>

@@ -1,0 +1,30 @@
+<h2 style="display:inline;">Contacts Summary</h2><hr>
+<strong><%= Time.now.strftime('%m/%d/%Y') %></strong><br><br>
+
+<table class="list">
+	<tr>
+		<th>User</th>
+		<th># Open</th>
+		<th>Oldest Open</th>
+		<th># In Progress</th>
+		<th># Recently Closed</th>
+	</tr>
+
+<% @users.sort_by {|r| [r.last_name, r.first_name]}.each do |u| %>
+	
+	<tr>
+		<td><%= u.full_name rescue nil %></td>
+		<td><%= u.open_contacts.length rescue nil %></td>
+		<td><% if ! u.open_contacts.empty? %>
+				<%= time_ago_in_words u.open_contacts.collect {|c| c.created_at}.max rescue nil %> old
+			<% else %>
+				none open
+			<% end %>
+		</td>
+		<td><%= u.open_contacts.select {|c| ! c.follow_ups.empty? }.length rescue nil %></td>
+		<td><%= u.contacts.select {|c| c.closed_at ?  c.closed_at > (Time.now - 30.days) : false}.length rescue nil %></td>
+	</tr>
+	
+<% end %>
+	
+</table>

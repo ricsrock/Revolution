@@ -1,0 +1,4 @@
+<strong>
+	Group: <%= item.name %>
+</strong>
+

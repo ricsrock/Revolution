@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/init.rb
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/ChangeLog
+END
+MIT-LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/MIT-LICENSE
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/README
+END

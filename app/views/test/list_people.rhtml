@@ -1,0 +1,5 @@
+<% @people.each do |person| %>
+	<div id="name">
+		<%= person.full_name rescue nil %> <%= person.recent_attend.collect {|p| p.max_date}.to_s rescue nil %>
+	</div>
+<% end %>

@@ -1,0 +1,4 @@
+page.insert_html :bottom, :rules, :partial => 'rule_fields',
+                 :locals => { :rule => @rule, :index => params[:index] }
+
+page.replace :add_rule_link, :partial => 'add_rule_link', :locals => { :index => (params[:index].to_i + 1) }

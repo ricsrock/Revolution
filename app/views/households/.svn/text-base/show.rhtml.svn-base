@@ -1,0 +1,46 @@
+<% @item = @household %>
+<%= render :partial => "shared/admin_box" %>
+
+<%= error_messages_for 'person' %>
+
+<%= image_tag('house.png', :border => 0, :size => '18x18') %>
+<h2 style="display:inline;">The <%= @household.name %> Household (<%= @household.attendance_status rescue nil %>)</h2><br>
+<%= @household.address_block %> <br/>
+
+<%= link_to 'Edit', :action => 'edit', :id => @household %> | 
+<%= link_to 'add a contact', :controller => 'contacts', :action => 'new_contact', :household_id => @household %> | 
+<% if @household.lat && @household.lng %>
+	<%= link_to 'map', :controller => 'households', :action => 'map', :id => @household %> |
+	<%= link_to 'near by households', :controller => 'households', :action => 'near_by', :id => @household %>
+<% else %>
+	<%= link_to 'geocode this address', :controller => 'households', :action => 'code_address', :id => @household %>
+<% end %>
+
+<br>
+<br/>
+
+<div id="household-tabs" style="float:none;clear:both;width:100%;">
+	<%= render :partial => "household_tabs", :locals => {:household_id => @household} %>	
+</div>
+
+<div id="tabs-area" style="background-color:#EEEEEE;float:none; clear:both;">
+	<%= render :partial => "#{session[:household_partial]}", :locals => {:household => @household} %>
+</div>
+
+
+
+
+
+<div id="people">
+
+</div>
+
+<div id="contacts">
+	
+
+</div>
+
+
+
+
+

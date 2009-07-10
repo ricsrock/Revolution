@@ -1,0 +1,5 @@
+<div id="errorExplanation">
+	<h2>There was a problem with your last request:</h2>
+	<p>You are not authorized for that action.</p>
+	<p>If you believe you should have this access, please contact your system administrator.</p>
+</div>

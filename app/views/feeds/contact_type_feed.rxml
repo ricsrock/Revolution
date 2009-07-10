@@ -1,0 +1,18 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/", "xmlns:atom" => "http://www.w3.org/2005/Atom") do
+  xml.channel do
+    xml.title("Contact Follow-Ups for: #{@contact_type.name}")
+    xml.link(@feed_url)
+    xml.description("Follow-Up notes from recent contact follow-ups.")
+    xml.language('en-us')
+      @follow_ups.each do |follow_up|
+        xml.item do
+          xml.title(follow_up.attribution + ': ' + follow_up.follow_up_type.name + ' ' +'(' + follow_up.created_by + ')') rescue nil
+          xml.description(follow_up.notes)      
+          xml.category('lowell@rivervalleychurch.net')  
+          xml.guid("http://portal.rivervalleychurch.net/contacts/follow_up/#{follow_up.contact.id}?follow_up_id=#{follow_up.id}")             
+          xml.pubDate(follow_up.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
+        end
+      end
+  end
+end

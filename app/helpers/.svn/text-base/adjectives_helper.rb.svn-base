@@ -1,0 +1,2 @@
+module AdjectivesHelper
+end

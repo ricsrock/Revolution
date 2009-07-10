@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/7/trunk/vendor/plugins/daemon_generator
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/7/trunk/vendor/plugins/daemon_generator/CHANGELOG
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/7/trunk/vendor/plugins/daemon_generator/install.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/7/trunk/vendor/plugins/daemon_generator/README
+END

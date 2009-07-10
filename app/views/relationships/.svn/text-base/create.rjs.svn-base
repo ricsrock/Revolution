@@ -1,0 +1,1 @@
+page.redirect_to(:controller => 'people', :action => 'show', :id => @relationship.person_id)

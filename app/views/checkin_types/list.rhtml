@@ -1,0 +1,27 @@
+<h1>Listing All Check-In Types</h1>
+
+<table>
+  <tr>
+  <% for column in CheckinType.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for checkin_type in @checkin_types %>
+  <tr>
+  <% for column in CheckinType.content_columns %>
+    <td><%=h checkin_type.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => checkin_type %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => checkin_type %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => checkin_type }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @checkin_type_pages.current.previous } if @checkin_type_pages.current.previous %>
+<%= link_to 'Next page', { :page => @checkin_type_pages.current.next } if @checkin_type_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New checkin_type', :action => 'new' %>

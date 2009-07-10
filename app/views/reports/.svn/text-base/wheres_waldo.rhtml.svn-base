@@ -1,0 +1,31 @@
+<h2><%= Time.now.strftime('%m/%d/%Y') rescue nil %> Where's Waldo?</h2><hr>
+
+<table border="0" cellspacing="0" cellpadding="2" width="100%">
+	<COLGROUP span="3" width="70">
+	<tr style="background-color:#536A97;color:#FFFFFF;">
+		<th>Breakfast</th>
+		<th>1st Service</th>
+		<th>2nd Service</th>
+		<th>Name</th>
+		<th>Status</th>
+		<th>Address</th>
+	</tr>
+	
+<% @found_people.sort_by(&:last_first_name).each do |p| %>
+
+	<tr class='<%= cycle("even","odd") %>'>
+		<td><%= check_box_tag :nothing, :nowhere %></td>
+		<td><%= check_box_tag :nothing, :nowhere %></td>
+		<td><%= check_box_tag :nothing, :nowhere %></td>
+		<td><%= p.last_first_name rescue nil %></td>
+		<td><%= p.attendance_status rescue nil %></td>
+		<td><%= p.household.address1 rescue nil %></td>
+	</tr>
+	
+<% end %>
+
+</table>
+
+<div>
+	<label>Total # reported: </label><%= @found_people.length rescue nil %>
+</div>

@@ -1,0 +1,27 @@
+<h1>Listing All Rooms</h1>
+
+<table>
+  <tr>
+  <% for column in Room.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for room in @rooms %>
+  <tr>
+  <% for column in Room.content_columns %>
+    <td><%=h room.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => room %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => room %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => room }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @room_pages.current.previous } if @room_pages.current.previous %>
+<%= link_to 'Next page', { :page => @room_pages.current.next } if @room_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New room', :action => 'new' %>

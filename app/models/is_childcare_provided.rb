@@ -1,0 +1,2 @@
+class IsChildcareProvided < GroupChoice
+end

@@ -1,0 +1,20 @@
+ <div id="email_<%= index %>">
+ <% fields_for "emails[#{index}]", email do |f| %>
+ <% @email = email %>
+<table border="0" cellspacing="1" cellpadding="1">
+
+	<tr>
+		<td>Email Address:</td>
+		<td>Primary?</td>
+		<td>Comments:</td>
+	</tr>
+	<tr>
+		<td><%= f.text_field :email, :size => 20 %> <%= error_message_on('email', 'email') %></td>
+		<td><%= f.check_box :primary %></td>
+		<td><%= f.select( :comm_type_id, CommType.find(:all).collect {|p| [p.name, p.id]}, {}) %></td>
+		<td><%= f.text_field :comments, :size => 20 %></td>
+		<td><%= link_to_remote (image_tag "delete_16x16.gif", :size => "12x12", :border => 0, :title => "Remove this email"), :url => { :action => 'remove_email', :index => index } %></td>
+	</tr>
+</table>
+ <% end %>
+ </div>

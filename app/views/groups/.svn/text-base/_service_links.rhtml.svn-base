@@ -1,0 +1,15 @@
+<fieldset><legend><strong>Teams That Serve This Group</strong></legend>
+
+<div id="linked-teams">
+	<%= render :partial => "linked_teams", :locals => {:group => @group} %>
+</div>
+<br><br>
+
+<div>
+	<%= link_to_remote "Add Service Link", :url => {:action => 'toggle_service_links'} %>
+</div>
+<div id="add_link" style="display:none;padding-top: 5px">
+	<%= render :partial => "add_service_link", :locals => {:group => @group} %>
+</div>
+
+</fieldset>

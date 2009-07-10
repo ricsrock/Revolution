@@ -1,0 +1,16 @@
+<% if not @instances.empty? %>
+
+<% @instances.each do |i| %>
+	<div id="instance_<%= i.id %>" class="row-block">
+		<%= link_to_remote "#{i.instance_type.name}", :url => { :action => 'instance_changed', :id => i.id } %><br>
+		<%= link_to "stats", :controller => 'instances', :action => 'stats', :id => i.id %>
+		<%= link_to "open", :controller => 'instances', :action => 'show', :id => i.id %>
+	</div>
+<% end %>
+
+<% else %>
+<div id="message">
+	There are no instances.
+</div>
+
+<% end %>

@@ -1,0 +1,31 @@
+<h3><%= h @group.name %></h3>
+<div id="name">
+	<%= h @group.blurb rescue nil %>
+</div>
+
+<div id="do-stuff">
+	<span>
+		<%= link_to 'contact group leader', {:action => 'contact_group_leader', :group_id => @group},:style =>'color:#BA1628;' %>
+	</span>
+</div>
+
+<br>
+<div id="details">
+	<fieldset style="background-color:#F5F5F5"><legend style="background-color:#406694"><strong>Group Details</strong></legend>
+		<p><label>Meets On:</label><br>
+			<%= h @group.meets_on rescue nil %></p>
+		<p><label>Time</label><br>
+			<%= h @group.time_from.strftime('%I:%M %p') rescue nil %> - <%= h @group.time_until.strftime('%I:%M %p') rescue nil %></p>
+		<p><label>Cadence:</label><br>
+			<%= h @group.meeting_cadence_value rescue nil %></p>
+		<p><label>Meets At:</label><br>
+			<%= h @group.meeting_place_value rescue nil %></p>
+		<p><label>Address:</label><br>
+		<%= h @group.meets_at_household.address_block rescue nil %></p>
+				
+	</fieldset>
+	
+</div>
+
+
+<%= h link_to "Search Again", :action => 'index' %>

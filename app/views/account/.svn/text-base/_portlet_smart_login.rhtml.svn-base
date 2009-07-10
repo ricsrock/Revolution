@@ -1,0 +1,20 @@
+<% unless controller.action_name == 'login' %>
+<% if not logged_in? %>
+  <%= start_form_tag :controller => 'portlet', :action => 'login' %>
+    <p><label for="login">Login</label><br/>
+    <%= text_field_tag 'login' %></p>
+    <p><label for="password">Password</label><br/>
+    <%= password_field_tag 'password' %></p>
+    <p><%= submit_tag 'Log in' %></p>
+  <%= end_form_tag %>
+  <%# link_to("Register for an Account", :controller => 'account', :action => 'signup') %>
+  <%# link_to("Forgot your password?", :controller => 'account', :action => 'forgot_password') %>
+<% else %>             
+  <% form_tag :controller => 'portlet', :action => 'logout' do %>
+    Hello <%= current_user.first_name %>! <br/>
+	You are logged into the<br>portlet as <%= current_user.login %> <br/>
+    <%= submit_tag 'Log out' %></p>
+  <% end %>
+<% end %>
+<% end %>
+

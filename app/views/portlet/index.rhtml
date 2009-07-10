@@ -1,0 +1,12 @@
+<div style="border: solid black 1pt;width:100%;">
+	<div style="background-color:#406694;padding:.5em;color:#FFFFFF;font-size:16px;">
+		<strong>Groups I Lead</strong>
+	</div>
+	
+
+<% current_user.small_groups_i_lead.each do |g| %>
+	<div style="padding:.5em;">
+		<%= link_to "#{g.name}", :action => 'show_group', :id => g.id %>
+	</div>
+<% end %>
+</div>

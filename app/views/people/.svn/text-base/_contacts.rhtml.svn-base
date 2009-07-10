@@ -1,0 +1,25 @@
+<div style="float:none;clear:both;">
+	
+<fieldset><legend><strong>Contact History</strong></legend>
+
+<table class="list">
+	<tr>
+		<th>Date</th>
+		<th>Contact Type</th>
+		<th>Status</th>
+		<th>Comments</th>
+	</tr>
+	<% @person.contacts.each do |c| %>
+	<tr class="<%= cycle "even", "odd" %>">
+		<td><%= c.created_at.strftime('%m/%d/%Y') rescue nil %></td>
+		<td><%= c.contact_type.name rescue nil %></td>
+		<td><%= c.status rescue nil %></td>
+		<td><%= link_to "#{comments_for(c)[0..10]}...", {:controller => 'contacts', :action => 'follow_up', :id => c.id},
+		 									   {:title => "#{comments_for(c)}"} rescue nil %></td>
+	</tr>
+	<% end %>
+</table>
+<%= link_to 'show all with detail', :action => 'contacts', :id => @person %>
+</fieldset>
+
+</div>

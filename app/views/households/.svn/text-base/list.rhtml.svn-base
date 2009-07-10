@@ -1,0 +1,65 @@
+<h1>Listing All Households</h1>
+
+
+
+		
+
+	
+<span class="letter-box">
+	<%= link_to 'All', :action => 'list', :letter => "%" %>
+</span>
+<% data = 'A'..'Z' %>
+<% data.each do |letter| %>
+<span class="letter-box">
+	<%= link_to "#{letter.to_s}", :action => 'list', :letter => letter %>
+</span>
+<% end %>
+
+
+<br><br>
+
+<%= link_to 'New household', :action => 'new' %>
+
+<div style="float:none;clear:both;">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+	<tr style="background-color:#536A97;color:#FFFFFF;padding:.3em;">
+		<th>Household</th>
+		<th>Individuals</th>
+		<th>Address</th>
+		<th>Phone</th>
+		<th></th>
+		<th></th>	
+	</tr>
+
+<% @households.each do |h| %>
+	
+	<tr class="<%= cycle("even", "odd") %>">
+		<td>
+			<%= link_to "#{h.household_name}", :controller => 'households', :action => 'show', :id => h.id rescue nil %>
+		</td>
+		<td>
+			<small><%= h.people.collect {|p| link_to "#{p.first_name}", :controller => 'people', :action => 'show', :id => p.id}.to_sentence rescue nil %></small>
+		</td>
+		<td>
+			<%= h.address_block rescue nil %>
+		</td>
+		<td>
+			<%= number_to_phone(h.best_phone.number, :area_code => true) rescue nil %>
+		</td>
+		<td>
+			<%= link_to 'Edit', :action => 'edit', :id => h.id %>
+		</td>
+		<td>
+			<%= link_to 'Destroy', { :action => 'destroy', :id => h.id }, :confirm => 'Are you sure?', :method => :post %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+  
+<%= link_to 'Previous page', { :page => @household_pages.current.previous } if @household_pages.current.previous %>
+<%= link_to 'Next page', { :page => @household_pages.current.next } if @household_pages.current.next %> 
+
+<br />
+
+</div>

@@ -1,0 +1,22 @@
+<% unless controller.action_name == 'reset_password' %>
+
+<% if not logged_in? %>
+  <%= start_form_tag :controller => 'account', :action => 'login' %>
+    <p><label for="login">Login</label><br/>
+    <%= text_field_tag 'login' %></p>
+    <p><label for="password">Password</label><br/>
+    <%= password_field_tag 'password' %></p>
+    <p><%= submit_tag 'Log in' %></p>
+  <%= end_form_tag %>
+  <%= link_to("Register for an Account", :controller => 'account', :action => 'signup') %><br>
+  <%= link_to("Forgot your password?", :controller => 'account', :action => 'forgot_password') %>
+<% else %>             
+  <% form_tag :controller => 'account', :action => 'logout' do %>
+    Hello <%= current_user.first_name %>! <br/>
+	You are logged in as <%= current_user.login %> <br/>
+    <%= submit_tag 'Log out' %></p>
+  <% end %>
+<% end %>
+
+<% end %>
+

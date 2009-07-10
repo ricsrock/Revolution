@@ -1,0 +1,21 @@
+<div id="name" style="background-color:#666666;color:#FFFFFF;font-size:16px;padding:.5em;">
+	<strong>Contact Group Leader</strong>
+</div>
+
+<div>
+	<strong><%= @group.name rescue nil %></strong><br>
+	<%= h @group.blurb rescue nil %>
+</div>
+
+<% form_tag :action => 'express_interest', :group_id => @group do %>
+<p><label>Your Name:</label><br>
+	<%= h text_field 'person', 'name' %></p>
+	
+<p><label>Your Email Address:</label><br>
+	<%= h text_field 'person', 'email' %></p>
+	
+<p><label>Message:</label><br>
+	<%= h text_area 'person', 'message', :rows => 5, :cols => 30 %></p>
+	
+<%= h submit_tag 'Send Message' %>
+<% end %>

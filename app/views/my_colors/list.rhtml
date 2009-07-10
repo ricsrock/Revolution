@@ -1,0 +1,27 @@
+<h1>Listing Colors</h1>
+
+<table>
+  <tr>
+  <% for column in MyColor.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for my_color in @my_colors %>
+  <tr>
+  <% for column in MyColor.content_columns %>
+    <td><%=h my_color.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => my_color %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => my_color %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => my_color }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @my_color_pages.current.previous } if @my_color_pages.current.previous %>
+<%= link_to 'Next page', { :page => @my_color_pages.current.next } if @my_color_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New my_color', :action => 'new' %>

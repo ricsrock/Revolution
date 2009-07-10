@@ -1,0 +1,4 @@
+  page.insert_html :bottom, :emails, :partial => 'email_fields',
+                   :locals => { :email => @email, :index => params[:index] }
+ 
+  page.replace :add_email_link, :partial => 'add_email_link', :locals => { :index => (params[:index].to_i + 1) }

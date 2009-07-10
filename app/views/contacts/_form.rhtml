@@ -1,0 +1,7 @@
+<% ContactForm.find(@form_id).contact_types.each_with_index do |contact_type, index| %>
+
+	<div id="contact-row" style="padding-top:.3em;padding-bottom:.3em;" class="<%= cycle("even", "odd") %>">
+		<%= render :partial => "contact_fields", :locals => {:contact_type => contact_type, :index => index} %>
+	</div>
+<% end %>
+

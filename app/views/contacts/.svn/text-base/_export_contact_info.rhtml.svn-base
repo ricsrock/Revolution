@@ -1,0 +1,17 @@
+
+<fieldset>
+	<legend>
+		<strong>Exporting Contacts</strong>
+	</legend>
+
+
+<% form_tag :controller => 'reports', :action => 'export_batch_of_contacts' do %>
+
+<div class="tiny">
+	This will export to your desktop a csv file for mail merge. The file will include mailing, phone and email information for the <%= session[:selected_ids].length %> contacts you have selected.
+</div><br>
+	<%= submit_tag 'Go' %>
+<% end %>
+</fieldset>
+
+<%= link_to 'manage my contacts', :controller => 'contacts', :action => 'manage' %>

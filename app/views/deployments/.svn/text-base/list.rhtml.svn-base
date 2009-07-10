@@ -1,0 +1,27 @@
+<h1>Listing deployments</h1>
+
+<table>
+  <tr>
+  <% for column in Deployment.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for deployment in @deployments %>
+  <tr>
+  <% for column in Deployment.content_columns %>
+    <td><%=h deployment.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => deployment %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => deployment %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => deployment }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @deployment_pages.current.previous } if @deployment_pages.current.previous %>
+<%= link_to 'Next page', { :page => @deployment_pages.current.next } if @deployment_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New deployment', :action => 'new' %>

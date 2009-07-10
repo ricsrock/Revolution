@@ -1,0 +1,6 @@
+<%= @start_date %>
+<%= @day_number %>
+
+<%= @ending_date %>
+
+<%= @message %>

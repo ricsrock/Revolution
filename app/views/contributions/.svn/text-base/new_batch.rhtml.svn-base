@@ -1,0 +1,21 @@
+<h3>Create New Batch</h3>
+
+<%= error_messages_for 'batch' %>
+
+<% form_tag :action => 'create_batch' do %>
+<p><label for="batch_date_collected">Date Collected</label><br/>
+<%= date_field 'batch', 'date_collected'  %></p>
+
+<p><label for="batch_count_total">Count Total ($)</label><br/>
+<%= text_field 'batch', 'count_total'  %></p>
+
+<p><label for="batch_contributions_num">Number of Contributions (#)</label><br/>
+<%= text_field 'batch', 'contributions_num'  %></p>
+
+
+<p><label for="batch_comments">Comments</label><br/>
+<%= text_area 'batch', 'comments', :rows => 2, :cols => 50  %></p>
+
+<%= submit_tag 'create' %>
+<% end %>
+<%= link_to 'cancel', :action => 'index' %>

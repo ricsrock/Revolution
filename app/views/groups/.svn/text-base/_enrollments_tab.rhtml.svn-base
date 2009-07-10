@@ -1,0 +1,17 @@
+<fieldset><legend><strong>Enrollments</strong></legend>
+
+<% @found_people = [] %>
+<div>
+	<%= link_to_remote "Add People", :url => {:action => 'toggle_search_form'} %>
+</div>
+
+<div id="enroll-people" style="display:none; padding-top: 5px">
+	<div id="search">
+		<%= render :partial => "search" %>
+	</div>
+	<div id="search-results">
+		<%= render :partial => "results_list", :locals => {:group => @group} %>
+	</div>
+</div>
+
+</fieldset>

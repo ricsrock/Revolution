@@ -1,0 +1,26 @@
+<%= error_messages_for 'job' %>
+
+<!--[form:job]-->
+<p><label for="job_title">Title</label><br/>
+<%= text_field 'job', 'title'  %></p>
+
+<% @teams = Team.find(:all) %>
+<p><label for="job_team_id">Team</label><br/>
+<%= collection_select 'job', 'team_id', @teams, :id, :name  %></p>
+
+<% @people = Person.find_all_with_tag("Job Level") %>
+
+<p><label for="job_contact_person_id">Contact Person</label><br/>
+<%= collection_select 'job', 'contact_person_id', @people, :id, :full_name, options = {:prompt => '---select person---'}%></p>
+
+
+<p><label for="job_cadence">Cadence</label><br/>
+<%= text_area 'job', 'cadence', :cols => 70, :rows => 5 %></p>
+
+<p><label for="job_description">Description</label><br/>
+<%= text_area 'job', 'description', :cols => 70, :rows => 5  %></p>
+
+<p><label for="job_tasks">Tasks</label><br/>
+<%= text_area 'job', 'tasks', :cols => 70, :rows => 5  %></p>
+<!--[eoform:job]-->
+

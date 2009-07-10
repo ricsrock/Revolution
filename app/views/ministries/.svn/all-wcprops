@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/app/views/ministries
+END
+delete_department.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5/trunk/app/views/ministries/delete_department.rjs
+END
+ministry_changed.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5/trunk/app/views/ministries/ministry_changed.rjs
+END
+_form.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/5/trunk/app/views/ministries/_form.rhtml
+END
+_teams_list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5/trunk/app/views/ministries/_teams_list.rhtml
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/app/views/ministries/list.rhtml
+END
+_contacts.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/app/views/ministries/_contacts.rhtml
+END
+show.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/app/views/ministries/show.rhtml
+END
+_ministries_list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5/trunk/app/views/ministries/_ministries_list.rhtml
+END
+_departments_list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/5/trunk/app/views/ministries/_departments_list.rhtml
+END
+department_changed.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5/trunk/app/views/ministries/department_changed.rjs
+END
+edit.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/app/views/ministries/edit.rhtml
+END
+job.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/5/trunk/app/views/ministries/job.rb
+END
+manage.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/5/trunk/app/views/ministries/manage.rhtml
+END
+_involvements.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/ministries/_involvements.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/app/views/ministries/new.rhtml
+END

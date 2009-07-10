@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/5/trunk/vendor/plugins/nested_layouts/test/fixtures/test
+END
+deep_layout.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/5/trunk/vendor/plugins/nested_layouts/test/fixtures/test/deep_layout.rhtml
+END
+inline_layout.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/5/trunk/vendor/plugins/nested_layouts/test/fixtures/test/inline_layout.rhtml
+END
+shared_data.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/5/trunk/vendor/plugins/nested_layouts/test/fixtures/test/shared_data.rhtml
+END
+content_for_passing.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/5/trunk/vendor/plugins/nested_layouts/test/fixtures/test/content_for_passing.rhtml
+END
+instance_passing.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/5/trunk/vendor/plugins/nested_layouts/test/fixtures/test/instance_passing.rhtml
+END
+simple.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/5/trunk/vendor/plugins/nested_layouts/test/fixtures/test/simple.rhtml
+END

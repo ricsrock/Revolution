@@ -1,0 +1,19 @@
+<div style="float:right;">
+	<table border="0" cellspacing="1" cellpadding="1" style="font-size:18px;font-weight:bold">
+		<tr>
+			<td># Contributions: </td>
+			<td><%= @batch.contributions_num rescue nil %>&nbsp;&nbsp;</td>
+			<td>Count Total: </td>
+			<td>$<%= @batch.count_total rescue nil  %></td>
+		</tr>
+		<tr>
+			<td class="<%= format_num_helper %>"># Recorded So Far: </td>
+			<td class="<%= format_num_helper %>"><%= @batch.contributions.length rescue nil %>&nbsp;&nbsp;</td>
+			<td class="<%= format_count_helper %>">Entered So Far: </td>
+			<td class="<%= format_count_helper %>">$<%= @batch.entered_so_far rescue nil %>
+			<% if @batch.entered_so_far >= @batch.count_total %>
+			!
+			<% end %></td>
+		</tr>
+	</table>
+</div>

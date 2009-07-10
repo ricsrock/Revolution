@@ -1,0 +1,64 @@
+
+<head>
+	<script type="text/javascript"
+	src="http://maps.google.com/maps?file=api&v=2&key=<%= GeoKit::Geocoders::google %>">
+	</script>
+
+	
+<script type="text/javascript">
+    // helper function to create markers
+    function createMarker(point,html) {
+        var marker = new GMarker(point, {icon: yellow_icon});
+        GEvent.addListener(marker, "click", function() {
+         marker.openInfoWindowHtml(html);
+         });
+        return marker;
+    }
+
+	// this code is from the google to create a yellow marker... untested.
+	var iconOptions = {};
+	  iconOptions.width = 32;
+	  iconOptions.height = 32;
+	  iconOptions.primaryColor = "#FFFF00FF";
+	  iconOptions.cornerColor = "#FF8A00FF";
+	  iconOptions.strokeColor = "#080000FF";
+	  var yellow_icon = MapIconMaker.createMarkerIcon(iconOptions);
+	
+    
+    // this is called when the page loads. 
+    // it initializes the map, and creates each marker
+    function initialize() {
+        var map = new GMap(document.getElementById("map"));
+        map.addControl(new GLargeMapControl());
+        map.addControl(new GOverviewMapControl());
+        map.addControl(new GMapTypeControl(true));
+        map.centerAndZoom(new GPoint(-93.7056, 32.5447), 5);
+        
+        <%@places.each do |place|%>
+        var point = new GPoint(<%=place[:lng]%>,<%=place[:lat]%>);
+        var marker = createMarker(point,"<div><%=h place[:name]%><br><%=h place[:address]%></div>")
+        map.addOverlay(marker);
+        <%end%>
+    }    
+</script>
+
+</head>
+<body onload="initialize()">
+
+	<% @places.each do |place| %>
+		<div>
+			<span>
+				<%= place.name %>
+			</span>
+			<span>
+				<%= place.address %>
+			</span>
+		</div>
+	<% end %>
+
+
+<div id="map" style="width: 550px; height: 450px"></div>
+
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+<%= error_messages_for 'fund' %>
+
+<!--[form:fund]-->
+<p><label for="fund_created_at">Created at</label><br/>
+<%= datetime_select 'fund', 'created_at'  %></p>
+
+<p><label for="fund_updated_at">Updated at</label><br/>
+<%= datetime_select 'fund', 'updated_at'  %></p>
+
+<p><label for="fund_created_by">Created by</label><br/>
+<%= text_field 'fund', 'created_by'  %></p>
+
+<p><label for="fund_updated_by">Updated by</label><br/>
+<%= text_field 'fund', 'updated_by'  %></p>
+
+<p><label for="fund_comments">Comments</label><br/>
+<%= text_area 'fund', 'comments'  %></p>
+
+<p><label for="fund_name">Name</label><br/>
+<%= text_field 'fund', 'name'  %></p>
+<!--[eoform:fund]-->
+

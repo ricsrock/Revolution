@@ -1,0 +1,20 @@
+<p style="border-bottom: solid #999999 2px;padding-bottom: 5px;height:28px;"><label>People: </label>
+<input type='submit' value='All' onClick="$$('#this_form input.check').each(function(box){box.checked=true});return false;" />
+<input type='submit' value='None' onClick="$$('#this_form input.check').each(function(box){box.checked=false});return false;" />
+</p>
+
+
+<div syle="float:left;overflow:auto;height:100%;">
+<% @found_people.each do |p| %>
+
+	<div class="<%= cycle("even_only","odd_only") %>">
+		<span id="checkbox_id_<%= p.id %>">
+			<%= check_box_tag 'included_people[]', p.id, {}, {:class => 'check'} %>
+		</span>
+
+		<span>
+				<%= p.full_name rescue nil %>
+		</span>
+	</div>
+<% end %>	
+</div>

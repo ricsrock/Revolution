@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated_mailer/templates
+END
+notifier_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated_mailer/templates/notifier_test.rb
+END
+signup_notification.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated_mailer/templates/signup_notification.rhtml
+END
+notifier.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated_mailer/templates/notifier.rb
+END
+activation.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated_mailer/templates/activation.rhtml
+END
+observer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated_mailer/templates/observer.rb
+END

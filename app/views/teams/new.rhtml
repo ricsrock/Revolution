@@ -1,0 +1,10 @@
+<h1>New team</h1>
+
+<% form_tag :action => 'create' do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= link_to 'Manage Ministries', :controller => 'ministries', :action => 'manage' %> |
+<%= link_to "#{Ministry.find(params[:ministry_id]).name}", :controller => 'ministries', :action => 'show', :id => params[:ministry_id] %>
+

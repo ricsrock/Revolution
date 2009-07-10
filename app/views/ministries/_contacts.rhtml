@@ -1,0 +1,29 @@
+<h3>Open Contacts</h3>
+
+<table class="list">
+	<tr>
+		<th>Contact Type</th>
+		<th>Attributed To</th>
+		<th>Date</th>
+		<th>Status</th>
+	</tr>
+<% @ministry.open_contacts.each do |c| %>
+	<tr class="<%= cycle("even","odd") %>">
+		<td>
+			<%= link_to "#{c.contact_type.name rescue nil}", :controller => "contacts", :action => "follow_up", :id => c.id %>
+		</td>
+		<td>
+			<%= c.attributed_to rescue nil %>
+		</td>
+		<td>
+			<%= c.created_at.strftime("%m/%d/%Y") rescue nil %>
+		</td>
+		<td>
+			<%= c.status rescue nil %>
+		</td>
+	</tr>
+<% end %>	
+
+</table>
+
+	

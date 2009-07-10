@@ -1,0 +1,64 @@
+<h3><%= @meeting.instance.event.formatted_date %> :: <%= link_to "#{@meeting.instance.instance_type.name}",
+ 														 :controller => 'instances',
+														 :action => 'stats',
+														 :id => @meeting.instance.id %> :: <%= link_to "#{@meeting.group.name}",
+																							   :controller => 'groups',
+																							   :action => 'show',
+																							   :id => @meeting.group.id %> </h3>
+
+
+<fieldset>
+	<legend>
+		<strong>Meeting Info</strong>
+	</legend>
+<div style="float:none;clear:both;">
+	<span class="cell">
+		<label>Meeting Date:</label><br>
+		<%=  @meeting.real_date.strftime('%m/%d/%Y') rescue nil %>
+	</span>
+	<span class="cell">
+		<label>Comments:</label><br>
+		<%= @meeting.comments rescue nil %>
+	</span>
+	<span class="cell">
+		<label>Room:</label><br>
+		<%= @meeting.room.name rescue nil %>
+	</span>
+</div><br><br><br>
+
+<%= link_to 'Edit Meeting Info', :action => 'edit', :id => @meeting %> | 
+<%= link_to 'View Currently Checked-In', :action => 'show', :id => @meeting %>
+
+</fieldset>
+<div id="empty">
+	&nbsp;
+</div>
+
+
+
+<div id="add_tag_menu" style="padding-bottom: 10px;">
+  <%= link_to_function "Add People", toggle_add_people_links('show') %> |
+  <%= link_to_function "Hide Search Form", toggle_add_people_links('hide') %>  <span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</div>
+
+<div id="search-panel" style="display:none;">
+	<div id="search" style="float:none;clear:both;">
+		<%= render :partial => "search" %>
+	</div>
+
+
+
+		<div id="search-results">
+			<%= render :partial => "results_list", :locals => {:meeting => @meeting} %>
+		</div>
+</div>
+	
+<div id="empty">
+	&nbsp;
+</div>
+
+<div id="meeting-attendance-detail">
+
+<%= render :partial => "attendance_history", :locals => {:meeting => @meeting} %>
+
+</div>

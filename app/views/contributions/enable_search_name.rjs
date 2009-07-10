@@ -1,0 +1,1 @@
+page.replace_html("search_name_area", :partial => 'search_name')

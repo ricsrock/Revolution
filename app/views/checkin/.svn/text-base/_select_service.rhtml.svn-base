@@ -1,0 +1,15 @@
+
+<span class="cell">
+<%= collection_select('event', 'id', @available_events.sort_by(&:date), 'id', 'display_name') %>
+
+<%= observe_field 'event_id',
+				 :url => {:action => 'event_changed'},
+ 				 :update => 'instances-combo',
+				 :with => 'id'%>
+</span>				
+<span id="instances-combo", class="cell">
+	<%= render :partial => 'select_instance', :locals => {:event_id => @available_events[0]}  %>
+</span>
+<span class="cell">
+<%= button_to "Apply", :action => 'home' %>
+</span>

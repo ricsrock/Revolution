@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/test
+END
+test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/test/test_helper.rb
+END
+controller_stub.rb
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/test/controller_stub.rb
+END
+authenticated_system.rb
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/test/authenticated_system.rb
+END
+user_stub.rb
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/test/user_stub.rb
+END

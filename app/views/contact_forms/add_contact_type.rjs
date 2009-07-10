@@ -1,0 +1,3 @@
+@contact_form = ContactForm.find(params[:id])
+page.replace_html("left-column", :partial => 'available_contact_types', :locals => {:contact_form => @contact_form})
+page.replace_html("right-column", :partial => 'joined_contact_types', :locals => {:contact_form => @contact_form})

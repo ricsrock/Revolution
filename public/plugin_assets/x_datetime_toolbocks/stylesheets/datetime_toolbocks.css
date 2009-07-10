@@ -1,0 +1,39 @@
+.DatetimeToolbocksMessage {
+  clear: both;
+}
+
+.DatetimeToolbocksMessage div {
+  font-size: 7pt;
+}
+
+.DatetimeToolbocksMessage div.error {
+  color: red;
+}
+
+.DatetimeToolbocks input.error {
+  background-color: pink;
+}
+
+.DatetimeToolbocksFlat {
+  width: 230px;
+}
+ 
+.DatetimeToolbocks ul {
+	list-style: none;
+	padding: 0 5px 0 0;
+	margin: 0;
+}
+
+.DatetimeToolbocks ul li {
+	display: inline;
+}
+
+.DatetimeToolbocks ul a {
+	padding: 5px;
+	display: block;
+	float: left;
+}
+
+.DatetimeToolbocks input {
+	width: 100px;
+}

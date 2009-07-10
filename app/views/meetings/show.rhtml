@@ -1,0 +1,12 @@
+<h3><%= @meeting.group.name %> :: <%= @meeting.instance.event.formatted_date %></h3>
+<h3><%= @meeting.instance.event.event_type.name %> :: 
+<%= @meeting.instance.instance_type.name %></h3>
+
+<strong>People Currently Checked-In:</strong><br>
+<%= link_to_remote "Checkout Meeting", :url => { :action => 'checkout_all', :id => @meeting } %> | 
+<%= link_to 'View/Edit Meeting Attendance History', :action => 'detail', :id => @meeting %>
+
+<div id="attendance_list_area">
+	<%= render :partial => "attendance_list", :locals => { :meeting => @meeting } %>
+</div>
+

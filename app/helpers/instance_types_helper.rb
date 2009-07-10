@@ -1,0 +1,2 @@
+module InstanceTypesHelper
+end

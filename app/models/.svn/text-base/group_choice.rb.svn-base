@@ -1,0 +1,26 @@
+class GroupChoice < ActiveRecord::Base
+end
+
+class CurriculumChoice < GroupChoice
+end
+
+class CurriculumCost < GroupChoice
+end
+
+class SpecialRequirement < GroupChoice
+end
+
+class AttendanceRequirement < GroupChoice
+end
+
+class IsChildcareProvided < GroupChoice
+end
+
+class MeetingCadence < GroupChoice
+end
+
+class MeetingPlace < GroupChoice
+end
+
+class LeaderNameForPrinting < GroupChoice
+end

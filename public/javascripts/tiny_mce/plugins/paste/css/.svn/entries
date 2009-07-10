@@ -1,0 +1,42 @@
+8
+
+dir
+7
+https://revolution-church-management.googlecode.com/svn/trunk/public/javascripts/tiny_mce/plugins/paste/css
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+pasteword.css
+file
+
+
+
+
+2009-01-14T23:05:25.000000Z
+e1dfc4d39541876eae65975a6febf6cc
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+
+blank.css
+file
+
+
+
+
+2009-01-14T23:05:25.000000Z
+5840c25c61645bca26e8e82a60f1d723
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+

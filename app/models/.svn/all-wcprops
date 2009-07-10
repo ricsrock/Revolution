@@ -1,0 +1,425 @@
+K 25
+svn:wc:ra_dav:version-url
+V 32
+/svn/!svn/ver/5/trunk/app/models
+END
+enrollment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/app/models/enrollment.rb
+END
+user_observer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/5/trunk/app/models/user_observer.rb
+END
+email.rb
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/5/trunk/app/models/email.rb
+END
+job_requirement.rb
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/5/trunk/app/models/job_requirement.rb
+END
+fund.rb
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/5/trunk/app/models/fund.rb
+END
+milestone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/app/models/milestone.rb
+END
+search.rb
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/app/models/search.rb
+END
+checkin_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/models/checkin_type.rb
+END
+assignment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/app/models/assignment.rb
+END
+phone.rb
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/17/trunk/app/models/phone.rb
+END
+tag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/17/trunk/app/models/tag.rb
+END
+ministry.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/5/trunk/app/models/ministry.rb
+END
+deployment.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/app/models/deployment.rb
+END
+attendance_tracker.rb
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/16/trunk/app/models/attendance_tracker.rb
+END
+relationship_role.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/7/trunk/app/models/relationship_role.rb
+END
+my_color.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/5/trunk/app/models/my_color.rb
+END
+tag_group.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/app/models/tag_group.rb
+END
+household.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/17/trunk/app/models/household.rb
+END
+operator.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/17/trunk/app/models/operator.rb
+END
+comm_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/app/models/comm_type.rb
+END
+contact_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/models/contact_type.rb
+END
+auto_instance_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/5/trunk/app/models/auto_instance_type.rb
+END
+adjective.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/app/models/adjective.rb
+END
+requirement.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/5/trunk/app/models/requirement.rb
+END
+role.rb
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/5/trunk/app/models/role.rb
+END
+smart_group.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/17/trunk/app/models/smart_group.rb
+END
+checkin.rb
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/5/trunk/app/models/checkin.rb
+END
+note.rb
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/5/trunk/app/models/note.rb
+END
+group_choice.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/models/group_choice.rb
+END
+smart_group_property.rb
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/17/trunk/app/models/smart_group_property.rb
+END
+donation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/5/trunk/app/models/donation.rb
+END
+room.rb
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/5/trunk/app/models/room.rb
+END
+user_notifier.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/17/trunk/app/models/user_notifier.rb
+END
+bucket.rb
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/app/models/bucket.rb
+END
+tagging.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/17/trunk/app/models/tagging.rb
+END
+batch.rb
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/5/trunk/app/models/batch.rb
+END
+sms_setup.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/5/trunk/app/models/sms_setup.rb
+END
+auto_group.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/app/models/auto_group.rb
+END
+csv_import.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/app/models/csv_import.rb
+END
+smart_group_rule.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/17/trunk/app/models/smart_group_rule.rb
+END
+rotation.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/5/trunk/app/models/rotation.rb
+END
+meeting_observer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/17/trunk/app/models/meeting_observer.rb
+END
+animal.rb
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/app/models/animal.rb
+END
+department.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/app/models/department.rb
+END
+instance_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/5/trunk/app/models/instance_type.rb
+END
+follow_up.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/6/trunk/app/models/follow_up.rb
+END
+involvement.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/5/trunk/app/models/involvement.rb
+END
+person.rb
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/17/trunk/app/models/person.rb
+END
+attendance.rb
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/17/trunk/app/models/attendance.rb
+END
+picture.rb
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/5/trunk/app/models/picture.rb
+END
+volunteer_mailer.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/17/trunk/app/models/volunteer_mailer.rb
+END
+setting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/17/trunk/app/models/setting.rb
+END
+tool.rb
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/17/trunk/app/models/tool.rb
+END
+service_link.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/models/service_link.rb
+END
+contact_form.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/models/contact_form.rb
+END
+user.rb
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/17/trunk/app/models/user.rb
+END
+contribution.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/6/trunk/app/models/contribution.rb
+END
+event.rb
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/5/trunk/app/models/event.rb
+END
+ccolor.rb
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/app/models/ccolor.rb
+END
+event_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/app/models/event_type.rb
+END
+team.rb
+K 25
+svn:wc:ra_dav:version-url
+V 40
+/svn/!svn/ver/5/trunk/app/models/team.rb
+END
+meeting.rb
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/17/trunk/app/models/meeting.rb
+END
+contact.rb
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/6/trunk/app/models/contact.rb
+END
+group.rb
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/17/trunk/app/models/group.rb
+END
+relationship.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/7/trunk/app/models/relationship.rb
+END
+relationship_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/7/trunk/app/models/relationship_type.rb
+END
+instance.rb
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/17/trunk/app/models/instance.rb
+END
+follow_up_type.rb
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/5/trunk/app/models/follow_up_type.rb
+END
+job.rb
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/5/trunk/app/models/job.rb
+END
+web_category.rb
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/models/web_category.rb
+END

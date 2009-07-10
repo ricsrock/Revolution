@@ -1,0 +1,3 @@
+<strong>
+	Team: <%= item.name %>
+</strong>

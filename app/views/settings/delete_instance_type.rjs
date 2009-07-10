@@ -1,0 +1,1 @@
+page.replace_html :instance_types_list, :partial => 'instance_types_list'

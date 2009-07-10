@@ -1,0 +1,8 @@
+
+<% @available_instances = Instance.find_by_event_id(event_id) %>
+<%= collection_select('instance', 'id', @available_instances, 'id', 'display_name',
+						options = {:prompt => "– Select an Instance –"}) %>
+						
+<%= observe_field 'instance_id',
+ 					:url => {:action => 'instance_set'},
+					:with => 'id' %>

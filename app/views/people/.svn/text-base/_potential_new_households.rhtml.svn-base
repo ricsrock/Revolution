@@ -1,0 +1,16 @@
+<% if ! @found_households.empty? %>
+
+
+<% @found_households.each do |h| %>
+	<div>
+		<%= link_to_remote "#{h.name}", :url => {:action => 'choose_new', :id => h.id} %>
+	</div>
+<% end %>
+
+<% else %>
+
+<div id="message-black">
+	No results.
+</div>
+
+<% end %>

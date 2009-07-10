@@ -1,0 +1,10 @@
+page.replace_html("contributions-list", :partial => 'contributions_list', :locals => {:batch => @batch})
+page.replace_html("contributor-pane", :partial => 'contributor_pane')
+page.replace_html("donations", :partial => 'donations_partial', :locals => {:contribution => @contribution})
+page.replace_html("count", :partial => 'count_total', :locals => {:batch => @batch})
+page.replace_html("notice", "")
+
+page.select('form').each { |f| f.reset }
+
+page << "$('contribution_date').value = '#{@batch.date_collected.strftime('%b %d %Y')}'"
+

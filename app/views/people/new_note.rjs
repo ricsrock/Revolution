@@ -1,0 +1,1 @@
+page.replace_html("notes_area", :partial => 'new_note', :locals => {:person => @person})

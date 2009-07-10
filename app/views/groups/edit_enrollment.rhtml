@@ -1,0 +1,14 @@
+<%= error_messages_for :enrollment %>
+
+<h3>Person: <%= @enrollment.person.full_name rescue nil %></h3>
+<h3>Group: <%= @enrollment.group.name rescue nil %></h3>
+
+<% form_tag :action => 'update_enrollment', :id => @enrollment do %>
+	
+	<label>Start Date: </label><%= date_field(:enrollment, :start_time) %><br>
+	<label>End Date: </label><%= date_field(:enrollment, :end_time) %><br>
+	
+	<%= submit_tag 'Save Changes' %>
+<% end %>
+
+<%= link_to 'Cancel', :controller => 'groups', :action => 'show', :id => @enrollment.group %>

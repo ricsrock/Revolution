@@ -1,0 +1,94 @@
+8
+
+dir
+5
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/redbox
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+23cefa1c-6352-0410-ae0e-a5aea8c5d16c
+
+test
+dir
+
+Rakefile
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+5e2f990aa4f62ff688a5aed335422a00
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+images
+dir
+
+tasks
+dir
+
+init.rb
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+079bdfe33c40d567baf23cc87c0d814f
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+lib
+dir
+
+install.rb
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+9f8b248d06ae4e37e5026bbd7c2c1743
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+javascripts
+dir
+
+stylesheets
+dir
+
+README
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+edc1caf25019f190f85f9ca77c67463a
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+

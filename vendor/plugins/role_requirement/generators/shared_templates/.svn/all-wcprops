@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/shared_templates
+END
+hijacker.rb
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/shared_templates/hijacker.rb
+END
+role_requirement_test_helper.rb.erb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/shared_templates/role_requirement_test_helper.rb.erb
+END
+role_requirement_system.rb.erb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/shared_templates/role_requirement_system.rb.erb
+END

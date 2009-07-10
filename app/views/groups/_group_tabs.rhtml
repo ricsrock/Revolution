@@ -1,0 +1,23 @@
+<div id="setup_menu" style="width:100%;float:none;clear:both;">
+	<ul>
+		<li class="<%= group_tab_class("enrollments_tab", @variable) %>">
+			<%= link_to_remote "Enrollments", :url => { :controller => 'groups', :action => 'change_partial', 
+														:group_id => @group, :new_partial => "enrollments_tab" } %></li>
+		<li class="<%= group_tab_class("small_group_tab", @variable) %>">
+			<%= link_to_remote "Small Group", :url => { :controller => 'groups', :action => 'change_partial',
+									          :group_id => @group, :new_partial => "small_group_tab" } %></li>
+		<li class="<%= group_tab_class("service_links", @variable) %>">
+			<%= link_to_remote "Service Links", :url => { :controller => 'groups', :action => 'change_partial',
+										   :group_id => @group, :new_partial => "service_links" } %></li>
+		<li class="<%= group_tab_class("meetings_tab", @variable) %>">
+			<%= link_to_remote "Meetings", :url => { :controller => 'groups', :action => 'change_partial',
+								   		   :group_id => @group, :new_partial => "meetings_tab" } %></li>
+		<li class="<%= group_tab_class("categories_tab", @variable) %>">
+			<%= link_to_remote "Categories", :url => { :controller => 'groups', :action => 'change_partial',
+											 :group_id => @group, :new_partial => "categories_tab" } %></li>
+		<li class="<%= group_tab_class("do_stuff_tab", @variable) %>">
+			<%= link_to_remote "Do Stuff", :url => { :controller => 'groups', :action => 'change_partial',
+											 :group_id => @group, :new_partial => "do_stuff_tab" } %></li>
+	</ul>
+	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</div>

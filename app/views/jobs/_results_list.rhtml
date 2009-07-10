@@ -1,0 +1,24 @@
+<% if @found_people.length == 0 %>
+	There are no matching results.
+<% else %>
+
+<% @found_people.each do |p| %>
+	<div id="person-row" class="<%= cycle("even", "odd") %>">
+	<div id="person-<%= p.id %>">
+
+		<% form_remote_tag :url => {:action => "assign_to_job", :person_id => p.id, :job_id => @job.id} do %>
+			<span class="person-name-space">
+				<%= link_to "#{p.full_name}", :controller => 'people', :action => 'show', :id => p %>
+			</span>
+			<span class="cell">
+				Age: <%= p.age rescue nil %> <%= p.household.address_one_line rescue nil %>
+			</span>
+			<span class="cell" style="float:right;">
+				<%= submit_tag 'Assign to Job' %>
+			</span>
+		<% end %>
+
+	</div>
+	</div>
+<% end %>
+<% end %>

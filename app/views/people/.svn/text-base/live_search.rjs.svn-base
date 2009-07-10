@@ -1,0 +1,1 @@
+page.replace_html("relates_to_person", :partial => 'relates_to_person')

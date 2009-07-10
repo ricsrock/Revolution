@@ -1,0 +1,1 @@
+		<b><%= @relates_to_person.full_name rescue nil %> Relates As: </b><%= collection_select(:relationship, :relates_to_role_id, RelationshipRole.find(:all, :conditions => {:relationship_type_id => @relationship_type}), :id, :name) rescue nil %>

@@ -1,0 +1,36 @@
+<div style="float:none; clear:both;">
+	
+<fieldset><legend><strong>Tags</strong></legend>
+<table class="list">
+	<tr>
+		<th>Tag Group</th>
+		<th>Tag</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+		<th>Comments</th>
+	</tr>
+	<% @person.find_taggings.sort_by {|tg| tg.tag.tag_group.name}.each do |t| %>
+	<tr class="<%= cycle "even", "odd" %>">
+		<td><%= t.tag.tag_group.name rescue nil %></td>
+		<td><%= link_to "#{t.tag.name}", :controller => 'taggings', :action => 'show', :id => t.id rescue nil %></td>
+		<td><%= t.start_date.strftime('%m/%d/%Y') rescue nil %></td>
+		<td><%= t.end_date.strftime('%m/%d/%Y') rescue nil %></td>	
+		<td><%= t.comments[0..9] rescue nil %>...</td>
+		<td><%= link_to_remote (image_tag "delete_16x16.gif", :size => "12x12", :border => 0, :title => "Delete this tag"),
+		 						:url => {:controller => 'people', :action => 'destroy_tagging', :id => t.id, :person_id => @person.id,
+										 :confirm => "Are you sure you want to delete this tag forever?" } %></td>
+	</tr>
+	<% end %>
+</table>
+
+<div id="add_tag_menu" style="padding-bottom: 10px;">
+  <%= link_to_function "Hide Add Tag Form", toggle_tag_links('hide') %> |
+  <%= link_to_function "Show Add Tag Form", toggle_tag_links('show') %>
+</div>
+
+<div id="new_tag_wrap" style="display:none";>
+<%= render :partial => 'people/new_tag', :locals => {:person_id => @person} %>
+</div>
+
+</fieldset>
+

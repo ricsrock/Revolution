@@ -1,0 +1,7 @@
+<%= error_messages_for 'animal' %>
+
+<!--[form:animal]-->
+<p><label for="animal_name">Name</label><br/>
+<%= text_field 'animal', 'name'  %></p>
+<!--[eoform:animal]-->
+

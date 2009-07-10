@@ -1,0 +1,12 @@
+<h3>Roles for this relationship type</h3>
+
+<table class="list">
+	<tr>
+		<th>Role Name</th>
+	</tr>
+	<% @relationship_type.relationship_roles.sort_by(&:name).each do |r| %>
+	<tr>
+		<td><%= r.name rescue nil %></td>
+	</tr>
+	<% end %>
+</table>

@@ -1,0 +1,9 @@
+<div style="float:none;clear:both;">
+	
+
+<a class="button" href="#"><span>Bring world peace</span></a>
+
+<%= cool_button_id("text here","smart_groups", "map", "2") %>
+
+&nbsp;
+</div>

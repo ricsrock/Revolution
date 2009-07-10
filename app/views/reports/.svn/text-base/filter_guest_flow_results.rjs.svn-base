@@ -1,0 +1,1 @@
+page.replace_html('guest_flow_results', :partial => 'guest_flow_summary')

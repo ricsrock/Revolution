@@ -1,0 +1,34 @@
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
+
+<tr>
+
+	<td>
+		<%= cool_button_id('print phone list', "smart_groups", "print_phone_list",@g.id) %>
+	</td>
+
+	<td>
+		<%= cool_button_id('export csv', "reports","export_smart_group",@g.id) %>
+	</td>
+	
+	<td>
+		<%= cool_button_id("export household csv","reports","export_smart_group_households",@g.id) %>
+	</td>
+	
+	<td>
+		<%= cool_button_id("mass contact","contacts","new_mass",@g.id) %>
+	</td>
+	
+	<td>
+		<%= link_to (image_tag "mail1_(edit)_16x16.gif", :size => "12x12", :border => 0, :title => 'Email This Group'), :action => 'new_smart_group_contact', :id => @g.id %>
+	</td>
+	
+	<td>
+		<%= link_to (image_tag "vcard_16x16.gif", :size => "12x12", :border => 0, :title => 'Export Vcards'), :controller => "vcard", :action => "get_smart_group_cards", :id => @g %>
+	</td>
+	
+	<td>
+		<%= cool_button_id("map","smart_groups","map",@g) %>
+	</td>
+
+</tr>	
+</table>

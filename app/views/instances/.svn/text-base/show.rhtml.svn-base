@@ -1,0 +1,30 @@
+<table border="0" cellspacing="2" cellpadding="2">
+	<tr>
+		<td><b>Event Date:</b></td>
+		<td><%= @instance.event.date.strftime('%m/%d/%Y') rescue nil %></td>
+	</tr>
+	<tr>
+		<td><b>Event Type:</b></td>
+		<td><%= @instance.event.event_type.name rescue nil %></td>
+	</tr>
+	<tr>
+		<td><b>Instance Type:</b></td>
+		<td><%= @instance.instance_type.name rescue nil %></td>
+	</tr>
+</table>
+
+<%# link_to 'Edit', :action => 'edit', :id => @instance %>
+
+<br><br>
+<fieldset><legend><strong>Add Meeting</strong></legend>
+<div id="add_meeting">
+	<% form_tag :action => 'add_meeting', :id => @instance.id do %>
+		<%= render :partial => 'meetings/form' %>
+		<%= submit_tag "Add Meeting" %>
+	<% end %>
+</div>
+</fieldset>
+
+<div id="list_meetings">
+	<%= render :partial => 'meetings/meetings' %>
+</div>

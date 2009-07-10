@@ -1,0 +1,12 @@
+group = Group.find(session[:sticky_group])
+
+group.ancestors(:scope => current_user.group_scope).each do |c|
+  unless c.root?
+      page.visual_effect(:toggle_slide, "group_id_#{c.id}",:duration => 1)
+  end
+end
+
+group.self_and_siblings(:scope => current_user.group_scope).each do |g|
+    page.visual_effect(:toggle_slide, "group_id_#{g.id}",:duration => 1)
+end
+

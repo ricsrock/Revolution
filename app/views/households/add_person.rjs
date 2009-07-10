@@ -1,0 +1,6 @@
+ page.insert_html :bottom, :people, :partial => 'person_fields',
+                  :locals => { :person => @person, :index => params[:index] }
+                   
+ page << "$('people[#{params[:index]}]_last_name').value = $('household_name').value"
+  
+ page.replace :add_person_link, :partial => 'add_person_link', :locals => { :index => (params[:index].to_i + 1) }

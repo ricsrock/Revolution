@@ -1,0 +1,25 @@
+
+<% if not @departments.empty? %>
+
+
+<% @departments.each do |d| %>
+	<div id="department_<%= d.id %>" class="row-block">
+		<%= link_to_remote "#{d.name}", :url => { :action => 'department_changed', :id => d.id }  %>
+		<%= link_to_remote "X", :url => { :action => 'delete_department', :id => d.id }, :confirm => 'Are you sure you want to delete this department forever?' %><br>
+		<div id="message-black">
+			<% if d.responsible_person.nil? %>
+			None assigned
+			<% else %>
+			<%= d.responsible_person.full_name %>
+			<% end %>
+		</div>
+		<%= link_to "open", :controller => 'departments', :action => 'show', :id =>d.id %>
+		
+	</div>
+<% end %>
+
+<% else %>
+<div id="message">
+	There are no departments.
+</div>
+<% end %>

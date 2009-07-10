@@ -1,0 +1,29 @@
+<h1>Listing departments</h1>
+
+<table>
+  <tr>
+	<th>Responsible Person</th>
+  <% for column in Department.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for department in @departments %>
+  <tr>
+	 <td><%= department.responsible_person.full_name %></td>
+  <% for column in Department.content_columns %>
+    <td><%=h department.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => department %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => department %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => department }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @department_pages.current.previous } if @department_pages.current.previous %>
+<%= link_to 'Next page', { :page => @department_pages.current.next } if @department_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New department', :action => 'new' %>

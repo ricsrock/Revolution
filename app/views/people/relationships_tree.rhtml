@@ -1,0 +1,16 @@
+<h3>Relationships Tree for <%= link_to "#{@person.full_name rescue nil}", :action => 'show', :id => @person %></h3>
+
+<% level = 0 %>
+<% @person.all_relationships.sort_by {|x| [x.relationship_type.name, x.person_role.name]}.each do |relationship| %>
+
+	<div class="<%= cycle("odd_only","even_only") %>">
+		<hr>
+		<%= render :partial => "relationship_line", :locals => {:relationship => relationship} %>
+		<%= render :partial => "relationship_node", :collection => relationship.new_relationships(@person).sort_by {|z| z.relationship_type.name}, :locals => {:level => level+1} %>
+	</div>
+	
+<% end %>
+
+<div style="float:none;clear:both;">
+	&nbsp;
+</div>

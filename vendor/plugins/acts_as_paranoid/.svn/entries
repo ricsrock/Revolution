@@ -1,0 +1,106 @@
+8
+
+dir
+5
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/acts_as_paranoid
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+23cefa1c-6352-0410-ae0e-a5aea8c5d16c
+
+test
+dir
+
+RUNNING_UNIT_TESTS
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+57ddd99c0b26ea93e5bdc77191140631
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+Rakefile
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+9242fb37d35ff10035d840b157c0d3a0
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+init.rb
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+6fc9aaec4dd1748b068ac23444b5c35a
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+lib
+dir
+
+CHANGELOG
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+0d5be14d08c02902c602c1f6f01a5180
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+MIT-LICENSE
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+e4ba7226e637685b5cca7a9cc5c05af2
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+README
+file
+
+
+
+
+2008-11-24T22:07:28.000000Z
+2c1691b900c986f04881bf4c5843e8e9
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+

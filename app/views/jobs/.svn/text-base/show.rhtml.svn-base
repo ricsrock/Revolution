@@ -1,0 +1,74 @@
+<% @item = @job %>
+<%= render :partial => "shared/admin_box" %>
+
+<h3>Team: <%= link_to "#{@job.team.name}", :controller => 'teams', :action => 'show', :id => @job.team.id %></h3>
+<h2>Details for Job: <%= @job.title %></h2>
+
+<fieldset>
+	<legend>
+		<strong>Job Info</strong>
+	</legend>
+	
+<table border="0" cellspacing="0" cellpadding="2" valign="top">
+	<tr>
+		<td><b>Job Title:</b></td>
+		<td><%= @job.title rescue nil %></td>
+	</tr>
+	<tr>
+		<td>
+			<b>Contact Person:</b>
+		</td>
+		<td>
+			<%= @job.contact_person.full_name rescue nil %>
+		</td>
+	</tr>
+	<tr>
+		<td><b>Description:</b></td>
+		<td><%= @job.description %></td>
+	</tr>
+	<tr>
+		<td>
+			<b>Cadence:</b>
+		</td>
+		<td><%= @job.cadence %></td>
+	</tr>
+	<tr>
+		<td>
+			<b>Tasks:</b>
+		</td>
+		<td><%= @job.tasks %></td>
+	</tr>
+</table>
+
+<%= link_to 'Edit', :action => 'edit', :id => @job %>
+</fieldset>
+
+<div id="add_person_menu" style="padding-bottom: 10px;height:20px;;">
+  <%= link_to_function "Hide Search Panel", toggle_search_links('hide') %> |
+  <%= link_to_function "Add Person to Job", toggle_search_links('show') %>
+<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</div>
+
+<div id="search_wrap" style="display:none;">
+	
+<div id="search">
+	<%= render :partial => "search" %>
+</div>
+
+
+
+	<div id="search-results">
+		<%= render :partial => "results_list", :locals => {:job => @job} %>
+	</div>
+	
+</div>
+	
+<div id="empty">
+	&nbsp;
+</div>
+
+<div id="job-assignments-detail">
+
+<%= render :partial => "job_assignments", :locals => {:job => @job} %>
+
+</div>

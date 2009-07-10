@@ -1,0 +1,15 @@
+<% @jobs = Job.find_by_d_m_t(@department,@ministry,@team) %>
+<table class="list">
+	<tr>
+		<th>Title</th>
+		<th># Involved</th>
+		<th>Contact</th>
+	</tr>
+	<% @jobs.sort_by(&:title).each do |j| %>
+	<tr class="<%= cycle "even", "odd" %>">
+		<td><%= link_to "#{j.title}", :controller => 'jobs', :action => 'show', :id => j.id %></td>
+		<td><%= j.current_involvements.length %></td>
+		<td><%= link_to "#{j.contact_person.full_name}", :controller => 'people', :action => 'show', :id => j.contact_person_id rescue nil %></td>
+	</tr>
+	<% end %>
+</table>

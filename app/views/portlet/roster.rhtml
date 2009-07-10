@@ -1,0 +1,11 @@
+<h1><%= @group.name %></h1><hr>
+<br>
+
+<% @group.people.sort_by(&:last_name).each do |p| %>
+	<div style="padding:.3em;page-break-inside:avoid;">
+		<strong><%= p.full_name %></strong><br>
+		<label>Email: </label><%= p.best_email_smart rescue nil %><br>
+		<label>Phone: </label><%= p.best_phone_smart rescue nil %><br>
+		<label>Address: </label><%= p.household.address_one_line rescue nil %>
+	</div>
+<% end %>

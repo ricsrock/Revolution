@@ -1,0 +1,5 @@
+This is to notify you that a new small group meeting has been recorded.
+
+Meeting For Group: <%= @group_name rescue nil %>
+Meeting Date: <%= @meeting_date rescue nil %>
+Created By: <%= @created_by rescue nil %>

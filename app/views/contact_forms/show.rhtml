@@ -1,0 +1,33 @@
+<b>Contact Form Name:</b> <%= @contact_form.name rescue nil %>
+
+<ul style="list-style:none;">
+	<li>
+		<b>Created By:</b> <%= @contact_form.created_by rescue nil %>
+	</li>
+	<li>
+		<b>Updated By:</b> <%= @contact_form.updated_by rescue nil %>
+	</li>
+	<li>
+		<b>Created At:</b> <%= @contact_form.created_at.strftime('%m/%d/%Y') rescue nil %>
+	</li>
+	<li>
+		<b>Updated At:</b> <%= @contact_form.updated_at.strftime('%m/%d/%Y') rescue nil %>
+	</li>
+</ul>
+
+<%= link_to 'Edit', :action => 'edit', :id => @contact_form %> |
+<%= link_to 'Back', :action => 'list' %>
+
+<br><br>
+<div id="name" style="float:none;clear:both;">
+	<div id="left-column" style="width:49%">
+		<%= render :partial => "available_contact_types", :locals => {:contact_form => @contact_form} %>
+	</div>
+	<div id="right-column" style="width:49%">
+		<%= render :partial => "joined_contact_types" %>
+	</div>
+	
+<div id="empty" style="float:none;clear:both;">
+	&nbsp;
+</div>
+</div>

@@ -1,0 +1,24 @@
+<h3>Groups Served by This Team</h3>
+<table class="list">
+	<tr>
+		<th>Group Name</th>
+		<th>Default Room</th>
+		<th>Responsible Person</th>
+		<th>Delete Link</th>
+	</tr>
+<% if @team.service_links.empty? %>
+</table>
+<div id="message">You will only be able to assign staff to serve at the meetings of the selected groups. You must create at least one "service-link".
+</div>
+
+<% else %>
+	<% @team.service_links.each do |s| %>
+		<tr>
+			<td><%= s.group.name %></td>
+			<td><%= s.group.default_room.name rescue nil %></td>
+			<td><%= s.group.responsible_person.full_name rescue nil %></td>
+			<td><%= link_to_remote "Delete Link", :url => {:action => 'delete_service_link', :id => s, :team_id => @team} %></td>
+		</tr>
+	<% end %>
+</table>
+<% end %>

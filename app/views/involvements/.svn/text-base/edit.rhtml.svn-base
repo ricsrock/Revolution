@@ -1,0 +1,7 @@
+<h1>Editing Involvement</h1>
+
+<% form_tag :action => 'update', :id => @involvement do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+

@@ -1,0 +1,37 @@
+<fieldset><legend><strong>Filter & Sort Contacts</strong></legend>
+<% form_remote_tag :url => {:action => 'search_contacts'} do %>
+
+<table border="0" cellspacing="3" cellpadding="3">
+	<tr>
+		<td>
+			<% unless controller.action_name == "manage" %>
+			<label>Select User</label><br>
+			<%= collection_select('user', 'login', User.find(:all).sort_by(&:last_first_name), 'login', 'full_name', options = {:prompt => "All Users"}) %>
+			<% end %>
+		</td>
+		<td>
+			<label>Select Status</label><br>
+			<%= select('contact', 'status', Contact::STATUS) %>
+		</td>
+		<% @contact_type_ids = @contacts.collect {|c| c.contact_type_id}.uniq %>
+		<% @contact_types = ContactType.find(:all, :conditions => ["id IN (?)", @contact_type_ids]) %>
+		<td>
+			<label>Contact Type</label><br>
+			<%= collection_select(:contact, :type_id, @contact_types.sort_by(&:name), :id, :name, options = {:prompt => "All"}) %>
+		</td>
+		<td>
+			<label>Range</label><br>
+			<%= select('contact', 'range', Contact::RANGES) %>
+		</td>
+		<td>
+			<label>Sort By</label><br>
+			<%= select('contact', 'sort', Contact::SORT_BY) %>
+		</td>
+		<td>
+			<%= submit_tag 'Search' %><span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+		</td>
+	</tr>
+</table>
+
+<% end %>
+</fieldset>

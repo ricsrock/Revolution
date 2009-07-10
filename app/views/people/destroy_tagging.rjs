@@ -1,0 +1,3 @@
+
+@person = Person.find(params[:person_id])
+page.replace_html("tabs-area", :partial => "#{session[:person_partial]}", :locals => {:person => @person})

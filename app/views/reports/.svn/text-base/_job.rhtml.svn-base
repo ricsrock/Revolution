@@ -1,0 +1,11 @@
+<div class="even" style="margin-left:1.5em;width:100%;float:none;clear:both;">
+	<div style="width:32%;float:left;background-color:transparent;">
+		<%= job.title %>
+	</div>
+	<div style="width:32%;float:left;">
+		<%= job.contact_person.full_name rescue nil %>
+	</div>
+	<div style="width:32%;float:left;">
+		<%= job.contact_person.best_phone_smart rescue nil %>
+	</div>
+</div>

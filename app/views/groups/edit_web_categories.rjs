@@ -1,0 +1,1 @@
+page.replace_html("tabs-area", :partial => 'categories_tab', :locals => {:group => @group})

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/roles/templates
+END
+roles.yml
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/roles/templates/roles.yml
+END
+roles_users.yml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/roles/templates/roles_users.yml
+END
+001_roles_migration.rb.erb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/roles/templates/001_roles_migration.rb.erb
+END
+role_model.rb.erb
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/roles/templates/role_model.rb.erb
+END
+_user_functions.erb
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/roles/templates/_user_functions.erb
+END
+users_admin_fixture_with_roles.yml
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/!svn/ver/5/trunk/vendor/plugins/role_requirement/generators/roles/templates/users_admin_fixture_with_roles.yml
+END

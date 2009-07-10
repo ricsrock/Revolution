@@ -1,0 +1,11 @@
+<%= error_messages_for 'assignment' %>
+
+<% @involvements = Group.find(@assignment.meeting.group).involvements %>
+
+<h3><%= @assignment.date %> :: <%= @assignment.instance_type %> :: <%= @assignment.group %></h3>
+
+<%= collection_select 'assignment', 'involvement_id', @involvements, 'id', 'person_name'  %>
+
+<!--[form:assignment]-->
+<!--[eoform:assignment]-->
+

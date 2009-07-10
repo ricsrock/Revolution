@@ -1,0 +1,26 @@
+<%= error_messages_for 'meeting' %>
+
+<!--[form:meeting]-->
+<% @groups = Group.all_leaves.sort_by(&:name) %>
+<p>
+	<label>Select Group:</label> <%= collection_select('meeting', 'group_id', @groups, 'id', 'name', options = {:prompt => "--Choose a Group--"}) %>
+</p>
+
+<% @rooms = Room.find(:all, :order => :name) %>
+<p>
+	<label>Select Room:</label> <%= collection_select('meeting', 'room_id', @rooms, 'id', 'name',
+	 				options = {:prompt => "--Select Non-Default--"})%>
+</p>
+
+<p>
+	<label>Real Date:</label> <%= date_field :meeting, :real_date, :value => (@meeting.real_date.strftime('%b %d %Y') if (@meeting && @meeting.real_date)),
+																   :format => '%b %d %Y',
+																   :size => 15 %>
+</p>
+
+<p>
+	<label>Comments:</label><br>
+	<%= text_area :meeting, :comments, :cols => 50, :rows => 5 %>
+</p>
+<!--[eoform:meeting]-->
+

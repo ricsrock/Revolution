@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier
+END
+_backtrace.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier/_backtrace.rhtml
+END
+_title.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier/_title.rhtml
+END
+_session.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier/_session.rhtml
+END
+_environment.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier/_environment.rhtml
+END
+_inspect_model.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier/_inspect_model.rhtml
+END
+exception_notification.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier/exception_notification.rhtml
+END
+_request.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/!svn/ver/5/trunk/vendor/plugins/exception_notification/views/exception_notifier/_request.rhtml
+END

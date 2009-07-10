@@ -1,0 +1,27 @@
+<h1>Listing job_requirements</h1>
+
+<table>
+  <tr>
+  <% for column in JobRequirement.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for job_requirement in @job_requirements %>
+  <tr>
+  <% for column in JobRequirement.content_columns %>
+    <td><%=h job_requirement.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => job_requirement %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => job_requirement %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => job_requirement }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @job_requirement_pages.current.previous } if @job_requirement_pages.current.previous %>
+<%= link_to 'Next page', { :page => @job_requirement_pages.current.next } if @job_requirement_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New job_requirement', :action => 'new' %>

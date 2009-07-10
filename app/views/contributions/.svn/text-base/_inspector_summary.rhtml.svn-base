@@ -1,0 +1,28 @@
+<table border="0" cellspacing="0" cellpadding="3" width="100%">
+	<tr>
+		<td><b>Total Amount</b></td>
+	</tr>
+	
+<% if ! @found_donations.empty? %>
+	
+	<tr>
+		<td>
+			<%= number_to_currency @found_donations.collect {|d| d.amount}.compact.sum(:amount) %>
+		</td>
+	</tr>
+</table>
+
+<% else %>
+
+<tr>
+	<td>
+		<div id="message-black">
+			No results
+		</div>
+	</td>
+</tr>
+</table>
+
+<% end %>
+
+

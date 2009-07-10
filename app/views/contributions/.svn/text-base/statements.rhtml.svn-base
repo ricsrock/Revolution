@@ -1,0 +1,20 @@
+<!-- choose a date range
+	
+<! maybe choose a person by name -->
+
+<fieldset><legend><strong>Setup</strong></legend>
+<% form_tag :action => 'run_statements' do %>
+	
+	<table border="0" cellspacing="3" cellpadding="3">
+		<tr>
+			<th>Start Date:</th>
+			<th>End Date:</th>
+		</tr>
+		<tr>
+			<td><%= date_field :range, :start_date %></td>
+			<td><%= date_field :range, :end_date %></td>
+		</tr>
+	</table>
+	<%= submit_tag 'Go' %>
+<% end %>
+</fieldset>

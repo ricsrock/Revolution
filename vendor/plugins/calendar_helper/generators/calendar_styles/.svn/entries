@@ -1,0 +1,43 @@
+8
+
+dir
+5
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/calendar_helper/generators/calendar_styles
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+23cefa1c-6352-0410-ae0e-a5aea8c5d16c
+
+calendar_styles_generator.rb
+file
+
+
+
+
+2008-11-24T22:07:30.000000Z
+8a4a5c72b025f93992474d0292f3ff61
+2008-11-23T02:00:56.188480Z
+5
+ricsrock
+
+templates
+dir
+

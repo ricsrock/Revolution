@@ -1,0 +1,28 @@
+<%= error_messages_for 'relationship' %>
+
+<!--[form:relationship]-->
+<p><label for="relationship_start_date">Start date</label><br/>
+<%= datetime_select 'relationship', 'start_date'  %></p>
+
+<p><label for="relationship_end_date">End date</label><br/>
+<%= datetime_select 'relationship', 'end_date'  %></p>
+
+<p><label for="relationship_deactived_on">Deactived on</label><br/>
+<%= datetime_select 'relationship', 'deactived_on'  %></p>
+
+<p><label for="relationship_web_access">Web access</label><br/>
+<select id="relationship_web_access" name="relationship[web_access]"><option value="false">False</option><option value="true">True</option></select></p>
+
+<p><label for="relationship_created_by">Created by</label><br/>
+<%= text_field 'relationship', 'created_by'  %></p>
+
+<p><label for="relationship_updated_by">Updated by</label><br/>
+<%= text_field 'relationship', 'updated_by'  %></p>
+
+<p><label for="relationship_created_at">Created at</label><br/>
+<%= datetime_select 'relationship', 'created_at'  %></p>
+
+<p><label for="relationship_updated_at">Updated at</label><br/>
+<%= datetime_select 'relationship', 'updated_at'  %></p>
+<!--[eoform:relationship]-->
+

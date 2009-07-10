@@ -1,0 +1,19 @@
+<div id="setup_menu" style="width:100%;float:none;clear:both;">
+	<ul>
+		<li class="<%= person_tab_class("communication", @variable) %>">
+			<%= link_to_remote "Communication", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "communication" } %></li>
+		<li class="<%= person_tab_class("tags", @variable) %>">
+			<%= link_to_remote "Tags", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "tags" } %></li>
+		<li class="<%= person_tab_class("involvements", @variable) %>">
+			<%= link_to_remote "Involvement", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "involvements" } %></li>	
+		<li class="<%= person_tab_class("attendances", @variable) %>">
+			<%= link_to_remote "Attendance", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "attendances" } %></li>
+		<li class="<%= person_tab_class("contacts", @variable) %>">
+			<%= link_to_remote "Contacts", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "contacts" } %></li>
+			<li class="<%= person_tab_class("relationships", @variable) %>">
+				<%= link_to_remote "Relationships", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "relationships" } %></li>	
+		
+	</ul>
+	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+	
+</div>

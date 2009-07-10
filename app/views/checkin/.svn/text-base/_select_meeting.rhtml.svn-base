@@ -1,0 +1,3 @@
+<% instance_id = Setting.one.current_instance %>
+<% @available_meetings = Meeting.find_by_selected_instance(instance_id) %>
+<%= collection_select 'attendance', 'meeting_id', @available_meetings, 'id', 'name'%>

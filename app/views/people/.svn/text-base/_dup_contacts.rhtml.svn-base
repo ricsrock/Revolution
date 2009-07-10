@@ -1,0 +1,4 @@
+<div><strong>Contacts</strong></div>
+<% @duplicate.contacts.sort_by(&:created_at).each do |c| %>
+<div><%= c.created_at.strftime('%m/%d/%Y') rescue nil %> <%= c.contact_type.name rescue nil %></div>
+<% end %>

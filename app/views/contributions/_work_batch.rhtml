@@ -1,0 +1,20 @@
+<% unless batch.locked? %>
+<span>
+	<%= number_to_currency batch.count_total %>
+</span>
+<span>
+	<%= link_to (image_tag 'finances_(add)_16x16.gif', :border => 0, :size => '12x12', :title => 'Enter contributions'), :action => 'enter', :batch_id => batch.id %>
+</span>
+<span>
+	<%= link_to (image_tag 'finances_(edit)_16x16.gif', :border => 0, :size => '12x12', :title => 'Edit this batch'), :action => 'edit_batch', :id => batch.id %>
+</span>
+<span>
+	<%= link_to (image_tag 'print_16x16.gif', :border => 0, :size => '12x12', :title => 'Print deposit sheet(?)'), :action => 'deposit', :id => batch.id %>
+</span>
+<span>
+	<%= link_to (image_tag 'database_export_16x16.gif', :border => 0, :size => '12x12', :title => 'Export batch csv'), :action => 'export', :id => batch.id %>
+</span>
+<span>
+	<%= link_to 'breakout', :action => 'breakout', :id => batch.id %>
+</span>
+<% end %>

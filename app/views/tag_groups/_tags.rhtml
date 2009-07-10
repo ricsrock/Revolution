@@ -1,0 +1,25 @@
+<h3>Tags In This Tag Group</h3>
+<table class="report-sub-summary">
+	<tr>
+		<th>Name</th>
+		<th>Created By</th>
+	</tr>
+	
+<% if @tag_group.tags.empty? %>
+</table>
+<div id="message">
+	This Tag Group has no tags.
+</div>
+
+<% else %>
+	
+<% @tag_group.tags.sort_by {|s| s.name}.each do |t| %>
+
+	<tr>
+		<td><%= t.name %></td>
+		<td><%= t.created_by %></td>
+	</tr>
+<% end %>
+</table>
+
+<% end %>

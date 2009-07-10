@@ -1,0 +1,28 @@
+<style>
+#this ul { float: left; list-style: none; }
+#this ul li {display: inline; }
+#this ul li ul li { display:block; }
+</style>
+<ul id="this">
+ <li id="this">
+  <ul id="this">
+   <li>Item one</li>
+   <li>Item two</li>
+   <li>Item three</li>
+  </ul>
+ </li>
+ <li>
+  <ul>
+   <li>Item four</li>
+   <li>Item five</li>
+   <li>Item six</li>
+  </ul>
+ </li>
+ <li>
+  <ul>
+   <li>Item seven</li>
+   <li>Item eight</li>
+   <li>Item nine</li>
+  </ul>
+ </li>
+</ul>

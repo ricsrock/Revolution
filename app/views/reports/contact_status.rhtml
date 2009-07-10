@@ -1,0 +1,62 @@
+<% @staff_members.each do |staff_member| %>
+	<div style="float:none;clear:both;page-break-after:always;">
+		<h2 style="display:inline;">Contact Status Report for: <%= staff_member.full_name rescue nil %></h2>
+		<hr>
+		
+		<div>
+			<div>
+				<b># Open Contacts: </b><%= staff_member.open_contacts.length rescue nil %>
+			</div>
+			<div>
+				<b>Average Age of Open Contacts: </b><%= staff_member.average_open_contact_age rescue nil %> days
+			</div>
+			<div>
+				<b><%= staff_member.in_progress_status rescue nil %></b>
+			</div>
+			<div>
+				<b># Contacts Closed Last Week:	</b><%= staff_member.contacts_closed_last_week.length rescue nil %>
+			</div>
+			<div>
+				<b># Follow-Up Actions Last Week: </b><%= staff_member.follow_ups_last_week.length rescue nil %>
+			</div>
+		</div>
+		<br>
+		
+		<div>
+			<h3 style="display:inline;">Contact Status Detail</h3><hr><br>
+			<table border="0" cellspacing="3" cellpadding="3" width="100%">
+				<tr>
+					<th>Contact Type</th>
+					<th># Open</th>
+					<th># In Progress</th>
+					<th>Average Age</th>
+				</tr>
+				<% staff_member.open_contacts.group_by {|type,contacts| type.contact_type.name}.sort_by {|ct, c| ct}.each do |contact_type, cons| %>
+				<tr>
+					<td><b><%= contact_type rescue nil %></b></td>
+					<td><%= cons.length rescue nil %></td>
+					<td><%= cons.reject {|w| w.follow_ups.length == 0}.length rescue nil %></td>
+					<td><%= Tool.average_age_of_these_contacts(cons) rescue nil %> days</td>
+				</tr>
+				<% end %>
+				</table>
+		
+				
+				
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	<br>
+	<div style="float:none;clear:both;">
+		&nbsp;
+	</div>	
+	</div>
+	
+<% end %>

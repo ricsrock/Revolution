@@ -1,0 +1,2 @@
+class MeetingPlace < GroupChoice
+end

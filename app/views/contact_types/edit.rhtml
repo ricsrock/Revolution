@@ -1,0 +1,9 @@
+<h1>Editing Contact Type</h1>
+
+<% form_tag :action => 'update', :id => @contact_type do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @contact_type %> |
+<%= link_to 'Back', :action => 'list' %>

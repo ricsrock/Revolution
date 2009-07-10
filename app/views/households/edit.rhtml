@@ -1,0 +1,8 @@
+<h1>Editing household</h1>
+
+<% form_tag :action => 'update', :id => @household do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show Household Info', :action => 'show', :id => @household %>

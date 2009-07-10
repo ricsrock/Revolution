@@ -1,0 +1,32 @@
+8
+
+dir
+7
+https://revolution-church-management.googlecode.com/svn/trunk/vendor/plugins/tiny_mce/public/javascripts/tiny_mce/plugins/inlinepopups/skins/clearlooks2
+https://revolution-church-management.googlecode.com/svn
+
+
+
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+
+
+svn:special svn:externals svn:needs-lock
+
+img
+dir
+
+window.css
+file
+
+
+
+
+2008-11-20T12:14:27.000000Z
+5e33280ecbcbc97d23f44ba1d23b578a
+2009-01-16T23:44:40.654582Z
+7
+ricsrock
+has-props
+

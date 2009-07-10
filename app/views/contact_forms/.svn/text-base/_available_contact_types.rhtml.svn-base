@@ -1,0 +1,13 @@
+<strong>Available Contact Types:</strong>
+
+
+<% @contact_form.available_contact_types.each do |c| %>
+	<div id="contact_type_id_<%= c.id %>" class="<%= cycle("even","odd") %>">
+		<span style="float:left;">
+			<%= c.name %> 
+		</span>
+		<span style="float:right;">
+			<%= link_to_remote '>>>', :url => {:action => 'add_contact_type', :contact_type_id => c, :id => @contact_form} %>
+		</span>
+	</div>
+<% end %>

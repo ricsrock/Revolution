@@ -1,0 +1,41 @@
+<p>
+	<b>Tag Group Name: </b> <%= @tag_group.name %>
+</p>
+
+<p>
+	<b>Created_at: </b> <%= @tag_group.created_at.strftime('%m/%d/%Y') rescue nil %>
+</p>
+
+<p>
+	<b>Updated_at: </b> <%= @tag_group.updated_at.strftime('%m/%d/%Y') rescue nil %>
+</p>
+
+<p>
+	<b>Created_by: </b> <%= @tag_group.created_by %>
+</p>
+
+<p>
+	<b>Updated_by: </b> <%= @tag_group.updated_by %>
+</p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @tag_group %> |
+<%= link_to 'Back', :action => 'list' %>
+
+<div>
+<br>
+</div>
+
+<div id="tags">
+	<%= render :partial => "tags", :locals => {:tag_group => @tag_group} %>
+</div>
+
+<% form_remote_tag :url => {:controller => 'tags', :action => 'create', :tag_group_id => @tag_group} do %>
+
+<fieldset><legend><strong>New Tag</strong></legend>
+<p><label for="tag_name">Tag Name</label><br/>
+<%= text_field 'tag', 'name'  %></p>
+
+<%= submit_tag "Create Tag" %>
+	
+<% end %>
+</fieldset>

@@ -1,0 +1,62 @@
+<%= error_messages_for 'user' %>
+
+<!--[form:user]-->
+<p><label for="user_login">Login</label><br/>
+<%= text_field 'user', 'login'  %></p>
+
+<p><label for="user_email">Email</label><br/>
+<%= text_field 'user', 'email'  %></p>
+
+<p><label for="user_first_name">First name</label><br/>
+<%= text_field 'user', 'first_name'  %></p>
+
+<p><label for="user_last_name">Last name</label><br/>
+<%= text_field 'user', 'last_name'  %></p>
+
+<p><label for="password">Password</label><br/>
+<%= password_field 'user', 'password' %></p>
+
+<p><label for="password_confirmation">Confirm Password</label><br/>
+<%= password_field 'user', 'password_confirmation' %></p>
+
+<p><label for="is_staff">Is Staff</label><br>
+<%= check_box 'user', 'is_staff' %></p>
+
+<div id="permissions" style="float:none;clear:both;">
+	
+    <div style="width:48%;float:left;">
+	    <h3>Select Roles This User Can Perform</h3>
+        <table>
+            <% Role.find(:all, :order => :name).each do |r| %>
+                <tr>
+                    <td>
+                        <%= check_box_tag "user[role_ids][]", r.id, @user.roles.include?(r) %>
+                    </td>
+                    <td>
+                        <%= r.alias %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+
+
+	<div style="width:48%;float:left">
+			<h3>Select Ministries This User Can Edit</h3>
+	    <table>
+	        <% Ministry.find(:all, :order => :name).each do |m| %>
+	            <tr>
+	                <td>
+	                    <%= check_box_tag "user[ministry_ids][]",m.id, @user.ministries.include?(m) %>
+	                </td>
+	                <td>
+	                    <%= m.name %>
+	                </td>
+	            </tr>
+	        <% end %>
+	    </table>
+	</div>
+</div>
+ 
+<!--[eoform:user]-->
+

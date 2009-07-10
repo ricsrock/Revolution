@@ -1,0 +1,31 @@
+<strong>Individual Info</strong><span id="message-black"> (Checked values will overwrite)</span>
+<table border="0" cellspacing="0" cellpadding="1" width="100%">
+	<tr>
+		<td><label>Birthdate:</label></td>
+		<td><label>Checkin Group:</label></td>
+	</tr>
+	<tr>
+		<td>
+			<%= check_box_tag 'dup_keep_b_day', @duplicate.id if @duplicate.birthdate %>
+			<%= @duplicate.birthdate.strftime('%m/%d/%Y') rescue nil %>
+		</td>
+		<td>
+			<%= check_box_tag 'dup_keep_checkin_group', @duplicate.id if @duplicate.default_group_id %>
+			<%= @duplicate.default_group.name rescue nil %>
+		</td>
+	</tr>
+	<tr>
+		<td><label>Gender:</label></td>
+		<td><label>Household Position:</label></td>
+	</tr>
+	<tr>
+		<td>
+			<%= check_box_tag 'dup_keep_gender', @duplicate.id if @duplicate.gender %>
+			<%= @duplicate.gender rescue nil %>
+		</td>
+		<td>
+			<%= check_box_tag 'dup_keep_position', @duplicate.id if @duplicate.household_position %>
+			<%= @duplicate.household_position rescue nil %>
+		</td>
+	</tr>
+</table>

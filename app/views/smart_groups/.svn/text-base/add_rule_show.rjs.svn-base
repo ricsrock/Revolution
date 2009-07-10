@@ -1,0 +1,5 @@
+@smart_group = SmartGroup.find(params[:smart_group_id])
+
+page.replace_html("smart_group_rules", :partial => 'rules', :locals => {:smart_group => @smart_group})
+
+page.replace_html("notice", :partial => 'shared/notices')

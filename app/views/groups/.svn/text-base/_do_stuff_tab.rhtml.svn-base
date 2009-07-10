@@ -1,0 +1,8 @@
+<fieldset><legend><strong>Do Stuff</strong></legend>
+
+<div><%= link_to "Email Group", :controller => 'groups', :action => 'new_group_contact', :id => @group %></div>
+<div><%= link_to "Text Group", :controller => 'groups', :action => 'new_group_text', :id => @group %></div>
+<div><%= link_to "Print Phone List", :controller => 'groups', :action => 'print_phone_list', :id => @group %></div>
+<div><%= link_to "Export CSV", :controller => 'reports', :action => 'export_group', :id => @group %></div>
+<div><%= link_to "Export vCards", :controller => 'vcard', :action => 'get_group_cards', :id => @group %></div>
+</fieldset>

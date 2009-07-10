@@ -1,0 +1,22 @@
+Here is the live_search view
+
+<table border="0" cellspacing="1" cellpadding="1" width="100%">
+	<COLGROUP>
+	   <COL width="20%">
+	   <COL width="20%">
+	   <COL width="20%">
+	   <COL width="20%">
+	   <COL width="20%">
+
+<% @found_people.each do |person| %>
+
+<tr class="<%= cycle("even", "odd") %>">
+<% form_tag :action => 'checkin', :person_id => person do %>
+	    <td>
+			<%= person.full_name %>
+		</td>
+
+</tr>
+<% end %>
+<% end %>
+</table>

@@ -1,0 +1,2 @@
+@group = Group.find(params[:group])
+page.replace_html("time-spot", :partial => "set_time_link", :locals => {:group => @group.id})

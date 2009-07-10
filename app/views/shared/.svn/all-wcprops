@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 38
+/svn/!svn/ver/5/trunk/app/views/shared
+END
+_phones.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/app/views/shared/_phones.rhtml
+END
+_left_nav.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/6/trunk/app/views/shared/_left_nav.rhtml
+END
+_admin_box.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/5/trunk/app/views/shared/_admin_box.rhtml
+END
+_notices.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/app/views/shared/_notices.rhtml
+END
+_access_denied.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5/trunk/app/views/shared/_access_denied.rhtml
+END
+_emails.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/app/views/shared/_emails.rhtml
+END
+_smart_notices.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/17/trunk/app/views/shared/_smart_notices.rhtml
+END

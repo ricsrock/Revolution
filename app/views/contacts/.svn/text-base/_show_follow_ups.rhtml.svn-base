@@ -1,0 +1,24 @@
+<% @contact.follow_ups.sort_by(&:created_at).each do |f| %>
+	<div style="float:none;clear:both;">
+		<div id="message-black" class="<%= cycle("blue_even","blue_odd") %>" style="float:none;padding:.5em;">
+		<div style="width:7%;float:left;">&nbsp;</div>
+		<div style="width:13%;float:left;">
+			<%= f.created_at.strftime("%m/%d/%Y") rescue nil %>
+		</div>
+		<div style="width:13%;float:left;">
+			<%= f.follow_up_type.name rescue nil %>
+		</div>
+		<div style="width:13%;float:left;">
+			<%= f.created_by rescue nil %>
+		</div>
+		<div style="width:50%;float:left;">
+			<%= f.notes rescue nil %>
+		</div>
+		<div style="float:none;clear:both;">
+
+		</div>
+		
+		</div>
+		
+	</div>
+<% end %>

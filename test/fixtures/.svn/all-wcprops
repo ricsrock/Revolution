@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/5/trunk/test/fixtures
+END
+adjectives.yml
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/5/trunk/test/fixtures/adjectives.yml
+END
+colors.yml
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/test/fixtures/colors.yml
+END
+animals.yml
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/5/trunk/test/fixtures/animals.yml
+END
+relationships.yml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/7/trunk/test/fixtures/relationships.yml
+END
+attendance_trackers.yml
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/16/trunk/test/fixtures/attendance_trackers.yml
+END
+relationship_roles.yml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/7/trunk/test/fixtures/relationship_roles.yml
+END
+relationship_types.yml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/7/trunk/test/fixtures/relationship_types.yml
+END
+my_colors.yml
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/5/trunk/test/fixtures/my_colors.yml
+END

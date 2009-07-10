@@ -1,0 +1,14 @@
+<% @found_teams.each do |t| %>
+	<div id="team_<%= t.id %>" class="row-block">
+		<%= link_to "#{t.name}", :controller => 'teams', :action => 'show', :id => t.id %>
+		<br>
+		jobs: <%= t.jobs.length %>
+		<div id="message-black">
+			<% if t.responsible_person.nil? %>
+			None assigned
+			<% else %>
+			<%= t.responsible_person.full_name %>
+			<% end %>
+		</div>
+	</div>
+<% end %>

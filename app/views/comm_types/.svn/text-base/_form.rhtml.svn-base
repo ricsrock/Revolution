@@ -1,0 +1,7 @@
+<%= error_messages_for 'comm_type' %>
+
+<!--[form:comm_type]-->
+<p><label for="comm_type_name">Name</label><br/>
+<%= text_field 'comm_type', 'name'  %></p>
+<!--[eoform:comm_type]-->
+

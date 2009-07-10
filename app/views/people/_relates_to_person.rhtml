@@ -1,0 +1,10 @@
+<% unless @relates_to_person.nil? %>
+	<div>
+		<b><%= @relates_to_person.full_name %></b><br>
+		<%= @relates_to_person.household.address_block rescue nil %>
+	</div>
+<% end %>
+	
+<div id="search_results", class="relates_to_results">
+	<%= render :partial => "relates_to_results" %>
+</div>

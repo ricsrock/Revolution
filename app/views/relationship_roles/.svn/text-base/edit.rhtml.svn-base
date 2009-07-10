@@ -1,0 +1,9 @@
+<h1>Editing relationship_role</h1>
+
+<% form_tag :action => 'update', :id => @relationship_role do %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Edit' %>
+<% end %>
+
+<%= link_to 'Show', :action => 'show', :id => @relationship_role %> |
+<%= link_to 'Back', :action => 'list' %>

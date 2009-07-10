@@ -1,0 +1,21 @@
+<fieldset><legend><strong>Filter & Sort People List</strong></legend>
+	<% form_remote_tag :url => {:action => 'filter_people', :id => @event.id} do %>
+	<table border="0" cellspacing="3" cellpadding="3">
+		<tr>
+			<td><label>Filter</label><br>
+				<%= select('people', 'filter', Person::FILTER_VALUES, :prompt => true) %>
+			</td>
+
+			
+			<td>
+				<label>Or Search</label><br>
+				<%= text_field_tag :person_name %>
+			</td>
+			<td>
+				<%= submit_tag 'Go', :id => 'the_btn' %> <span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+			</td>
+			<% end %>
+		</tr>
+	</table>
+
+</fieldset>

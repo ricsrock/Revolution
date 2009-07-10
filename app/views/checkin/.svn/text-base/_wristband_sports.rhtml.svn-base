@@ -1,0 +1,50 @@
+<div id="wristband">
+	
+	<div id="wristband-wrap">
+		
+
+	
+	<div id="wristband-container">
+	<span class="block">
+	<% unless @attendance.nil? %>
+	<%= @attendance.person.first_name %> <%= @attendance.person.last_name rescue nil %><br/>
+	<%= @attendance.person.household_responsible_people rescue nil %><br/>
+	<% unless @attendance.person.household.phones.empty? %>
+	<%= number_to_phone @attendance.person.household_emergency_phone.number, {:area_code => true} %>
+	<% end %>
+	<% end %> <br>
+	</span>
+	
+	<span class="block">
+		<% unless @attendance.nil? %>
+		&nbsp;<b>Security Phrase: </b><%= @attendance.security_code rescue nil %><br>
+		&nbsp;<b>Call Number: </b><%= @attendance.call_number rescue nil %><br>
+		<% end %>
+	<% unless @meeting.nil? %>
+	&nbsp;<%= @meeting.group.name rescue nil %><br>
+	<% end %>
+	<% unless @attendance.nil? %>
+	&nbsp;<%= @attendance.person.allergies rescue nil %>
+	<% end %>
+	</span>
+	
+	</div>
+</div>
+
+</div>
+
+<% unless @attendance.nil? %>
+<script>
+
+{
+	var a = window.open('','','width=1100,height=800');
+	a.document.open("text/html");
+	a.document.write('<html><head><link href="/stylesheets/scaffold.css" media="all" rel="Stylesheet" type="text/css" /></head><body><br/>')
+	a.document.write(document.getElementById('wristband').innerHTML);
+	a.document.write('</body></html>')
+	a.document.close();
+	a.print();
+	a.close();
+}
+</script>
+<% end %>

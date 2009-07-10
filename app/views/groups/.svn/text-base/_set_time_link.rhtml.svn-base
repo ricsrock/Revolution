@@ -1,0 +1,1 @@
+<%= link_to_remote('set time', :url => {:action => 'show_time', :group => @group.id}) %>

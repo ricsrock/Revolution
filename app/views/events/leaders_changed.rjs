@@ -1,0 +1,2 @@
+page.replace_html("row_#{@meeting.id}_total", :partial => 'row_total', :locals => {:meeting => @meeting})
+page.replace_html("instance_#{@instance.id}_total", :partial => 'instance_total', :locals => {:i => @instance})

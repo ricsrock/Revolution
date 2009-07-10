@@ -1,0 +1,19 @@
+
+<fieldset>
+	<legend>
+		<strong>Multi-Close Contacts</strong>
+	</legend>
+
+
+<% form_tag :action => 'close_multiple' do %>
+<div class="tiny">
+	This will add a follow-up to each contact selected and close each contact. The follow-up will contain the notes you type in the text area below.
+</div>
+<p><label>Follow-Up Type</label><br>
+	<%= collection_select 'follow_up_type', 'id', FollowUpType.find(:all), 'id', 'name', options = {:prompt => true} %></p>
+<p><label>Comments for all follow-ups</label><br>
+	<%= text_area 'follow_up', 'comments', :rows => 2, :cols => 50 %></p>
+	<%= submit_tag 'Go' %>
+<% end %>
+
+</fieldset>

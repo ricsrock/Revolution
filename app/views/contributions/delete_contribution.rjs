@@ -1,0 +1,2 @@
+page.replace_html("contributions-list", :partial => 'contributions_list', :locals => {:batch => @batch})
+page.replace_html("count", :partial => 'count_total', :locals => {:batch => @batch})

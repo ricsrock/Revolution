@@ -1,0 +1,7 @@
+<div>
+	<strong>Household Info</strong>
+</div>
+<div>
+	<%= @new.household_name rescue nil %> (#<%= @new.id rescue nil %>)<br>
+	<%= @new.address_block rescue nil %>
+</div>

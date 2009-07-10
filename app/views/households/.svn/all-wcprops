@@ -1,0 +1,239 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/5/trunk/app/views/households
+END
+_add_person_link.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/5/trunk/app/views/households/_add_person_link.rhtml
+END
+_communication_tab.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/5/trunk/app/views/households/_communication_tab.rhtml
+END
+_person_fields.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5/trunk/app/views/households/_person_fields.rhtml
+END
+remove_person.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/5/trunk/app/views/households/remove_person.rjs
+END
+remove_phone.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5/trunk/app/views/households/remove_phone.rjs
+END
+_edit_phones.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5/trunk/app/views/households/_edit_phones.rhtml
+END
+_form.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/5/trunk/app/views/households/_form.rhtml
+END
+_household_tabs.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/17/trunk/app/views/households/_household_tabs.rhtml
+END
+edit_phones.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/app/views/households/edit_phones.rjs
+END
+list.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/app/views/households/list.rhtml
+END
+_add_email_link.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5/trunk/app/views/households/_add_email_link.rhtml
+END
+_email_fields.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/households/_email_fields.rhtml
+END
+map.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/app/views/households/map.rhtml
+END
+edit.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/app/views/households/edit.rhtml
+END
+add_person.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/5/trunk/app/views/households/add_person.rjs
+END
+_add_person_link_quick.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/5/trunk/app/views/households/_add_person_link_quick.rhtml
+END
+add_person_show.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/households/add_person_show.rjs
+END
+_person_fields_quick.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/5/trunk/app/views/households/_person_fields_quick.rhtml
+END
+new_add_person.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5/trunk/app/views/households/new_add_person.rhtml
+END
+new.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/app/views/households/new.rhtml
+END
+_select_range.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/households/_select_range.rhtml
+END
+_add_phone_link.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5/trunk/app/views/households/_add_phone_link.rhtml
+END
+_phone_fields.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/households/_phone_fields.rhtml
+END
+_new_email.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5/trunk/app/views/households/_new_email.rhtml
+END
+_communication.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5/trunk/app/views/households/_communication.rhtml
+END
+add_email.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/app/views/households/add_email.rjs
+END
+change_partial.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/17/trunk/app/views/households/change_partial.rjs
+END
+remove_email.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5/trunk/app/views/households/remove_email.rjs
+END
+_contacts.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/app/views/households/_contacts.rhtml
+END
+_edit_emails.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/5/trunk/app/views/households/_edit_emails.rhtml
+END
+show_with_errors.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5/trunk/app/views/households/show_with_errors.rjs
+END
+near_by.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/app/views/households/near_by.rhtml
+END
+show.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/17/trunk/app/views/households/show.rhtml
+END
+_new_phone.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/5/trunk/app/views/households/_new_phone.rhtml
+END
+add_person_quick.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/5/trunk/app/views/households/add_person_quick.rjs
+END
+_people.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/app/views/households/_people.rhtml
+END
+quick_add.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/app/views/households/quick_add.rhtml
+END
+edit_emails.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/app/views/households/edit_emails.rjs
+END
+add_phone.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/5/trunk/app/views/households/add_phone.rjs
+END

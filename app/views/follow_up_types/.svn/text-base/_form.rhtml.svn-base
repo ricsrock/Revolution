@@ -1,0 +1,7 @@
+<%= error_messages_for 'follow_up_type' %>
+
+<!--[form:follow_up_type]-->
+<p><label for="follow_up_type_name">Name</label><br/>
+<%= text_field 'follow_up_type', 'name'  %></p>
+<!--[eoform:follow_up_type]-->
+

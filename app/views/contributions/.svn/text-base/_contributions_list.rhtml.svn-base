@@ -1,0 +1,22 @@
+	<table border="0" cellspacing="0" cellpadding="3" width="100%">
+		<tr style="background-color:#E4D7A9;">
+			<th>Contributor</th>
+			<th>Date</th>
+			<th>Check #</th>
+			<th>Amount</th>
+			<th></th>
+		</tr>
+
+<% @batch.contributions.sort_by {|c| c.person.search_order }.each do |c| %>
+
+		<tr class="<%= cycle("money_even","money_odd") %>">
+			<td><%= c.person.full_name rescue nil %></td>
+			<td><%= c.date.strftime('%m/%d/%Y') rescue nil %></td>
+			<td><%= c.check_num rescue nil %></td>
+			<td><%= number_to_currency c.calc_total rescue nil %></td>
+			<td><%= link_to_remote 'X', :url => {:action => 'delete_contribution', :id => c.id, :batch_id => @batch} %></td>
+		</tr>
+		
+<% end %>
+
+	</table>

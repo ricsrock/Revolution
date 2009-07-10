@@ -1,0 +1,9 @@
+  page.replace_html("transfer-box", :partial => 'transfer_box',
+                                    :locals => {:transfer_disabled => @transfer_disabled,
+                                              :transfer_checked => @transfer_checked})
+#page.replace_html("close_contact_box", :partial => 'close_box',
+#                             :locals => {:close_disabled => @close_disabled,
+#                                         :close_checked => @close_checked})
+
+page.replace_html("re_open_contact_box", :partial => 're_open_box',
+                                         :locals => {:re_open_box_disabled => @re_open_box_disabled})

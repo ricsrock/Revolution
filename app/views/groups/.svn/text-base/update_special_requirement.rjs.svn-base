@@ -1,0 +1,2 @@
+@group = Group.find(params[:id])
+page.replace_html("special_requirement", :partial => 'special_requirement', :locals => {:group => @group})

@@ -1,0 +1,15 @@
+<% for column in RelationshipType.content_columns %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @relationship_type.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Edit', :action => 'edit', :id => @relationship_type %> |
+<%= link_to 'Back', :action => 'list' %>
+
+<div id="roles">
+	<%= render :partial => "roles", :locals => {:relationship_type => @relationship_type} %>
+</div>
+
+
+<%= render :partial => "add_role", :locals => {:relationship_type => @relationship_type} %>

@@ -1,0 +1,2 @@
+class CurriculumCost < GroupChoice
+end

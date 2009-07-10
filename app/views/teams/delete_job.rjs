@@ -1,0 +1,2 @@
+page.replace_html("tabs-area", :partial => 'jobs_tab', :locals => {:team => @team})
+page.replace_html("notice", :partial => 'shared/notices')

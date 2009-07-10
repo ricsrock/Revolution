@@ -1,0 +1,2 @@
+class CurriculumChoice < GroupChoice
+end

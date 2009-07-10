@@ -1,0 +1,21 @@
+<h3><%= @event.formatted_date %> :: <%= @event.event_type.name %></h3>
+
+<% @event.instances.each do |i| %>
+<div id="name">
+	<%= link_to "#{i.instance_type.name} Stats", :controller => 'instances', :action => 'stats', :id => i.id %>
+</div>
+<% end %>
+<br>
+
+<table class="report-summary">
+	<tr>
+		<th>Participants</th>
+		<th>Leaders</th>
+		<th>Total</th>
+	</tr>
+	<tr>
+		<td><%= @event.participant_attendances.count %></td>
+		<td><%= @event.staff_attendances.count %></td>
+		<td><%= @event.attendances.count %></td>
+	</tr>
+</table>

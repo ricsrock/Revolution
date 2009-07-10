@@ -1,0 +1,6 @@
+<% @ministries = Ministry.find_by_department_id(@department) %>
+<% @ministries.sort_by(&:name).each do |m| %>
+	<div class="row-block">
+		<%= link_to_remote "#{m.name}", :url => {:action => 'ministry_chosen', :ministry_id => m.id} %>
+	</div>
+<% end %>

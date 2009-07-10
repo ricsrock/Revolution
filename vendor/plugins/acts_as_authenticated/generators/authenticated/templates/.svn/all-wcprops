@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates
+END
+unit_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/unit_test.rb
+END
+helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/helper.rb
+END
+authenticated_test_helper.rb
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/authenticated_test_helper.rb
+END
+model.rb
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/model.rb
+END
+functional_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/functional_test.rb
+END
+controller.rb
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/controller.rb
+END
+authenticated_system.rb
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/authenticated_system.rb
+END
+fixtures.yml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/fixtures.yml
+END
+signup.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/signup.rhtml
+END
+migration.rb
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/migration.rb
+END
+index.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/index.rhtml
+END
+login.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/!svn/ver/5/trunk/vendor/plugins/acts_as_authenticated/generators/authenticated/templates/login.rhtml
+END

@@ -1,0 +1,12 @@
+<% form_for :bucket, :action => 'create_something' do |bucket| %>
+	
+	<%= text_field 'something', 'name' %>
+	
+	<% fields_for @bucket.households do |household| %>
+		<%= text_field 'household', 'name' %>
+	
+	<% end %>
+	
+	<%= submit_tag 'create' %>
+	
+<% end %>

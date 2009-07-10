@@ -1,0 +1,30 @@
+<% unless @found_households.empty? %>
+<% @found_households.sort_by(&:name).each do |household| %>
+	<div id="household">
+		<div id="household-item">
+
+					<span class="household-name-space">
+						<%= link_to "#{household.household_name}", :controller => 'households',
+																   :action => 'show',
+																   :id => household %> <% @household = household %>
+					</span>
+
+					<span class="cell" style="float:right;">
+						<%= button_to("Checkout All", :action => 'checkout_household', :id => household) %>
+					</span>
+		</div>
+		<div id="household-people-<%= @household.id %>">
+			<%= render :partial => 'people/checkin_list' %>
+		</div>
+</div>
+
+
+<% end %>
+
+<% else %>
+	<div id="message-black">
+		No households match the current search criteria.
+	</div>
+
+<% end %>
+

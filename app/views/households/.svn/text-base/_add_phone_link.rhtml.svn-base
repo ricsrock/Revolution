@@ -1,0 +1,3 @@
+<div id="add_phone_link">
+  <%= link_to_remote 'Add Another Phone', :url => { :action => 'add_phone', :index => index } %>
+</div>

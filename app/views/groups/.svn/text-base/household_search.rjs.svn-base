@@ -1,0 +1,1 @@
+page.replace_html("search-results", :partial => 'household_results_list', :locals => {:group_id => @group.id})

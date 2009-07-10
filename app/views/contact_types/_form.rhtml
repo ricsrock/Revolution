@@ -1,0 +1,19 @@
+<%= error_messages_for 'contact_type' %>
+
+<!--[form:contact_type]-->
+<p><label for="contact_type_name">Name</label><br/>
+<%= text_field 'contact_type', 'name'  %></p>
+
+<p><label for="contact_type_default_responsible_user_id">Default Responsible User</label><br/>
+<%= collection_select 'contact_type', 'default_responsible_user_id', User.find(:all, :order => ['last_name, first_name ASC']), 'id', 'full_name'  %></p>
+
+<p><label for="contact_type_default_responsible_department_id">Default Responsible Ministry</label><br/>
+<%= collection_select ('contact_type', 'default_responsible_ministry_id', Ministry.find(:all, :order => :name), 'id', 'name', :include_blank => true)  %></p>
+
+<p><label for="contact_type_multiple_close">Allow Multiple Close?</label><br/>
+<%= check_box 'contact_type', 'multiple_close' %></p>
+
+<p><label for="contact_type_notiphy">Enable Follow-Up Notification Via Email?</label><br/>
+<%= check_box 'contact_type', 'notiphy' %></p>
+<!--[eoform:contact_type]-->
+

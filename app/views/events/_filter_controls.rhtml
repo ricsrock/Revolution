@@ -1,0 +1,9 @@
+<span class="cell">
+	<label>Date Range</label><br>
+	<%= select('event','range',Contact::RANGES) %>
+</span>
+
+<%= observe_field 'event_range',
+ 				  :url => {:action => 'filter_events'},
+				  :with => 'range' %>
+

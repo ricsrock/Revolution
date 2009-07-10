@@ -1,0 +1,5 @@
+if session[:uri].include?("manage")
+  page.replace_html("results", :partial => 'manage_results')
+else
+  page.replace_html("results", :partial => 'executive_results')
+end

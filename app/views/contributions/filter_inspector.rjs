@@ -1,0 +1,2 @@
+page.replace_html("inspector-results", :partial => 'inspector_results')
+page.replace_html("inspector-summary", :partial => 'inspector_summary')

@@ -1,0 +1,2 @@
+page.replace_html("relates_to_person_id", :partial => "relates_to_person_id", :locals => {:relates_to_person => @relates_to_person} )
+page.replace_html("relates_to_person", :partial => "relates_to_person")

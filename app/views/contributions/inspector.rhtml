@@ -1,0 +1,40 @@
+
+<fieldset>
+	<legend>
+		<strong>Filter & Sort</strong>
+	</legend>
+
+<div id="filter-pane" style="float:none;clear:both;">
+	<% form_remote_tag :url => {:action => 'filter_inspector'} do %>
+	<span class="cell">
+		<label>Fund</label><br>
+		<%= select(:the, :fund, Donation::FUNDS, {}) %>
+	</span>
+	<span class="cell">
+		<label>Range</label><br>
+		<%= select(:the, :range, Contact::RANGES, {}) %>
+	</span>
+	<span class="cell">
+		<label>Contributor</label><br>
+		Last, First Name: <%= text_field_tag :person_name %>
+	</span>
+	<span class="cell">
+		<label>Sort By</label><br>
+		<%= select(:the, :order, Donation::ORDER, {}) %>
+	</span>
+	<span class="cell">
+			<%= submit_tag 'Filter' %><br>
+			<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+	</span>
+	<% end %>
+</div>
+</fieldset>
+
+<div id="inspector-results" style="float:none;clear:both;">
+	<%= render :partial => "inspector_results" %>
+</div>
+
+
+<div id="inspector-summary" style="float:none;clear:both;">
+	<%= render :partial => "inspector_summary" %>
+</div>

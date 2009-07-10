@@ -1,0 +1,60 @@
+<p>
+  <b>Login:</b> <%=h @user.login %>
+</p>
+<p>
+  <b>Email:</b> <%=h @user.email%>
+</p>
+<p>
+  <b>First Name:</b> <%=h @user.first_name %>
+</p>
+<p>
+  <b>Last Name:</b> <%=h @user.last_name %>
+</p>
+<p>
+	<b>Is Staff:</b> <%= check_box :user, :is_staff, :disabled => true %>
+</p>
+
+
+<div id="permissions" style="float:none;clear:both;">
+	
+
+
+ 
+    <div style="width:48%;float:left;">
+	    <h3>Roles This User Can Perform</h3>
+        <table>
+            <% Role.find(:all, :order => :name).each do |r| %>
+                <tr>
+                    <td>
+                        <%= check_box_tag "user[role_ids][]", r.id, @user.roles.include?(r), :disabled => true %>
+                    </td>
+                    <td>
+                        <%= r.alias %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+
+
+	<div style="width:48%;float:left">
+			<h3>Ministries This User Can Edit</h3>
+	    <table>
+	        <% Ministry.find(:all, :order => :name).each do |m| %>
+	            <tr>
+	                <td>
+	                    <%= check_box_tag "user[ministry_ids][]",m.id, @user.ministries.include?(m), :disabled => true %>
+	                </td>
+	                <td>
+	                    <%= m.name %>
+	                </td>
+	            </tr>
+	        <% end %>
+	    </table>
+	</div>
+</div>
+
+<div style="float:none; clear:both">
+<%= link_to 'Edit', :action => 'edit', :id => @user %> |
+<%= link_to 'Back', :action => 'list' %>
+</div>

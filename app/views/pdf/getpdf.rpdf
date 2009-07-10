@@ -1,0 +1,3 @@
+pdf.select_font "Times-Roman"
+
+pdf.text @content, :font_size => 72, :justification => :center

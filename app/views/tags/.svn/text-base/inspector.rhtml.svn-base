@@ -1,0 +1,11 @@
+
+<%= render :partial => "filter_controls" %>
+<br>
+
+
+
+<div id="inspector-results">
+	<%= render :partial => "inspector_results" %>
+</div>
+	
+

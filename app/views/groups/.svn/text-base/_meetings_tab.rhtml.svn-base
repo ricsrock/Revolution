@@ -1,0 +1,33 @@
+<%# "filter[range]" = "Year To Date" %>
+<div style="float:none;clear:both;">
+	
+<fieldset><legend><strong>Meetings</strong></legend>
+
+<div style="float:none;clear:both;">
+	<span style="float:left;"><%= link_to 'new meeting', :action => 'new_meeting', :id => @group.id %></span>
+	<span style="float:right;">
+		<b>Choose Range: </b><%= select(:filter, :range, Tool::RANGES) %>
+	</span>
+	<%= observe_field 'filter_range',
+	 				  :url => {:action => 'filter_meetings', :group_id => @group},
+					  :with => 'filter_range' %>
+</div>
+<div style="float:none;clear:both;">&nbsp;</div>
+<table class="list">
+	<tr>
+		<th>Date</th>
+		<th>Event</th>
+		<th>Instance</th>
+		<th># Present</th>
+		<th></th>
+		<th></th>
+	</tr>
+</table>
+
+ <div id="meetings_list">
+	<%= render :partial => "meetings_list" %>
+ </div>
+
+</fieldset>
+
+</div>

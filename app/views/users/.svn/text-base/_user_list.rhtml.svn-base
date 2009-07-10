@@ -1,0 +1,20 @@
+<% if @users.empty? %>
+	<div> No results</div>
+	
+<% else %>
+
+<table class="list">
+<% for user in @users %>
+  <tr>
+	<td><%= user.first_name rescue nil %> <%= user.last_name rescue nil %></td>
+	<td><%= user.login %></td>
+	<td><%= user.email %></td>
+	<td><%= check_box_tag 'name', '1', user.is_staff, :disabled => true rescue nil %></td>
+    <td><%= link_to 'Show', :action => 'show', :id => user %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => user %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => user }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<% end %>

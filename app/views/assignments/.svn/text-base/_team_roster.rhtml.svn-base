@@ -1,0 +1,21 @@
+<h3>Roster for Team: <%= Team.find(@team_id).name rescue nil %></h3>
+
+<% @team_members = Involvement.find_by_team(@team_id) %>
+
+<table class="report-summary">
+	<tr>
+		<th>Team Member</th>
+		<th>Phone</th>
+	</tr>
+	<% @team_members.each do |i| %>
+	<tr>
+		<td>
+			<%= i.person_name rescue nil %>
+		</td>
+		<td>
+			<%= i.person.best_phone.s_formatted rescue nil %>
+		</td>
+	</tr>	
+	<% end %>	
+</table>
+

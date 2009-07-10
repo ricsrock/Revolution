@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/5/trunk/app/views/portlet
+END
+show_group.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/17/trunk/app/views/portlet/show_group.rhtml
+END
+_new_meeting.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/17/trunk/app/views/portlet/_new_meeting.rhtml
+END
+home.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/5/trunk/app/views/portlet/home.rjs
+END
+_email_group.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/5/trunk/app/views/portlet/_email_group.rhtml
+END
+_select_instance_type.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/17/trunk/app/views/portlet/_select_instance_type.rhtml
+END
+index.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/5/trunk/app/views/portlet/index.rhtml
+END
+add_meeting.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/17/trunk/app/views/portlet/add_meeting.rjs
+END
+login.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/5/trunk/app/views/portlet/login.rhtml
+END
+send_email.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/17/trunk/app/views/portlet/send_email.rjs
+END
+new_meeting.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/5/trunk/app/views/portlet/new_meeting.rjs
+END
+email_group.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/17/trunk/app/views/portlet/email_group.rjs
+END
+x_roster.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/app/views/portlet/x_roster.rjs
+END
+_roster.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/17/trunk/app/views/portlet/_roster.rhtml
+END
+cancel_new_meeting.rjs
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/5/trunk/app/views/portlet/cancel_new_meeting.rjs
+END
+roster.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/app/views/portlet/roster.rhtml
+END
+_home.rhtml
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/5/trunk/app/views/portlet/_home.rhtml
+END

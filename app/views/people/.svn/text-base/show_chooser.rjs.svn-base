@@ -1,0 +1,1 @@
+page.replace_html("relates_to_chooser", :partial => 'relates_to_picker')

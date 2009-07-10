@@ -1,0 +1,18 @@
+
+<div id="categories-area">
+<% form_remote_tag :url => {:action => 'edit_web_categories', :group_id => @group} do %>
+<table>
+<% WebCategory.find(:all, :order => :name).each do |w| %>
+    <tr>
+        <td>
+            <%= check_box_tag "group[web_category_ids][]",w.id, @group.web_categories.include?(w) %>
+        </td>
+        <td>
+            <%= w.name %>
+        </td>
+    </tr>
+<% end %>
+</table>
+<%= submit_tag 'Save' %>
+<% end %>
+</div>

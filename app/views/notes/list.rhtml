@@ -1,0 +1,27 @@
+<h1>Listing notes</h1>
+
+<table>
+  <tr>
+  <% for column in Note.content_columns %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr>
+  
+<% for note in @notes %>
+  <tr>
+  <% for column in Note.content_columns %>
+    <td><%=h note.send(column.name) %></td>
+  <% end %>
+    <td><%= link_to 'Show', :action => 'show', :id => note %></td>
+    <td><%= link_to 'Edit', :action => 'edit', :id => note %></td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => note }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Previous page', { :page => @note_pages.current.previous } if @note_pages.current.previous %>
+<%= link_to 'Next page', { :page => @note_pages.current.next } if @note_pages.current.next %> 
+
+<br />
+
+<%= link_to 'New note', :action => 'new' %>

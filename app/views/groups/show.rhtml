@@ -1,0 +1,57 @@
+<% @item = @group %>
+<%= group_breadcrumb(@group) %>
+<%= render :partial => "shared/admin_box", :item => @item %>
+<br>
+<%= image_tag('search_icon_group.png', {:border => 0, :size => '16x16'}) rescue nil %>
+<h3 style="display:inline;" class="<%= @group.archived? ? "archived_group" : nil %>">Details for Group: <%= @group.name %></h3>
+
+<table border="0" cellspacing="1" cellpadding="9" valign="top">
+	<tr>
+		<td><label>Default Room:</label><br><%= @group.default_room.name rescue nil %></td>
+		<td><label>Staff Ratio:</label><br><%= @group.staff_ratio %></td>
+		<td><label>Checkin Group:</label><br><%= check_box :group, :checkin_group, :disabled => true %></td>
+		<td><label>Meeting Is Called:</label><br><%= @group.meeting_is_called %></td>
+	</tr>
+	<tr>
+		<td><label>Show On Web?</label><br><%= check_box :group, :show_on_web, :disabled => true %></td>
+		<td>
+			<label>Staff Person Responsible</label><br> <%= @group.responsible_staff.full_name rescue nil %>
+		</td>
+		<td>
+			<label>Person Responsible</label><br> <%= @group.responsible_person.full_name rescue nil %>
+		</td>
+		<td>
+			<label>Archived?</label><br> <%= check_box :group, :archived?, :disabled => true %>
+		</td>
+	</tr>
+</table>
+
+<%= link_to 'Edit', :action => 'edit', :id => @group %> |
+<%= link_to 'Tree View', :action => 'tree_view' %>
+
+<br><br>
+<div id="group-tabs" style="float:none;clear:both;width:100%;">
+	<%= render :partial => "group_tabs", :locals => {:group_id => @group} %>	
+</div>
+
+<div id="tabs-area" style="background-color:#F5F5F5;float:none; clear:both;">
+	<%= render :partial => "#{session[:group_partial]}", :locals => {:group => @group} %>
+</div>
+
+
+
+
+
+
+
+<% content_for :dashboard do %>
+<div>
+	<label>Choose Enrollments: </label><%= select :group, :enrollments, Group::ENROLLMENT_CHOICES, {:prompt => "-- please select --"} %>
+</div>
+	<%= observe_field "group_enrollments",
+	 				:url => {:action => 'enrollments_changed', :group_id => @group},
+					:with => "enrollments" %>
+<div id="enrollments">
+	<%= render :partial => "enrollments" %>
+</div>
+<% end %>

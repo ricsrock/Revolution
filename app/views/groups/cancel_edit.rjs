@@ -1,0 +1,2 @@
+@group = Group.find(params[:group_id])
+page.replace_html("tabs-area", :partial => 'small_group_tab', :locals => {:group => @group})

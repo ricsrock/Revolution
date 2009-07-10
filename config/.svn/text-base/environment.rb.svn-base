@@ -1,0 +1,153 @@
+# Be sure to restart your web server when you modify this file.
+
+# Uncomment below to force Rails into production mode when
+# you don't control web/app server and can't set it the proper way
+# ENV['RAILS_ENV'] ||= 'production'
+
+# Specifies gem version of Rails to use when vendor/rails is not present
+RAILS_GEM_VERSION = '1.2.6' unless defined? RAILS_GEM_VERSION
+
+# Bootstrap the Rails environment, frameworks, and default configuration
+require File.join(File.dirname(__FILE__), 'boot')
+
+Rails::Initializer.run do |config|
+  # Settings in config/environments/* take precedence over those specified here
+
+  # Skip frameworks you're not going to use (only works if using vendor/rails)
+  # config.frameworks -= [ :action_web_service, :action_mailer ]
+
+  # Only load the plugins named here, by default all plugins in vendor/plugins are loaded
+  # config.plugins = %W( exception_notification ssl_requirement )
+
+  # Add additional load paths for your own custom dirs
+  # config.load_paths += %W( #{RAILS_ROOT}/extras )
+
+  # Force all environments to use the same logger level
+  # (by default production uses :info, the others :debug)
+  # config.log_level = :debug
+
+  # Use the database for sessions instead of the file system
+  # (create the session table with 'rake db:sessions:create')
+  # config.action_controller.session_store = :active_record_store
+
+  # Use SQL instead of Active Record's schema dumper when creating the test database.
+  # This is necessary if your schema can't be completely dumped by the schema dumper,
+  # like if you have constraints or database-specific column types
+  # config.active_record.schema_format = :sql
+
+  # Activate observers that should always be running
+   config.active_record.observers = :user_observer, :meeting_observer
+
+  # Make Active Record use UTC-base instead of local time
+  # config.active_record.default_timezone = :utc
+
+  # Add new inflection rules using the following format
+  # (all these examples are active by default):
+  # Inflector.inflections do |inflect|
+  #   inflect.plural /^(ox)$/i, '\1en'
+  #   inflect.singular /^(ox)en/i, '\1'
+  #   inflect.irregular 'person', 'people'
+  #   inflect.uncountable %w( fish sheep )
+  # end
+
+  # See Rails::Configuration for more options
+end
+
+# Add new mime types for use in respond_to blocks:
+# Mime::Type.register "text/richtext", :rtf
+# Mime::Type.register "application/x-mobile", :mobile
+
+# Include your application configuration below
+
+ExceptionNotifier.exception_recipients = %w(lowell@rivervalleychurch.net)
+
+require 'vpim/vcard'
+#require 'gruff'
+#require 'RMagick.rb'
+require 'memcache'
+#require 'starling'
+#require 'setting'
+
+# Load email configuration
+require 'load_email_config'
+
+
+class Date
+  def to_time(form = :local)
+    ::Time.send("#{form}", year, month, day)
+  end
+  
+  def qtr
+    month = self.strftime('%m').to_i
+    case month
+    when (1..3)
+      '1'
+    when (4..6)
+      '2'
+    when (7..9)
+      '3'
+    when (10..12)
+      '4'
+    end
+  end
+  
+  def year_qtr
+    year = self.strftime('%Y')
+    year + '-' + self.qtr
+  end
+end
+
+
+class Time
+    def end_of_day
+        change(:hour => 23, :min => 59, :sec => 59)
+    end
+    
+    def end_of_week
+      days_to_sunday = self.wday!=0 ? 7-self.wday : 0
+      (self + days_to_sunday.days).end_of_day
+    end
+    
+end
+
+class Array
+   def to_hash_keys(&block)
+     Hash[*self.collect { |v|
+       [v, block.call(v)]
+     }.flatten]
+   end
+ 
+   def to_hash_values(&block)
+     Hash[*self.collect { |v|
+       [block.call(v), v]
+     }.flatten]
+   end
+   
+   def extract_options!
+     last.is_a?(::Hash) ? pop : {}
+   end
+end
+
+class Hash
+  def except(*keys)
+     dup.except!(*keys)
+   end
+  def except!(*keys)
+   keys.map! { |key| convert_key(key) } if respond_to?(:convert_key)
+   keys.each { |key| delete(key) }
+   self
+ end
+ 
+ def slice(*keys)
+    keys = keys.map! { |key| convert_key(key) } if respond_to?(:convert_key)
+    hash = self.class.new
+    keys.each { |k| hash[k] = self[k] if has_key?(k) }
+    hash
+  end
+  
+  def slice!(*keys)
+      replace(slice(*keys))
+    end
+end
+
+Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new

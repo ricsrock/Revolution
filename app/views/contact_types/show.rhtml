@@ -1,0 +1,22 @@
+
+
+<p>
+	<b>Name: </b> <%= @contact_type.name %>
+</p>
+<p>
+	<b>Default Responsible User: </b> <%= @contact_type.default_responsible_user.full_name rescue nil %>
+</p>
+<p>
+	<b>Default Responsible Ministry: </b> <%= @contact_type.default_responsible_ministry.name rescue nil %>
+</p>
+
+<p>
+	<b>Allow Multiple Close? </b> <%= check_box :contact_type, :multiple_close %>
+</p>
+
+<p>
+	<b>Auto Follow-Up Notification? </b> <%= check_box :contact_type, :notiphy %>
+</p>
+
+<%= link_to 'Edit', :action => 'edit', :id => @contact_type %> |
+<%= link_to 'Back', :action => 'list' %>

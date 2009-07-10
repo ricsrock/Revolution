@@ -1,0 +1,18 @@
+<% if @calendar_items %>
+<% @page_title = "Today's Calendar<a href='/calendar'>view full calendar</a>" %>
+<% for item in @calendar_items %>
+<table width="100%">
+    <tr>
+        <% if item.StartsAt < (Time.now - 30.minutes) %>
+        <td style="color: gray"><%= item.Descr %></td>
+        <% else %>
+        <td><b><%= item.Descr %></b></td>
+        <% end %>
+        <td width="70px" style="text-align:center"><%= item.StartsAt.to_formatted_s(:time).downcase %></td>
+        <td width="10px" style="text-align:center">to</td>
+        <td width="70px" style="text-align:center"><%= item.EndsAt.to_formatted_s(:time).downcase %></td>
+    </tr>
+</table>
+<% end %>
+
+<% end %>
