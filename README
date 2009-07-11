@@ -1,3 +1,5 @@
 === Welcome to Revolution
 
 This software is software.
+
+After installing and migrating your db, run rake setup:initial_data - this will create some initial database records needed by the system.
