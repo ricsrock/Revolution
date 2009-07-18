@@ -4,3 +4,4 @@ tmp/**/*
 config/database.yml
 doc/*
 db/schema.rb
+db/*.sqlite3
