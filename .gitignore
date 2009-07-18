@@ -1,6 +1,6 @@
 .DS_Store
 log/*
 tmp/**/*
-config/databse.yml
+config/database.yml
 doc/*
 db/schema.rb
