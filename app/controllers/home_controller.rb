@@ -9,10 +9,10 @@ class HomeController < ApplicationController
     
     private
     def depends
-        if cookies[:portlet] == 'portlet'
-          'portlet'
-        else
-          'application'
-        end
+      if cookies[:portlet] == 'portlet'
+        'portlet'
+      else
+        'application'
       end
+    end
 end

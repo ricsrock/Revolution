@@ -1,4 +1,6 @@
 .DS_Store
-log/*.log
+log/*
 tmp/**/*
 config/databse.yml
+doc/*
+db/schema.rb
