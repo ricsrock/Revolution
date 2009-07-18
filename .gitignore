@@ -2,6 +2,7 @@
 log/*
 tmp/**/*
 config/database.yml
-doc/*
+doc/api
+doc/app
 db/schema.rb
 db/*.sqlite3
