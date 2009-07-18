@@ -1,1 +1,0 @@
-page["email_#{params[:index]}"].remove

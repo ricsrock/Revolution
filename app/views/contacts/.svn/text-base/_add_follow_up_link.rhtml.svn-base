@@ -1,1 +1,0 @@
-<%= link_to_remote "add follow-up", :url => {:action => 'show_add_form', :contact => @contact }%>

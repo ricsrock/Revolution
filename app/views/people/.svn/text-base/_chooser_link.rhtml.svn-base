@@ -1,1 +1,0 @@
-<%= link_to_remote 'choose the person related to', :url => {:action => 'show_chooser'} %>

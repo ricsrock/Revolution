@@ -1,2 +1,0 @@
-page.replace_html("groups-served", :partial => "groups_served", :locals => {:team => @team})
-page.replace_html("add-service-link", :partial => "add_service_link")

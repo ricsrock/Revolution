@@ -1,7 +1,0 @@
-<% form_remote_tag :url => {:action => 'create_service_link', :team_id => @team} do %>
-	<% @t = Team.find(@team) %>
-	<% @available_groups = @t.unlinked_groups %>
-	<%= collection_select 'group', 'id', @available_groups.sort_by(&:name), 'id', 'name', options = :prompt => '--Select Group--' %>
-	<%= submit_tag "Create Link" %>
-<% end %>
-	

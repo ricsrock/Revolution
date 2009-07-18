@@ -1,7 +1,0 @@
-<div><strong>Emails</strong><span id="message-black"> (Only checked values will be retained)</span></div>
-<% @duplicate.emails.each do |e| %>
-<div>
-	<%= check_box_tag 'dup_emails_to_keep[]', e.id %>
-	<%= e.email %>
-</div>
-<% end %>

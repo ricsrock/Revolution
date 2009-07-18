@@ -1,5 +1,0 @@
-<%= error_messages_for 'service_link' %>
-
-<!--[form:service_link]-->
-<!--[eoform:service_link]-->
-

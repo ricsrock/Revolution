@@ -1,4 +1,0 @@
-<% if @tag_group %>
-<label>Select Tag</label><br>
-<%= (collection_select :filter, :tag_id, Tag.find_all_by_tag_group_id(@tag_group.id), :id, :name, options = {:prompt => "All"}) %>
-<% end %>

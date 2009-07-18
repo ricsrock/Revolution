@@ -1,8 +1,0 @@
-<div id="setup_menu" style="width:100%;float:none;clear:both;">
-	<ul>
-		<li class="<%= household_tab_class("communication", @variable) %>"><%= link_to_remote "Communication", :url => { :controller => 'households', :action => 'change_partial', :household_id => @household, :new_partial => "communication" } %></li>
-		<li class="<%= household_tab_class("people", @variable) %>"><%= link_to_remote "People", :url => { :controller => 'households', :action => 'change_partial', :household_id => @household, :new_partial => "people" } %></li>
-		<li class="<%= household_tab_class("contacts", @variable) %>"><%= link_to_remote "Contacts", :url => { :controller => 'households', :action => 'change_partial', :household_id => @household, :new_partial => "contacts" } %></li>	
-	</ul>
-	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
-</div>

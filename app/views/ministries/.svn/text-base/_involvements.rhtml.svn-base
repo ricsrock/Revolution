@@ -1,9 +1,0 @@
-<strong><%= @ministry.name %> Roster</strong>
-
-<% @folks = @ministry.involvements.sort { |a,b| a.person.last_name <=> b.person.last_name }  %>
-
-<% @folks.each do |i| %>
-	<div>
-		<%= i.person_name %> <span id="message-black">(<%= i.job.title %>)</span>
-	</div>
-<% end %>

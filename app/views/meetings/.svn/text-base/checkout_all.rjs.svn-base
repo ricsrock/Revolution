@@ -1,1 +1,0 @@
-page.replace_html :attendance_list_area, :partial => 'attendance_list', :locals => { :meeting => @meeting }

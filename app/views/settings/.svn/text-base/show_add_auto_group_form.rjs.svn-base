@@ -1,1 +1,0 @@
-page.insert_html :bottom, :instance_type_setup, :partial => "add_auto_group", :locals => { :instance_type => @instance_type }

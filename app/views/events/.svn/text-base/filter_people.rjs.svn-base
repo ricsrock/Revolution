@@ -1,5 +1,0 @@
-page.replace_html("people-list", :partial => 'people_list')
-
-page.replace_html("results-definition", :partial => @set_name + '_definition')
-
-page.select('form').each { |f| f.reset }

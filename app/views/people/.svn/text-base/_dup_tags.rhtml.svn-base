@@ -1,6 +1,0 @@
-<div><strong>Tags</strong></div>
-<% @duplicate.taggings.each do |t| %>
-<div>
-	<%= t.tag.tag_group.name rescue nil %>: <%= t.tag.name rescue nil %>
-</div>
-<% end %>

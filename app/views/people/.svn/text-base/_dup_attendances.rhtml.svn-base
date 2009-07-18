@@ -1,4 +1,0 @@
-<div><strong># Attendances</strong></div>
-<div>
-	<%= @duplicate.attendances.length rescue nil %>
-</div>

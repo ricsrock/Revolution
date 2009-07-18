@@ -1,9 +1,0 @@
-index = params[:index]
-
-if @property.has_operators? #if this property has an operator, we need to render an operator partial
-  page.replace_html("operator_span", :partial => "operators_#{@property.short}", :locals => {:index => params[:index]})
-else
-  page.replace_html("operator_span", '')
-end
-
-page.replace_html("value", :partial => "value", :locals => {:index => index})

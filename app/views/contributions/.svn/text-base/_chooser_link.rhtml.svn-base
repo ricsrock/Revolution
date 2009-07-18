@@ -1,1 +1,0 @@
-<%= link_to_remote 'choose contributor', :url => {:action => 'show_picker'} %>

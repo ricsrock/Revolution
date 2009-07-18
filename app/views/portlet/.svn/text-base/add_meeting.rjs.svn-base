@@ -1,7 +1,0 @@
-if @errors.size > 0
-  page.replace_html("work-area", :partial => 'new_meeting', :locals => {:group => @group})
-else
-  page.replace_html("work-area", :partial => 'home')
-end
-
-page.replace_html("notices", :partial => 'shared/smart_notices')

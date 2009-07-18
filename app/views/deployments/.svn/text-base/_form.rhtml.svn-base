@@ -1,5 +1,0 @@
-<%= error_messages_for 'deployment' %>
-
-<!--[form:deployment]-->
-<!--[eoform:deployment]-->
-

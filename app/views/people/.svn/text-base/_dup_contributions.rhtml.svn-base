@@ -1,4 +1,0 @@
-<div><strong># Contributions</strong></div>
-<div>
-	<%= @duplicate.contributions.length rescue nil %>
-</div>

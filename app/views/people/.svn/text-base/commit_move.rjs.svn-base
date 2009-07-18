@@ -1,2 +1,0 @@
-page.replace_html("notice", :partial => 'shared/notices')
-page.redirect_to :action => 'show', :id => @mover

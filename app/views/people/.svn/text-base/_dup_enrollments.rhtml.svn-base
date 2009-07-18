@@ -1,6 +1,0 @@
-<div><strong>Enrolled In</strong></div>
-<% @duplicate.enrollments.each do |e| %>
-<div>
-	<%= e.group.name rescue nil %>
-</div>
-<% end %>

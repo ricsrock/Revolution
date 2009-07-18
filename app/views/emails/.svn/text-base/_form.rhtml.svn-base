@@ -1,7 +1,0 @@
-<%= error_messages_for 'email' %>
-
-<!--[form:email]-->
-<p><label for="email_email">Email</label><br/>
-<%= text_field 'email', 'email'  %></p>
-<!--[eoform:email]-->
-

@@ -1,8 +1,0 @@
-<% for column in CheckinType.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @checkin_type.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @checkin_type %> |
-<%= link_to 'Back', :action => 'list' %>

@@ -1,9 +1,0 @@
-
-<b>Find Person: </b><%= text_field_tag(:search_term) %>
-
-<%= observe_field 'search_term',
-	:frequency => 0.5,
- 	:url => {:action => 'live_search'},
-	:with => 'search_term' %>
-
-<%= render :partial => "relates_to_results" %>

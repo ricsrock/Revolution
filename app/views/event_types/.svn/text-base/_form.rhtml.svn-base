@@ -1,7 +1,0 @@
-<%= error_messages_for 'event_type' %>
-
-<!--[form:event_type]-->
-<p><label for="event_type_name">Name</label><br/>
-<%= text_field 'event_type', 'name'  %></p>
-<!--[eoform:event_type]-->
-

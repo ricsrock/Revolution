@@ -1,3 +1,0 @@
-batch = @batch
-page.replace_html("batch_#{batch.id}_links", :partial => 'batch_links', :locals => {:batch => batch})
-page.replace_html("work_batch_#{batch.id}", :partial => 'work_batch', :locals => {:batch => batch})

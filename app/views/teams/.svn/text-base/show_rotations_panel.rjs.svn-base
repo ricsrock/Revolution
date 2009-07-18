@@ -1,1 +1,0 @@
-page.replace_html( "dashboard-content", :partial => 'rotations_panel', :locals => {:team => @team})

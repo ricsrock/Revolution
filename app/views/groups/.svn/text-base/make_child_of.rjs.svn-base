@@ -1,8 +1,0 @@
-page.replace_html("all-groups", :partial => 'all_groups')
-page.select('form').each { |f| f.reset }
-
-@parent = Group.find(params[:new][:parent_group])
-
-@parent.all_children.collect do |c|
-  page.show("group_id_#{c.id}")
-end

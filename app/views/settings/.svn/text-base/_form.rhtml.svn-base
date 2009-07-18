@@ -1,7 +1,0 @@
-<%= error_messages_for 'setting' %>
-
-<!--[form:setting]-->
-<p><label for="setting_current_instance">Current instance</label><br/>
-<%= text_field 'setting', 'current_instance'  %></p>
-<!--[eoform:setting]-->
-

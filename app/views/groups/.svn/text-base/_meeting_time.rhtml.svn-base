@@ -1,1 +1,0 @@
-<%= time_select ('group', 'time_from', {:twelve_hour => true, :minute_step => 15}) %> - <%= time_select ('group', 'time_until', {:twelve_hour => true, :minute_step => 15}) %>

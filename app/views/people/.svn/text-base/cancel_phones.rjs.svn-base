@@ -1,1 +1,0 @@
-page.replace :phones, :partial => 'shared/phones'

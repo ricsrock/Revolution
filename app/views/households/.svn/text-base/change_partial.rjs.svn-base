@@ -1,2 +1,0 @@
-page.replace_html("tabs-area", :partial => "#{session[:household_partial]}", :locals => {:household => @household})
-page.replace_html("household-tabs", :partial => 'household_tabs')

@@ -1,2 +1,0 @@
-page.replace_html :ministries, :partial => 'ministries_list'
-page.replace_html :teams, :partial => 'teams_list'

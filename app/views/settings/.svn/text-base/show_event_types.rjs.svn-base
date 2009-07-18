@@ -1,1 +1,0 @@
-page.replace_html :configuration_area, :partial => 'event_types'

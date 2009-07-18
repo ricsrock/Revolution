@@ -1,9 +1,0 @@
-<h1>Editing rotation</h1>
-
-<% form_tag :action => 'update', :id => @rotation do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show', :action => 'show', :id => @rotation %> |
-<%= link_to 'Back', :action => 'list' %>

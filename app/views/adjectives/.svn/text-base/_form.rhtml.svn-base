@@ -1,7 +1,0 @@
-<%= error_messages_for 'adjective' %>
-
-<!--[form:adjective]-->
-<p><label for="adjective_name">Name</label><br/>
-<%= text_field 'adjective', 'name'  %></p>
-<!--[eoform:adjective]-->
-

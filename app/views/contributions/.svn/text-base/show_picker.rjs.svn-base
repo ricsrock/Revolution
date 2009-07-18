@@ -1,1 +1,0 @@
-page.replace_html("contributor-picker", :partial => 'contributor_picker')

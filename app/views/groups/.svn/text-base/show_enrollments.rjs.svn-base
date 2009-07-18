@@ -1,4 +1,0 @@
-group = Group.find(params[:group_id])
-
-page.replace_html("group_#{group.id}_enrollments_list", :partial => 'enrollment', :collection => group.current_enrollments.sort {|a,b| a.person.last_first_name <=> b.person.last_first_name rescue nil})
-page.toggle("group_#{params[:group_id]}_enrollments")

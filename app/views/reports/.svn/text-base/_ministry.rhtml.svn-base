@@ -1,6 +1,0 @@
-<div style="margin-left:.5em;float:none;clear:both;">
-	<label>
-		Ministry: 
-	</label><%= ministry.name %>
-	<%= render :partial => "team", :collection => ministry.teams.sort_by(&:name) %>
-</div>

@@ -1,3 +1,0 @@
-<div>
-	<%= operator.prose %> <%= operator.short %>
-</div>

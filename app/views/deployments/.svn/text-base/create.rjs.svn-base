@@ -1,2 +1,0 @@
-page.replace_html("right-column", :partial => 'rotations/deployed_people', :locals => {:rotation => @rotation})
-page.replace_html("left-column", :partial => 'rotations/available_people', :locals => {:rotation => @rotation})

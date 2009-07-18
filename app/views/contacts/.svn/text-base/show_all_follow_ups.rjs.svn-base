@@ -1,4 +1,0 @@
-@contacts.each do |contact|
-  @contact = Contact.find(contact.id)
-  page.replace_html("contact_#{@contact.id}_follow_ups", :partial => 'show_follow_ups', :locals => {:contact => @contact}) if ! @contact.follow_ups.empty?
-end

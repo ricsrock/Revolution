@@ -1,1 +1,0 @@
-page.replace_html("linked-teams", :partial => 'groups/linked_teams', :locals => {:group => @group})

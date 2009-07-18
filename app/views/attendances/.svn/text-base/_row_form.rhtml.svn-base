@@ -1,4 +1,0 @@
-<% form_tag :action => 'create' do %>
-  <%= person.full_name %>
-  <%= submit_tag "Create" %>
-<% end %>

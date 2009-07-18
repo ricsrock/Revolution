@@ -1,1 +1,0 @@
-page.replace_html("results-panel", :partial => 'potential_new_households')

@@ -1,112 +1,0 @@
-8
-
-dir
-5
-https://revolution-church-management.googlecode.com/svn/trunk
-https://revolution-church-management.googlecode.com/svn
-
-
-
-2008-11-23T02:00:56.188480Z
-5
-ricsrock
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-23cefa1c-6352-0410-ae0e-a5aea8c5d16c
-
-test
-dir
-
-app
-dir
-
-log
-dir
-
-Rakefile
-file
-
-
-
-
-2008-11-24T22:07:40.000000Z
-17f2f134da4cd31ea095d5868ca89e86
-2008-11-23T02:00:56.188480Z
-5
-ricsrock
-
-routes.rb
-file
-
-
-
-
-2008-11-24T22:07:40.000000Z
-3ea1e840d08805de2bf4579fd63a0b54
-2008-11-23T02:00:56.188480Z
-5
-ricsrock
-
-db
-dir
-
-components
-dir
-
-README
-file
-
-
-
-
-2008-11-24T22:07:40.000000Z
-aeeb3047c6c30d56e72a24a14f7ebcf7
-2008-11-23T02:00:56.188480Z
-5
-ricsrock
-
-vendor
-dir
-
-tmp
-dir
-
-script
-dir
-
-doc
-dir
-
-config
-dir
-
-lib
-dir
-
-22122
-file
-17
-
-
-
-2009-02-12T21:12:22.000000Z
-31b3b31a1c2f8a370206f111127c0dbd
-2009-02-26T20:30:26.293117Z
-17
-ricsrock
-
-public
-dir
-

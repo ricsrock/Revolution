@@ -1,4 +1,0 @@
-page.insert_html :bottom, :phones, :partial => 'phone_fields',
-                 :locals => { :phone => @phone, :index => params[:index] }
-
-page.replace :add_phone_link, :partial => 'add_phone_link', :locals => { :index => (params[:index].to_i + 1) }

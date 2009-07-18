@@ -1,9 +1,0 @@
-<strong><%= @department.name %> Roster</strong>
-
-<% @folks = @department.involvements.sort { |a,b| a.person.last_name <=> b.person.last_name }  rescue nil %>
-
-<% @folks.each do |i| %>
-	<div>
-		<%= i.person_name rescue nil %> <span id="message-black">(<%= i.job.title rescue nil %>)</span>
-	</div>
-<% end %>

@@ -1,8 +1,0 @@
-<div style="display:inline;">
-<%= text_field 'rule', 'content', :size => 20, "index" => index %><br>
-
-<div style="display:inline;" class="tiny">
-	<%= @property.instructions rescue nil %>
-</div>
-
-</div>

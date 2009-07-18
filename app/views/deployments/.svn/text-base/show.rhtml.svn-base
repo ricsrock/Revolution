@@ -1,8 +1,0 @@
-<% for column in Deployment.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @deployment.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @deployment %> |
-<%= link_to 'Back', :action => 'list' %>

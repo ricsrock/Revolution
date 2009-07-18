@@ -1,5 +1,0 @@
-@transfer = true
-#@re_open_box_disabled = true
-@re_open_checked = false
-@re_open_box_disabled = true
-page.replace_html("new-follow-up", :partial => 'new_follow_up', :locals => {:contact => @contact})

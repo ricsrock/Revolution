@@ -1,8 +1,0 @@
-<h1>Editing group</h1>
-
-<% form_tag :action => 'update', :id => @group do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show Group Details', :action => 'show', :id => @group %>

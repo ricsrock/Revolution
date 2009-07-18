@@ -1,4 +1,0 @@
-<% form_remote_tag :url => {:action => 'add_auto_instance_type', :event_type => @event_type } do -%>
-	<%= render :partial => "auto_instance_types/smart_form" %>
-	<%= submit_tag "Add" %>
-<% end %>

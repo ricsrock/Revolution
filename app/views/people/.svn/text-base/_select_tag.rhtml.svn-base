@@ -1,2 +1,0 @@
-<label>Tag</label><br>
-<%= collection_select('tag', 'id', @tag_group.tags.sort_by(&:name), 'id', 'name', {:prompt => "Choose Tag"}) rescue nil %>

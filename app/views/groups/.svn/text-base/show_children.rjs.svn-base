@@ -1,7 +1,0 @@
-@group = Group.find(params[:id])
-
-    @group.children(:scope => current_user.group_scope).each do |c|
-      page["group_id_#{c.id}"].visual_effect :slide_down, :duration => 1
-    end
-
-page["group_id_#{@group.id}_triangle"].replace_html(:partial => "collapse", :locals => {:group => @group})

@@ -1,1 +1,0 @@
-page["rule_#{params[:index]}"].remove

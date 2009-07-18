@@ -1,7 +1,0 @@
-<%= error_messages_for 'relationship_type' %>
-
-<!--[form:relationship_type]-->
-<p><label for="relationship_type_name">Name</label><br/>
-<%= text_field 'relationship_type', 'name'  %></p>
-<!--[eoform:relationship_type]-->
-

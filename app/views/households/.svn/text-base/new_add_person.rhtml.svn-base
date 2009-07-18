@@ -1,5 +1,0 @@
-<% @houseold.people.each_with_index do |person, index| %>
-  <% fields_for "people[#{index}]", person do |f| %>
-    <p><%= f.text_field :first_name %></p>
-  <% end %>
-<% end %>

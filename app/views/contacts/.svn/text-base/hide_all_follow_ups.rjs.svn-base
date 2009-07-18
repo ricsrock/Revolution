@@ -1,3 +1,0 @@
-@contacts.each do |c|
-  page.replace_html("contact_#{c.id}_follow_ups", "")
-end

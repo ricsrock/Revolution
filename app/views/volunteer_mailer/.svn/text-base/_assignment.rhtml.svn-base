@@ -1,1 +1,0 @@
-<%= assignment.formatted_date %> | <%= assignment.instance_type %> | <%= assignment.team.name %>

@@ -1,9 +1,0 @@
-<strong>This Form's Contact Types:</strong>
-
-<% @contact_form.contact_types.each do |c_t| %>
-	<div id="joined_contact_type_id_<%= c_t.id %>" class="<%= cycle("even","odd") %>">
-		<%= link_to_remote "<<<", :url => {:action => 'remove_contact_type', :id => @contact_form.id, :contact_type_id => c_t.id} %>
-		<%= c_t.name %>
-	</div>
-	
-<% end %>

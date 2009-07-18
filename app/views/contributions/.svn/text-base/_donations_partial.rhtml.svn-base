@@ -1,3 +1,0 @@
-<% @contribution.donations.each_with_index do |donation, index| %>
-  <%= render :partial => 'donation_fields', :locals => { :donation => donation, :index => index } %>
-<% end %>

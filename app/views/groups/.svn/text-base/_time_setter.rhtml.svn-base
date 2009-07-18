@@ -1,2 +1,0 @@
-<%= render :partial => "meeting_time" %>
-<%= link_to_remote('no time', :url => {:action => 'hide_time', :group => @group.id}) %>

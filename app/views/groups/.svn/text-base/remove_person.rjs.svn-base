@@ -1,2 +1,0 @@
-page.replace_html("enrollments", :partial => "enrollments", :locals => {:group => @group})
-page.replace_html("notice", :partial => 'shared/notices')

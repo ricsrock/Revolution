@@ -1,1 +1,0 @@
-page.replace_html("transfer-box", :partial => 'transfer_box', :locals => {:transfer => @transfer})

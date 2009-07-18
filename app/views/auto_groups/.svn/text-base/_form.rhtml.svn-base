@@ -1,8 +1,0 @@
-<%= error_messages_for 'auto_group' %>
-
-<% @groups = Group.find(:all) %>
-<%= collection_select('auto_group', 'group_id', @groups.sort_by(&:name), 'id', 'name') %>
-
-<!--[form:auto_group]-->
-<!--[eoform:auto_group]-->
-

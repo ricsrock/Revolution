@@ -1,2 +1,0 @@
-@group = Group.find(params[:group])
-page.replace_html("categories-area", :partial => 'edit_categories', :locals => {:group => @group})

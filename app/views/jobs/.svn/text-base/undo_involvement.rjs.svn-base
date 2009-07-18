@@ -1,2 +1,0 @@
-page.replace_html("job-assignments-detail", :partial => 'job_assignments', :locals => {:job => @job})
-page.replace_html("notice", :partial => 'shared/notices')

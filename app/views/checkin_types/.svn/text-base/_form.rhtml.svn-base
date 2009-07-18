@@ -1,7 +1,0 @@
-<%= error_messages_for 'checkin_type' %>
-
-<!--[form:checkin_type]-->
-<p><label for="checkin_type_name">Name</label><br/>
-<%= text_field 'checkin_type', 'name'  %></p>
-<!--[eoform:checkin_type]-->
-

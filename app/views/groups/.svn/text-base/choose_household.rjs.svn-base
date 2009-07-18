@@ -1,2 +1,0 @@
-page.replace_html("show-meeting-household", :partial => 'show_meeting_household', :locals => {:group => @group})
-page.replace_html("choose-meeting-household", :partial => 'chooser_link', :locals => {:group => @group})

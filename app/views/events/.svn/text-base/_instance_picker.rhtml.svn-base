@@ -1,2 +1,0 @@
-<% @instance_types = @event.available_instance_types.sort_by(&:name) %>
-<%= collection_select ('instance', 'instance_type_id', @instance_types, 'id', 'name', options = {:prompt => true}) %>

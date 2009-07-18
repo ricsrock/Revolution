@@ -1,3 +1,0 @@
-<p><label>Meeting Address:</label><br>
-<%= @group.meets_at_household.household_name rescue nil %><br>
-<%= @group.meets_at_household.address_block rescue nil %></p>

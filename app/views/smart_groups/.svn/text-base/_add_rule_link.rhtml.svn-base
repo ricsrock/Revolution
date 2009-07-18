@@ -1,3 +1,0 @@
-<div id="add_rule_link">
-  <%= link_to_remote (image_tag "rule_(add)_16x16.gif", :size => "12x12", :border => 0, :title => "Add a rule"), :url => { :action => 'add_rule', :index => index } %>
-</div>

@@ -1,6 +1,0 @@
-
-<%= render :partial => "filter_controls" %>
-
-<div id="results">
-	<%= render :partial => "manage_results" %>
-</div>

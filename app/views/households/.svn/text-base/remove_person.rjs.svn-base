@@ -1,1 +1,0 @@
-page["person_#{params[:index]}"].remove

@@ -1,1 +1,0 @@
-page.replace_html("contact_#{@contact.id}_follow_ups", "")

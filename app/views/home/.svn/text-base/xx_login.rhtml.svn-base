@@ -1,7 +1,0 @@
-<%= form_tag :action => "login" %>
-<% @focus_control = "LoginName" %>
-<% @loginname ||= '' %>
-User Name: <%= text_field_tag 'LoginName', @loginname %><br>
-Password: <%= password_field_tag 'Password' %><br>
-<%= submit_tag "Login" %>
-<%= end_form_tag %>

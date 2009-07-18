@@ -1,2 +1,0 @@
-page.replace_html("person-picker", :partial => 'staff_list', :locals => {:set_meeting => @set_meeting})
-page.replace_html("meeting-banner", :partial => 'meeting_banner', :locals => {:set_meeting => @set_meeting})

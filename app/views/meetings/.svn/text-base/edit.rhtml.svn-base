@@ -1,9 +1,0 @@
-<h1>Editing meeting</h1>
-
-<% form_tag :action => 'update', :id => @meeting do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Currently Checked-In', :action => 'show', :id => @meeting %> |
-<%= link_to 'View/Edit Attendance History', :action => 'detail', :id => @meeting %>

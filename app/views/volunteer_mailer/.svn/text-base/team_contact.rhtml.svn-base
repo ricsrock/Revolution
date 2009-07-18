@@ -1,6 +1,0 @@
-Hi <%= @person.first_name rescue nil %>!
-
-<%= @message rescue nil %>
-
-
-(You are receiving this email because you are involved in the team: <%= @team.name rescue nil %>)

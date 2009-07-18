@@ -1,5 +1,0 @@
-# update person role
-page.replace_html("person_role", :partial => "person_role", :locals => {:person => @person, :relationship_type => @relationship_type})
-
-# update relates to person role
-page.replace_html("relates_to_role", :partial => "relates_to_role", :locals => {:relates_to_person => @relates_to_person, :relationship_type => @relationship_type})

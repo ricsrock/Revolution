@@ -1,8 +1,0 @@
-<h1>Editing Follow-Up</h1>
-
-<% form_tag :action => 'update', :id => @follow_up do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Cancel', :action => 'show', :id => @follow_up %>

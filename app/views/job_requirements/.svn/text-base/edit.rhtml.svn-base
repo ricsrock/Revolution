@@ -1,9 +1,0 @@
-<h1>Editing job_requirement</h1>
-
-<% form_tag :action => 'update', :id => @job_requirement do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show', :action => 'show', :id => @job_requirement %> |
-<%= link_to 'Back', :action => 'list' %>

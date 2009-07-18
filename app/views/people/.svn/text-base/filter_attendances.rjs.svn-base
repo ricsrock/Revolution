@@ -1,3 +1,0 @@
-chosen_group = params[:filter][:group_id]
-chosen_range = params[:filter][:range]
-page.replace_html("tabs-area", :partial => "#{session[:person_partial]}", :locals => {:person => @person, :chosen_group => chosen_group, :chosen_range => chosen_range})

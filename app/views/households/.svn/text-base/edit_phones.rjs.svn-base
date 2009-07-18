@@ -1,2 +1,0 @@
-page.visual_effect :fade, "phones"
-page.replace :phones, :partial => 'edit_phones', :locals => { :entity => params[:entity] }

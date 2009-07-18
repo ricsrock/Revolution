@@ -1,1 +1,0 @@
-<%= hidden_field :contribution, :person_id, :value => @person.id rescue nil %>

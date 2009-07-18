@@ -1,3 +1,0 @@
-<div id="add_person_link_quick">
-  <%= link_to_remote 'Add Another Person', :url => { :action => 'add_person_quick', :index => index } %>
-</div>

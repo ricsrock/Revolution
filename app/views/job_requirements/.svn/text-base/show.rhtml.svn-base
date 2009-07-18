@@ -1,8 +1,0 @@
-<% for column in JobRequirement.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @job_requirement.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @job_requirement %> |
-<%= link_to 'Back', :action => 'list' %>

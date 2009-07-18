@@ -1,1 +1,0 @@
-page.replace_html("new-follow-up", :partial => "add_follow_up_link", :locals => {:contact => @contact})

@@ -1,8 +1,0 @@
-Your account has been created.
-
-  Username: <%= @user.login rescue nil %>
-  Password: <%= @user.password rescue nil %>
-
-Visit this url to activate your account:
-
-  <%= @url rescue nil %>

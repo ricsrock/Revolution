@@ -1,4 +1,0 @@
-page.replace_html("notice", :partial => 'shared/notices')
-#page.visual_effect :fade, :notice, :delay => 5
-
-page.replace_html("enrollments", :partial => 'enrollments')

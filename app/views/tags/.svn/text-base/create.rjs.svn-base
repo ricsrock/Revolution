@@ -1,1 +1,0 @@
-page.replace_html("tags", :partial => "tag_groups/tags", :locals => {:tag_group => @tag_group})

@@ -1,7 +1,0 @@
-<%= error_messages_for 'my_color' %>
-
-<!--[form:my_color]-->
-<p><label for="my_color_name">Name</label><br/>
-<%= text_field 'my_color', 'name'  %></p>
-<!--[eoform:my_color]-->
-

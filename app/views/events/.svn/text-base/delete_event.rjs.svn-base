@@ -1,4 +1,0 @@
-page.replace_html :events, :partial => 'events_list'
-page.replace_html :instances, :partial => 'instances_list'
-page.replace_html :meetings, :partial => 'meetings_list'
-page.replace_html("notice", :partial => 'shared/notices')

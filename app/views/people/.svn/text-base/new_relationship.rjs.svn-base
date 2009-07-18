@@ -1,1 +1,0 @@
-page.replace_html("relationships_area", :partial => 'new_relationship')

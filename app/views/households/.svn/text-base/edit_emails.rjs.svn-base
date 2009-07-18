@@ -1,2 +1,0 @@
-page.visual_effect :fade, "emails"
-page.replace :emails, :partial => 'edit_emails', :locals => { :entity => params[:entity] }

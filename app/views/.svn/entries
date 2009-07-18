@@ -1,248 +1,0 @@
-8
-
-dir
-5
-https://revolution-church-management.googlecode.com/svn/trunk/app/views
-https://revolution-church-management.googlecode.com/svn
-
-
-
-2008-11-23T02:00:56.188480Z
-5
-ricsrock
-
-
-svn:special svn:externals svn:needs-lock
-
-
-
-
-
-
-
-
-
-
-
-23cefa1c-6352-0410-ae0e-a5aea8c5d16c
-
-funds
-dir
-
-rotations
-dir
-
-animals
-dir
-
-departments
-dir
-
-instance_types
-dir
-
-home
-dir
-
-portlet
-dir
-
-assignments
-dir
-
-layouts
-dir
-
-settings
-dir
-
-service_links
-dir
-
-contributions
-dir
-
-deployments
-dir
-
-checkin
-dir
-
-events
-dir
-
-search
-dir
-
-relationship_roles
-dir
-
-households
-dir
-
-contacts
-dir
-
-contact_types
-dir
-
-comm_types
-dir
-
-adjectives
-dir
-
-requirements
-dir
-
-people
-dir
-
-relationships
-dir
-
-smart_groups
-dir
-
-feeds
-dir
-
-note_types
-dir
-
-
-
-add
-
-follow_up_types
-dir
-
-account
-dir
-
-vcard
-dir
-
-rooms
-dir
-
-iframe
-dir
-
-taggings
-dir
-
-sms_setups
-dir
-
-auto_groups
-dir
-
-pdf
-dir
-
-emails
-dir
-
-volunteer_mailer
-dir
-
-user_notifier
-dir
-
-web_categories
-dir
-
-milestones
-dir
-
-checkin_types
-dir
-
-involvements
-dir
-
-follow_ups
-dir
-
-attendances
-dir
-
-phones
-dir
-
-reports
-dir
-
-tags
-dir
-
-users
-dir
-
-contact_forms
-dir
-
-event_types
-dir
-
-shared
-dir
-
-my_colors
-dir
-
-teams
-dir
-
-tag_groups
-dir
-
-meetings
-dir
-
-groups
-dir
-
-test
-dir
-
-auto_instance_types
-dir
-
-roles
-dir
-
-relationship_types
-dir
-
-ministries
-dir
-
-instances
-dir
-
-dashboard
-dir
-
-notes
-dir
-
-jobs
-dir
-
-colors
-dir
-
-un_delete
-dir
-
-smart_group_rules
-dir
-
-job_requirements
-dir
-
-smart_group_properties
-dir
-

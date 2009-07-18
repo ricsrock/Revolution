@@ -1,3 +1,0 @@
-<% form_tag(:action => 'near_by', :id => @household) do %>
-	<h3>Show households within <%= select(:within,:range, (1..10),{:prompt => "Select"}) %> miles. <%= submit_tag 'Go' %></h3>
-<% end %>

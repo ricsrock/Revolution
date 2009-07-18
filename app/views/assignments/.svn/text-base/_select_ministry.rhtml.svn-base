@@ -1,9 +1,0 @@
-
-<% @available_ministries = Ministry.find_by_department_id(department_id) %>
-<%= collection_select('ministry', 'id', @available_ministries, 'id', 'name',
-						options = {:prompt => "– Select a Ministry –"}) %>
-						
-<%= observe_field 'ministry_id',
- 					:url => {:action => 'ministry_changed'},
-					:update => 'teams-combo',
-					:with => 'id' %>

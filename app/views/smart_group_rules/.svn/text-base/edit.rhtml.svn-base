@@ -1,9 +1,0 @@
-<h1>Editing smart_group_rule</h1>
-
-<% form_tag :action => 'update', :id => @smart_group_rule do %>
-  <%= render :partial => 'form' %>
-  <%= submit_tag 'Edit' %>
-<% end %>
-
-<%= link_to 'Show', :action => 'show', :id => @smart_group_rule %> |
-<%= link_to 'Back', :action => 'list' %>

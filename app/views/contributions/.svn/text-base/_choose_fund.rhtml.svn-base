@@ -1,7 +1,0 @@
-
-
-	<%= collection_select(:fund, :id, Fund.find(:all), :id, :name, options = {:prompt => "All Funds"}) %>
-	
-	<%= observe_field "fund_id",
-	    :url => {:action => 'change_chart'},
-	    :with => 'fund_id' %>

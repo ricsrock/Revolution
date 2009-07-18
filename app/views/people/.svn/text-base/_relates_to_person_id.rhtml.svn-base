@@ -1,1 +1,0 @@
-<%= hidden_field :relationship, :relates_to_id, :value => @relates_to_person.id rescue nil %>

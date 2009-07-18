@@ -1,6 +1,0 @@
-<div>
-	<strong>Household People</strong>
-</div>
-<div>
-	<%= @new.people.collect {|p| p.first_name}.to_sentence rescue nil %>
-</div>

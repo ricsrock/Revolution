@@ -1,2 +1,0 @@
-page.replace_html :instances, :partial => 'instances_list'
-page.replace_html :meetings, :partial => 'meetings_list'

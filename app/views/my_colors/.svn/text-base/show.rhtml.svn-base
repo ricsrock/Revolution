@@ -1,8 +1,0 @@
-<% for column in MyColor.content_columns %>
-<p>
-  <b><%= column.human_name %>:</b> <%=h @my_color.send(column.name) %>
-</p>
-<% end %>
-
-<%= link_to 'Edit', :action => 'edit', :id => @my_color %> |
-<%= link_to 'Back', :action => 'list' %>

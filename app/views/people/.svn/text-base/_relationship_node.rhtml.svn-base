@@ -1,5 +1,0 @@
-<div style="margin-left:<%= level %>em;width:clear;" class="<%= cycle("even_o","odd_o") %>">
-	<%= render :partial => "relationship_line", :locals => {:relationship => relationship_node} %>
-</div>
-
-<%= render :partial => "relationship_node", :collection => relationship_node.new_relationships(@person), :locals => {:level => level+1} %>

@@ -1,2 +1,0 @@
-module InstanceTypesHelper
-end
