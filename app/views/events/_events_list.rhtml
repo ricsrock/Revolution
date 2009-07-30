@@ -11,7 +11,7 @@
 		<div id="message-black">
 			<%= e.event_type.name %>
 		</div>
-		<% if e.has_attendances? %>
+		<% if ! e.attendances.empty? %>
 		<%= link_to "stats", :controller => 'events', :action => 'stats', :id => e.id %> | 
 		<% end %>
 		<%= link_to 'mark', :action => 'mark', :id => e.id %> | 

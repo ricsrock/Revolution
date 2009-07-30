@@ -20,7 +20,7 @@ class SettingsController < ApplicationController
   end
   
   def list
-    @setting_pages, @settings = paginate :settings, :per_page => 10
+    #@setting_pages, @settings = paginate :settings, :per_page => 10
   end
 
   def show
