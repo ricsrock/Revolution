@@ -14,7 +14,7 @@ class ContactTypesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @contact_type_pages, @contact_types = paginate(:contact_types, :order => ['name ASC'], :per_page => 20)
+    @contact_types = ContactType.paginate(:page => params[:page], :order => ['name ASC'], :per_page => 20)
   end
 
   def show

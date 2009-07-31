@@ -13,7 +13,7 @@ class FollowUpTypesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @follow_up_type_pages, @follow_up_types = paginate :follow_up_types, :per_page => 10
+    @follow_up_types = FollowUpType.paginate :page => params[:page], :per_page => 10
   end
 
   def show

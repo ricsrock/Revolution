@@ -17,7 +17,7 @@ class AdjectivesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @adjective_pages, @adjectives = paginate :adjectives, :per_page => 30, :order => :name
+    @adjectives = Adjective.paginate :page => params[:page], :per_page => 30, :order => :name
   end
 
   def show

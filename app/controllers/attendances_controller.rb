@@ -14,7 +14,7 @@ class AttendancesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @attendance_pages, @attendances = paginate :attendances, :per_page => 10
+    @attendances = Attendance.paginate :page => params[:page], :per_page => 10
   end
 
   def show

@@ -14,7 +14,7 @@ class ContactFormsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @contact_form_pages, @contact_forms = paginate :contact_forms, :per_page => 10, :order => :name
+    @contact_forms = ContactForm.paginate :page => params[:page], :per_page => 10, :order => :name
   end
 
   def show

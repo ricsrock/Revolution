@@ -17,7 +17,7 @@ class MyColorsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @my_color_pages, @my_colors = paginate :my_colors, :per_page => 30, :order => :name
+    @my_colors = MyColor.paginate :page => params[:page], :per_page => 30, :order => :name
   end
 
   def show

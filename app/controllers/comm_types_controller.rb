@@ -14,7 +14,7 @@ class CommTypesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @comm_type_pages, @comm_types = paginate :comm_types, :per_page => 10
+    @comm_types = CommType.paginate :page => params[:page], :per_page => 10
   end
 
   def show

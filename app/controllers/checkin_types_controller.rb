@@ -14,7 +14,7 @@ class CheckinTypesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @checkin_type_pages, @checkin_types = paginate :checkin_types, :per_page => 10
+    @checkin_types = CheckinType.paginate :page => params[:page], :per_page => 10
   end
 
   def show

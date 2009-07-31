@@ -17,7 +17,7 @@ class AnimalsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @animal_pages, @animals = paginate :animals, :per_page => 30, :order => :name
+    @animals = Animal.paginate :page => params[:page], :per_page => 30, :order => :name
   end
 
   def show

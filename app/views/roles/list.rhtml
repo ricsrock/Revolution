@@ -19,9 +19,7 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @role_pages.current.previous } if @role_pages.current.previous %>
-<%= link_to 'Next page', { :page => @role_pages.current.next } if @role_pages.current.next %> 
-
+<%= will_paginate @roles %>
 <br />
 
 <%= link_to 'New role', :action => 'new' %>

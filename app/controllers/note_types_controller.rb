@@ -12,7 +12,7 @@ class NoteTypesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @note_type_pages, @note_types = paginate :note_types, :per_page => 10
+    @note_types = NoteType.paginate :page => params[:page], :per_page => 10, :order => :name
   end
 
   def show

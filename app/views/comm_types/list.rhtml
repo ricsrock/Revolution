@@ -19,8 +19,7 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @comm_type_pages.current.previous } if @comm_type_pages.current.previous %>
-<%= link_to 'Next page', { :page => @comm_type_pages.current.next } if @comm_type_pages.current.next %> 
+<%= will_paginate @comm_types %>
 
 <br />
 

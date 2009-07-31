@@ -15,7 +15,7 @@ class TagGroupsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @tag_group_pages, @tag_groups = paginate :tag_groups, :per_page => 10, :order => :name
+    @tag_groups = TagGroup.paginate :page => params[:page], :per_page => 10, :order => :name
   end
 
   def show

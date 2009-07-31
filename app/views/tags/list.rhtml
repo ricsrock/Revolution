@@ -19,8 +19,6 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @tag_pages.current.previous } if @tag_pages.current.previous %>
-<%= link_to 'Next page', { :page => @tag_pages.current.next } if @tag_pages.current.next %> 
-
+<%= will_paginate @tags %>
 <br />
 

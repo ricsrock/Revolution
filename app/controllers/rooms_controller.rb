@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @room_pages, @rooms = paginate :rooms, :per_page => 10
+    @rooms = Room.paginate :page => 1, :per_page => 10
   end
 
   def show

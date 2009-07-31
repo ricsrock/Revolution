@@ -13,7 +13,7 @@ class WebCategoriesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @web_category_pages, @web_categories = paginate :web_categories, :per_page => 10
+    @web_categories = WebCategory.paginate :page => params[:page], :per_page => 10, :order => :name
   end
 
   def show

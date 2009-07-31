@@ -19,8 +19,7 @@
 <% end %>
 </table>
 
-<%= link_to 'Previous page', { :page => @sms_setup_pages.current.previous } if @sms_setup_pages.current.previous %>
-<%= link_to 'Next page', { :page => @sms_setup_pages.current.next } if @sms_setup_pages.current.next %> 
+<%= will_paginate @sms_setups %>
 
 <br />
 

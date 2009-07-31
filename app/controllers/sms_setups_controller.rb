@@ -18,7 +18,7 @@ class SmsSetupsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @sms_setup_pages, @sms_setups = paginate :sms_setups, :per_page => 10
+    @sms_setups = SmsSetup.paginate :page => params[:page], :per_page => 10
   end
 
   def show

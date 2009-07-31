@@ -13,7 +13,7 @@ class RelationshipTypesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @relationship_type_pages, @relationship_types = paginate :relationship_types, :per_page => 10
+    @relationship_types = RelationshipType.paginate :page => params[:page], :per_page => 10, :order => :name
   end
 
   def show

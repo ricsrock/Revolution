@@ -14,7 +14,7 @@ class TagsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @tag_pages, @tags = paginate :tags, :per_page => 10
+    @tags = Tag.paginate :page => params[:page], :per_page => 10
   end
 
   def show

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @user_pages, @users = paginate(:users, :order => ['last_name, first_name ASC'], :per_page => 10)
+    @users = User.paginate(:page => params[:page], :order => ['last_name, first_name ASC'], :per_page => 10)
   end
 
   def show

@@ -15,7 +15,7 @@ class RolesController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @role_pages, @roles = paginate :roles, :per_page => 10
+    @roles = Role.paginate :page => params[:page], :per_page => 10, :order => :name
   end
 
   def show
