@@ -1,0 +1,2 @@
+page.replace_html("smart_group_#{@g.id}_people", "")
+page.replace_html("smart_group_id_#{@g.id}_controls", "")

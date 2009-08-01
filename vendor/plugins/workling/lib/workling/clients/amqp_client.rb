@@ -23,14 +23,18 @@ module Workling
       
       # subscribe to a queue
       def subscribe(key)
-        @amq.queue(key).subscribe do |value|
+        @amq.queue(key).subscribe do |data|
+          value = Marshal.load(data)
           yield value
         end
       end
       
       # request and retrieve work
       def retrieve(key); @amq.queue(key); end
-      def request(key, value); @amq.queue(key).publish(value); end
+      def request(key, value)
+        data = Marshal.dump(value)
+        @amq.queue(key).publish(data)
+      end
     end
   end
 end

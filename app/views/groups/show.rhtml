@@ -29,7 +29,6 @@
 <%= link_to 'Edit', :action => 'edit', :id => @group %> |
 <%= link_to 'Tree View', :action => 'tree_view' %>
 
-<% unless @group.has_children? %>
 <br><br>
 <div id="group-tabs" style="float:none;clear:both;width:100%;">
 	<%= render :partial => "group_tabs", :locals => {:group_id => @group} %>	
@@ -38,7 +37,6 @@
 <div id="tabs-area" style="background-color:#F5F5F5;float:none; clear:both;">
 	<%= render :partial => "#{session[:group_partial]}", :locals => {:group => @group} %>
 </div>
-<% end %>
 
 
 

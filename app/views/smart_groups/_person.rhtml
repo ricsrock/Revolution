@@ -1,0 +1,14 @@
+<tr class="<%= cycle("even","odd") %>">
+	<td>
+		<%=  person.full_name %>
+	</td>
+	<td>
+		<%= person.household.address_one_line rescue nil %>
+	</td>
+	<td>
+		<%= person.age rescue nil %>
+	</td>
+	<td>
+		<%= person.attendance_status rescue nil %>
+	</td>
+</tr>

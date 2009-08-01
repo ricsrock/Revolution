@@ -1,0 +1,13 @@
+<div class="tiny">
+	returned <%= @people.size %> people
+</div><br>
+
+<table class="list">
+	<tr>
+		<th>Name</th>
+		<th>Address</th>
+		<th>Age</th>
+		<th>Status</th>
+	</tr>
+	<%= render :partial => "person", :collection => @people %>
+</table>

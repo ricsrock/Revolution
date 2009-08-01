@@ -13,7 +13,7 @@ class SmartGroupsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @smart_group_pages, @smart_groups = paginate :smart_groups, :per_page => 10
+    @smart_groups = SmartGroup.paginate :page => params[:page], :per_page => 10
   end
 
   def show
@@ -114,6 +114,82 @@ class SmartGroupsController < ApplicationController
     @smart_group = SmartGroup.find(params[:id])
     @first_weed = @smart_group.found_households.reject { |p| p.household.nil? }
     @places = @first_weed.reject { |p| p.household.lat.nil? or p.household.lng.nil? }.sort_by {|r| r.household.name}
+  end
+  
+  def new_smart_group_contact
+    @smart_group = SmartGroup.find(params[:id])
+  end
+  
+  def send_smart_group_contact
+    @sent = []
+    @not_sent = []
+    @message = []
+    subject = params[:email][:subject]
+    message = params[:email][:message]
+    current_user_email = current_user.email
+    @smart_group = SmartGroup.find(params[:smart_group_id])
+    @smart_group.found_people.collect do |f|
+      p = Person.find(f.id)
+      if p.has_household_emails?
+        VolunteerMailer.deliver_smart_group_contact(subject, message, p, current_user_email)
+        @sent << p.full_name rescue nil
+      else
+        @not_sent << p.full_name rescue nil
+      end
+    end
+    if @sent.length == 0
+      @message = "Nobody in the group has an email address, so I couldn't send any emails."
+    else
+    @message = "Sent emails to " + @sent.to_sentence + "." << "<br>"
+    end
+    if @not_sent.length == 0
+        @message << "That's everybody in the group."
+      else
+      @message << "Could not send emails to " + @not_sent.to_sentence + " because no email address was found."
+    end
+    flash[:notice] = @message
+    redirect_back_or_default(:action => 'show', :id => params[:group_id])
+  end
+  
+  def worker_send_smart_group_contact
+    @sent = []
+    @not_sent = []
+    @message = []
+    options = {}
+    subject = params[:email][:subject]
+    message = params[:email][:message]
+    current_user_email = current_user.email
+    options[:subject] = subject
+    options[:message] = message
+    options[:current_user_email] = current_user_email
+    @smart_group = SmartGroup.find(params[:smart_group_id])
+    params[:included_people].each do |p|
+        options[:p] = p
+        EmailWorker.asynch_do_smart_group_contact(options)
+        @sent << p.full_name rescue nil
+        @sent << " #{options[:p]}"
+    end
+    if @sent.length == 0
+      @message = "Nobody in the group has an email address, so I couldn't send any emails."
+    else
+    @message = "Sent emails to " + @sent.to_sentence + "." << "<br>"
+    end
+    @message << "::"+ "#{options[:p]}"+ "::"
+    flash[:notice] = @message
+    redirect_back_or_default(:action => 'show', :id => params[:smart_group_id])
+  end
+  
+  def delete_smart_group
+    SmartGroup.find(params[:id]).destroy
+    flash[:notice] = "Smart group is gone forever."
+  end
+  
+  def show_people
+    @g = SmartGroup.find(params[:id])
+  end
+  
+  def hide_people
+    @g = SmartGroup.find(params[:id])
   end
       
 

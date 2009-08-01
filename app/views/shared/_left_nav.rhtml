@@ -31,6 +31,9 @@
 		<li class="<%= menu_class("households") %>">
 			<%= link_to "Households", :controller => 'households', :action => 'list' %>
 		</li>
+		<li class="<%= menu_class("organizations") %>">
+			<%= link_to "Organizations", :controller => 'organizations', :action => 'list' %>
+		</li>
 		<li class="<%= menu_class("checkin") %>">
 			<%= link_to "Checkin", :controller => 'checkin' %>
 		</li>
@@ -42,6 +45,9 @@
 		</li>
 		<li class="<%= menu_class("groups") %>">
 			<%= link_to "Manage Groups", :controller => 'groups', :action => 'tree_view' %>
+		</li>
+		<li class="<%= menu_class("smart_groups") %>">
+			<%= link_to "Smart Groups", :controller => 'smart_groups', :action => 'list' %>
 		</li>
 		<li class="<%= menu_class("involvements") %>">
 			<%= link_to "Manage Involvement", :controller => 'involvements', :action => 'manage' %>
@@ -62,7 +68,7 @@
 			<%= link_to "Contributions", :controller => 'contributions' %>
 		</li>
 		<% end %>
-		<% if current_user.has_role?("admin") %>
+		<% if current_user.has_role?("settings") %>
 		<li class="<%= menu_class("settings") %>">
 			<%= link_to "Settings", :controller => 'settings' %>
 		</li>
