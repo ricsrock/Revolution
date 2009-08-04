@@ -3,7 +3,8 @@ namespace :setup do
   desc "Do stuff needed to get rolling." 
   task(:initial_data => :environment) do
       #initial user - this guy gets admin role...
-      @user = User.new(:first_name => "Joe", :last_name => "Admin", :login => "jadmin", :email => "joe@admin.com", :password => "joeadmin", :password_confirmation => "joeadmin")
+      @user = User.new(:first_name => "Joe", :last_name => "Admin", :login => "jadmin", :email => "joe@admin.com",
+                       :password => "joeadmin", :password_confirmation => "joeadmin", :preferences => Hash.new)
       @user.save
       
       @household = Household.new(:name => "Testing", :address1 => "Test Street", :city => "City", :state => "ST", :zip => "71111")
