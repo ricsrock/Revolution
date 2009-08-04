@@ -55,10 +55,11 @@ class Donation < ActiveRecord::Base
     end
     
     if names.length == 1
-        last_nayme = names[0].strip + '%'
+        last_nayme = '%' + names[0].strip + '%'
         name_condition = Caboose::EZ::Condition.new :people do
             last_name =~ last_nayme
         end
+        name_condition.append ['organizations.name LIKE ?', last_nayme], :or
       #name_conditions = ['last_name LIKE ?', params[:person_name].strip + '%']
     elsif names.length >= 2
         last_nayme = names[0].strip + '%'
@@ -70,6 +71,8 @@ class Donation < ActiveRecord::Base
       #name_conditions = ['first_name LIKE ? AND last_name LIKE ?', names[1].strip + '%', names[0].strip + '%']
     end
     sql_conditions << name_condition
+    
+    
     
     sql_conditions << "(contributions.deleted_at IS NULL)"
     
@@ -90,8 +93,13 @@ class Donation < ActiveRecord::Base
 
     #order_sql = 'people.last_name, people.first_name ASC'
     
-    find(:all, :include => [:fund, {:contribution, :person}], :conditions => combined_cond.to_sql,
-                            :order => [order_sql])
+    find(:all,
+               :conditions => combined_cond.to_sql,
+               :joins => ['LEFT OUTER JOIN funds ON funds.id = donations.fund_id
+                           LEFT OUTER JOIN contributions ON contributions.id = donations.contribution_id
+                           LEFT OUTER JOIN people ON people.id = contributions.contributable_id AND contributions.contributable_type = "Person"
+                           LEFT OUTER JOIN organizations ON organizations.id = contributions.contributable_id AND contributions.contributable_type = "Organization"'],
+               :order => [order_sql])
     end
     
     def date
@@ -123,6 +131,32 @@ class Donation < ActiveRecord::Base
         
     end
     
+    def self.find_by_fund_id_and_range(fund_id,range_condition)
+        sql_conditions = []
 
+        unless fund_id == ""
+          fund_result = fund_id
+          fund_cond = Caboose::EZ::Condition.new :funds do
+            id =~ fund_result
+          end
+          sql_conditions << fund_cond
+        end
+        
+        deleted_at = "contributions.deleted_at IS NULL"
+        
+        combined_cond = Caboose::EZ::Condition.new
+        sql_conditions.each do |item|
+          combined_cond << item
+        end
+        
+        combined_cond.append 'contributions.deleted_at IS NULL'
+        combined_cond.append range_condition
+        
+        Donation.find(:all, :include => [:contribution, :fund],
+                            :conditions => combined_cond.to_sql)
+        
+    end
     
+
+  
 end

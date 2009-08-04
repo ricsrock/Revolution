@@ -1,4 +1,4 @@
-<% @meetings ||= @group.meetings_for_range(session[:range] || "Year To Date") %>
+<% @meetings ||= @group.meetings_for_range(current_user.preferences[:range] || "Year To Date") %>
 
 <% unless @meetings.empty? %>
 	<table class="list">

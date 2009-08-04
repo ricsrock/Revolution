@@ -21,7 +21,7 @@ class Person < ActiveRecord::Base
   has_many :small_groups_i_lead, :class_name => "Group", :foreign_key => "small_group_leader_id"
   belongs_to :user, :class_name => "User", :foreign_key => "user_id"
   has_many :contacts, :conditions => ['contacts.deleted_at IS NULL'], :order => ['created_at, contact_type_id ASC']
-  has_many :contributions, :conditions => ['contributions.deleted_at IS NULL']
+  has_many :contributions, :as => :contributable, :conditions => ['contributions.deleted_at IS NULL']
   has_many :relationships
   has_many :attendance_trackers, :dependent => :destroy
   has_many :tracked_groups, :through => :attendance_trackers, :source => :group

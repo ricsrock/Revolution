@@ -23,7 +23,7 @@ class Tool < ActiveRecord::Base
         start_range = (Time.now.beginning_of_year)
         end_range = Time.now
       end
-      range_condition = Caboose::EZ::Condition.new model.to_sym do
+      range_condition = EZ::Where::Condition.new model.to_sym do
         eval(field_name) <=> (start_range..end_range)
       end
     end

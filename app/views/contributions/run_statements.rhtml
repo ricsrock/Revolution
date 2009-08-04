@@ -12,8 +12,9 @@
 	
 	<div style="float:none;clear:both;page-break-after:always;">
 		<div style="float:left;">
-			<b><%= person rescue nil %></b><br>
-			<%= donations.first.contribution.person.household.address_block rescue nil %>
+			<b><%= donations.first.contribution.contributable.full_name rescue nil %></b><br>
+			<% c = donations.first.contribution.contributable %>
+			<%= c.class == Person ? c.household.address_block : c.address_block rescue nil %>
 		</div>
 		<div style="float:right;">
 			<b>River Valley Church</b><br>

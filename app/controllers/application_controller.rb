@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   include RoleRequirementSystem
   include ExceptionNotifiable
   include RedirectCode
+  
 
   #audit User, Person
 
@@ -17,7 +18,7 @@ class ApplicationController < ActionController::Base
   helper :date
   
   # Pick a unique cookie name to distinguish our session data from others'
-  session :session_key => '_revolution_session_id'
+  #session :session_key => '_revolution_session_id'
   
   alias :rescue_action_locally :rescue_action_in_public
   
@@ -27,9 +28,9 @@ class ApplicationController < ActionController::Base
     User.current_user = self.current_user
   end
   
-# def current_user
-#   @user ||= User.find(session[:user])
-# end
+ #def current_user
+  # @current_user
+ #end
   
  
 end

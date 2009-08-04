@@ -1,0 +1,31 @@
+<% @organization = Organization.find(entity) %>
+
+ <% form_tag :action => 'update_emails', :id => entity do %>
+<table class="list">
+	<tr>
+		<th>Email</th>
+		<th>Primary?</th>
+		<th>Type</th>
+		<th>Comments</th>
+		<th>Delete</th>
+	</tr>
+<% for @email in @organization.emails %>
+   <%= error_messages_for :email %>
+   <% fields_for "email[]" do |f| %>
+<tr class=<%= cycle("even", "odd") %>>
+	<td><%= f.text_field :email, :size => 20 %></td>
+	<td><%= f.check_box :primary %></td>
+	<td><%= f.select( :comm_type_id, CommType.find(:all).collect {|p| [p.name, p.id]}, {}) %></td>
+	<td><%= f.text_field :comments, :size => 20 %></td>
+	<td><%= link_to "X", :action => 'delete_email', :id => @email, :organization => @organization %></td>
+</tr>
+   <% end %>
+ <% end %>
+<tr>
+	<td><%= submit_tag 'Update' %> | <%= link_to "Cancel", :action => 'show', :id => @organization %></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+</table>
+ <% end %>

@@ -8,13 +8,13 @@ module AuthenticatedSystem
     
     # Accesses the current user from the session.
     def current_user
-      @current_user ||= (session[:user] && User.find_by_id(session[:user])) || :false
+      @current_user ||= (session[:user_id] && User.find_by_id(session[:user_id])) || :false
     end
     
     # Store the given user in the session.
     def current_user=(new_user)
-      session[:user] = (new_user.nil? || new_user.is_a?(Symbol)) ? nil : new_user.id
-      @current_user = new_user
+      session[:user_id] = new_user ? new_user.id : nil
+      @current_user = new_user || false
     end
     
     # Check if the user is authorized.
@@ -65,7 +65,7 @@ module AuthenticatedSystem
       respond_to do |accepts|
         accepts.html do
           store_location
-          redirect_to :controller => '/accounts', :action => 'login'
+          redirect_to :controller => '/account', :action => 'login'
         end
         accepts.xml do
           headers["Status"]           = "Unauthorized"

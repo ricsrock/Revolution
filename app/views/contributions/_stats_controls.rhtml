@@ -12,6 +12,10 @@
 				<%= collection_select(:filter, :fund_id, Fund.find(:all), :id, :name, options = {:prompt => "All"}) %>
 			</td>
 			<td>
+				<label>Choose Range</label><br>
+				<%= select(:filter, :range, Contact::RANGES) %>
+			</td>
+			<td>
 				<%= submit_tag 'Go' %> <span id='progress' style='display:none;'><img src='/images/working.gif'></span>
 			</td>
 		</tr>

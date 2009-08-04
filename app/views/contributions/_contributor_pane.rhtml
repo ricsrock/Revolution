@@ -1,7 +1,12 @@
-<% unless @person.nil? %>
+<% if not @person.nil? %>
 	<div>
 		<%= @person.full_name %><br>
 		<%= @person.household.address_block rescue nil %>
+	</div>
+<% elsif not @organization.nil? %>
+	<div>
+		<%= @organization.name %><br>
+		<%= @organization.address_block rescue nil %>
 	</div>
 <% end %>
 

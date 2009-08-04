@@ -20,9 +20,9 @@ class PeopleController < ApplicationController
 
   def show
     @person = Person.find(params[:id])
-    session[:person_partial] ||= "communication"
-    session[:person_tab] ||= "communication"
-    session[:sticky_person] = @person
+    current_user.set_preference(:person_partial, "communication")
+    current_user.set_preference(:person_tab, "communication")
+    current_user.set_preference!(:sticky_person_id, @person.id)
     session[:original_uri] = request.request_uri
   end
 
@@ -126,8 +126,8 @@ class PeopleController < ApplicationController
   def change_partial
     @person = Person.find(params[:person_id])
     @new_partial = params[:new_partial]
-    session[:person_partial] = @new_partial
-    session[:person_tab] = params[:new_partial]
+    current_user.set_preference!(:person_partial, @new_partial)
+    current_user.set_preference!(:person_tab, params[:new_partial])
     @variable = params[:new_partial]
   end
   

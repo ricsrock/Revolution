@@ -1,0 +1,32 @@
+<fieldset><legend><strong>Phones</strong></legend>
+<% @entity = @organization %>
+<div id="phones">
+<%= render :partial => "shared/phones" %>
+<%= link_to_remote "Edit Phones", :url => {:action => 'edit_phones', :entity => @organization} %>
+</div>
+<div id="add_phone_menu" style="padding-bottom: 10px;">
+  <%= link_to_function "Hide Add Phone Form", toggle_phone_links('hide') %> |
+  <%= link_to_function "Show Add Phone Form", toggle_phone_links('show') %>
+</div>
+
+<div id="new_phone_wrap" style="display:none";>
+<%= render :partial => 'new_phone', :locals => {:organization_id => @organization} %>
+</div>
+</fieldset>
+
+<fieldset><legend><strong>Emails</strong></legend>
+<% @emails = @household %>
+<div id="emails">
+	<%= render :partial => "shared/emails" %>
+	<%= link_to_remote "Edit Emails", :url => {:action => 'edit_emails', :entity => @organization} %>
+</div>
+
+<div id="add_email_menu" style="padding-bottom: 10px;">
+  <%= link_to_function "Hide Add Email Form", toggle_email_links('hide') %> |
+  <%= link_to_function "Show Add Email Form", toggle_email_links('show') %>
+</div>
+
+<div id="new_email_wrap" style="display:none";>
+<%= render :partial => 'new_email', :locals => {:organization_id => @organization} %>
+</div>
+</fieldset>

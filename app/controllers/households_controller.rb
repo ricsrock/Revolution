@@ -33,14 +33,14 @@ class HouseholdsController < ApplicationController
   def show
     @household = Household.find(params[:id], :include => [:phones, :emails, :people])
     session[:original_uri] = request.request_uri
-    session[:household_partial] ||= "communication"
+    current_user.set_preference(:household_partial, "communication")
   end
   
   def change_partial
       @household = Household.find(params[:household_id])
       @new_partial = params[:new_partial]
-      session[:household_partial] = @new_partial
-      session[:household_tab] = params[:new_partial]
+      current_user.set_preference!(:household_partial, @new_partial)
+      current_user.set_preference!(:household_tab, params[:new_partial])
       @variable = params[:new_partial]
     end
 

@@ -1,0 +1,7 @@
+<div id="setup_menu" style="width:100%;float:none;clear:both;">
+	<ul>
+		<li class="<%= organization_tab_class("communication", @variable) %>"><%= link_to_remote "Communication", :url => { :controller => 'organizations', :action => 'change_partial', :organization_id => @organization, :new_partial => "communication" } %></li>
+		<li class="<%= organization_tab_class("associates", @variable) %>"><%= link_to_remote "Associates", :url => { :controller => 'organizations', :action => 'change_partial', :organization_id => @organization, :new_partial => "associates" } %></li>
+	</ul>
+	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
+</div>

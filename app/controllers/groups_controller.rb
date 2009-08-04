@@ -35,9 +35,9 @@ class GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @found_people = Person.find(:all, :order => ['last_name, first_name ASC'], :limit => 5)
-    session[:group_partial] ||= "enrollments_tab"
-    session[:group_tab] ||= "enrollments_tab"
-    session[:sticky_group] = @group
+    current_user.set_preference(:group_partial, "enrollments_tab")
+    current_user.set_preference(:group_tab, "enrollments_tab")
+    current_user.set_preference!(:sticky_group_id, @group.id)
     @enrollments = @group.current_enrollments
     @enrollments_choice = "Current"
     store_location
@@ -60,7 +60,7 @@ class GroupsController < ApplicationController
 
   def edit
     @group = Group.find(params[:id])
-    session[:sticky_group] = params[:id]
+    current_user.set_preference!(:sticky_group_id, @group.id)
   end
 
   def update
@@ -260,8 +260,10 @@ class GroupsController < ApplicationController
   def change_partial
     @group = Group.find(params[:group_id])
     @new_partial = params[:new_partial]
-    session[:group_partial] = @new_partial
-    session[:group_tab] = params[:new_partial]
+    current_user.set_preference!(:group_partial, @new_partial)
+    #session[:group_partial] = @new_partial
+    current_user.set_preference!(:group_tab, @new_partial)
+    #session[:group_tab] = params[:new_partial]
     @variable = params[:new_partial]
   end
   
@@ -338,7 +340,7 @@ class GroupsController < ApplicationController
   def delete_meeting
     @meeting = Meeting.find(params[:id]).destroy
     @group = Group.find(params[:group_id])
-    @meetings = @group.meetings_for_range(session[:range] || "Year To Date")
+    @meetings = @group.meetings_for_range(current_user.preferences[:range] || "Year To Date")
   end
   
   def event_type_changed
@@ -415,7 +417,7 @@ class GroupsController < ApplicationController
     session[:range] = params[:filter_range]
     range_cond = Tool.range_condition(params[:filter_range],"events","date")
     @meetings = @group.meetings.find(:all, :conditions => range_cond ? range_cond.to_sql : "1=1",
-                                           :include => [[:instance] => :event])
+                                           :include => [:instance => [:event]])
   end
   
   

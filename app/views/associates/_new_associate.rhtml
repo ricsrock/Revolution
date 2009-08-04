@@ -1,0 +1,18 @@
+
+<% form_for :associate, :url => {:controller => 'organizations', :action => 'add_an_associate', :organization_id => @organization }  do |f| %>
+
+<table border="0" cellspacing="1" cellpadding="1">
+
+	<tr>
+		<td>First Name: </td>
+		<td><%= f.text_field :first_name, :size => 20 %></td>
+		<td>Last Name: </td>
+		<td><%= f.text_field :last_name, :size => 20 %></td>
+	</tr>
+	<tr>
+		<td>Comments: </td>
+		<td colspan="3"><%= text_area 'associate', 'comments', :cols => 70, :rows => 5 %></td>
+	</tr>
+</table>
+	<%= submit_tag "Add Associate" %>
+ <% end %>

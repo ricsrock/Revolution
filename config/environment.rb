@@ -49,6 +49,10 @@ Rails::Initializer.run do |config|
   # Please note that observers generated using script/generate observer need to have an _observer suffix
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
   config.active_record.observers = :meeting_observer, :user_observer
+  
+  #config.action_controller.session_store = :active_record_store
+  
 end
+
 
 #Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new

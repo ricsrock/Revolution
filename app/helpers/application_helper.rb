@@ -23,6 +23,14 @@ module ApplicationHelper
     end
   end
   
+  def toggle_associate_links(action)
+    update_page do |page|
+      page.select('#new_associate_wrap').each do |item|
+        page.send action, item
+      end
+    end
+  end
+  
   def toggle_email_links(action)
      update_page do |page|
        page.select('#new_email_wrap').each do |item|
@@ -130,7 +138,7 @@ module ApplicationHelper
         def person_tab_class(tab_name,instance_variable=nil)
             if instance_variable == tab_name
                 'activestate'
-            elsif instance_variable.nil? && session[:person_tab] == tab_name
+            elsif instance_variable.nil? && current_user.preferences[:person_tab] == tab_name
                 'activestate'
             else
                 ''
@@ -140,7 +148,7 @@ module ApplicationHelper
         def group_tab_class(tab_name,instance_variable=nil)
             if instance_variable == tab_name
                 'activestate'
-            elsif instance_variable.nil? && session[:group_tab] == tab_name
+            elsif instance_variable.nil? && current_user.preferences[:group_tab] == tab_name
                 'activestate'
             else
                 ''
@@ -150,7 +158,17 @@ module ApplicationHelper
         def household_tab_class(tab_name,instance_variable=nil)
             if instance_variable == tab_name
                 'activestate'
-            elsif instance_variable.nil? && session[:household_tab] == tab_name
+            elsif instance_variable.nil? && current_user.preferences[:household_tab] == tab_name
+                'activestate'
+            else
+                ''
+            end
+        end
+        
+        def organization_tab_class(tab_name,instance_variable=nil)
+            if instance_variable == tab_name
+                'activestate'
+            elsif instance_variable.nil? && current_user.preferences[:organization_tab] == tab_name
                 'activestate'
             else
                 ''

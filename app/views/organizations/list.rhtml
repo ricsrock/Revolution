@@ -1,0 +1,58 @@
+<h1>Listing All Organizations</h1>
+
+
+
+
+
+
+<span class="letter-box">
+	<%= link_to 'All', :action => 'list', :letter => "%" %>
+</span>
+<% data = 'A'..'Z' %>
+<% data.each do |letter| %>
+<span class="letter-box">
+	<%= link_to "#{letter.to_s}", :action => 'list', :letter => letter %>
+</span>
+<% end %>
+
+<br><br>
+
+<%= link_to 'New organization', :action => 'new' %>
+
+<div style="float:none;clear:both;">
+<table border="0" cellspacing="0" cellpadding="6" width="100%">
+	<tr style="background-color:#536A97;color:#FFFFFF;padding:.3em;">
+		<th>Organization</th>
+		<th>Associates</th>
+		<th>Address</th>
+		<th>Phone</th>
+		<th></th>
+		<th></th>	
+	</tr>
+	
+<% @organizations.each do |o| %>
+  <tr class="<%= cycle('even', 'odd') %>">
+    <td>
+      <%= link_to "#{o.name}", :controller => 'organizations', :action => 'show', :id => o.id rescue nil %>
+    </td>
+    <td>
+      <small><%= o.associates.collect {|a| link_to "#{a.first_name}", :controller => 'associates', :action => 'show', :id => a.id}.to_sentence rescue nil %></small>
+    </td>
+    <td>
+      <%= o.address_block rescue nil %>
+    </td>
+    <td>
+      <%= number_to_phone(o.best_phone.number, :area_code => true) rescue nil %>
+    </td>
+    <td>
+        <%= link_to 'Edit', :action => 'edit', :id => o.id %>
+    </td>
+    <td><%= link_to 'Destroy', { :action => 'destroy', :id => o.id }, :confirm => 'Are you sure?', :method => :post %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= will_paginate @organizations %>
+<br />
+
+</div>

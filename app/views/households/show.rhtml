@@ -24,7 +24,7 @@
 </div>
 
 <div id="tabs-area" style="background-color:#EEEEEE;float:none; clear:both;">
-	<%= render :partial => "#{session[:household_partial]}", :locals => {:household => @household} %>
+	<%= render :partial => "#{current_user.preferences[:household_partial]}", :locals => {:household => @household} %>
 </div>
 
 

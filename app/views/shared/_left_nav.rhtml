@@ -4,28 +4,30 @@
 		<li class="<%= menu_class("dashboard") %>">
 			<%= link_to "My Dashboard", :controller => 'dashboard' %>
 		</li>
-		<% unless session[:sticky_person].nil? %>
+		<% unless current_user.preferences[:sticky_person_id].nil? %>
+		<% @sticky_person = Person.find(current_user.preferences[:sticky_person_id]) %>
 		<li style="background-color:#FFFFFF;color:#039;font-size:6px;">
 			<table border="0" cellspacing="0" cellpadding="0" width="100%">
 				<tr>
-					<td rowspan="3"><%= link_to (picture_for(session[:sticky_person], :small)), :controller => 'people',
+					<td rowspan="3"><%= link_to (picture_for(@sticky_person, :small)), :controller => 'people',
 					 																:action => 'show',
-																					:id => session[:sticky_person].id rescue nil %></td>
-					<td><%= session[:sticky_person].full_name %></td>
+																					:id => @sticky_person.id rescue nil %></td>
+					<td><%= @sticky_person.full_name %></td>
 				</tr>
 				<tr>
-					<td>Age: <%= session[:sticky_person].age rescue nil  %></td>
+					<td>Age: <%= @sticky_person.age rescue nil  %></td>
 				</tr>
 				<tr>
-					<td><%= session[:sticky_person].household_emergency_phone.s_formatted rescue nil  %></td>
+					<td><%= @sticky_person.household_emergency_phone.s_formatted rescue nil  %></td>
 				</tr>
 			</table>
 			<%# link_to "Jump to: #{session[:sticky_person].full_name}", :controller => 'people', :action => 'show', :id => session[:sticky_person].id rescue nil %>
 		</li>
 		<% end %>
-		<% unless session[:sticky_group].nil? %>
+		<% unless current_user.preferences[:sticky_group_id].nil? %>
+		<% @sticky_group = Group.find(current_user.preferences[:sticky_group_id]) %>
 		<li class="tiny">
-			<%= link_to "Jump to: #{session[:sticky_group].name}", :controller => 'groups', :action => 'show', :id => session[:sticky_group].id rescue nil %>
+			<%= link_to "Jump to: #{@sticky_group.name}", :controller => 'groups', :action => 'show', :id => @sticky_group.id rescue nil %>
 		</li>
 		<% end %>
 		<li class="<%= menu_class("households") %>">

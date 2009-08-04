@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   require_role "admin", :for_all_except => [:list, :show]
   
   
+  
   def index
     list
     render :action => 'list'

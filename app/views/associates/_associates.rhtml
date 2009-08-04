@@ -1,0 +1,25 @@
+<table class="list">
+	<tr>
+		<th>Name</th>
+                <th>Comments</th>
+        </tr>
+	
+<% if ! @associates.empty? %>
+	
+	<% @associates.each do |a| %>
+		<tr class="<%= cycle("even", "odd") %>">
+		  <td><%= a.full_name %></td>
+		  <td><%= a.comments rescue nil %></td>
+		</tr>
+	<% end %>
+</table>
+
+<% else %>
+
+</table>
+<div id="message-black">
+	There are no associates in this organization.
+</div>
+
+<% end %>
+

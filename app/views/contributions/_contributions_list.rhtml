@@ -7,10 +7,10 @@
 			<th></th>
 		</tr>
 
-<% @batch.contributions.sort_by {|c| c.person.search_order }.each do |c| %>
+<% @batch.contributions.sort_by {|c| c.contributable.search_order rescue nil }.each do |c| %>
 
 		<tr class="<%= cycle("money_even","money_odd") %>">
-			<td><%= c.person.full_name rescue nil %></td>
+			<td><%= c.contributable.full_name rescue nil %></td>
 			<td><%= c.date.strftime('%m/%d/%Y') rescue nil %></td>
 			<td><%= c.check_num rescue nil %></td>
 			<td><%= number_to_currency c.calc_total rescue nil %></td>

@@ -1,0 +1,16 @@
+<fieldset><legend><strong>Associates In This Organization</strong></legend>
+<div id="list_associates">
+	<% @associates = @organization.associates %>
+	<%= render :partial => 'associates/associates' %>
+</div>
+
+
+<div id="add_associate_menu" style="padding-bottom: 10px;">
+  <%= link_to_function "Hide Add Associate Form", toggle_associate_links('hide') %> |
+  <%= link_to_function "Show Add Associate Form", toggle_associate_links('show') %>
+</div>
+<% @view ||= "display:none;" %>
+	<div id="new_associate_wrap" style= "<%= @view %>";>
+    <%= render :partial => 'associates/new_associate', :locals => {:organization_id => @organization} %>
+	</div>
+</fieldset>

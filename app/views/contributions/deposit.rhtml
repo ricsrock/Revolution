@@ -9,10 +9,10 @@
 		<th>Contributor</th>
 		<th>Amount</th>
 	</tr>
-	<% @batch.contributions.sort_by {|g| g.person.last_first_name}.each do |c| %>
+	<% @batch.contributions.sort_by {|g| g.contributable.search_order rescue nil}.each do |c| %>
 	<tr class="<%= cycle('even','odd') %>">
 		<td><%= c.check_num rescue nil %></td>
-		<td><%= c.person.last_first_name rescue nil %></td>
+		<td><%= c.contributable.full_name rescue nil %></td>
 		<td><%= number_to_currency c.total rescue nil %>
 			<span id="message-black">(
 				<%= c.donations.collect { |d| [(number_to_currency d.amount) + ": ", d.fund.name]}.to_sentence %>)

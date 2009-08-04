@@ -1,0 +1,2 @@
+page.replace_html("tabs-area", :partial => "#{current_user.preferences[:organization_partial]}", :locals => {:organization => @organization})
+page.replace_html("organization-tabs", :partial => 'organization_tabs')

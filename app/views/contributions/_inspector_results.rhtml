@@ -18,7 +18,7 @@
 
 <% @found_donations.each do |d| %>
 	<tr>
-		<td><%= d.contribution.person.full_name rescue nil %></td>
+		<td><%= d.contribution.contributable.full_name rescue nil %></td>
 		<td><%= d.contribution.date.strftime('%m/%d/%Y') rescue nil %></td>
 		<td><%= d.fund.name rescue nil %></td>
 		<td><%= number_to_currency d.amount rescue nil %></td>

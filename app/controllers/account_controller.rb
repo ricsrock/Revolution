@@ -19,13 +19,14 @@ class AccountController < ApplicationController
     cookies.delete :portlet
     params[:remember_me] = "1"
     return unless request.post?
-
     self.current_user = User.authenticate(params[:login], params[:password])
     if logged_in?
       if params[:remember_me] == "1"
         self.current_user.remember_me
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
+      #session[:user] = self.current_user.id
+      #session_user_id(session[:user])
     
       redirect_back_or_default(:controller => '/dashboard', :action => 'index')
       flash[:notice] = "Logged in successfully"
@@ -90,6 +91,7 @@ class AccountController < ApplicationController
   end
 
   private
+    
   def depends
     if cookies[:portlet] == 'portlet'
       'portlet'

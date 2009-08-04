@@ -213,7 +213,7 @@ class Group < ActiveRecord::Base
 	def meetings_for_range(named_range)
 	 range_cond = Tool.range_condition(named_range,"events","date")
 	 self.meetings.find(:all, :conditions => range_cond ? range_cond.to_sql : "1=1",
-	                    :include => [[:instance] => :event])
+	                    :include => [:instance => [:event ]])
 	end
 		
 end

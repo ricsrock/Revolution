@@ -1,0 +1,7 @@
+<% if @person.nil? %>
+<%= hidden_field :contribution, :contributable_id, :value => @organization.id rescue nil %>
+<%= hidden_field :contribution, :contributable_type, :value => 'Organization' %>
+<% else %>
+<%= hidden_field :contribution, :contributable_id, :value => @person.id rescue nil %>
+<%= hidden_field :contribution, :contributable_type, :value => 'Person' %>
+<% end %>

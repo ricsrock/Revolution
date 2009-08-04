@@ -1,0 +1,34 @@
+<% @item = @organization %>
+<%= render :partial => "shared/admin_box" %>
+
+<%= error_messages_for 'associate' %>
+
+<%= image_tag('house.png', :border => 0, :size => '18x18') %>
+<h2 style="display:inline;"><%= @organization.name %></h2><br>
+<%= @organization.address_block %> <br/>
+
+<%= link_to 'Edit', :action => 'edit', :id => @organization %> |
+<%= link_to 'geocode this address', :controller => 'households', :action => 'code_address', :id => @organization %>
+
+<br>
+<br/>
+
+<div id="organization-tabs" style="float:none;clear:both;width:100%;">
+  <%= render :partial => "organization_tabs", :locals => {:organization_id => @organization} %>
+</div>
+
+<div id="tabs-area" style="background-color:#EEEEEE;float:none; clear:both;">
+  <%= render :partial => "#{current_user.preferences[:organization_partial]}", :locals => {:organization => @organization} %>
+</div>
+
+
+
+
+
+<div id="associates">
+
+</div>
+
+
+
+

@@ -87,6 +87,7 @@ class ContributionsController < ApplicationController
         @contribution = Contribution.new
         @contribution.donations.build
         @found_people = Person.find(:first)
+        @found_organizations = Organization.find(:first)
     else
         flash[:notice] = "This batch is locked. It cannot be edited."
         redirect_to :action => 'index'
@@ -97,24 +98,32 @@ class ContributionsController < ApplicationController
     @contribution = Contribution.new
     @contribution.donations.build
     @found_people = Person.find(:first)
+    @found_organizations = Organization.find(:first)
   end
   
   def show_picker
     @found_people = Person.find(:all, :limit => 5, :order => ['last_name, first_name ASC'])
+    @found_organizations = Organization.find(:all, :limit => 5, :order => ['name ASC'])
   end
   
   def search
     names = params[:search][:text].split(',')
 		if names.length == 1
-			 conditions = ['first_name LIKE ? OR last_name LIKE ?', params[:search][:text].strip + '%', names[0].strip + '%']
+			 personConditions = ['first_name LIKE ? OR last_name LIKE ?', params[:search][:text].strip + '%', names[0].strip + '%']
 		elsif names.length >= 2
-			 conditions = ['first_name LIKE ? OR last_name LIKE ? AND (first_name LIKE ? OR last_name LIKE ?)',params[:search][:text].strip + '%', names[0].strip + '%', names[1].strip + '%', names[1].strip + '%']
+			 personConditions = ['first_name LIKE ? OR last_name LIKE ? AND (first_name LIKE ? OR last_name LIKE ?)',params[:search][:text].strip + '%', names[0].strip + '%', names[1].strip + '%', names[1].strip + '%']
 		end
-		@found_people = Person.find(:all, :conditions => conditions, :limit => 10, :order => 'last_name ASC, first_name ASC')
+    organizationConditions = ['name LIKE ?',params[:search][:text].strip + '%']
+		@found_people = Person.find(:all, :conditions => personConditions, :limit => 10, :order => 'last_name ASC, first_name ASC')    
+    @found_organizations = Organization.find(:all, :conditions => organizationConditions, :limit => 10, :order => 'name ASC')
   end
   
   def choose_person
     @person = Person.find(params[:id])
+  end
+
+  def choose_organization
+    @organization = Organization.find(params[:id])
   end
   
   def set_totals
@@ -200,8 +209,9 @@ class ContributionsController < ApplicationController
   end
   
   def filter_stats
-    @c = Donation.find_by_fund_id(params[:filter][:fund_id])
-    @grouped = @c.group_by {|c| c.date.strftime('%Y-%m') unless c.date == false } 
+    range_condition = Tool.range_condition(params[:filter][:range],"contributions","date")
+    @c = Donation.find_by_fund_id_and_range(params[:filter][:fund_id],range_condition)
+    @grouped = @c.group_by {|c| c.date.strftime('%Y-%m') unless c.date == false }
   end
   
   def chart
@@ -284,24 +294,22 @@ class ContributionsController < ApplicationController
   end
   
   def run_statements
-    #@contributions = Contribution.find(:all, :conditions => ['date BETWEEN ? AND ?', params[:start_date], params[:end_date]],
-    #                                   :include => [:person])
-#  @contributions = Contribution.find(:all,
-#                                     :include => [:person],
-#                                     :order => ['people.last_name ASC, people.first_name ASC'])
     person_condition = ""
     unless params[:range][:search_name].blank?
       if params[:range][:search_name].split(',').length > 1
         names = params[:range][:search_name].split(',')
-        person_condition = "AND (people.last_name LIKE '#{names[0].strip + '%'}' AND people.first_name LIKE '#{names[1].strip + '%'}')"
+        person_condition = "AND (people.last_name LIKE '#{names[0].strip + "%"}' AND people.first_name LIKE '#{names[1].strip + "%"}')"
       else
-        person_condition = "AND (people.last_name LIKE '#{params[:range][:search_name].strip + '%'}')"
+        person_condition = "AND ((people.last_name LIKE '#{params[:range][:search_name].strip + "%"}') OR (organizations.name LIKE '#{params[:range][:search_name].strip + "%"}'))"
       end
     end
     start_date = params[:range][:start_date].to_time
     end_date = params[:range][:end_date].to_time
     @donations = Donation.find(:all,
-                              :include => [{:contribution => :person}, :fund],
+                              :joins => ["LEFT OUTER JOIN funds ON funds.id = donations.fund_id
+                                          LEFT OUTER JOIN contributions ON contributions.id = donations.contribution_id
+                                          LEFT OUTER JOIN people ON people.id = contributions.contributable_id AND contributions.contributable_type = 'Person'
+                                          LEFT OUTER JOIN organizations ON organizations.id = contributions.contributable_id AND contributions.contributable_type = 'Organization'"],
                               :conditions => ["(contributions.date BETWEEN ? AND ?) AND (contributions.deleted_at IS NULL) #{person_condition}", start_date,end_date])
     
     @start_date = start_date

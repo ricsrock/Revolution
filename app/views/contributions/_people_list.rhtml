@@ -1,4 +1,4 @@
-<% if @found_people.length < 1 %>
+<% if @found_people.length < 1 and @found_organizations.length < 1 %>
 	<div class="money-tan" style="padding-left:.2em;">
 		No results
 	</div>
@@ -10,5 +10,11 @@
 		<%= link_to_remote "#{p.full_name}", :url => {:action =>'choose_person', :id => p.id} %> (#<%= p.id rescue nil %>)
 	</div>
 <% end %>
+<% @found_organizations.each do |o| %>
+	<div class="money-tan" style="padding-left:.2em;">
+		<%= link_to_remote "#{o.name}", :url => {:action =>'choose_organization', :id => o.id} %> (#<%= o.id rescue nil %>)
+	</div>
+<% end %>
 
 <% end %>
+

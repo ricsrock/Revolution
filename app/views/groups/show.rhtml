@@ -34,14 +34,10 @@
 	<%= render :partial => "group_tabs", :locals => {:group_id => @group} %>	
 </div>
 
+
 <div id="tabs-area" style="background-color:#F5F5F5;float:none; clear:both;">
-	<%= render :partial => "#{session[:group_partial]}", :locals => {:group => @group} %>
+	<%= render :partial => current_user.preferences[:group_partial], :locals => {:group => @group} %>
 </div>
-
-
-
-
-
 
 
 <% content_for :dashboard do %>
