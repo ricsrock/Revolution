@@ -3,5 +3,11 @@
 <!--[form:relationship_type]-->
 <p><label for="relationship_type_name">Name</label><br/>
 <%= text_field 'relationship_type', 'name'  %></p>
+
+<p><label for="relationship_type_auto_notify">Auto-Notify?</label><br/>
+<%= check_box 'relationship_type', 'auto_notify'  %></p>
+
+<p><label for="relationship_type_recipients">Notify Recipients</label><br/>
+<%= text_field 'relationship_type', 'recipients'  %></p>
 <!--[eoform:relationship_type]-->
 

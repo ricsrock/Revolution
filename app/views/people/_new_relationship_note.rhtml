@@ -1,0 +1,13 @@
+<% form_remote_tag :url => {:action => 'create_relationship_note', :relationship_id => @relationship} do %>
+<div>
+	<%= collection_select(:note, :type, NoteType.find(:all), :id, :name) %> <label>Confidential:</label> <%= check_box :note, :confidential %>
+</div>
+
+<div>
+	<%= text_area :note, :text, :rows => 8, :cols => 70 %>
+</div>
+
+<%= submit_tag 'Create' %> | <%= link_to_remote 'cancel', :url => {:action => 'cancel_new_relationship_note', :relationship => @relationship} %>
+
+<% end %>
+

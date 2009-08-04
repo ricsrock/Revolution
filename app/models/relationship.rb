@@ -4,6 +4,7 @@ class Relationship < ActiveRecord::Base
   belongs_to :relationship_type
   belongs_to :person_role, :class_name => "RelationshipRole", :foreign_key => "person_role_id"
   belongs_to :relates_to_role, :class_name => "RelationshipRole", :foreign_key => "relates_to_role_id"
+  has_many :notes, :as => :noteable
   
   validates_presence_of :person_id
   validates_presence_of :relationship_type_id

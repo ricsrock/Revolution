@@ -360,4 +360,31 @@ class PeopleController < ApplicationController
     @note = @person.notes.find(params[:id])
   end
   
+  def new_relationship_note
+    @relationship = Relationship.find(params[:id])
+  end
+  
+  def cancel_new_relationship_note
+    @relationship = Relationship.find(params[:relationship])
+  end
+  
+  def create_relationship_note
+    params[:note][:created_by] = current_user.login
+    @note = Note.create(:type_id => params[:note][:type],
+                 :created_by => current_user.login,
+                 :confidential => params[:note][:confidential],
+                 :text => params[:note][:text])
+    @relationship = Relationship.find(params[:relationship_id])
+    @relationship.notes << @note
+  end
+  
+  def show_relationship_note
+    @note = Note.find(params[:note_id])
+    @relationship = Relationship.find(params[:relationship_id])
+  end
+  
+  def cancel_view_note
+    @relationship = Relationship.find(params[:relationship])
+  end
+  
 end

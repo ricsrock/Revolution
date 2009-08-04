@@ -12,6 +12,13 @@ class Involvement < ActiveRecord::Base
   
   delegate :full_name, :last_first_name, :to => "person.nil? ? false : person"
   
+  after_save {|record| record.person.set_involved
+                       record.person.set_connected}
+                       
+  after_destroy {|record| record.person.set_involved
+                          record.person.set_connected}
+  
+  
   def person_name
     self.person.full_name
   end

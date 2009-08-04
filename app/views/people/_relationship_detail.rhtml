@@ -65,6 +65,31 @@
 		</td>
 	</tr>
 </table>
-
 <%= link_to_remote 'edit', :url => { :action => 'edit_relationship', :id => @relationship, :person => @person} %> | 
 <%= link_to_remote "Relationships", :url => { :controller => 'people', :action => 'change_partial', :person_id => @person, :new_partial => "relationships" } %>
+<h3>Notes</h3><hr>
+<div id="notes_area">
+	
+<table class="list">
+	<tr>
+		<th>Date</th>
+		<th>Type</th>
+		<th>Created By</th>
+		<th></th>
+	</tr>
+	
+	<% @relationship.notes.sort_by(&:created_at).each do |note| %>
+
+	<tr>
+		<td><%= note.created_at.strftime('%m/%d/%Y') rescue nil %></td>
+		<td><%= note.note_type.name rescue nil %></td>
+		<td><%= note.created_by rescue nil %></td>
+		<td><%= link_to_remote("view", :url => {:action => 'show_relationship_note', :note_id => note.id, :relationship_id => @relationship}) %></td>
+	</tr>
+	
+	<% end %>
+	
+</table>
+<%= link_to_remote("new note", :url => {:action => "new_relationship_note", :id => @relationship.id}) %>
+</div>
+

@@ -1,0 +1,8 @@
+<div>
+	<b>Note Type: </b><%= @note.note_type.name rescue nil %>
+</div>
+<div>
+	<%= note_text(@note,current_user) %>
+</div>
+
+<%= link_to_remote("Back", :url => {:action => 'cancel_view_note', :relationship => @relationship}) %>

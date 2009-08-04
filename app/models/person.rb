@@ -849,6 +849,7 @@ class Person < ActiveRecord::Base
             errors.add_to_base(e.message)
             false
         end
+        self.update_attribute(:has_a_picture, self.picture ? true : false)
     end
     
     def enrolled_in_group?(group_name)
@@ -967,6 +968,19 @@ class Person < ActiveRecord::Base
     def fullname
         "#{firstname} #{lastname}"
       end
+      
+  def set_enrolled
+    self.update_attribute(:enrolled, self.current_enrollments.empty? ? false : true)
+  end
+
+  def set_involved
+    self.update_attribute(:involved, self.current_involvements.empty? ? false : true)
+  end
+
+  def set_connected
+    self.update_attribute(:connected, (self.enrolled? or self.involved?) ? true : false)
+  end
+  
 
       def to_ldap_entry
     		{	
