@@ -12,9 +12,9 @@ class CheckinController < ApplicationController
 
   def home
     @phrase = params[:searchtext]
-    @phrase ||= session[:query]
+    @phrase ||= current_user.preferences[:query]
     @phrase ||= ""
-    session[:query] = @phrase
+    current_user.set_preference!(:query,@phrase)
     a1 = "%"
     a2 = "%"
     @searchphrase = a1 + @phrase.to_s + a2

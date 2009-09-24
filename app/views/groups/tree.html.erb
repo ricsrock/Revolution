@@ -22,9 +22,10 @@
 <div style="height:20px">
 	<span id='progress' style='display:none;'><img src='/images/working.gif'></span>
 </div>
-<%= link_to_remote 'expand all', :url => {:action => 'expand_all'} %> | <%= link_to_remote 'collapse all', :url => {:action => 'collapse_all'} %>
-<% unless session[:sticky_group].nil? or session[:sticky_group].root? %>
- | <%= link_to_remote "toggle: #{session[:sticky_group].name}", :url => {:action => 'toggle_sticky_group', :sticky_group_id => session[:sticky_group]} rescue nil %>
+<%= link_to_remote 'expand all', :url => {:action => 'expand_all'} %> |
+<%= link_to_remote 'collapse all', :url => {:action => 'collapse_all'} %>
+<% if @sticky_group %> |
+	<%= link_to_remote "toggle: #{@sticky_group.name}", :url => {:action => 'toggle_sticky_group', :sticky_group_id => @sticky_group} rescue nil %>
 <% end %>
 
 <div>

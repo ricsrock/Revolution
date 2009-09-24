@@ -24,6 +24,17 @@ class Organization < ActiveRecord::Base
 	  block << '</span>'
 	  block
 	end
+	
+	def address_stamp
+      if ! self.address1.nil? or self.city.nil? or self.state.nil? or self.zip.nil?
+          self.address1 + ', ' + self.city + ', ' + self.state
+      end
+  end
+  
+  def url_for
+     	"/organizations/show/#{id}"
+	end
+  
 
   def first_phone
 	  Phone.find(:first,

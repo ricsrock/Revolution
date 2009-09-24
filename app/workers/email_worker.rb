@@ -1,6 +1,7 @@
 class EmailWorker < Workling::Base
   def do_smart_group_contact(options)
     #unless options[:p].blank?
+      logger.info("::: do_smart_group_contact was called in the EmailWorker :::")
       person = Person.find(options[:p])
       VolunteerMailer.deliver_smart_group_contact(options[:subject], options[:message], person, options[:current_user_email])
     #end
@@ -25,6 +26,14 @@ class EmailWorker < Workling::Base
                                                     options[:sender_email],
                                                     options[:meeting_notes],
                                                     options[:number_present])
+  end
+  
+  def do_note_notify(options)
+    relationship = Relationship.find(options[:relationship_id])
+    VolunteerMailer.deliver_note_created_message(options[:created_by],
+                                                 options[:sender_email],
+                                                 options[:note_text],
+                                                 relationship)
   end
   
   def do_setup_person_contr_fields(options)

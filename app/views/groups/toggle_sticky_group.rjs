@@ -1,4 +1,4 @@
-group = Group.find(session[:sticky_group])
+group = Group.find(current_user.preferences[:sticky_group_id])
 
 group.ancestors(:scope => current_user.group_scope).each do |c|
   unless c.root?

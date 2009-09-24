@@ -4,7 +4,7 @@
 		<li class="<%= menu_class("dashboard") %>">
 			<%= link_to "My Dashboard", :controller => 'dashboard' %>
 		</li>
-		<% unless current_user.preferences[:sticky_person_id].nil? %>
+		<% if current_user.preferences[:sticky_person_id] %>
 		<% @sticky_person = Person.find(current_user.preferences[:sticky_person_id]) %>
 		<li style="background-color:#FFFFFF;color:#039;font-size:6px;">
 			<table border="0" cellspacing="0" cellpadding="0" width="100%">
@@ -24,7 +24,7 @@
 			<%# link_to "Jump to: #{session[:sticky_person].full_name}", :controller => 'people', :action => 'show', :id => session[:sticky_person].id rescue nil %>
 		</li>
 		<% end %>
-		<% unless current_user.preferences[:sticky_group_id].nil? %>
+		<% if current_user.preferences[:sticky_group_id] %>
 		<% @sticky_group = Group.find(current_user.preferences[:sticky_group_id]) %>
 		<li class="tiny">
 			<%= link_to "Jump to: #{@sticky_group.name}", :controller => 'groups', :action => 'show', :id => @sticky_group.id rescue nil %>
@@ -46,7 +46,7 @@
 			<%= link_to "Manage Ministries", :controller => 'ministries', :action => 'manage' %>
 		</li>
 		<li class="<%= menu_class("groups") %>">
-			<%= link_to "Manage Groups", :controller => 'groups', :action => 'tree_view' %>
+			<%= link_to "Manage Groups", :controller => 'groups', :action => 'tree' %>
 		</li>
 		<li class="<%= menu_class("smart_groups") %>">
 			<%= link_to "Smart Groups", :controller => 'smart_groups', :action => 'list' %>

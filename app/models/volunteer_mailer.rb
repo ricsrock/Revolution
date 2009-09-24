@@ -121,4 +121,13 @@ class VolunteerMailer < ActionMailer::Base
     body(:created_by => created_by, :group_name => group_name, :meeting_date => meeting_date, :meeting_notes => meeting_notes, :number_present => number_present)
   end
   
+  def note_created_message(created_by,sender_email,note_text,relationship)
+    subject     "A New Note Has Been Created"
+    recipients  relationship.relationship_type.recipients ? relationship.relationship_type.recipients : 'lowell@rivervalleychurch.net'
+    from        sender_email
+    cc          'daphne@rivervalleychurch.net'
+    sent_on     Time.now
+    body(:created_by => created_by, :note_text => note_text, :relationship => relationship)
+  end
+  
 end

@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   before_filter :login_required
   require_role ["checkin_user","supervisor"]
   
-  caches_page :tree_view
+  #caches_page :tree_view
   
   
   auto_complete_for :group_choice, :name
@@ -86,10 +86,13 @@ class GroupsController < ApplicationController
     redirect_to :action => 'list'
   end
   
-  def tree_view
+  def tree
     flash[:notice] = '' # I can't remember why I blanked out notices for tree view, but it seems dumb.
     @message = ''
-    store_location
+    @sticky_group = current_user.preferences[:sticky_group_id] ? Group.find(current_user.preferences[:sticky_group_id]) : nil
+    #store_location
+    g = Group.first
+    u = User.find(current_user.id)
   end
   
 
@@ -378,7 +381,7 @@ class GroupsController < ApplicationController
   
   def set_new_scope
     Group.set_scope(current_user,params[:group][:scope])
-    redirect_to :action => 'tree_view'
+    redirect_to :action => 'tree'
   end
   
   def edit_enrollment

@@ -8,7 +8,7 @@
 <%= @organization.address_block %> <br/>
 
 <%= link_to 'Edit', :action => 'edit', :id => @organization %> |
-<%= link_to 'geocode this address', :controller => 'households', :action => 'code_address', :id => @organization %>
+<%= link_to 'geocode this address', :controller => 'organizations', :action => 'code_address', :id => @organization %>
 
 <br>
 <br/>
