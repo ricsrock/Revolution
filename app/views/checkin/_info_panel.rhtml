@@ -1,13 +1,11 @@
 <% if not @curr_instance.nil? %>
 
-<br/>
 <h3>Currently Checking In To...</h3>
-<h3><%= @curr_instance.event.formatted_date %> ::
+<h3 style="color:red;"><%= @curr_instance.event.formatted_date %> ::
 <%= @curr_instance.event.event_type.name %> ::
 <%= @curr_instance.instance_type.name %></h3>
 
 <% else %>
-<br/>
 <br/>
 <div id="message">
 	Please set up events and instances and create at least one event.
