@@ -33,10 +33,14 @@ class Contribution < ActiveRecord::Base
   end
   
   def last_first_name
-    if self.contributable_type == 'person'
-      self.person.last_name + ", " + self.person.first_name + " (#" + self.person.id.to_s + ")"
+    if self.contributable_type == 'Person'
+      self.contributable.last_name + ", " + self.contributable.first_name + " (#" + self.contributable.id.to_s + ")"
     else
-      self.organization.name + " (#" + self.organization.id.to_s + ")"
+      self.contributable.name + " (#" + self.contributable.id.to_s + ")"
     end
+  end
+  
+  def unique_id
+    self.contributable_type + self.contributable_id.to_s
   end
 end

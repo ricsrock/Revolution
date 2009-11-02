@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   
   include AuthenticatedSystem
   before_filter :set_current_user
+  before_filter :set_time_zone
   # You can move this into a different controller, if you wish.  This module gives you the require_role helpers, and others.
   include RoleRequirementSystem
   include ExceptionNotifiable
@@ -27,6 +28,11 @@ class ApplicationController < ActionController::Base
   def set_current_user
     User.current_user = self.current_user
   end
+  
+  def set_time_zone
+    Time.zone = 'Central Time (US & Canada)'
+  end
+  
   
  #def current_user
   # @current_user

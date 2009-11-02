@@ -10,12 +10,16 @@ class Person < ActiveRecord::Base
                                 :conditions => {:checkout_time => nil}
   has_many :attendances
   has_many :enrollments
+  has_many :current_enrollments, :class_name => "Enrollment",
+                                 :conditions => ['enrollments.end_time IS NULL OR enrollments.end_time > ?', Time.now]
   has_many :groups, :through => :enrollments
   has_many :notes, :as => :noteable
   has_many :departments, :class_name => "Department", :foreign_key => "responsible_person_id"
   has_many :ministries, :class_name => "Ministry", :foreign_key => "responsible_person_id"
   has_many :teams, :class_name => "Team", :foreign_key => "responsible_person_id"
   has_many :involvements
+  has_many :current_involvements, :class_name => "Involvement",
+                                 :conditions => ['involvements.end_date IS NULL OR involvements.end_date > ?', Date.today]
   has_many :taggings
   has_many :tags, :through => :taggings
   has_many :small_groups_i_lead, :class_name => "Group", :foreign_key => "small_group_leader_id"
@@ -23,6 +27,7 @@ class Person < ActiveRecord::Base
   has_many :contacts, :conditions => ['contacts.deleted_at IS NULL'], :order => ['created_at, contact_type_id ASC']
   has_many :contributions, :as => :contributable, :conditions => ['contributions.deleted_at IS NULL']
   has_many :relationships
+  has_many :web_relationships, :class_name => 'Relationship', :foreign_key => 'person_id', :conditions => ['relationships.web_access = 1']
   has_many :attendance_trackers, :dependent => :destroy
   has_many :tracked_groups, :through => :attendance_trackers, :source => :group
   has_many :notes, :as => :noteable
@@ -48,6 +53,8 @@ class Person < ActiveRecord::Base
   POSITIONS = [ "Primary Contact", "Spouse", "Dependent", "Friend", "Relative", "Deceased" ]
   GENDERS = ["Female", "Male"]
   FILTER_VALUES = ["All", "Recent Attenders", "Newcomers", "Active Attenders"]
+  
+  
   
   def self.actives
     Person.find(:all, :conditions => ['attendance_status = ?',"Active"])
@@ -129,11 +136,11 @@ class Person < ActiveRecord::Base
 	end
 	
 	def household_phones
-	  Phone.find(:all, :conditions => ['phonable_id = ?', self.household_id])
+	  Phone.find(:all, :conditions => ['phonable_id = ? AND phones.phoneable_type LIKE ?', self.household_id, "Household"])
 	end
 	
 	def household_first_phone
-	  Phone.find(:first, :conditions => ['phonable_id = ?', self.household_id])
+	  Phone.find(:first, :conditions => ['phonable_id = ? AND phones.phoneable_type LIKE ?', self.household_id, "Household"])
 	end
 	
 	def household_primary_phone
@@ -313,32 +320,38 @@ class Person < ActiveRecord::Base
                     :conditions => ['people.id = ? AND events.date IS NOT NULL', self.id])
 	end
 	
+#this is throwing an error on the live app 'statement invalid'
+# 3/30/2009     switched ordr of fields in the join people clause
 	def recent_attend_new
 	    Attendance.find(:first, :select => ['events.date'],
 	                    :joins => ['LEFT OUTER JOIN meetings ON meetings.id = attendances.meeting_id
 	                                LEFT OUTER JOIN instances ON instances.id = meetings.instance_id
 	                                LEFT OUTER JOIN events ON events.id = instances.event_id
-	                                LEFT OUTER JOIN people ON attendances.person_id = people.id'],
+	                                LEFT OUTER JOIN people ON people.id = attendances.person_id'],
 	                    :order => ['events.date DESC'],
 	                    :conditions => ['people.id = ? AND events.date IS NOT NULL', self.id])
     end
-	
+
+#same thing...
+# 3/30/2009     same attempt
 	def first_attend_new
 	    Attendance.find(:first, :select => ['events.date'],
 	                    :joins => ['LEFT OUTER JOIN meetings ON meetings.id = attendances.meeting_id
 	                                LEFT OUTER JOIN instances ON instances.id = meetings.instance_id
 	                                LEFT OUTER JOIN events ON events.id = instances.event_id
-	                                LEFT OUTER JOIN people ON attendances.person_id = people.id'],
+	                                LEFT OUTER JOIN people ON people.id = attendances.person_id'],
 	                    :order => ['events.date ASC'],
 	                    :conditions => ['people.id = ? AND events.date IS NOT NULL', self.id])
   end
   
-  def first_attend_this_group(group_id)
+#this is throwing an error on the live app 'statement invalid' - it will not fail on my development system
+# 3/30/2009     switched the order of fields in the join people clause... wild guess
+  def first_attend_this_group(group_id) 
     Attendance.find(:first, :select => ['events.date'],
                     :joins => ["LEFT OUTER JOIN meetings ON meetings.id = attendances.meeting_id AND meetings.group_id = #{group_id}
                                 LEFT OUTER JOIN instances ON instances.id = meetings.instance_id
                                 LEFT OUTER JOIN events ON events.id = instances.event_id
-                                LEFT OUTER JOIN people ON attendances.person_id = people.id"],
+                                LEFT OUTER JOIN people ON people.id = attendances.person_id"],
                     :order => ['events.date ASC'],
                     :conditions => ['people.id = ? AND events.date IS NOT NULL', self.id])
   end
@@ -394,12 +407,13 @@ class Person < ActiveRecord::Base
 	 @event_list.include?(event_id)
 	end
 	
+# 3/30/2009     tried switching order of fields in join clauses
 	def attended_meetings
 	 Meeting.find(:all, :select => ['meetings.id, events.date, groups.id as group_id'],
 	                    :joins => ['INNER JOIN attendances ON attendances.meeting_id = meetings.id
-	                                LEFT OUTER JOIN instances ON meetings.instance_id = instances.id
-	                                LEFT OUTER JOIN events ON instances.event_id = events.id
-	                                LEFT OUTER JOIN groups ON meetings.group_id = groups.id'],
+	                                LEFT OUTER JOIN instances ON instances.id = meetings.instance_id 
+	                                LEFT OUTER JOIN events ON events.id = instances.event_id 
+	                                LEFT OUTER JOIN groups ON groups.id = meetings.group_id'],
 	                    :conditions => ['attendances.person_id = ?', self.id])
 	end
 	
@@ -429,9 +443,10 @@ class Person < ActiveRecord::Base
 	def self.find_recent_attenders
 	  #finds people who have attended at least once in the last 5 weeks.
 	  the_date = (Time.now - 5.weeks).strftime('%Y-%m-%d')
+	  group_id = Group.find_by_name('Adult Worship')
 	  Person.find(:all,
-                :include => :household,
-                :conditions => ["(people.max_date >= ?)", the_date],
+                :include => [:household, :enrollments],
+                :conditions => ["(people.max_date >= ?) AND (enrollments.group_id = ?)", the_date, group_id],
                 :order => ['people.last_name, people.first_name ASC'])
                
 	end
@@ -440,17 +455,19 @@ class Person < ActiveRecord::Base
 	  #finds people who have attended between 1 and 4 times AND at least once in the last 5 weeks.
 	  the_date = (Time.now - 5.weeks).strftime('%Y-%m-%d')
 	  the_range = "1 AND 4"
+	  group_id = Group.find_by_name('Adult Worship')
 	  Person.find(:all,
-                :include => :household,
-                :conditions => ["(people.max_date >= ?) AND (people.attend_count BETWEEN #{the_range})",the_date],
+                :include => [:household, :enrollments],
+                :conditions => ["(people.max_date >= ?) AND (people.attend_count BETWEEN #{the_range}) AND (enrollments.group_id = ?)",the_date, group_id],
                 :order => ['people.last_name, people.first_name ASC'])
     end
     
     def self.find_active_attenders
   	  #finds people who have attended more than 3 times AND at least once in the last 5 weeks.
+  	  group_id = Group.find_by_name('Adult Worship')
   	  Person.find(:all,
-                  :include => :household,
-                  :conditions => ['people.attendance_status LIKE ?', 'Active'],
+                  :include => [:household, :enrollments],
+                  :conditions => ['people.attendance_status LIKE ? AND enrollments.group_id = ?', 'Active', group_id],
                   :order => ['people.last_name, people.first_name ASC'])
     end
       
@@ -518,6 +535,7 @@ class Person < ActiveRecord::Base
       #set_second_attend
     end
     
+#this is part of the mysterious error in the live app...
     def set_second_attend # datetime
         self.update_attribute(:second_attend, self.attended_events.collect {|e| e.date.to_s}.uniq.sort[-2]) unless self.attended_meetings.length < 2
         #set_attendance_status
@@ -678,6 +696,7 @@ class Person < ActiveRecord::Base
         self.update_attribute(:attendance_status, new_status)
     end
     
+#throwing an error 'statement invalid'
     def enroll_in_group(group_id)
         @enrollment = Enrollment.new(:person_id => self.id, :group_id => group_id)
         @enrollment.save
@@ -904,18 +923,19 @@ class Person < ActiveRecord::Base
                   addr.postalcode = self.household.zip.to_s
               end
             end
-       #  maker.add_tel(self.best_phone_smart) do |tel|
-       #      tel.location = 'home'
-       #      tel.preferred = true
-       #  end
+           
+      #  maker.add_tel(self.best_phone_smart) do |tel|
+      #      tel.location = 'home'
+      #      tel.preferred = true
+      #  end
             
-            self.phones.each do |phone|
+           self.phones.each do |phone|
               maker.add_tel(phone.s_formatted) do |tel|
                 tel.location = phone.comm_type.name
                 tel.preferred = phone.primary?
               end
             end
-            
+
             if self.household
               self.household.phones.each do |phone|
                 maker.add_tel(phone.s_formatted) do |tel|
@@ -937,13 +957,19 @@ class Person < ActiveRecord::Base
             end
             maker.birthday = self.birthdate unless self.birthdate.nil? or self.birthdate.blank?
             #end
-      if self.picture
-      maker.add_photo do |photo|
-          photo.image = File.open(self.picture.full_filename).read
-          photo.type = 'jpeg'
-      end
-      end
+#   if self.picture
+#   maker.add_photo do |photo|
+#       photo.image = File.open(self.picture.full_filename.to_s).read
+#       photo.type = 'jpeg'
+#   end
+#   end
             
+        end
+        
+        if self.picture
+          photodata = [File.open(self.picture.full_filename.to_s).read].pack('m').to_s
+          photodata = photodata.gsub(/[ \n]/, '').scan(/.{1,76}/).join("\n  ")
+          card.to_s.sub!('END:VCARD', "PHOTO;BASE64:\n  " + photodata + "\nEND:VCARD")
         end
         card.to_s
     end
@@ -967,22 +993,21 @@ class Person < ActiveRecord::Base
     
     def fullname
         "#{firstname} #{lastname}"
-      end
-      
-  def set_enrolled
-    self.update_attribute(:enrolled, self.current_enrollments.empty? ? false : true)
-  end
-
-  def set_involved
-    self.update_attribute(:involved, self.current_involvements.empty? ? false : true)
-  end
-
-  def set_connected
-    self.update_attribute(:connected, (self.enrolled? or self.involved?) ? true : false)
-  end
-  
-
-      def to_ldap_entry
+    end
+    
+    def set_enrolled
+      self.update_attribute(:enrolled, self.current_enrollments.empty? ? false : true)
+    end
+    
+    def set_involved
+      self.update_attribute(:involved, self.current_involvements.empty? ? false : true)
+    end
+    
+    def set_connected
+      self.update_attribute(:connected, (self.enrolled? or self.involved?) ? true : false)
+    end
+    
+    def to_ldap_entry
     		{	
     		  "objectclass"     => ["top", "person", "organizationalPerson", "inetOrgPerson", "mozillaOrgPerson"],
     			"uid"             => ["tbotter-#{id}"],
@@ -1002,12 +1027,12 @@ class Person < ActiveRecord::Base
       		"postalcode"      => [zip], 
     		}
     	end
-
-      def self.search(query)
-        Person.find(:all, 
-                    :conditions => ["(firstname LIKE ?) OR (lastname LIKE ?)", #add search by email to this...
-                                    "#{query}%", "#{query}%"])
-      end
+    	
+    	def self.search(query)
+          Person.find(:all, 
+                      :conditions => ["(first_name LIKE ?) OR (last_name LIKE ?)", 
+                                      "#{query}%", "#{query}%"])
+        end
     
                                     
     

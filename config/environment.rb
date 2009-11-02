@@ -57,7 +57,7 @@ end
 ExceptionNotifier.exception_recipients = %w(ricsrock@gmail.com)
 
 
-#Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new
+Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new
 
 class Date
       def to_time(form = :local)
@@ -92,8 +92,7 @@ class Time
     def end_of_week
       days_to_sunday = self.wday!=0 ? 7-self.wday : 0
       (self + days_to_sunday.days).end_of_day
-    end
-    
+    end 
 end
 
 class Array

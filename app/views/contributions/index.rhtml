@@ -7,9 +7,21 @@
 
 <% @batches = Batch.find(:all, :conditions => Tool.range_condition("Year To Date", "batches","created_at").to_sql, :order => ['date_collected DESC']) %>
 
-<% @batches.each do |batch| %>
-	<div>
+<div style="height:500px;overflow:auto;">
+	<div class="odd" style="float:none;clear:both;">
+		<span style="width:150px;">
+			Date Collected
+		</span>
 		<span>
+			
+		</span>
+		<span>
+			
+		</span>
+	</div>
+<% @batches.each do |batch| %>
+	<div style="float:none;clear:both;" class="<%= cycle('even','odd') %>">
+		<span style="width:150px;">
 			<%= batch.date_collected.strftime('%m/%d/%Y') %>
 		</span>
 		<span id="batch_<%= batch.id %>_links">
@@ -20,3 +32,4 @@
 		</span>
 	</div>
 <% end %>
+</div>

@@ -5,9 +5,13 @@
 	</tr>
 	
 <% if @group.linked_teams.length < 1 %>
-<div id="message-black">
-	There are no ministry teams linked to this group.
-</div>
+<tr>
+	<td colspan=2>
+		<div id="message-black">
+			There are no ministry teams linked to this group. Only linked teams can be scheduled to serve at this group's meetings.
+		</div>	
+	</td>
+</tr>
 </table>
 
 <% else %>

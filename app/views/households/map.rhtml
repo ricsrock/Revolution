@@ -36,7 +36,7 @@
         
         <%@places.each do |place|%>
         var point = new GPoint(<%=place[:lng]%>,<%=place[:lat]%>);
-        var marker = createMarker(point,"<div><%=h place[:name]%><br><%=h place[:address]%></div>")
+        var marker = createMarker(point,"<div><%=h place[:name]%><br><%=h place[:ordered_people]%><br><%=h place[:address]%></div>")
         map.addOverlay(marker);
         <%end%>
     }    

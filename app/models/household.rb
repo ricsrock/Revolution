@@ -170,6 +170,10 @@ class Household < ActiveRecord::Base
         end
         geo.success ? true : false
     end
+    
+    def people_in_order
+      self.people.sort_by(&:sort_order).collect {|p| p.family_name}.to_sentence
+    end
 	
 	######
 	protected

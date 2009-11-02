@@ -423,6 +423,15 @@ class GroupsController < ApplicationController
                                            :include => [:instance => [:event]])
   end
   
+  def jump_to_group
+    @group = Group.find(params[:id])
+    respond_to do |format|
+      format.js {render :update do |page|
+        page.redirect_to :action => 'show', :id => @group
+      end}
+    end
+  end
+  
   
 
   

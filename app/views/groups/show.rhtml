@@ -1,5 +1,10 @@
 <% @item = @group %>
-<%= group_breadcrumb(@group) %>
+<%= group_breadcrumb_alt(@group) %>
+
+<%= observe_field 'group_id',
+ 	:url => {:action => 'jump_to_group'},
+	:with => 'id' %>
+
 <%= render :partial => "shared/admin_box", :item => @item %>
 <br>
 <%= image_tag('search_icon_group.png', {:border => 0, :size => '16x16'}) rescue nil %>
@@ -27,7 +32,7 @@
 </table>
 
 <%= link_to 'Edit', :action => 'edit', :id => @group %> |
-<%= link_to 'Tree View', :action => 'tree_view' %>
+<%= link_to 'Tree View', :action => 'tree' %>
 
 <br><br>
 <div id="group-tabs" style="float:none;clear:both;width:100%;">

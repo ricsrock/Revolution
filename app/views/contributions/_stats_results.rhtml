@@ -18,7 +18,7 @@
 		 <% t << g.collect {|c| c.amount}.sum %>
 		<% end %>
 		<td><%= number_to_currency Contribution.average(t) rescue nil %></td>
-		<td><%= b.collect {|c| c.contribution.person_id}.uniq.length rescue nil %></td>
+		<td><%= b.collect {|c| c.contribution.unique_id}.uniq.length rescue nil %></td>
 	</tr>
 <% end %>
 </table>

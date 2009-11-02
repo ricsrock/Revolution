@@ -21,7 +21,7 @@ class Tool < ActiveRecord::Base
         end_range = Time.now
       elsif range_name == "Year To Date"
         start_range = (Time.now.beginning_of_year)
-        end_range = Time.now
+        end_range = Time.zone.now
       end
       range_condition = EZ::Where::Condition.new model.to_sym do
         eval(field_name) <=> (start_range..end_range)

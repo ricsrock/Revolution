@@ -27,7 +27,7 @@ class HouseholdsController < ApplicationController
 #                                           :order => :name,
 #                                           :conditions => ['name LIKE ?', conditions],
 #                                             :per_page => number_per_page)
-    @households = Household.paginate :page => 1, :conditions => ['name like ?', conditions], :order => 'name', :per_page => number_per_page
+    @households = Household.paginate :page => params[:page], :conditions => ['name like ?', conditions], :order => 'name', :per_page => number_per_page
   end
 
   def show

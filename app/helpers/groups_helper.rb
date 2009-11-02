@@ -27,7 +27,7 @@ module GroupsHelper
     end
       if @group.children.length > 0
         @result << '[ '
-        @result << collection_select('group','id',@group.children, 'id','name', {:include_blank => true, :prompt => "jump to"},{})
+        @result << collection_select('group','id',@group.children.sort_by(&:name), 'id','name', {:include_blank => true, :prompt => "jump to"},{})
         @result << ']'
     end
     @result << '</div>'
