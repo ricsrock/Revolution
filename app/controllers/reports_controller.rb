@@ -139,7 +139,7 @@ class ReportsController < ApplicationController
         def export_batch_of_contacts
          csv_string = FasterCSV.generate do |csv|
             csv << ["FirstName", "LastName", "Address1", "Address2", "City", "State", "Zip", "Phone", "Email"]
-          session[:selected_ids].each do |id|
+          current_user.preferences[:selected_ids].each do |id|
             @contact = Contact.find(id)
             if  @contact.person && @contact.person.household
               csv << [@contact.person['first_name'],

@@ -26,12 +26,12 @@
 					 id="row_<%= m.id %>_participants"><%= f.text_field 'participants_count', {:size => 15} %></div>
 				<div style="<%= cell_style %>"
 					 id="row_<%= m.id %>_total"><%= render :partial => "row_total", :locals => {:meeting => m} %></div>
-				<%= observe_field "meetings[#{m.id}]_leaders_count",
+				<%= observe_field "meetings_#{m.id}_leaders_count",
 				 				 :url => {:action => 'leaders_changed',
 					                      :id => m.id,
 					                      :instance => i.id },
 					 			 :with => 'leaders_count' %>
-				<%= observe_field "meetings[#{m.id}]_participants_count",
+				<%= observe_field "meetings_#{m.id}_participants_count",
 				 				 :url => {:action => 'participants_changed',
 					                      :id => m.id,
 					                      :instance => i.id },

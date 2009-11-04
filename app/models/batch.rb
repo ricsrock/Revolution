@@ -22,4 +22,8 @@ class Batch < ActiveRecord::Base
     end
   end
   
+#def self.time_zone_aware_attributes
+#  false
+#end
+  
 end

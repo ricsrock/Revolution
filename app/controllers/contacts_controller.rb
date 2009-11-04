@@ -66,7 +66,8 @@ class ContactsController < ApplicationController
     range_result = params[:contact][:range]
     type_result = params[:contact][:type_id]
     @contacts = Contact.find_with_ez_where(status_result,login_result,order_result,range_result,type_result)
-    session[:found_contacts] = @contacts.collect {|c| c.id}
+    #session[:found_contacts] = @contacts.collect {|c| c.id}
+    current_user.set_preference!(:found_contacts, @contacts.collect {|c| c.id})
   end
   
   def add_contacts
@@ -137,7 +138,8 @@ class ContactsController < ApplicationController
   def manage
     @contacts = current_user.open_contacts
     session[:uri] = request.request_uri
-    session[:found_contacts] = @contacts.collect {|c| c.id}
+    #session[:found_contacts] = @contacts.collect {|c| c.id}
+    current_user.set_preference!(:found_contacts, @contacts.collect {|c| c.id})
   end
   
   def create_follow_up
@@ -185,7 +187,8 @@ class ContactsController < ApplicationController
   
   def do_something
     if params[:selected_ids]
-        session[:selected_ids] = params[:selected_ids]
+        #session[:selected_ids] = params[:selected_ids]
+        current_user.set_preference!(:selected_ids, params[:selected_ids])
         action_to_take = params[:contact][:choice]
         if action_to_take == "Multi-Close"
           render :partial => 'multi_close', :layout => true
@@ -199,7 +202,7 @@ class ContactsController < ApplicationController
   
   def close_multiple
     closed_count = 0
-    session[:selected_ids].each do |id|
+    current_user.preferences[:selected_ids].each do |id|
      @follow_up = FollowUp.new(:notes => params[:follow_up][:comments],
                                 :follow_up_type_id => params[:follow_up_type][:id],
                                 :created_by => current_user.login)
@@ -270,11 +273,11 @@ class ContactsController < ApplicationController
   end
   
   def show_all_follow_ups
-    @contacts = Contact.find(:all, :conditions => ['id IN (?)', session[:found_contacts]])
+    @contacts = Contact.find(:all, :conditions => ['id IN (?)', current_user.preferences[:found_contacts]])
   end
   
   def hide_all_follow_ups
-    @contacts = Contact.find(:all, :conditions => ['id IN (?)', session[:found_contacts]])
+    @contacts = Contact.find(:all, :conditions => ['id IN (?)', current_user.preferences[:found_contacts]])
   end
   
   
