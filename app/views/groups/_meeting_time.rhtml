@@ -1,1 +1,1 @@
-<%= time_select ('group', 'time_from', {:twelve_hour => true, :minute_step => 15}) %> - <%= time_select ('group', 'time_until', {:twelve_hour => true, :minute_step => 15}) %>
+<%= datetime_select('group', 'time_from', {:minute_step => 15, :prefix => 'from', :discard_year => true, :discard_month => true, :discard_day => true, :ignore_date => true}) %> - <%= datetime_select('group', 'time_until', {:minute_step => 15, :prefix => 'until', :discard_year => true, :discard_month => true, :discard_day => true, :ignore_date => true}) %>

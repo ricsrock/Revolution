@@ -9,10 +9,10 @@
 		<% form_remote_tag :url => {:action => "choose_household", :household_id => h.id, :group_id => @group} do %>
 			<span class="household-name-space" style="float:none;">
 				<%= link_to "#{h.household_name}", :controller => 'households', :action => 'show', :id => h %>
-			</span>
+			</span><br>
 			<span>
 				Address: <%= h.address1 %> <%= h.city %> <%= h.state %> <%= h.zip %>
-			</span>
+			</span><br>
 			<span class="cell" style="float:right;">
 				<%= submit_to_remote 'choose_btn', 'Choose Household', :url => {:action => 'choose_household',
 																	   :household_id => h.id,

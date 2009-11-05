@@ -1,13 +1,13 @@
 
-<table>
+<div>
 	<% form_remote_tag :url => {:action=> 'household_search', :group_id => @group.id} do %>
-<tr>
-<td><label for="searchtext"><font size="1"><b>Search For Last Name:</b></font></label></td>
-<td><%= text_field_tag :household_name %></td>
-<td>
+<div>
+<span><label for="searchtext"><font size="1"><b>Search For Last Name:</b></font></label></span>
+<span><%= text_field_tag :household_name %></span>
+<span>
 	<%= submit_to_remote 'search_btn', 'Search', :url => {:action => 'household_search', :group_id => @group} %>
-</td>
-<td></td>
-</tr>
+</span>
+<span></span>
+</div>
 <% end %>
-</table>
+</div>

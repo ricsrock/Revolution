@@ -284,6 +284,10 @@ class GroupsController < ApplicationController
     @meeting_cadence = MeetingCadence.find_or_create_by_name(params[:meeting_cadence][:name])
     @meeting_place = MeetingPlace.find_or_create_by_name(params[:meeting_place][:name])
     @leader_name_for_printing = LeaderNameForPrinting.find_or_create_by_name(params[:leader_name_for_printing][:name])
+    time_from = ""
+    time_until = ""
+    time_from = params[:from].collect {|k,v| v}.join(":") if params[:from]
+    time_until = params[:until].collect {|k,v| v}.join(":") if params[:until]
     
     @group.update_attributes(:blurb => params[:group][:blurb],
                              :curriculum_choice_id => @curriculum_choice.id,
@@ -296,8 +300,8 @@ class GroupsController < ApplicationController
                              :meeting_place_id => @meeting_place.id,
                              :small_group_leader_id => params[:group][:small_group_leader_id],
                              :closed => params[:group][:closed],
-                             :time_from => params[:group][:time_from].to_time,
-                             :time_until => params[:group][:time_until].to_time,
+                             :time_from => time_from.blank? ? nil : time_from,
+                             :time_until => time_until.blank? ? nil : time_until,
                              :meets_on => params[:group][:meets_on],
                              :updated_by => current_user.login,
                              :updated_at => Time.now)

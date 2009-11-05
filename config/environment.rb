@@ -109,6 +109,22 @@ class Array
    end
 end
 
+module HashExtensions
+# Converts this Hash of time parameters (:year, :month, :day, :hour, :minute, :second, :usec, :ampm)
+# into a Time object (using local time).  The Hash need not contain all parameters, but the
+# parameter of the current time is assumed when one is missing.  Includes support for 12-hour time.
+def to_time
+  hsh = {:year => Time.now.year, :month => Time.now.month, :day => Time.now.day,
+         :hour => Time.now.hour, :minute => Time.now.minute, :second => Time.now.second,
+         :usec => Time.now.usec, :ampm => "" }
+  hsh = hsh.update(self.symbolize_keys)
+  [:year, :month, :day, :hour, :minute, :second, :usec].each {|key| hsh[key] = hsh[key].to_i }
+  hsh[:hour] = 0 if hsh[:ampm].downcase == "am" && hsh[:hour] == 12
+  hsh[:hour] += 12 if hsh[:ampm].downcase == "pm" && hsh[:hour] != 12
+  Time.local(hsh[:year], hsh[:month], hsh[:day], hsh[:hour], hsh[:minute], hsh[:second], hsh[:usec])
+end
+end
+
 # Include your application configuration below
 # These defaults are used in GeoKit::Mappable.distance_to and in acts_as_mappable
 GeoKit::default_units = :miles

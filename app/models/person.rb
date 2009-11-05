@@ -909,6 +909,7 @@ class Person < ActiveRecord::Base
     end
     
     def to_vcard
+      begin
         card = Vpim::Vcard::Maker.make2 do |maker|
             maker.add_name do |name|
                 name.given = self.first_name
@@ -972,6 +973,8 @@ class Person < ActiveRecord::Base
           card.to_s.sub!('END:VCARD', "PHOTO;BASE64:\n  " + photodata + "\nEND:VCARD")
         end
         card.to_s
+      rescue
+      end
     end
     
     def all_relationships
