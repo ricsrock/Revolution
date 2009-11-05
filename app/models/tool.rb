@@ -28,7 +28,32 @@ class Tool < ActiveRecord::Base
       end
     end
     range_condition || false
-  end      
+  end
+  
+  def self.range_condition_hash(range_name)
+    unless range_name == "All"
+      if range_name == "This Month"
+        start_range = Time.now.beginning_of_month
+        end_range = Time.now
+      elsif range_name == "Last 7 Days"
+          start_range = (Time.now - 7.days)
+          end_range = Time.now
+      elsif range_name == "This Week"
+          start_range = Time.zone.now.beginning_of_week
+          end_range = Time.zone.now
+      elsif range_name == "Last 14 Days"
+          start_range = (Time.now - 14.days)
+          end_range = Time.now
+      elsif range_name == "Last 30 Days"
+        start_range = (Time.now - 30.days)
+        end_range = Time.now
+      elsif range_name == "Year To Date"
+        start_range = (Time.now.beginning_of_year)
+        end_range = Time.now
+      end
+    end
+    {:start_date => start_range, :end_date => end_range} || false
+  end
 
   
     def self.array_to_hash(an_array) #takes an array and gives back an indexed hash

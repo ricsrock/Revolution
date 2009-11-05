@@ -16,6 +16,8 @@ class Person < ActiveRecord::Base
   has_many :ministries, :class_name => "Ministry", :foreign_key => "responsible_person_id"
   has_many :teams, :class_name => "Team", :foreign_key => "responsible_person_id"
   has_many :involvements
+  has_many :current_involvements, :class_name => "Involvement",
+                                 :conditions => ['involvements.end_date IS NULL OR involvements.end_date > ?', Date.today]
   has_many :taggings
   has_many :tags, :through => :taggings
   has_many :small_groups_i_lead, :class_name => "Group", :foreign_key => "small_group_leader_id"

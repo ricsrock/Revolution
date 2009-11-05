@@ -43,7 +43,7 @@ Rails::Initializer.run do |config|
   # Make Time.zone default to the specified zone, and make Active Record store time values
   # in the database in UTC, and return them converted to the specified local zone.
   # Run "rake -D time" for a list of tasks for finding time zone names. Comment line to use default local time.
-  config.time_zone = 'UTC'
+  config.time_zone = 'Central Time (US & Canada)'
 
   # Activate observers that should always be running
   # Please note that observers generated using script/generate observer need to have an _observer suffix
@@ -161,4 +161,5 @@ GeoKit::Geocoders::geocoder_ca = false
 # various geocoders.  Make sure you read up on relevant Terms of Use for each
 # geocoder you are going to use.
 GeoKit::Geocoders::provider_order = [:google,:us]
+
 

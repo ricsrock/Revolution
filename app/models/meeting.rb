@@ -61,13 +61,14 @@ class Meeting < ActiveRecord::Base
   end
   
   def self.find_by_assignment_form(instance_type_id, group_id, start_date, weeks_on)
+    debugger
     find(:all, :select => ['meetings.id'],
                :conditions => ['instance_type_id = ? AND group_id = ? AND date >= ?', instance_type_id, group_id, start_date],
                :joins => ['JOIN instances ON instances.id = meetings.instance_id
                             JOIN instance_types ON instance_types.id = instances.instance_type_id
                             JOIN groups ON groups.id = meetings.group_id
                             JOIN events ON events.id = instances.event_id'],
-               :limit => [weeks_on],
+               :limit => weeks_on,
                :order => ['date ASC'])
   end
   
