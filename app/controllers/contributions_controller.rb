@@ -209,8 +209,8 @@ class ContributionsController < ApplicationController
   end
   
   def filter_stats
-    range_condition = Tool.range_condition(params[:filter][:range],"contributions","date")
-    @c = Donation.find_by_fund_id_and_range(params[:filter][:fund_id],range_condition)
+    date_range = Tool.range_condition_hash(params[:filter][:range])
+    @c = Donation.find_by_fund_id_and_date_range(params[:filter][:fund_id],date_range)
     @grouped = @c.group_by {|c| c.date.strftime('%Y-%m') unless c.date == false }
   end
   

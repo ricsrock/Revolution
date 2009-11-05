@@ -131,30 +131,11 @@ class Donation < ActiveRecord::Base
         
     end
     
-    def self.find_by_fund_id_and_range(fund_id,range_condition)
-        sql_conditions = []
-
-        unless fund_id == ""
-          fund_result = fund_id
-          fund_cond = Caboose::EZ::Condition.new :funds do
-            id =~ fund_result
-          end
-          sql_conditions << fund_cond
-        end
-        
-        deleted_at = "contributions.deleted_at IS NULL"
-        
-        combined_cond = Caboose::EZ::Condition.new
-        sql_conditions.each do |item|
-          combined_cond << item
-        end
-        
-        combined_cond.append 'contributions.deleted_at IS NULL'
-        combined_cond.append range_condition
-        
+    def self.find_by_fund_id_and_date_range(fund_id,date_range)
         Donation.find(:all, :include => [:contribution, :fund],
-                            :conditions => combined_cond.to_sql)
-        
+          :conditions => ["contributions.deleted_at IS NULL AND
+                          funds.id = ? AND contributions.created_at BETWEEN ? AND ?",
+                          fund_id, date_range[:start_date], date_range[:end_date]])
     end
     
 

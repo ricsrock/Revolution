@@ -177,3 +177,4 @@ GeoKit::Geocoders::geocoder_ca = false
 # geocoder you are going to use.
 GeoKit::Geocoders::provider_order = [:google,:us]
 
+
