@@ -8,9 +8,13 @@
 #
 production:
   listens_on: localhost:15151
-
+  sleep_time: 2
+  reset_time: 30
+  
 development:
   listens_on: localhost:22122
+  sleep_time: 2
+  reset_time: 30
   
 test:
   listens_on: localhost:12345

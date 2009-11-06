@@ -14,6 +14,7 @@ class EmailWorker < Workling::Base
   end
   
   def do_group_email(options)
+    logger.info("::: do_group_email was called in the EmailWorker :::")
     person = Person.find(options[:p])
     group = Group.find(options[:group_id])
     VolunteerMailer.deliver_group_contact(options[:subject], options[:message], person, options[:current_user_email],group)

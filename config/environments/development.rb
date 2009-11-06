@@ -34,7 +34,7 @@ config.action_mailer.perform_deliveries = false
 #config.action_mailer.raise_delivery_errors = false
 config.action_mailer.default_charset = "utf-8"
 
-Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new
+#Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new
 
 ExceptionNotifier.exception_recipients = %w(lowell@rivervalleychurch.net)
 

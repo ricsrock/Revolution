@@ -28,6 +28,8 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)
   config.gem "vpim"
+  #config.gem "starling-starling", :source => "http://gems.github.com/ "
+  
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
   # config.gem "sqlite3-ruby", :lib => "sqlite3"
   # config.gem "aws-s3", :lib => "aws/s3"
@@ -57,7 +59,6 @@ end
 ExceptionNotifier.exception_recipients = %w(ricsrock@gmail.com)
 
 
-Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new
 
 class Date
       def to_time(form = :local)
@@ -178,3 +179,7 @@ GeoKit::Geocoders::geocoder_ca = false
 GeoKit::Geocoders::provider_order = [:google,:us]
 
 
+#Workling::Remote.dispatcher = Workling::Remote::Runners::StarlingRunner.new
+
+Workling::Clients::MemcacheQueueClient.memcache_client_class = RudeQ::Client
+Workling::Remote.dispatcher = Workling::Remote::Runners::ClientRunner.new
