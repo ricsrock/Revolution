@@ -2,7 +2,7 @@
 	<% form_tag({:action => 'filter_list'}, :id => 'this_form') do %>
 	<span style="float:left;width:165px;">
 		<label>Select a Meeting Day: </label><br>
-		<%= h select('select','week_day', Group::MEETING_DAYS_WITH_ANY, :prompt => "select a weekday") %>
+		<%= select('select','week_day', Group::MEETING_DAYS_WITH_ANY, :prompt => "select a weekday") %>
 	</span>
 	<span style="float:left;max-width:500px;">
 		<label>Select Categories</label>
@@ -12,13 +12,13 @@
 		<% @web_categories.each do |w| %>
 			<span style="float:left;padding-right:.9em;width:13em;">
 				<span id='checkbox_id_<%= w.id %>'>
-					<%= h check_box_tag "select[category_ids][]",w.id,{}, :class => 'check' %></span>
-				<%= h w.name %>
+					<%= check_box_tag "select[category_ids][]",w.id,{}, :class => 'check' %></span>
+				<%= w.name %>
 			</span>
 		<% end %>
 	</span>
 	<span style="float:left">
-	<%= h submit_tag 'Go' %></span>
+	<%= submit_tag 'Go' %></span>
 	<% end %>
 </div>
 

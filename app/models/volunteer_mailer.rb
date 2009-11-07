@@ -106,8 +106,8 @@ class VolunteerMailer < ActionMailer::Base
   def express_interest_small_group(person_name,person_email,person_message,group,to_email)
     subject       "Small Group Interest Notification"
     recipients    to_email
-    from          'rusty@rivervalleychurch.net'
-    cc            'rusty@rivervalleychurch.net'
+    from          'lmccalman@rivervalleychurch.net'
+    cc            'lmccalman@rivervalleychurch.net'
     sent_on       Time.now
     body(:group => group, :person_name => person_name, :person_message => person_message, :person_email => person_email)
   end
@@ -116,7 +116,7 @@ class VolunteerMailer < ActionMailer::Base
     subject     "A New Small Group Meeting Has Been Created"
     recipients  'lowell@rivervalleychurch.net'
     from        sender_email
-    cc          'daphne@rivervalleychurch.net'
+    cc          'lmccalman@rivervalleychurch.net'
     sent_on     Time.now
     body(:created_by => created_by, :group_name => group_name, :meeting_date => meeting_date, :meeting_notes => meeting_notes, :number_present => number_present)
   end
@@ -125,7 +125,7 @@ class VolunteerMailer < ActionMailer::Base
     subject     "A New Note Has Been Created"
     recipients  relationship.relationship_type.recipients ? relationship.relationship_type.recipients : 'lowell@rivervalleychurch.net'
     from        sender_email
-    cc          'daphne@rivervalleychurch.net'
+    cc          'lmccalman@rivervalleychurch.net'
     sent_on     Time.now
     body(:created_by => created_by, :note_text => note_text, :relationship => relationship)
   end

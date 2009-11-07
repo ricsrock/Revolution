@@ -21,11 +21,11 @@
 		<p><label>Meets At:</label><br>
 			<%= h @group.meeting_place_value rescue nil %></p>
 		<p><label>Address:</label><br>
-		<%= h @group.meets_at_household.address_block rescue nil %></p>
+		<%= @group.meets_at_household.address_block rescue nil %></p>
 				
 	</fieldset>
 	
 </div>
 
 
-<%= h link_to "Search Again", :action => 'index' %>
+<%= link_to "Search Again", :action => 'index' %>
