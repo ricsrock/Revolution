@@ -1,0 +1,15 @@
+ <div class="fields" style="padding:3px;">
+	<div id="donation-errors">
+		
+	</div>
+<div>
+
+	<div>
+		<span>Fund: </span>
+		<span><%= f.collection_select 'fund_id', Fund.find(:all), 'id', 'name', {} %></span>
+		<span>Amount: </span>
+		<span>$<%= f.text_field :amount, :size => 9 %><%= error_message_on('donation', 'amount') %></span>
+		<span><%= remove_child_link "remove", f %></span>
+	</div>
+</div>
+</div>

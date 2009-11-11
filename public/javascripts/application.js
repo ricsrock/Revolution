@@ -4,12 +4,12 @@
 Ajax.Responders.register({
      onCreate: function() {
       if($('progress') && Ajax.activeRequestCount>0)
-      Effect.Appear('progress',{duration:0.5,queue:'end'});
+      Element.show('progress');
      },
     
      onComplete: function() {
       if($('progress') && Ajax.activeRequestCount==0)
-      Effect.Fade('progress',{duration:0.5,queue:'end'});
+      Element.hide('progress');
     }
     });
 
