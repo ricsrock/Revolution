@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @group_pages, @groups = paginate :groups, :per_page => 20, :order => :name
+    @groups = Group.paginate :page => params[:page], :per_page => 20, :order => :name
     render :action => 'list', :layout => 'inner'
     store_location
   end
