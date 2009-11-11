@@ -12,7 +12,7 @@
 </div>
 
 <div id="contribution" style="float:none;clear:both;">
-	<% form_remote_for :contribution, :url => { :action => 'create', :batch_id => @batch.id } do |f| %>
+	<% form_remote_for @contribution, :contribution, :url => { :action => 'create', :batch_id => @batch.id } do |f| %>
 
 	<fieldset class="money-green"><legend style="background-color:#F6FFE5;color:#666666"><strong>Contribution Info</strong></legend>
 		
@@ -38,10 +38,12 @@
 	</fieldset>
 	
 	<fieldset class="money-green"><legend style="background-color:#F6FFE5;color:#666666"><strong>Donations for This Contribution</strong></legend>
-	   <div id="donations">
-		<%= render :partial => "donations_partial", :locals => {:contribution => @contribution} %>
-	   </div>
-	   <%= render :partial => 'add_donation_link', :locals => { :index => @contribution.donations.size } %>
+		 <% f.fields_for :donations do |donation_form| %>
+			<%= render :partial => "donation", :locals => {:f => donation_form} %>
+		<% end %>
+	   <div style="padding:.5em;">
+			<%= add_child_link "add a donation", f, :donations %>
+		</div>
 	</fieldset>
 
 	   <div style="float:none;clear:both;">

@@ -32,7 +32,6 @@ class ContributionsController < ApplicationController
     params[:contribution][:created_by] = current_user.login
     params[:contribution][:batch_id] = params[:batch_id]
     @contribution = Contribution.new(params[:contribution])
-    params[:donations].each_value { |donation| @contribution.donations.build(donation)}
     if @contribution.save
       flash[:notice] = 'Contribution was successfully created.'
     else
@@ -43,7 +42,6 @@ class ContributionsController < ApplicationController
     end
     @batch = Batch.find(params[:batch_id])
     @contribution = Contribution.new
-    @contribution.donations.build
   end
   
 

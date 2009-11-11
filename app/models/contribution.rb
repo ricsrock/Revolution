@@ -3,6 +3,8 @@ class Contribution < ActiveRecord::Base
   has_many :donations
   belongs_to :batch
   
+  accepts_nested_attributes_for :donations,:reject_if => lambda { |a| a.values.all?(&:blank?) }, :allow_destroy => true
+  
   acts_as_paranoid
   
   validates_presence_of :contributable_id, :date, :batch_id
@@ -43,4 +45,5 @@ class Contribution < ActiveRecord::Base
   def unique_id
     self.contributable_type + self.contributable_id.to_s
   end
+  
 end
