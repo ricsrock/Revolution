@@ -24,10 +24,9 @@
 			<%# link_to "Jump to: #{session[:sticky_person].full_name}", :controller => 'people', :action => 'show', :id => session[:sticky_person].id rescue nil %>
 		</li>
 		<% end %>
-		<% if current_user.preferences[:sticky_group_id] %>
-		<% @sticky_group = Group.find(current_user.preferences[:sticky_group_id]) %>
+		<% if @sticky_group %>
 		<li class="tiny">
-			<%= link_to "Jump to: #{@sticky_group.name}", :controller => 'groups', :action => 'show', :id => @sticky_group.id rescue nil %>
+			<%= link_to "Jump to: #{@sticky_group.name}", :controller => 'groups', :action => 'show', :id => @sticky_group.id %>
 		</li>
 		<% end %>
 		<li class="<%= menu_class("households") %>">

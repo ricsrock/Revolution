@@ -89,7 +89,9 @@ class GroupsController < ApplicationController
   def tree
     flash[:notice] = '' # I can't remember why I blanked out notices for tree view, but it seems dumb.
     @message = ''
-    @sticky_group = current_user.preferences[:sticky_group_id] ? Group.find(current_user.preferences[:sticky_group_id]) : nil
+    if current_user.preferences[:sticky_group_id] && Group.find_by_id(current_user.preferences[:sticky_group_id])
+      @sticky_group = Group.find(current_user.preferences[:sticky_group_id])
+    end
     #store_location
     g = Group.first
     u = User.find(current_user.id)
