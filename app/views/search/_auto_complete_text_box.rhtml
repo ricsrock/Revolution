@@ -4,7 +4,7 @@ Search: <input id="search_criteria" name="search_criteria" tokens="," type="text
 <script type="text/javascript">
 //<![CDATA[
 new Ajax.Autocompleter('search_criteria', 'auto_complete', '/search/auto_complete', 
-    { onlyLatestOfClass: 'live_search',
+    { 
     indicator: 'search_indicator',
     updateElement: function(selectedElement) 
         { 
@@ -16,3 +16,5 @@ new Ajax.Autocompleter('search_criteria', 'auto_complete', '/search/auto_complet
 </script>
 <%= image_tag "working.gif", :style => "display: none;", :id => "search_indicator" %>
 </div>
+
+<!--- removed from line 7: onlyLatestOfClass: 'live_search', -->

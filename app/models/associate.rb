@@ -6,4 +6,8 @@ class Associate < ActiveRecord::Base
   def full_name
     self.first_name + ' ' + self.last_name rescue nil
   end
+  
+  def sort_order
+    self.last_name + " " + self.first_name
+  end
 end

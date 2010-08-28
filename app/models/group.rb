@@ -5,7 +5,7 @@ class Group < ActiveRecord::Base
   has_many :meetings
   belongs_to :default_room, :class_name => "Room", :foreign_key => "default_room_id"
   has_many :enrollments, :dependent => :destroy, :include => :person, :conditions => ['people.household_position <> "Deceased"']
-  has_many :current_enrollments, :class_name => "Enrollment", :foreign_key => "group_id", :conditions => ['(enrollments.start_time <= ?) AND (enrollments.end_time >= ? OR enrollments.end_time IS NULL)', Time.now.to_s(:db), Time.now.to_s(:db)]
+  has_many :current_enrollments, :class_name => "Enrollment", :foreign_key => "group_id", :conditions => ['(enrollments.start_time <= ?) AND (enrollments.end_time >= ? OR enrollments.end_time IS NULL)', (Time.now + 5.hours).to_s(:db), Time.now.to_s(:db)]
   has_many :past_enrollments, :class_name => "Enrollment", :foreign_key => "group_id", :conditions => ['enrollments.end_time < ?', Time.now.to_s(:db)]
   
   has_many :people, :through => :enrollments, :conditions => ['(people.household_position <> "Deceased")

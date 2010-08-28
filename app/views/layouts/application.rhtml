@@ -43,11 +43,7 @@
             <% @hide_sidebar ||= false %>
             <% unless @hide_sidebar %>
             <td id="sidebar">
-                <%= render(:partial => '/search/auto_complete_text_box', :layout => false )%>
-                <% unless @hide_controller_sidebar %>
-                    <%= render(:partial => "sidebar", :layout => false) if File.exists?(File.join(RAILS_ROOT, "app/views/#{params[:controller]}/_sidebar.rhtml")) %>
-                    <%= render(:partial => "sidebar_#{params[:action]}", :layout => false) if File.exists?(File.join(RAILS_ROOT, "app/views/#{params[:controller]}/_sidebar_#{params[:action]}.rhtml")) %>
-                <% end %>
+                <%= render :partial => '/search/auto_complete_text_box' %>
             </td>
                 <% end %>
         </tr>

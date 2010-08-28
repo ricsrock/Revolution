@@ -301,8 +301,8 @@ class ContributionsController < ApplicationController
         person_condition = "AND ((people.last_name LIKE '#{params[:range][:search_name].strip + "%"}') OR (organizations.name LIKE '#{params[:range][:search_name].strip + "%"}'))"
       end
     end
-    start_date = params[:range][:start_date].to_time
-    end_date = params[:range][:end_date].to_time
+    start_date = params[:range][:start_date].to_time.beginning_of_day
+    end_date = params[:range][:end_date].to_time.end_of_day
     @donations = Donation.find(:all,
                               :joins => ["LEFT OUTER JOIN funds ON funds.id = donations.fund_id
                                           LEFT OUTER JOIN contributions ON contributions.id = donations.contribution_id

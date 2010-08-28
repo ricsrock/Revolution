@@ -1,6 +1,6 @@
 page.replace_html("smart_group_id_#{@g.id}_controls", :partial => "smart_group_controls", :locals => {:g => @g.id})
 
-@found_people = @g.found_people
+#@found_people = @g.found_people
 
 if ! @found_people.empty?
     @people = @found_people.sort_by {|p| p.last_first_name}

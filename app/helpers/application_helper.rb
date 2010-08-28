@@ -197,4 +197,10 @@ module ApplicationHelper
       render(:partial => options[:partial], :locals => { options[:form_builder_local] => f })
     end
   end
+  
+  def loading_spinner(dom_id)
+    result = "<span id='#{dom_id}' style='display:none;z-index:90;'>#{image_tag('/images/ajax-loader.gif')}</span>"
+    result
+  end
+  
 end

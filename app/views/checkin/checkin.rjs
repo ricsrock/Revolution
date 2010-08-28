@@ -5,14 +5,17 @@ if @message.empty?
         page.replace_html("person-#{@person.id}", :partial => "people/checkin_person", :locals => {:person => @person})
         #page.visual_effect(:highlight, "person-#{@person.id}", :duration => 3, :startcolor => "\'#DDDDDD\'", :endcolor => "\'#EEEEEE\'")
         page.visual_effect(:highlight, "group_id_#{@meeting.group.id}")
+        
+        unless @attendance.meeting.group.name == "Adult Worship"
+          page.replace_html("wristband-wrap", :partial => "wristband_sports", :attendance => @attendance)
 
-        page.replace_html("wristband-wrap", :partial => "wristband_sports", :attendance => @attendance)
-
-
-
-        page.delay(10) do
-         page.replace_html("pickup-receipt-wrap", :partial => "pickup_receipt", :attendance => @attendance)
-         end
+          page.delay(2) do
+            page.replace_html("pickup-receipt-wrap", :partial => "pickup_receipt", :attendance => @attendance)
+          end
+        # page.delay(2) do
+        #   page.replace_html("teacher-copy-wrap", :partial => "teacher_copy", :attendance => @attendance)
+        # end
+        end
     end
 
 else

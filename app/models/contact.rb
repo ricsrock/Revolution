@@ -170,7 +170,7 @@ class Contact < ActiveRecord::Base
       elsif range_result == "Last 14 Days"
           start_range = (Time.now - 14.days)
           end_range = Time.now
-      elsif range_name == "Year To Date"
+      elsif range_result == "Year To Date"
         start_range = (Time.now.beginning_of_year)
         end_range = Time.now
       end

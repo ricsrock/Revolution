@@ -103,6 +103,16 @@
 		<td><%= @person.default_group.name rescue nil %></td>
 		<td><%= @person.attendance_status %></td>
 	</tr>
+	<tr>
+		<td colspan=2><label>Allergies:</label></td>
+		<td colspan=2>&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan=2>
+			<%= @person.allergies %>
+		</td>
+		<td colspan=2>&nbsp;</td>
+	</tr>
 </table>
 <%= link_to 'Edit', :action => 'edit', :id => @person %>
 </fieldset>

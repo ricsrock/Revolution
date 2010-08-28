@@ -19,7 +19,7 @@ class CheckinController < ApplicationController
     a2 = "%"
     @searchphrase = a1 + @phrase.to_s + a2
     @found_households = Household.find(:all, :conditions => [ "name LIKE ? OR people.first_name LIKE ? OR people.last_name LIKE ?", @searchphrase, @searchphrase, @searchphrase],
-                                       :include => [:people], :limit => 5, :order => 'name Asc')
+                                       :include => [:people], :order => 'name Asc')
     for number in Phone.find(:all, :conditions => ['number LIKE ? AND phones.phonable_type = "Household"', @searchphrase],
                                    :joins => ['INNER JOIN households ON households.id = phones.phonable_id'], :limit => 2)
  		  @found_households << number.phonable unless @found_households.detect { |household| household.id == number.phonable_id }
@@ -143,6 +143,7 @@ class CheckinController < ApplicationController
     instance_id = Setting.one.current_instance
     @person = person
   end
+    render :layout => false
   end
   
   def move_checkin
@@ -213,6 +214,71 @@ class CheckinController < ApplicationController
     flash[:notice] = "The checkin record for #{@person.first_name} was deleted."
     redirect_to :action => 'home'
   end
-
+  
+  def self
+    @search = ""
+    @by = "Phone Number"
+    @pad = "num_pad"
+    render(:layout => 'self_checkin')
+  end
+  
+  def key_pressed
+    if params[:key] == "Backspace" or params[:key] == "<"
+      @search = params[:search].chop
+    elsif params[:key] == "Clear"
+      @search = ""
+    else
+      @search = params[:search] << params[:key]
+    end
+    @pad = params[:pad]
+    render :update do |page|
+      page << "Element.appear('spinner')"
+      page.replace_html 'search_text', :partial => 'search_text', :locals => {:search => @search}
+      page.replace_html 'pad_area', :partial => @pad, :locals => {:search => @search} 
+      page.replace_html 'search_button_area', :partial => 'search_button', :locals => {:search => @search}
+      page << "Element.fade('spinner')"
+    end
+  end
+  
+  def by_selected
+    if params[:the_last_name_button]
+      chosen = params[:the_last_name_button]
+      @pad = 'alpha_keyboard'
+    elsif params[:the_phone_number_button]
+      chosen = params[:the_phone_number_button]
+      @pad = 'num_pad'
+    else
+      false
+    end
+    @by = chosen
+    @search = ""
+    render :update do |page|
+      page.replace_html 'radio_buttons', :partial => 'radio_buttons', :locals => {:by => @by}
+      page.replace_html 'pad_area', :partial => @pad
+      page.replace_html 'search_text', :partial => 'search_text'
+      page.replace_html 'search_button_area', :partial => 'search_button', :locals => {:search => @search}
+      page.replace_html 'checkin_selected_area', ""
+      page.replace_html 'results_area', ""
+      page.replace_html 'search_again_area', ""
+    end
+  end
+  
+  def search
+    search = params[:by].blank? ? "zxzxzxzxzxzxzxzxzxzx" : params[:by]
+    @results = Household.find(:all, :conditions => ['households.name LIKE ? OR phones.number LIKE ?', search, '%' + search],
+                                    :joins => ["LEFT OUTER JOIN phones on (households.id = phones.phonable_id AND phones.phonable_type = 'Household')"])
+    render :update do |page|
+      page.replace_html 'pad_area', ""
+      page.replace_html 'search_button_area', ""
+      page.replace_html 'results_area', :partial => 'search_results', :locals => {:results => @results}
+      page.replace_html 'search_again_area', :partial => 'search_again'
+      page.replace_html 'checkin_selected_area', :partial => 'checkin_selected_button', :locals => {:search => @search}
+    end
+  end
+  
+  def test
+    render :layout => false
+  end
+  
 end
 

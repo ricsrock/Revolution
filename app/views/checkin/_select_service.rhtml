@@ -5,7 +5,7 @@
 <%= observe_field 'event_id',
 				 :url => {:action => 'event_changed'},
  				 :update => 'instances-combo',
-				 :with => 'id'%>
+				 :with => 'id' %>
 </span>				
 <span id="instances-combo", class="cell">
 	<%= render :partial => 'select_instance', :locals => {:event_id => @available_events[0]}  %>

@@ -9,7 +9,7 @@ class TestController < ApplicationController
   require_role "admin"
   
   def index
-        render :file => 'app/views/volunteer_mailer/index.rhtml'
+       # render :file => 'app/views/volunteer_mailer/index.rhtml'
   end
   
   def deliver_confirm_lk

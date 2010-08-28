@@ -4,7 +4,7 @@
 
 
 	<div style="display:inline;float:left;" id="property">
-		<%= collection_select('rule', 'property_id', SmartGroupProperty.find_allowed(current_user.id).sort_by(&:prose), 'id', 'prose', options = {:prompt => "--select a property--"}, {:id => "rule_#{index}_property", "index" => index} ) %>
+		<%= collection_select('rule', 'property_id', SmartGroupProperty.find_allowed(current_user.id), 'id', 'prose', options = {:prompt => "--select a property--"}, {:id => "rule_#{index}_property", "index" => index} ) %>
 	</div>
 
 	

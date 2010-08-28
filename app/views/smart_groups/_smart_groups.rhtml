@@ -24,7 +24,9 @@
 				<%= link_to (image_tag "zoom_16x16.gif", :size => "12x12", :border => 0, :title => 'Show Details'), :controller => 'smart_groups', :action => 'show', :id => g.id %>
 			</span>
 			<span>
-				<%= link_to_remote "show", :url => {:action => 'show_people', :id => g.id} %>
+				<%= link_to_remote "show", :url => {:action => 'show_people', :id => g.id},
+				   						   :loading => "Element.appear('group_#{g.id}_spinner')",
+				                           :loaded => "Element.fade('group_#{g.id}_spinner')" %>
 			</span>
 			<span>
 				<%= link_to_remote "hide", :url => {:action => 'hide_people', :id => g.id} %>
@@ -36,11 +38,14 @@
 	</div>
 	
 		<% @g = g %>
+		
+	<div style="float:none;clear:both;padding-left:20px;padding-bottom:5px;">
+		<%= image_tag "working.gif", :style => "display: none;", :id => "group_#{g.id}_spinner" %>
+	</div>
 	<div id="smart_group_id_<%= g.id %>_controls" style="margin-left:3em;float:none; clear:both;">
 	
 		<%# render :partial => "smart_group_controls", :locals => {:g => @g.id} %>
 	</div>
-	
 	<div id="smart_group_<%= g.id %>_people" style="margin-left:3em;float:none; clear:both;">
 		<%# render :partial => "person", :collection => g.found_people %>
 	</div>

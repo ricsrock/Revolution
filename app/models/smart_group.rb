@@ -13,9 +13,17 @@ class SmartGroup < ActiveRecord::Base
     errors.add("blah") unless self.smart_group_rules.size > 0
   end
   
+  def combined_conditions
+    combined_cond = EZ::Where::Condition.new
+    self.smart_group_rules.each do |s|
+      combined_cond << s.sql_conditions
+    end
+    combined_cond.to_sql
+  end
+  
   def found_people
     #having = "HAVING (MAX(events.date) < '2007-12-31')"
-    combined_cond = Caboose::EZ::Condition.new
+    combined_cond = EZ::Where::Condition.new
     self.smart_group_rules.each do |s|
       combined_cond << s.sql_conditions
     end
@@ -41,7 +49,7 @@ class SmartGroup < ActiveRecord::Base
   
   def found_households
       #having = "HAVING (MAX(events.date) < '2007-12-31')"
-      combined_cond = Caboose::EZ::Condition.new
+      combined_cond = EZ::Where::Condition.new
       self.smart_group_rules.each do |s|
         combined_cond << s.sql_conditions
       end
@@ -49,7 +57,8 @@ class SmartGroup < ActiveRecord::Base
       @people = Person.find(:all,
                   :select => ['people.id, people.household_id, people.gender, people.household_position, people.first_name, people.last_name, people.birthdate,
                                tags.name, groups.name, people.attendance_status, households.id'],
-                  :joins => ["LEFT OUTER JOIN taggings ON (people.id = taggings.person_id)
+                  :joins => ["LEFT OUTER JOIN households ON (households.id = people.household_id)
+                              LEFT OUTER JOIN taggings ON (people.id = taggings.person_id)
                               LEFT OUTER JOIN tags ON (tags.id = taggings.tag_id)
                               LEFT OUTER JOIN enrollments ON (people.id = enrollments.person_id)
                               LEFT OUTER JOIN groups ON (groups.id = enrollments.group_id)
@@ -62,7 +71,6 @@ class SmartGroup < ActiveRecord::Base
                   :include => :household,
                   :conditions => combined_cond.to_sql,
                   :group => ['people.household_id'])
-      @people = @people.select {|p| self.exclusive_tags.all? {|item| p.tags.collect {|t| t.name}.include?(item)}} unless self.exclusive_tags.empty?
       @people
     end
     
@@ -82,9 +90,7 @@ class SmartGroup < ActiveRecord::Base
      # I can't figure out why this is returning an array... so, this bit inspects for array mambers and coverts them to one string fi found
      @result.empty? ? @result : @result[1..-1].join(" ")
    end
-
-    
-  
+      
 end
 
 

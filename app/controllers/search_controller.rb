@@ -1,7 +1,9 @@
 class SearchController < ApplicationController
   
   before_filter :login_required
-
+  
+  layout true
+  
   def index
   end
 
@@ -26,23 +28,23 @@ class SearchController < ApplicationController
 	    for team in Team.find(:all, :conditions => ['name LIKE ?', '%' + params[:search_criteria] + '%'], :order => 'name ASC', :limit => 10)
 		  @results << team
 	    end
-#		for profile in ProfileType.find(:all, :conditions => ['Descr LIKE ? or Profile LIKE ?', '%' + params[:search_criteria] + '%', '%' + params[:search_criteria] + '%'], :order => 'Descr ASC', :limit => 10)
-#		  @results << profile
-#		end
-#		begin
-#		for event in Event.find(:all, :conditions => ['Name LIKE ? and Inactive=0', '%' + params[:search_criteria] + '%'], :limit => 10)
-#		  @results << event
-#		end
     for household in Household.find(:all, :conditions => ['name LIKE ? OR address1 LIKE ?', params[:search_criteria].strip + '%', '%' + params[:search_criteria].strip + '%'])
       @results << household
     end
-#		rescue
-#		end
+    for org in Organization.find(:all, :conditions => ['name LIKE ? OR address1 LIKE ?', params[:search_criteria].strip + '%', '%' + params[:search_criteria].strip + '%'])
+      @results << org
+    end
+    
 		begin
   		@results.sort_by { |item| item.search_order  rescue nil}
   		@results.sort! { |item1, item2| item1.search_order rescue nil <=> item2.search_order rescue nil}
 	  rescue
 	  end
-		render :layout => false
+	  render :layout => false
+#	render :update do |page|
+#    page.replace_html "search-results-area", :partial => 'live_search_results', :locals => {:results => @results}
+#   # page.layout => false
+#  end
+    
   end
 end

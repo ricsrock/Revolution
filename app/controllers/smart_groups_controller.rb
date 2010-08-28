@@ -40,7 +40,7 @@ class SmartGroupsController < ApplicationController
     #@smart_group.check_for_at_least_one_rule
     if @smart_group.save
       flash[:notice] = 'SmartGroup was successfully created.'
-      redirect_to :controller => 'groups', :action => 'tree_view'
+      redirect_to :controller => 'smart_groups', :action => 'list'
     else
       render :action => 'new'
     end
@@ -186,6 +186,7 @@ class SmartGroupsController < ApplicationController
   
   def show_people
     @g = SmartGroup.find(params[:id])
+    @found_people = @g.found_people
   end
   
   def hide_people

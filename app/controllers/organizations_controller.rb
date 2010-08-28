@@ -11,7 +11,7 @@ class OrganizationsController < ApplicationController
          :redirect_to => { :action => :list }
 
   def list
-    @organizations = Organization.paginate :page => 1, :per_page => 10
+    @organizations = Organization.paginate :page => params[:page], :per_page => 10
   end
 
   def show

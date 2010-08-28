@@ -10,7 +10,7 @@ class SmartGroupProperty < ActiveRecord::Base
     if ! user.has_role?("financials")
       @properties = @properties.reject {|p| p.prose.include? "contribution" }
     end
-    @properties
+    @properties.sort_by(&:prose)
   end
   
 end

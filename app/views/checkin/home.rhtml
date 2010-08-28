@@ -36,15 +36,20 @@
 
 
 <br/>
-<div id="wristband-wrap">
+<div id="wristband-wrap" style="display:none;">
 	<%= render :partial => "wristband" %>
 </div>
 
          
 <br/>
-<div id="pickup-receipt-wrap">
+<div id="pickup-receipt-wrap" style="display:none;">
 	<%= render :partial => "pickup_receipt" %>
 </div>
+
+<div id="teacher-copy-wrap" style="display:none;">
+	<%= render :partial => "teacher_copy" %>
+</div>
+
 
 <div style="float:none;clear:both;">
 	&nbsp;
@@ -65,7 +70,6 @@
 	<%= link_to "Add Meetings", :controller => 'instances', :action => 'show', :id => instance_id  %>
 	</div>
 <% end %>
-
 
 
 

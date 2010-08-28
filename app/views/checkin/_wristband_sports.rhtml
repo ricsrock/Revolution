@@ -21,10 +21,12 @@
 		&nbsp;<b>Call Number: </b><%= @attendance.call_number rescue nil %><br>
 		<% end %>
 	<% unless @meeting.nil? %>
-	&nbsp;<%= @meeting.group.name rescue nil %><br>
+	&nbsp;<%= @meeting.group.name rescue nil %>
 	<% end %>
 	<% unless @attendance.nil? %>
-	&nbsp;<%= @attendance.person.allergies rescue nil %>
+		<% unless @attendance.person.allergies.blank? %>
+			&nbsp;<b>Allergies: </b><%= @attendance.person.allergies rescue nil %>
+		<% end %>
 	<% end %>
 	</span>
 	

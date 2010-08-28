@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
         @group = Group.find(params[:id])
 
         csv_string = FasterCSV.generate do |csv|
-          csv << ["FirstName", "LastName", "Address1", "Address2", "City", "State", "Zip", "Phone", "Email"]
+          csv << ["FirstName", "LastName", "Address1", "Address2", "City", "State", "Zip", "Phone", "Email", "Birthdate"]
 
           @group.current_enrollments.each do |enrollment|
             if enrollment.person
@@ -51,7 +51,8 @@ class ReportsController < ApplicationController
                     enrollment.person.household['state'],
                     enrollment.person.household['zip'],
                     enrollment.person.household.best_phone_s_formatted,
-                    enrollment.person.best_email_smart]
+                    enrollment.person.best_email_smart,
+                    enrollment.person.formatted_birthdate]
                 end
             end
           end
@@ -83,7 +84,7 @@ class ReportsController < ApplicationController
           @smart_group = SmartGroup.find(params[:id])
 
           csv_string = FasterCSV.generate do |csv|
-            csv << ["FirstName", "LastName", "Address1", "Address2", "City", "State", "Zip", "Phone", "Email"]
+            csv << ["FirstName", "LastName", "Address1", "Address2", "City", "State", "Zip", "Phone", "Email", "Birthdate"]
 
             @smart_group.found_people.each do |person|
             if person.household
@@ -96,8 +97,9 @@ class ReportsController < ApplicationController
                       person.household['state'],
                       person.household['zip'],
                       person.household.best_phone_s_formatted,
-                      person.best_email_smart]
-            end
+                      person.best_email_smart,
+                      person.formatted_birthdate]
+              end
             end
           end
 

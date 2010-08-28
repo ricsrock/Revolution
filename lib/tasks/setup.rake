@@ -134,7 +134,7 @@ namespace :setup do
           @operator = Operator.create(o)
           @sgp.operators << @operator
         end
-        @sgp = SmartGroupProperty.create(:prose => "whose most first group attend for", :short => "first_group_attend", :instructions => "Choose a group, an operator, then select a number of weeks or a range (ex. 2 and 6).")
+        @sgp = SmartGroupProperty.create(:prose => "whose first group attend for", :short => "first_group_attend", :instructions => "Choose a group, an operator, then select a number of weeks or a range (ex. 2 and 6).")
           @operators = [{:prose => "before this many weeks ago", :short => "before"},
                         {:prose => "after this many weeks ago", :short => "after"},
                         {:prose => "within this range of weeks:", :short => "between"}]
@@ -152,6 +152,7 @@ namespace :setup do
             @sgp.operators << @operator
           end
           @sgp = SmartGroupProperty.create(:prose => "who are tagged with (AND)", :short => "exclusive_tags", :instructions => "Comma-separated tag names work like 'and'")
+          @sgp = SmartGroupProperty.create(:prose => "who are NOT tagged with", :short => "not_have_tag", :instructions => "Enter only one tag name")
 
       
       

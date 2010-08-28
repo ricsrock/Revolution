@@ -25,6 +25,27 @@ class Organization < ActiveRecord::Base
 	  block
 	end
 	
+	def address_one_line
+	  block = '<span>'
+	  unless self.address1.blank?
+	    block << self.address1 + ' '
+    end
+    unless self.address2.blank?
+      block << self.address2 + ' '
+    end
+    unless self.city.blank?
+    block << self.city + ' '
+    end
+    unless self.state.blank?
+      block << self.state + '  '
+    end
+    unless self.zip.blank?
+      block << self.zip.to_s
+    end
+	  block << '</span>'
+	  block
+	end
+	
 	def address_stamp
       if ! self.address1.nil? or self.city.nil? or self.state.nil? or self.zip.nil?
           self.address1 + ', ' + self.city + ', ' + self.state

@@ -1,6 +1,6 @@
 
 
-<% form_tag({:action=> "home"}, { :onSubmit => "Element.show('working');" }) do %>
+<% form_tag({:action=> "home"}) do %>
 <table>
 <tr>
 <td><label for="searchtext"><font size="1"><b>Find Household:</b></font></label></td>
@@ -14,7 +14,7 @@
 <% end %>
 
 
-<%= observe_field(:searchtextxx,
+<%# observe_field(:searchtextxx,
                  :frequency => 0.5,
                  :update => 'people-list',
                  :loading => "Element.show('spinner')",

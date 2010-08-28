@@ -12,7 +12,11 @@ ActionController::Routing::Routes.draw do |map|
   # You can have the root of your site routed by hooking up '' 
   # -- just remember to delete public/index.html.
   # map.connect '', :controller => "welcome"
-
+  
+  #map.resources :checkin, :collection => {:prawn_test => :get}
+  #map.resources :test, :collection => {:prawn_test => :get}
+  map.resources :prawns, :collection => {:test => :get}
+  
   # Allow downloading Web Service WSDL as a file with an extension
   # instead of a file named 'wsdl'
   map.connect ':controller/service.wsdl', :action => 'wsdl'

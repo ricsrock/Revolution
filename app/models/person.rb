@@ -246,8 +246,8 @@ class Person < ActiveRecord::Base
 	
 	def household_responsible_people
 	  @result = Person.find(:all, :conditions => ['(household_id = ? AND household_position = "Primary Contact")
-	                                            OR (household_id = ? AND household_position = "Spouse")', self.household_id, self.household_id])
-	  @result.collect { |p| p.first_name }.to_sentence
+	                                            OR (household_id = ? AND household_position = "Spouse")', self.household_id, self.household_id], :order => ['household_position ASC'])
+	  @result.collect { |p| p.family_name rescue nil}.to_sentence
 	end
 	
 	def find_tags
@@ -825,9 +825,11 @@ class Person < ActiveRecord::Base
     def merge_contributions(duplicate_id)
         @dup = Person.find(duplicate_id)
         @dup.contributions.each do |g|
-            g.update_attribute(:person_id, self.id)
+            g.update_attribute(:contributable_id, self.id)
+            g.update_attribute(:contributable_type, "Person")
         end
     end
+   
     def has_tag_this_week?(tag_id)
         now = (Time.now + 1.days)
         one_week_ago = (Time.now - 6.days)

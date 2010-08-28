@@ -101,7 +101,7 @@ class GroupsController < ApplicationController
   
   def make_child_of
     @descendant = Group.find(params[:id])
-    @descendant.update_attributes(:parent_id => params[:new][:parent_group])
+    #@descendant.update_attribute(:parent_id => params[:new][:parent_group])
     @parent = Group.find(params[:new][:parent_group])
     @descendant.move_to_child_of Group.find(params[:new][:parent_group])
     @parent = params[:new][:parent_group]
@@ -109,18 +109,18 @@ class GroupsController < ApplicationController
   
   def make_root_child_of
     @descendant = Group.find(params[:id])
-    @descendant.update_attributes(:parent_id => params[:new][:parent])
+    #@descendant.update_attribute(:parent_id => params[:new][:parent])
     @parent = Group.find(params[:new][:parent])
     @descendant.move_to_child_of Group.find(params[:new][:parent])
     @parent = params[:new][:parent]
-    redirect_to :action => 'tree_view'
+    redirect_to :action => 'tree'
   end
   
   def new_child
     @parent = Group.find(params[:parent_id])
-    @descendant = Group.new(:parent_id => params[:parent_id], :name => params[:child_group][:new_name],
-                                                              :tree_id => @parent.root.tree_id,
-                                                              :created_by => current_user.login)
+    @descendant = Group.new(:name => params[:child_group][:new_name],
+                            :tree_id => @parent.root.tree_id,
+                            :created_by => current_user.login)
     @descendant.save
     @descendant.move_to_child_of @parent
     @root_id = params[:root_id]

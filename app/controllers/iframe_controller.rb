@@ -109,6 +109,7 @@ class IframeController < ApplicationController
                              :contact_type_id => params[:message][:contact_type],
                              :responsible_user_id => @contact_type.default_responsible_user.id,
                              :comments => "This contact was created through the RVC website. The person's name is #{params[:message][:first_name] rescue nil} #{params[:message][:last_name] rescue nil}.\n
+                             The person's email address is: #{params[:message][:sender_email] rescue nil}. \n
                              Here is the message: #{params[:message][:text].gsub(/<\/?[^>]*>/,  "") rescue nil}")
     else
       @contact = Contact.new
