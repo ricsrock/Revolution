@@ -1,0 +1,19 @@
+<div id="child_sticker">
+	<div style="height:300px;width:168px;border:solid red 2px;">
+		Hi Again, Again
+	</div>
+</div>
+
+<script>
+{
+	var a = window.open('','','');
+	a.document.open("text/html");
+	a.document.write('<html style="height:300px;width:168px;"><head><link href="/stylesheets/checkin.css" media="all" rel="Stylesheet" type="text/css" /></head><body style="height:300px;width:168px;">')
+	a.document.write(document.getElementById('child_sticker').innerHTML);
+	a.document.write('</body></html>')
+	a.document.close();
+	a.print();
+	a.close();
+
+}
+</script>

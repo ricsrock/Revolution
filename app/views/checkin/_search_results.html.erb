@@ -1,0 +1,31 @@
+
+<div style="width:75%;height:450px;overflow:scroll;float:right;margin:2em;">
+	<div style="background-color:white;opacity:0.8;padding:0.5em;">
+		<% if ! @results.empty? %>
+			<% @results.each do |household| %>
+				<div style="padding:0.25em;">
+					<div style="font-size:24px;weight:bold;">
+						The <%=h household.name %> Household
+					</div>
+					<div style="float:none;clear:both;padding:0.25em;">
+						<%= household.address_one_line %>
+					</div>
+					<hr></hr>
+					<% household.people.sort_by(&:sort_order).each do |person| %>
+						<div style="font-size:18px;padding:0.25em;">
+							<label style="font-size:16px;"><%= check_box_tag('hi',{},false,{:style => "width:18px;height:18px;"}) %>
+							<%=h person.full_name %></label>
+								<div style="font-size:12px;margin-left:2em;">
+									Household Position: <%= person.household_position %>  &nbsp;&nbsp; Age: <%= person.age %> &nbsp;&nbsp; Default Checkin Group: <%= person.default_group.name rescue nil %>
+								</div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		<% else %>
+			<div stle="padding:3em;margin:1em;">
+				No Results
+			</div>
+		<% end %>
+	</div>
+</div>

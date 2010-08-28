@@ -1,0 +1,52 @@
+<head>
+	<%= javascript_include_tag 'keyboard.js' %>
+	<%= stylesheet_link_tag 'keyboard.css' %>
+</head>
+
+<body>
+<div style="height:100%;" class="nocursor">	
+	<div style="padding:1em;float:none:clear:both;">
+		<label style="font-size:24px;">
+			Search For: 
+		</label>
+		<span id="search_text" ><%= render :partial => 'search_text' %></span><%= loading_spinner("spinner") %>
+		<span id="radio_buttons" style="float:right;">
+			<%= render :partial => 'radio_buttons', :locals => {:by => @by} %>
+		</span>
+	</div>
+	
+	<div id="pad_area">
+		<%= render :partial => @pad %>
+	</div>
+	
+	<div style="float:none;clear:both;padding:1em;">
+		
+	</div>
+	
+	<div id="search_button_area" style="text-align:center;">
+		<%= render :partial => 'search_button', :locals => {:search => @search} %>
+	</div>
+	
+	<div id="results_area">
+
+	</div>
+	
+	<div style="float:right;text-align:center;">
+		<div id="search_again_area" style="text-align:center;padding:1em;float:right;">
+		
+		</div>
+		
+		<div style"float:none;clear:both;">
+			
+		</div>
+		
+		<div id="checkin_selected_area" style="text-align:center;padding:1em;float:right;">
+		</div>
+	</div>
+	
+	<div style="float:none;clear:both;">
+		
+	</div>
+	
+	</div>
+</body>

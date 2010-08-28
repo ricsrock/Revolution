@@ -1,0 +1,51 @@
+<div id="teacher_copy"style="background-color:#FFFFFF;position:absolute;top:0;left:0;width:100%;">
+	<div id="wristband-wrap"style="position:absolute;top:0;left:0;background-color:#FFFFFF;width:100%;">
+		<div id="wristband-container"style="background-color:#FFFFFF;position:absolute;top:0;left:0;width:100%;">
+			<div style="background-color:#000000;text-align:center;position:absolute;top:0px;left:0px;width:100%;line-height:35px;">
+				<% unless @attendance.nil? %>
+					<b style="font-size:18px;color:#FFFFFF;">TEACHER COPY</b>
+				<% end %>
+			</div>
+			<div style="margin-top:3em;width:100%;">
+				<% unless @attendance.nil? %>
+					<div style="text-align:center;">
+						<b><%= @attendance.person.full_name rescue nil %></b><br><br>
+					</div>
+					<div style="text-align:center;">
+						<%= @attendance.date.to_s(:long) rescue nil %><br><br>
+					</div>
+					<div>
+						<b>Security Phrase: </b> <br> <%= @attendance.security_code rescue nil %><br><br>
+					</div>
+					<div id="call_number" style="background-color:#000000;text-align:center;line-height:40px;">
+						<b style="color:#FFFFFF;font-size:28pt;"><%= @attendance.call_number rescue nil %> </b>
+					</div>
+				<% end %>
+			</div>
+			<% unless @attendance.nil? %>
+				<% if ! @attendance.person.allergies.blank? %>
+					<div style="background-color:#FFFFFF;text-align:center;width:100%;line-height:14px;border-top:4pt solid #000000;">
+							<b style="font-size:10px;font-family:georgia,serif;font-style:italic;color:#000000;">Allergies: <%= @attendance.person.allergies.blank? ? 'none' : @attendance.person.allergies %></b>
+					</div>
+				<% end %>
+			<% end %>			
+		</div>
+	</div>
+</div>
+
+<% unless @attendance.nil? %>
+<script>
+
+{
+	var a = window.open('','','');
+	a.document.open("text/html");
+	a.document.write('<html><head><link href="/stylesheets/checkin.css" media="all" rel="Stylesheet" type="text/css" /></head><body style="width:100%;text-align:center;top-margin:0px;">')
+	a.document.write(document.getElementById('teacher_copy').innerHTML);
+	a.document.write('</body></html>')
+	a.document.close();
+	a.print();
+	a.close();
+
+}
+</script>
+<% end %>

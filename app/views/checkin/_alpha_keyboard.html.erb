@@ -1,0 +1,38 @@
+<div style="margin-left:auto;margin-right:auto;width:1120px;">
+	<div style="float:none;clear:both;">
+		<% Checkin::ALPHA_KEYBOARD[0..11].each do |l| %>
+			<span>
+				 <% unless l[0].blank? %>
+				 <%= link_to_remote "#{l[0]}", {:url => {:controller => 'checkin', :action => 'key_pressed', :key => l[0], :search => @search, :pad => @pad}},{:style => "width:#{l[1]}em;", :class => "key_button"} %>
+				 <% else %>
+						<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
+				 <% end %>
+			</span>
+		<% end %>
+	</div>
+	<div style="float:none;clear:both;">
+		<% Checkin::ALPHA_KEYBOARD[12..22].each do |l| %>
+			<span>
+				 <% unless l[0].blank? %>
+				 <%= link_to_remote "#{l[0]}", {:url => {:controller => 'checkin', :action => 'key_pressed', :key => l[0],:search => @search, :pad => @pad}},{:style => "width:#{l[1]}em;", :class => "key_button"} %>
+				 <% else %>
+						<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
+				 <% end %>
+			</span>
+		<% end %>		
+	</div>
+	<div style="float:none;clear:both;">
+		<% Checkin::ALPHA_KEYBOARD[23..31].each do |l| %>
+			<span>
+				 <% unless l[0].blank? %>
+				 <%= link_to_remote "#{l[0]}", {:url => {:controller => 'checkin', :action => 'key_pressed', :key => l[0],:search => @search, :pad => @pad}},{:style => "width:#{l[1]}em;", :class => "key_button"} %>
+				 <% else %>
+						<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
+				 <% end %>
+			</span>
+		<% end %>		
+	</div>
+	<div style="float:none;clear:both;">
+		&nbsp;
+	</div>
+</div>

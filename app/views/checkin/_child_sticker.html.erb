@@ -1,0 +1,55 @@
+<div id="sticker" style="background-color:#FFFFFF;">
+<div id="wristband-wrap"style="background-color:#FFFFFF;">			
+<div id="wristband-container"style="background-color:#FFFFFF;">
+	<div>
+		<% unless @attendance.nil? %>
+			<div style="text-align:center;"><b style="font-size:20px;"><%= @attendance.person.first_name %></b></div>
+			<div style="text-align:center;">
+				<%= @attendance.person.last_name %>
+			</div>
+			<%= @attendance.person.household_responsible_people rescue nil %><br/>
+			<% unless @attendance.person.household.phones.empty? %>
+				<%= number_to_phone @attendance.person.household_emergency_phone.number, {:area_code => true} %>
+			<% end %>
+		<% end %> <br>
+	</div>
+	<br>
+	<div>
+		<% unless @attendance.nil? %>
+			<b>Security Phrase: </b><%= @attendance.security_code rescue nil %><br>
+			<b>Call Number: </b><%= @attendance.call_number rescue nil %><br>
+		<% end %>
+		<% unless @meeting.nil? %>
+			<%= @meeting.group.name rescue nil %><br>
+		<% end %>
+		<% unless @attendance.nil? %>
+			<%= @attendance.person.allergies rescue nil %>
+		<% end %>
+	</div>
+</div>
+</div>
+</div>
+
+<div id="test" style="border:2px solid #000000;width:150px;height:300px;">
+	<div style="position:absolute;left:0px;top:0px;">
+		stuff in here
+		stuff in here
+		stuff in here
+	</div>
+</div>
+
+<% unless @attendance.nil? %>
+<script>
+
+{
+	var a = window.open('','','width=300,height=300');
+	a.document.open("text/html");
+	a.document.write('<html><head><link href="/stylesheets/scaffold.css" media="all" rel="Stylesheet" type="text/css" /></head><body><br/>')
+	a.document.write(document.getElementById('sticker').innerHTML);
+	a.document.write('</body></html>')
+	a.document.close();
+	a.print();
+	a.close();
+}
+</script>
+<% end %>

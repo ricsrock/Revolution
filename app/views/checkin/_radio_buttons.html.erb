@@ -1,0 +1,12 @@
+<% ["Phone Number", "Last Name"].each do |by| %>
+	<label style="font-size:20px;"><%= radio_button_tag('by', by, by == @by ? 'checked' : nil, :style => "width:20px;height:20px;", :id => "the_#{by.underscore.parameterize("_").wrapped_string}_button") %>
+		   <%= by.classify %>
+	</label>
+<% end %>
+<%= observe_field "the_last_name_button",
+ 	:url => {:action => "by_selected"},
+	:with => 'the_last_name_button' %>
+
+  		<%= observe_field "the_phone_number_button",
+	 	:url => {:action => "by_selected"},
+		:with => 'the_phone_number_button' %>

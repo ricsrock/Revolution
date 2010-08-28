@@ -1,0 +1,56 @@
+<div style="margin-left:auto;margin-right:auto;width:250px;"><div style="float:none;clear:both;">
+		<% Checkin::NUM_PAD[0..2].each do |l| %>
+			<span>
+				 <% unless l[0].blank? %>
+				 <%= link_to_remote "#{l[0]}", {:url => {:controller => 'checkin', :action => 'key_pressed', :key => l[0], :search => @search, :pad => @pad}},{:style => "width:#{l[1]}em;", :class => "key_button"} %>
+				 <% else %>
+						<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
+				 <% end %>
+			</span>
+		<% end %>
+</div>
+<div style="float:none;clear:both;">
+	<% Checkin::NUM_PAD[3..5].each do |l| %>
+		<span>
+			 <% unless l[0].blank? %>
+			 <%= link_to_remote "#{l[0]}", {:url => {:controller => 'checkin', :action => 'key_pressed', :key => l[0], :search => @search, :pad => @pad}},{:style => "width:#{l[1]}em;", :class => "key_button"} %>
+			 <% else %>
+					<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
+			 <% end %>
+		</span>
+	<% end %>
+	
+	
+</div>
+<div style="float:none;clear:both;">
+	<% Checkin::NUM_PAD[6..8].each do |l| %>
+		<span>
+			 <% unless l[0].blank? %>
+			 <%= link_to_remote "#{l[0]}", {:url => {:controller => 'checkin', :action => 'key_pressed', :key => l[0], :search => @search, :pad => @pad}},{:style => "width:#{l[1]}em;", :class => "key_button"} %>
+			 <% else %>
+					<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
+			 <% end %>
+		</span>
+	<% end %>
+	
+	
+</div>
+<div style="float:none;clear:both;">
+	<% Checkin::NUM_PAD[9..11].each do |l| %>
+		<span>
+			 <% unless l[0].blank? %>
+			 <%= link_to_remote "#{l[0]}", {:url => {:controller => 'checkin', :action => 'key_pressed', :key => l[0], :search => @search, :pad => @pad}},{:style => "width:#{l[1]}em;", :class => "key_button"} %>
+			 <% else %>
+					<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
+			 <% end %>
+		</span>
+	<% end %>
+	
+	
+</div>
+
+<div style="float:none;clear:both;">
+	&nbsp;
+</div>
+
+</div>

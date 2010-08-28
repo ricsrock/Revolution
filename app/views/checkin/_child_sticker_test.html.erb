@@ -1,0 +1,29 @@
+<div id="child_sticker"style="background-color:#FFFFFF;width:100%;">
+	<div style="background-color:#000000;text-align:center;width:100%;line-height:40px;">
+		<% unless @attendance.nil? %>
+			<b style="font-size:28px;color:#FFFFFF;"><%= @attendance.person.first_name %></b>
+		<% end %>
+	</div>
+	<div style="background-color:#000000;text-align:center;width:100%;line-height:35px;">
+		<% unless @attendance.nil? %>
+			<b style="font-size:18px;color:#FFFFFF;"><%= @attendance.person.last_name %></b>
+		<% end %>
+	</div>
+</div>
+
+<% unless @attendance.nil? %>
+<script>
+
+{
+	var a = window.open('','','');
+	a.document.open("text/html");
+	a.document.write('<html><head><link href="/stylesheets/checkin.css" media="all" rel="Stylesheet" type="text/css" /></head><body style="text-align:center;">')
+	a.document.write(document.getElementById('child_sticker').innerHTML);
+	a.document.write('</body></html>')
+	a.document.close();
+	a.print();
+	a.close();
+
+}
+</script>
+<% end %>
