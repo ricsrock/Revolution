@@ -48,7 +48,6 @@ class PeopleController < ApplicationController
     params[:person][:updated_at] = Time.now
     params[:person][:updated_by] = current_user.login
     t = Date::today()
-    logger.debug "Estimated birthdate is #{params[:person][:estimated_birthdate]}"
     params[:person][:estimated_birthdate] = Date.new(t.year - params[:person][:estimated_birthdate].to_i, t.month, t.day)
     @person = Person.find(params[:id])
     if @person.update_attributes(params[:person])

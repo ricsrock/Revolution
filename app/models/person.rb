@@ -79,6 +79,10 @@ class Person < ActiveRecord::Base
   def formatted_birthdate
     unless self.birthdate.blank?
      birthdate.strftime('%m/%d/%Y')
+    else
+      unless self.estimated_birthdate.blank?
+        estimated_birthdate.strftime('%m/%d/%Y') + ' *'
+      end
    end
   end
     
@@ -86,14 +90,19 @@ class Person < ActiveRecord::Base
      self.birthdate = Time.parse(time_str)
    end
    
-   def age
-     unless self.birthdate.blank?
-       age = (Time.now - self.birthdate.to_time)/1.year
-       age.floor
-     else
+  def age
+    unless self.birthdate.blank? || self.birthdate.nil?
+      age = (Time.now - self.birthdate.to_time)/1.year
+      age.floor
+    else
+      unless self.estimated_birthdate.blank? || self.estimated_birthdate.nil?
+        age = (Time.now - self.estimated_birthdate.to_time)/1.year
+        age.floor.to_s + " *"
+      else
         0
-     end
-   end
+      end
+    end
+  end
   
   def checkin_mod
 #    @form_meeting = Meeting.find(:first, :conditions => {:id => params[:attendance][:meeting_id]})

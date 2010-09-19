@@ -67,7 +67,9 @@ class HouseholdsController < ApplicationController
   
   def create_add_person
       @household = Household.new(params[:household])
+      t = Date::today()
       params[:people].each_value do |person|
+        person[:estimated_birthdate] = Date.new(t.year - person[:estimated_birthdate].to_i, t.month, t.day)
         @household.people.build(person) unless person.values.all?(&:blank?)
       end
       if @household.save
@@ -83,7 +85,11 @@ class HouseholdsController < ApplicationController
     params[:household][:created_at] = Time.now
     params[:household][:created_by] = current_user.login
     @household = Household.new(params[:household])
-    params[:people].each_value { |person| @household.people.build(person)}
+    t = Date::today()
+    params[:people].each_value do |person| 
+      person[:estimated_birthdate] = Date.new(t.year - person[:estimated_birthdate].to_i, t.month, t.day)
+      @household.people.build(person)
+    end
     @values = []
     unless params[:emails].nil? #don't do anything if there are no emails. To fix 'nil' error. (12/17/07)
       params[:emails].each_value do |email|
@@ -109,6 +115,7 @@ class HouseholdsController < ApplicationController
       params[:household][:created_by] = current_user.login
       @household = Household.new(params[:household])
       params[:people].each_value { |person| person[:household_position] = "Dependent"}
+      params[:people].each_value { |person| person[:estimated_birthdate] = Date.new(t.year - person[:estimated_birthdate].to_i, t.month, t.day)}
       params[:people].each_value { |person| @household.people.build(person)}
       @values = []
       unless params[:phones].nil? #don't do anything if there are no phones. added proactively. Can't hurt. Can it? (12/17/07)
@@ -127,6 +134,7 @@ class HouseholdsController < ApplicationController
   def add_people
     @household = Household.find(params[:household_id])
     params[:people].each_value do |person|
+      person[:estimated_birthdate] = Date.new(t.year - person[:estimated_birthdate].to_i, t.month, t.day)
       @household.people.build(person).save
     end
     redirect_to :action => 'list'
@@ -189,6 +197,8 @@ class HouseholdsController < ApplicationController
     params[:person][:created_at] = Time.now
     params[:person][:created_by] = current_user.login
     @household = Household.find(params[:household_id])
+    t = Date::today()
+    params[:person][:estimated_birthdate] = Date.new(t.year - params[:person][:estimated_birthdate].to_i, t.month, t.day)
     @person = Person.create(params[:person])
     @household.people << @person
     if @person.save

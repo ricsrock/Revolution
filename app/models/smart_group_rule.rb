@@ -27,7 +27,11 @@ class SmartGroupRule < ActiveRecord::Base
           end_range = (Time.now - end_age.years).to_date.to_s(:db)
         
           cond = EZ::Where::Condition.new do
-            birthdate <=> (end_range..start_range)
+            birthdate <=> (end_range..start_range) 
+          end
+
+          cond |= EZ::Where::Condition.new do
+            estimated_birthdate <=> (end_range..start_range)
           end
         elsif self.operator.short === "greater"
           # do older than stuff...
@@ -36,12 +40,18 @@ class SmartGroupRule < ActiveRecord::Base
           cond = EZ::Where::Condition.new do
             birthdate < start_date
           end
+          cond |= EZ::Where::Condition.new do
+            estimated_birthdate < start_date
+          end
         elsif self.operator.short === "less"
           # do younger than stuff...
           # birthdate greater than today minus number of years old requested
           start_date = (Time.now - self.content.to_i.years).to_date.to_s(:db)
           cond = EZ::Where::Condition.new do
             birthdate > start_date
+          end
+          cond |= EZ::Where::Condition.new do
+            estimated_birthdate > start_date
           end
         end
     
