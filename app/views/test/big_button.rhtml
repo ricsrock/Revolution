@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>huge cross</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<meta name="Content-Script-Type" content="text/javascript"/>
+<meta name="Content-Style-Type" content="text/css"/>
+<style type="text/css">
+<!--
+body {
+     background-color:#ddd;  
+ }
+.container {
+     width:60px;
+     border-top:4px solid #ccc;
+     border-right:4px solid #666;
+     border-bottom:4px solid #666;
+     border-left:4px solid #ccc;
+     background-color:#fefefe;  
+     padding:15px 0px;
+     text-align: center;
+     margin:40px auto;
+ }
+.but {
+     width:30px;
+     height:30px;
+     font-family:courier,monospace;
+     font-size:24px;
+     color:#000;
+     font-weight:bold;  
+     background-color:#d4d0c8;  
+ }
+-->
+</style>
+<script type="text/javascript">
+<!--
+function hugeCross(inp,num) {
+var message=new Array();
+      message[0]= 'you have clicked button number '+num;   
+      message[1]= 'you have clicked button number '+num;
+     inp.value='X';
+     alert(message[num])
+ }
+//-->
+</script>
+
+</head>
+<body>
+
+<div class="container">
+<input class="but" type="button" onclick="hugeCross(this,0)" onfocus="this.blur()"/>
+</div>
+
+<div class="container">
+<input class="but" type="button" onclick="hugeCross(this,1)" onfocus="this.blur()"/>
+</div>
+
+</body>
+</html>

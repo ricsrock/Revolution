@@ -1,0 +1,10 @@
+body {
+background-color: #FFFFFF;
+color: #000;
+margin:0px;
+}
+
+body, p, ol, ul, td {
+font-family: verdana, arial, helvetica, sans-serif;
+font-size: 13px;
+}

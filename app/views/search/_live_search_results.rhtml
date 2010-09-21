@@ -1,0 +1,27 @@
+
+<ul class="name_search_resultes" style="width:350px;float:left;">
+<% for item in @results.uniq[0..10] -%>
+<li id="<%= item.url_for %>"><a href="<%= item.url_for %>">
+	<table width="100%">
+		<tr>
+			<th width="15">
+				<% if item.class.name.downcase == 'person' %>
+					<%= picture_for(item, :tiny) %>
+				<% else %>
+					<%= image_tag "search_icon_" + item.class.name.downcase + ".png", :size => "16x18"%>
+				<% end %>
+			</th>
+			<td class="<%= item.class.name.downcase %>"><%= render :partial => "result_" + item.class.name.underscore, :locals => { :item => item } %></td>
+		</tr>
+	</table></a>
+</li>
+<% end -%>
+<% if @results.length >= 10 && false %>
+    <li style="text-align:right;">
+        <a href="#">More Results -></a>
+    </li>
+<% end %>
+    <% if @results.uniq.length == 0 %>
+    <li>No Results Found</li>
+    <% end %>
+</ul>

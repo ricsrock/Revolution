@@ -1,0 +1,13 @@
+<div id="search_box">
+Search:<br> <%= text_field_tag :search_criteria %>	<%= image_tag "working.gif", :style => "display: none;", :id => "search_indicator" %>
+
+<div class="name_auto_complete" id="search-results-area" style="z-index:99;float:left;position:relative;"></div>
+
+<%= observe_field "search_criteria",
+ 				 :url => {:controller => "search", :action => "auto_complete"},
+				 :frequency => 0.25,
+				 :loading => "Element.show('search_indicator')",
+				 :loaded => "Element.hide('search_indicator')",
+				 :with => "search_criteria" %>
+
+</div>

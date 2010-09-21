@@ -1,0 +1,27 @@
+<% name = item %>
+  <table cellpadding=0 cellspacing=0 width="100%" border=0>
+      <tr>
+          <th colspan=2><span><%=h name.name %> (Organization #<%=h name.id rescue nil %>)</span></td>
+      </tr>
+			<th colspan=2><small><span><%=h name.associates.sort_by(&:sort_order).collect {|f| f.full_name}.to_sentence %></span></small></th>
+	<tr>
+		<td align="left">
+			<strong>Address:</strong> <%= name.address_one_line rescue nil %>
+		</td>
+	</tr>
+	  <tr>
+			<td valign=top>
+				<% name.emails.each do |e| %>
+					<strong><%=h e.comm_type.name %>: </strong> <%= h e.email %><br>
+				<% end %>
+			</td>
+      </tr>
+      <tr>
+          <td valign=top>
+              <% for phone in name.phones %>
+                    <strong><%=h phone.comm_type.name %>:</strong> <%=h number_to_phone phone.number, {:area_code => true} %><br>
+                <% end %>
+            </td>
+      </tr>
+
+  </table>
