@@ -28,8 +28,6 @@ Rails::Initializer.run do |config|
   # They can then be installed with "rake gems:install" on new installations.
   # You have to specify the :lib option for libraries, where the Gem name (sqlite3-ruby) differs from the file itself (sqlite3)
   config.gem "vpim"
-  config.gem 'prawn'
-  config.gem 'prawn-format', :lib => 'prawn/format'
   
   #config.gem "starling-starling", :source => "http://gems.github.com/ "
   
