@@ -29,7 +29,7 @@
 				</tr>
 				<tr>
 					<td>
-						<%= @person.birthdate.strftime('%m/%d/%Y') rescue nil %>
+						<%= @person.formatted_birthdate %>
 					</td>
 					<td>
 						<%= @person.default_group.name rescue nil %>

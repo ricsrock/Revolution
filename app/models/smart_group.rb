@@ -29,7 +29,7 @@ class SmartGroup < ActiveRecord::Base
     end
     
     @people = Person.find(:all,
-                :select => ['people.id, people.household_id, people.gender, people.household_position, people.first_name, people.last_name, people.birthdate,
+                :select => ['people.id, people.household_id, people.gender, people.household_position, people.first_name, people.last_name, people.birthdate, people.estimated_birthdate,
                              tags.name, groups.name, people.attendance_status'],
                 :joins => ["LEFT OUTER JOIN taggings ON (people.id = taggings.person_id)
                             LEFT OUTER JOIN tags ON (tags.id = taggings.tag_id)
@@ -55,7 +55,7 @@ class SmartGroup < ActiveRecord::Base
       end
 
       @people = Person.find(:all,
-                  :select => ['people.id, people.household_id, people.gender, people.household_position, people.first_name, people.last_name, people.birthdate,
+                  :select => ['people.id, people.household_id, people.gender, people.household_position, people.first_name, people.last_name, people.birthdate, people.estimated_birthdate,
                                tags.name, groups.name, people.attendance_status, households.id'],
                   :joins => ["LEFT OUTER JOIN households ON (households.id = people.household_id)
                               LEFT OUTER JOIN taggings ON (people.id = taggings.person_id)

@@ -15,6 +15,11 @@
 		<td>Birthdate: </td>
 		<td><%= date_field :person, :birthdate, :size => 20 %></td>
 	</tr>
+    <tr>
+      <td>Estimated Age: </td>
+      <td><%= f.text_field :estimated_birthdate %></td>
+      <td colspan="2"></td>
+    </tr>
 	<tr>
 		<td>Household Position: </td>
 		<td><%= f.select( :household_position, Person::POSITIONS, {}) %></td>

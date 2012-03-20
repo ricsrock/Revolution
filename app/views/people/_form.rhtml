@@ -14,6 +14,9 @@
 <p><label for="person_birthdate">Birthdate</label><br/>
 <%= date_field 'person', 'birthdate', :format => '%d %b %Y', :value => (@person.birthdate.strftime('%d %b %Y') if @person.birthdate) %></p>
 
+<p><label for="person_estimated_birthdate">Estimated Age:</label><br/>
+<%= text_field 'person', 'estimated_birthdate', :value => ((Date::today() - @person.estimated_birthdate).to_i/365 if @person.estimated_birthdate) %></p>
+
 <p><label for="person_default_group_id">Default Check-In Group</label><br/>
 <%= collection_select ('person', 'default_group_id', Group.checkin_groups, 'id', 'name', options = {:prompt => "--Choose Group--"})  %></p>
 
