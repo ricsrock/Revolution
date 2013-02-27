@@ -63,6 +63,7 @@ class AttendancesController < ApplicationController
     end
   end
   
+  
   def checkout
     @attendance.checkout
     flash[:notice] = "#{@attendance.person.full_name} was checked out."
