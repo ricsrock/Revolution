@@ -1,0 +1,77 @@
+<%= four_up_two_up_widget_box("Meeting Information") do %>
+	<li class="field">Instance:</li>
+	<li><%= link_to @meeting.instance.instance_type.name, @meeting.instance %></li>
+	<li class="field">Group:</li>
+	<li><%= @meeting.group.name %></li>
+	<li class="field">Room:</li>
+	<li><%= @meeting.room.name %></li>
+	<li class="field">Real Date:</li>
+	<li><%= @meeting.real_date %></li>
+	<li class="field">Comments:</li>
+	<li><%= @meeting.comments %></li>
+	<li class="field">Num Marked:</li>
+	<li><%= @meeting.num_marked %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', meetings_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_meeting_path(@meeting), 'edit', nil, 'small round' %>
+</div>
+<br><br>
+
+<%= widget_box("Currently Checked In (#{@meeting.current_attendances.length})") do %>
+	<div class="widget-content">
+		<table class="twelve responsive">
+			<thead>
+		    <tr>
+		      <th>Name</th>
+			  <th></th>
+		      <th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			<% @meeting.current_attendances.each do |a| %>
+				<tr>
+					<td><%= a.person.full_name %></td>
+					<td>
+						<%= link_to 'checkout', checkout_attendance_path(a), class: "button round tiny" %>
+					</td>
+					<td>
+						undo button
+					</td>
+				</tr>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+<% end %>
+
+<%= widget_box("Meeting History (#{@meeting.attendances.length})") do %>
+	<div class="widget-content">
+		<table class="twelve responsive">
+			<thead>
+		    <tr>
+		      <th>Name</th>
+			  <th>Checked In At</th>
+		      <th>Checked Out At</th>
+			  <th></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+			<% @meeting.attendances.each do |a| %>
+				<tr>
+					<td><%= a.person.full_name %></td>
+					<td><%= a.checkin_time %></td>
+					<td><%= a.checkout_time %></td>
+					<td>
+						<%= link_to 'undo', attendance_path(a), method: :delete, confirm: "Are you sure you want to permanently delete this checkin?",
+						 					class: "button round tiny" %>
+						
+					</td>
+				</tr>
+			<% end %>
+		  </tbody>
+		</table>
+	</div>
+<% end %>

@@ -1,0 +1,43 @@
+<div class="panel radius">
+	<% if Instance.current %>
+		<h5 class="subheader">Currently Checking-In to <%= Instance.current.event.name %>, <%= link_to Instance.current.instance_type.name, instance_path(Instance.current) %></h5>
+	<% else %>
+		<h5 class="subheader">There is no service instance to check people into. Please create a new event.</h5>
+	<% end %>
+</div>
+
+<% if Instance.current %>
+	<div class="row">
+			<%= form_tag checkin_search_path, method: :get, remote: true do %>
+				<div class="eight columns">
+					<%= text_field :search, :q, placeholder: "Last Name or Last 4 of Phone" %>
+				</div>
+				<div class="four columns">
+					<%= submit_tag "Search", class: "button round small" %>
+				</div>
+			<% end %>
+	</div>
+
+	<div class="row">
+		<div class="twelve columns">
+			<%= form_tag checkin_selected_checkin_index_path, class: "custom" do %>
+			<div id="results">
+				<%= render :partial => 'search_results' %>
+			</div>
+			<%= button_tag(:type => 'submit', class: "button radius") do %>
+				<i class="icon-check"></i> Checkin Selected
+			<% end %>
+		<% end %>
+		</div>
+	</div>
+<% end %>
+
+<% content_for :sidebar do -%>
+	<% Instance.current.meetings.each do |m| %>
+		<div class="row">
+			<div class="twelve columns">
+				<%= link_to m.group.name, m %> (<%= m.current_attendances.length %>/<%= m.attendances.length %>)
+			</div>
+		</div>
+	<% end %>
+<% end -%>

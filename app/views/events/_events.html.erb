@@ -1,0 +1,26 @@
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Name</th>
+			<th>Event Type</th>
+			<th>Date</th>
+			<th># Instances</th>
+			<th># Meetings</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @events.each do |event| %>
+	  <tr>
+	    <td><%= link_to event.name, event %></td>
+	    <td><%= event.event_type.name %></td>
+	    <td><%= event.date %></td>
+		<td><%= event.instances.length %></td>
+		<td><%= event.meetings.length %></td>
+	    <td><%= link_to '', edit_event_path(event), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', event, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>

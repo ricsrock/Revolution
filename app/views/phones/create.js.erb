@@ -1,0 +1,8 @@
+<% if @phone.errors.any? %>
+	$('#myModal').html("<%= escape_javascript(render :partial => 'phones/form', :phone => @phone) %>");
+<% else %>
+	$('#phones').html("<%= j render partial: 'shared/phones', locals: {:object => @object} %>");
+	$('#myModal').trigger('reveal:close');
+	$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+	<% flash.discard %>
+<% end %>

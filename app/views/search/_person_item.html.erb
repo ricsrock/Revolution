@@ -1,0 +1,10 @@
+<li>
+	<%= link_to(person_path(result)) do %>
+		<div class="result-item">
+			<div><%= icon('user') %> <%= full_name(result) %> (#<%= result.id %>)</div>
+			<div><%= result.household.address1 %>, <%= result.household.city %></div>
+			<div><strong>Email: </strong><%= best_email(result) %></div>
+			<div><strong>Phone: </strong><%= best_phone(result) %></div>
+		</div>
+	<% end %>
+</li>

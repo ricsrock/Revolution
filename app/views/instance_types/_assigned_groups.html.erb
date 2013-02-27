@@ -1,0 +1,7 @@
+<ul class="unstyled">
+	<% @instance_type.groups.each do |r| %>
+		<li>
+			<%= link_to r.name, remove_group_from_instance_type_path(r, instance_type_id: @instance_type), remote: true %>
+		</li>
+	<% end %>
+</ul>

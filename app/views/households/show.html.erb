@@ -1,0 +1,47 @@
+<div class="widget-box">
+	<div class="widget-title">
+		<h3>
+			<i class="icon-home"></i>
+			The <%= @household.name %> Household
+		</h3>
+	</div>
+	<div class="widget-content">
+		<div class="row">
+			<div class="twelve columns">
+				<%= @household.people.collect {|p| link_to(family_name(p), person_path(p))}.to_sentence.html_safe %>
+				<span class="right">
+					<%= button_icon 'add person', new_person_path(household_id: @household), 'plus', nil, 'round tiny success' %>
+				</span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="twelve columns">
+				<blockquote>
+					<p>
+						<%= @household.address1 %><br>
+						<% if ! @household.address2.blank? %>
+						<%= @household.address2 %><br>
+						<% end %>
+						<%= @household.city %>, <%= @household.state %>  <%= @household.zip %>
+					</p>
+				</blockquote>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= widget_box("Communication") do %>
+	<div class="widget-content">
+		<div id="phones">			
+			<%= render :partial => 'shared/phones', :locals => {:object => @household} %>
+		</div>
+		<div id="emails">			
+			<%= render :partial => 'shared/emails', :locals => {:object => @household} %>
+		</div>
+	</div>
+<% end %>
+
+
+
+<%= button_icon 'Edit', edit_household_path(@household), 'edit', nil, "small round" %> &nbsp;
+<%= button_icon 'Index', households_path, 'list', nil, "small round" %><br><br>

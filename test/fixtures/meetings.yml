@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  instance_id: 1
+  group_id: 1
+  room_id: 1
+  real_date: 2013-02-21 13:49:04
+  comments: MyText
+  num_marked: 1
+
+two:
+  instance_id: 1
+  group_id: 1
+  room_id: 1
+  real_date: 2013-02-21 13:49:04
+  comments: MyText
+  num_marked: 1

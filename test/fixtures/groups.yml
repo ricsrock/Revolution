@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  default_room_id: 1
+  staff_ratio: 1
+  meeting_is_called: MyString
+  checkin_group: false
+
+two:
+  name: MyString
+  default_room_id: 1
+  staff_ratio: 1
+  meeting_is_called: MyString
+  checkin_group: false

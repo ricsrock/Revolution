@@ -1,0 +1,16 @@
+<%= simple_form_for(@group) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.association :default_room %>
+    <%= f.input :staff_ratio %>
+    <%= f.input :meeting_is_called %>
+    <%= f.input :checkin_group %>
+	<%= f.input :parent_id, :collection => nested_set_options(Group, @group) {|i| "#{'-' * i.level} #{i.name}" }, :label => "Select Parent Group" %>
+  </div><hr>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

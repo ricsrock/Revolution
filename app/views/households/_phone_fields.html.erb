@@ -1,0 +1,7 @@
+<%= field_set_tag 'Phone' do %>
+	<%= f.input :number %>
+	<%= f.input :primary %>
+	<%= f.input :comments %>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove this phone", '#', class: "remove_fields small round button alert right" %>
+<% end %>

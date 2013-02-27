@@ -1,0 +1,8 @@
+<%= simple_form_for @person, :html => {:multipart => true} do |f| %>
+  <p>
+    <label>Image</label>
+    <%= image_tag(@person.avatar_url) if @person.avatar? %>
+    <%= f.file_field :image %>
+    <%= f.hidden_field :image_cache %>
+  </p>
+<% end %>

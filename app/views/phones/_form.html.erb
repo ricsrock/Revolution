@@ -1,0 +1,20 @@
+<h4 class="subheader">Phone</h4><hr>
+<%= simple_form_for(@phone, :remote => true) do |f| %>
+  <%= f.error_notification %>
+
+<div class="errors"></div>
+
+  <div class="form-inputs">
+	<%= f.input :phonable_id, as: :hidden %>
+	<%= f.input :phonable_type, as: :hidden %>
+	<%= f.input :number %>
+	<%= f.input :primary %>
+	<%= f.input :comments %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+<a class="close-reveal-modal">&#215;</a>

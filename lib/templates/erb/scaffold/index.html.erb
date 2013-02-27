@@ -1,0 +1,28 @@
+<h3>Listing <%= plural_table_name.capitalize %></h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<%- attributes.each do |attribute| -%>
+			<th><%= attribute.name.capitalize %></th>
+		<%- end -%>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+	  <tr>
+		<%- attributes.each do |attribute| -%>
+	    <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+		<%- end -%>
+	    <td><%%= link_to '', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%%= link_to '', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<%% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%%= link_to "New <%=singular_table_name.capitalize %>", new_<%= singular_table_name %>_path, class: "button radius"  %>

@@ -1,0 +1,22 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Person_id:</li>
+	<li><%= @attendance.person_id %></li>
+	<li class="field">Meeting_id:</li>
+	<li><%= @attendance.meeting_id %></li>
+	<li class="field">Checkin_time:</li>
+	<li><%= @attendance.checkin_time %></li>
+	<li class="field">Checkout_time:</li>
+	<li><%= @attendance.checkout_time %></li>
+	<li class="field">Checkin_type_id:</li>
+	<li><%= @attendance.checkin_type_id %></li>
+	<li class="field">Security_code:</li>
+	<li><%= @attendance.security_code %></li>
+	<li class="field">Call_number:</li>
+	<li><%= @attendance.call_number %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', attendances_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_attendance_path(@attendance), 'edit', nil, 'small round' %>
+</div>

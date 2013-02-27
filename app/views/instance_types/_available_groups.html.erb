@@ -1,0 +1,7 @@
+<ul class="unstyled">
+	<% @instance_type.available_groups.each do |g| %>
+		<li>
+			<%= link_to g.name, add_group_to_instance_type_path(g, instance_type_id: @instance_type), remote: true %>
+		</li>
+	<% end %>
+</ul>

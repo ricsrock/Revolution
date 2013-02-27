@@ -1,0 +1,34 @@
+<h3>Listing Meetings</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Instance_id</th>
+			<th>Group_id</th>
+			<th>Room_id</th>
+			<th>Real_date</th>
+			<th>Comments</th>
+			<th>Num_marked</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @meetings.each do |meeting| %>
+	  <tr>
+	    <td><%= meeting.instance_id %></td>
+	    <td><%= meeting.group_id %></td>
+	    <td><%= meeting.room_id %></td>
+	    <td><%= meeting.real_date %></td>
+	    <td><%= meeting.comments %></td>
+	    <td><%= meeting.num_marked %></td>
+	    <td><%= link_to '', edit_meeting_path(meeting), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', meeting, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Meeting", new_meeting_path, class: "button radius"  %>

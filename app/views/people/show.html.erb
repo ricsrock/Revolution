@@ -1,0 +1,57 @@
+<div class="widget-box">
+	<div class="widget-title">
+		<h3><i class="icon-user">&nbsp;</i><%= full_name(@person) %></h3>
+	</div>
+	<div class="widget-content">
+		<div class="row">
+			<div class="twelve columns">
+				The <%= link_to @person.household.name, household_path(@person.household) %> Household: <%= household_people(@person) %>
+			</div>
+		</div>
+		<div class="row">
+			<div class="four columns">
+				<%= image_tag(@person.image_url) %>
+			</div>
+			<div class="eight columns">
+				<blockquote>
+					<p>
+						<%= @person.household.address1 %><br>
+						<% if ! @person.household.address2.blank? %>
+						<%= @person.household.address2 %><br>
+						<% end %>
+						<%= @person.household.city %>, <%= @person.household.state %>  <%= @person.household.zip %>
+					</p>
+				</blockquote>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Birthdate:</li>
+	<li><%= @person.birthdate %></li>
+	<li class="field">Household Position:</li>
+	<li><%= @person.household_position %></li>
+	<li class="field">Age:</li>
+	<li><%= age(@person) %></li>
+	<li class="field">Default CheckIn Group:</li>
+	<li><%= @person.default_group.name rescue nil %></li>
+	<li class="field">Gender:</li>
+	<li><%= @person.gender %></li>
+	<li class="field">Allergies:</li>
+	<li><%= @person.allergies %></li>
+<% end %>
+
+<%= button_icon 'Edit', edit_person_path(@person), 'edit', nil , "small round" %> &nbsp;
+<%= button_icon 'Index', people_path, 'list', nil, "small round" %><br><br>
+
+<%= widget_box("Communication") do %>
+	<div class="widget-content">
+		<div id="phones">			
+			<%= render :partial => 'shared/phones', :locals => {:object => @person} %>
+		</div>
+		<div id="emails">			
+			<%= render :partial => 'shared/emails', :locals => {:object => @person} %>
+		</div>
+	</div>
+<% end %>

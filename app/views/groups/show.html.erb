@@ -1,0 +1,19 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @group.name %></li>
+	<li class="field">Default_room_id:</li>
+	<li><%= @group.default_room_id %></li>
+	<li class="field">Staff_ratio:</li>
+	<li><%= @group.staff_ratio %></li>
+	<li class="field">Meeting_is_called:</li>
+	<li><%= @group.meeting_is_called %></li>
+	<li class="field">Checkin_group:</li>
+	<li><%= @group.checkin_group %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= link_to 'Index', groups_path, :class => 'button radius'  %>
+  <%= link_to 'Edit', edit_group_path(@group), :class => 'button radius secondary' %>
+  <%= link_to 'Delete', group_path(@group), :method => 'delete', :confirm => 'Are you sure?', :class => 'button radius alert' %>
+</div>

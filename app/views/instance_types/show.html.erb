@@ -1,0 +1,48 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @instance_type.name %></li>
+	<li class="field">Start Time:</li>
+	<li><%= @instance_type.starts_at %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', instance_types_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_instance_type_path(@instance_type), 'edit', nil, 'small round' %>
+</div>
+<br>
+<div class="panel radius">
+	<h5 class="subheader">
+		Revolution will auto-create meetings for the assigned groups when an instance of this type is created.
+	</h5>
+</div>
+<div class="row">
+	<div class="six columns">		
+		<div class="widget-box">
+			<div class="widget-title">
+				<h4>Available Groups</h4>
+			</div>
+			<div class="widget-content">
+				<div class="row">
+					<div id="available-groups" class="twelve columns">
+						<%= render :partial => 'available_groups' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="six columns">		
+		<div class="widget-box">
+			<div class="widget-title">
+				<h4>Assigned Groups</h4>
+			</div>
+			<div class="widget-content">
+				<div class="row">
+					<div id="assigned-groups" class="twelve columns">
+						<%= render :partial => 'assigned_groups' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

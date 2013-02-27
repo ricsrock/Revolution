@@ -1,0 +1,36 @@
+<h3>Listing Attendances</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Person_id</th>
+			<th>Meeting_id</th>
+			<th>Checkin_time</th>
+			<th>Checkout_time</th>
+			<th>Checkin_type_id</th>
+			<th>Security_code</th>
+			<th>Call_number</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @attendances.each do |attendance| %>
+	  <tr>
+	    <td><%= attendance.person_id %></td>
+	    <td><%= attendance.meeting_id %></td>
+	    <td><%= attendance.checkin_time %></td>
+	    <td><%= attendance.checkout_time %></td>
+	    <td><%= attendance.checkin_type_id %></td>
+	    <td><%= attendance.security_code %></td>
+	    <td><%= attendance.call_number %></td>
+	    <td><%= link_to '', edit_attendance_path(attendance), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', attendance, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Attendance", new_attendance_path, class: "button radius"  %>

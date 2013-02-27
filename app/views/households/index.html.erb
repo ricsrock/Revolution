@@ -1,0 +1,28 @@
+<h3>Listing Households</h3>
+
+<table class="twelve responsive">
+  <thead>
+    <tr>
+      <th>Name</th>
+	  <th>Address1</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @households.each do |household| %>
+    <tr>
+	  <td><%= link_to household.name, household_path(household) %></td>
+	  <td><%= household.address1 %></td>
+      <td>
+		  <%= link_to '', edit_household_path(household), :title => 'edit', :class => "general-enclosed foundicon-edit" %>
+		  <%= link_to '', household, method: :delete, data: { confirm: 'Are you sure?' }, :title => 'destroy', :class => "general-enclosed foundicon-remove" %>
+	  </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= button_icon 'New Household', new_household_path, 'home', 1.5, 'radius' %>

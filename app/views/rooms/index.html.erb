@@ -1,0 +1,28 @@
+<h3>Listing Rooms</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th>Name</th>
+		<th>Number</th>
+		<th>Capacity</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @rooms.each do |room| %>
+	  <tr>
+	    <td><%= room.name %></td>
+	    <td><%= room.number %></td>
+	    <td><%= room.capacity %></td>
+	    <td><%= link_to '', edit_room_path(room), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+			<%= link_to '', room, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Room", new_room_path, class: "button radius"  %>

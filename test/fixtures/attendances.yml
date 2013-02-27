@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  person_id: 1
+  meeting_id: 1
+  checkin_time: 2013-02-21 16:04:55
+  checkout_time: 2013-02-21 16:04:55
+  checkin_type_id: 1
+  security_code: MyString
+  call_number: MyString
+
+two:
+  person_id: 1
+  meeting_id: 1
+  checkin_time: 2013-02-21 16:04:55
+  checkout_time: 2013-02-21 16:04:55
+  checkin_type_id: 1
+  security_code: MyString
+  call_number: MyString

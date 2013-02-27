@@ -1,0 +1,36 @@
+<%= simple_form_for @household do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+	<%= f.input :name, placeholder: "Household Last Name" %>
+	<%= field_set_tag 'Address' do %>
+		<%= f.input :address1 %>
+		<%= f.input :address2 %>
+		<div class="row">
+			<%= f.input :city, wrapper_html: {class: "eight columns"} %>
+			<%= f.input :state, wrapper_html: {class: "two columns"} %>
+			<%= f.input :zip, wrapper_html: {class: "two columns"} %>
+		</div>
+	<% end %>
+	
+	<%= f.simple_fields_for :people do |person_form| %>
+		<%= render 'person_fields', f: person_form %>
+	<% end %>
+	
+	<%= link_to_add_fields "Add Person", f, :people %><br><br>
+	
+	<%= f.simple_fields_for :phones do |phone_form| %>
+		<%= render 'phone_fields', f: phone_form %>
+	<% end %>
+	
+	<%= link_to_add_fields "Add Phone", f, :phones %><br><br>
+	
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+
+<%# link_to(url, html_options = { :class => class_to_add }) {icon(name, size) + " " + text} %>

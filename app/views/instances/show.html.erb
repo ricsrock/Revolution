@@ -1,0 +1,25 @@
+<%= four_up_two_up_widget_box("Instance Information") do %>
+	<li class="field">Event</li>
+	<li><%= link_to @instance.event.name, @instance.event %></li>
+	<li class="field">Instance Type:</li>
+	<li><%= @instance.instance_type.name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', instances_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_instance_path(@instance), 'edit', nil, 'small round' %>
+</div>
+<br><br>
+
+<%= widget_box("Meetings") do %>
+	<div class="widget-content">
+		<ul class="block-grid one-up mobile-one-up">
+			<% @instance.meetings.each do |meeting| %>
+				<li>
+					<%= link_to meeting.group.name, meeting %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

@@ -1,0 +1,15 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @room.name %></li>
+	<li class="field">Number:</li>
+	<li><%= @room.number %></li>
+	<li class="field">Capacity:</li>
+	<li><%= @room.capacity %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= link_to 'Index', rooms_path, :class => 'button radius'  %>
+  <%= link_to 'Edit', edit_room_path(@room), :class => 'button radius secondary' %>
+  <%= link_to 'Delete', room_path(@room), :method => 'delete', :confirm => 'Are you sure?', :class => 'button radius alert' %>
+</div>

@@ -1,0 +1,50 @@
+<nav class="top-bar contain-to-grid">
+  <ul>
+    <li class="name"><h1><a href="#">Revolution</a></h1></li>
+    <li class="toggle-topbar"><a href="#"></a></li>
+  </ul>
+
+  <section>
+    <ul class="left">
+		<li class="divider"></li>
+		<li class="has-dropdown">
+			<a class="active" href="#">People</a>
+			<ul class="dropdown">
+				<li><%= link_to "Households", households_url %></li>
+			</ul>
+		</li>
+		<li class="divider"></li>
+        <li class="has-dropdown"><a href="#">Groups</a>
+			<ul class="dropdown">
+				<li><%= link_to "Groups", groups_url %></li>
+			</ul>
+		</li>
+		<li class="divider"></li>
+        <li class="has-dropdown"><a href="#">Events</a>
+			<ul class="dropdown">
+				<li><%= link_to "Events", events_url %></li>
+				<li><%= link_to "Check-In", checkin_index_url %></li>
+			</ul>
+		</li>
+		<li class="divider"></li>
+        <li class="has-dropdown"><a href="#">Admin</a>
+			<ul class="dropdown">
+				<li><%= link_to "Rooms", rooms_url %></li>
+				<li><%= link_to "Event Types", event_types_url %></li>
+				<li><%= link_to "Instance Types", instance_types_url %></li>
+			</ul>
+		</li>
+    </ul>
+
+    <ul class="right">
+	    <li class="search">
+			<%= form_tag do_search_url, :method => :get, :remote => true do %>
+				<%= text_field_tag :q, nil, :class => 'search-query', :type => "search", :placeholder => 'Person, Household, Group' %>
+			<% end %>
+			<div id="results-area" style="position:relative;z-index:1000;">
+			
+			</div>
+	    </li>
+    </ul>
+  </section>
+</nav>

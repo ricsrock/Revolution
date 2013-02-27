@@ -1,0 +1,19 @@
+<h3>Listing Events</h3>
+
+<div id="events-list">
+	<%= render :partial => 'events' %>
+</div>
+
+<br />
+
+<%= paginate @events %>
+
+<%= link_to "New Event", new_event_path, class: "button radius"  %>
+
+<% content_for :sidebar do -%>
+	<div>
+		<%= form_tag search_events_url, method: :get, remote: true do %>
+			<%= select_tag "range_selector", options_for_select(NamedDateRanges::RANGES), include_blank: true, class: "range-filter-events" %>
+		<% end %>
+	</div>
+<% end -%>

@@ -1,0 +1,10 @@
+<%= field_set_tag 'Person' do %>
+	<%= f.input :first_name %>
+	<%= f.input :last_name, placeholder: "Leave blank to accept household name" %>
+	<%= f.input :gender, :collection => Person::GENDERS, wrapper_html: {class: "four columns"} %>
+	<%= f.input :birthdate, :as => :string, wrapper_html: {class: "eight columns"}, input_html: {:class => "datepicker"} %>
+	<%= f.input :household_position, :collection => Person::POSITIONS, wrapper_html: {class: "four columns"} %>
+	<%= f.input :allergies, wrapper_html: {class: "eight columns"} %>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove this person", '#', class: "remove_fields small round button alert right" %>
+<% end %>

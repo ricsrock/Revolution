@@ -1,0 +1,12 @@
+<%%= four_up_two_up_widget_box("Basic Information") do %>
+  <%- attributes.each do |attribute| -%>
+	<li class="field"><%= attribute.name.capitalize %>:</li>
+	<li><%%= @<%= singular_table_name %>.<%= attribute.name %> %></li>
+  <%- end -%>
+<%% end  %>
+  
+
+<div class="form-actions">
+  <%%= button_icon 'Index', <%= plural_table_name %>_path, 'list', nil, 'small round'  %>
+  <%%= button_icon 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>), 'edit', nil, 'small round' %>
+</div>

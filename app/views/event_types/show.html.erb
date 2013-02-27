@@ -1,0 +1,47 @@
+<%= four_up_two_up_widget_box("Event Type Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @event_type.name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', event_types_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_event_type_path(@event_type), 'edit', nil, 'small round' %>
+</div>
+<br>
+<div class="panel radius">
+	<h5 class="subheader">
+		Revolution will auto-create assigned instances when an event of this type is created.
+	</h5>
+</div>
+<div class="row">
+	<div class="six columns">		
+		<div class="widget-box">
+			<div class="widget-title">
+				<h4>Available Instance Types</h4>
+			</div>
+			<div class="widget-content">
+				<div class="row">
+					<div id="available-instance-types" class="twelve columns">
+						<%= render :partial => 'available_instance_types' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="six columns">		
+		<div class="widget-box">
+			<div class="widget-title">
+				<h4>Assigned Instance Types</h4>
+			</div>
+			<div class="widget-content">
+				<div class="row">
+					<div id="assigned-instance-types" class="twelve columns">
+						<%= render :partial => 'assigned_instance_types' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

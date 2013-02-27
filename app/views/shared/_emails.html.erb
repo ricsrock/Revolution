@@ -1,0 +1,24 @@
+<div class="row twelve columns">
+	<h5 class="subheader">
+		Emails
+		<%= link_to '', new_email_path(emailable_type: object.class.name, emailable_id: object), "data-reveal-id" => "myModal", :remote => true, class: "general-enclosed foundicon-plus right", title: "add email" %>
+	</h5>
+</div><hr>
+<% object.emails.each do |email| %>
+	<div class"row twelve columns">
+		<div class="three columns">
+			<%= email.email %>
+		</div>
+		<div class="three columns">
+			Primary: <%= check_box_tag email.primary, "1", email.primary, disabled: true %>
+		</div>
+		<div class="three columns">
+			<%= email.comments %>
+		</div>
+		<div class="three columns">
+			<%= link_to '', edit_email_path(email), class: "general-enclosed foundicon-edit", "data-reveal-id" => "myModal", :remote => true %>&nbsp;&nbsp;
+			<%= link_to '', email_path(email), method: :delete, data: {confirm: "Are you sure you want to destroy this email record forever?"}, class: "general-enclosed foundicon-minus" %>
+		</div>
+	</div>
+	<hr>
+<% end %>

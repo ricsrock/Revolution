@@ -1,0 +1,24 @@
+<div class="row twelve columns">
+	<h5 class="subheader">
+		Phones
+		<%= link_to '', new_phone_path(phonable_type: object.class.name, phonable_id: object), "data-reveal-id" => "myModal", :remote => true, class: "general-enclosed foundicon-plus right", title: "add phone" %>
+	</h5>
+</div><hr>
+<% object.phones.each do |phone| %>
+	<div class"row twelve columns">
+		<div class="three columns">
+			<%= pretty(phone) %>
+		</div>
+		<div class="three columns">
+			Primary: <%= check_box_tag phone.primary, "1", phone.primary, disabled: true %>
+		</div>
+		<div class="three columns">
+			<%= phone.comments %>
+		</div>
+		<div class="three columns">
+			<%= link_to '', edit_phone_path(phone), class: "general-enclosed foundicon-edit", "data-reveal-id" => "myModal", :remote => true %>&nbsp;&nbsp;
+			<%= link_to '', phone_path(phone), method: :delete, data: {confirm: "Are you sure you want to destroy this phone record forever?"}, class: "general-enclosed foundicon-minus" %>
+		</div>
+	</div>
+	<hr>
+<% end %>

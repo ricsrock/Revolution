@@ -1,0 +1,18 @@
+<% @households.each do |household| %>
+	<div class="panel">
+		<h5 class="subheader"><strong><%= link_to "The #{household.name} Household", household_path(household) %></strong></h5>
+		<% household.people.each do |person| %>
+			<div class="row <%= cycle('odd', 'even') %> checkin-row padded">
+				<div class="four columns">
+					<%= full_name(person) %>
+				</div>
+				<div class="four columns">
+					<%= person.default_group_name %>
+				</div>
+				<div class="four columns">
+					<%= check_box_tag "person_check[]", person.id  %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% end %>

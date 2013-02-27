@@ -1,0 +1,11 @@
+<li>
+	<%= link_to household_path(result) do %>
+		<div class="result-item">
+			<div><%= icon('home') %> The <%= result.name %> Household (#<%= result.id %>)</div>
+			<div><%= result.people.sort_by(&:sort_order).collect {|p| family_name(p)}.to_sentence %></div>
+			<div><%= result.address1 %>, <%= result.city %></div>
+			<div><strong>Email: </strong><%= household_best_email(result) %></div>
+			<div><strong>Phone: </strong><%= household_best_phone(result) %></div>
+		</div>
+	<% end %>
+</li>

@@ -1,0 +1,12 @@
+<% unless @results.empty? %>
+	<div id="results-list" style="position:relative;background-color:#2ba6cb;border-radius:0px 0px 4px 4px;">	
+		<ul class="results">
+			<% @results.each do |result| %>
+				<%= render :partial => "#{result.class.name.downcase}_item", :locals => {:result => result} %>
+			<% end %>	
+		</ul>
+		<div style="float:none;clear:both;">
+			&nbsp;
+		</div>
+	</div>
+<% end %>

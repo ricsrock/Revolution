@@ -1,0 +1,8 @@
+<% if @email.errors.any? %>
+	$('#myModal').html("<%= escape_javascript(render :partial => 'emails/form', :email => @email) %>");
+<% else %>
+	$('#emails').html("<%= j render partial: 'shared/emails', locals: {:object => @object} %>");
+	$('#myModal').trigger('reveal:close');
+	$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+	<% flash.discard %>
+<% end %>

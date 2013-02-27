@@ -1,0 +1,27 @@
+<%= four_up_two_up_widget_box("Event Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @event.name %></li>
+	<li class="field">Event Type:</li>
+	<li><%= @event.event_type.name %></li>
+	<li class="field">Date:</li>
+	<li><%= @event.date %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', events_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_event_path(@event), 'edit', nil, 'small round' %>
+</div>
+<br>
+<br>
+<%= widget_box("Instances") do %>
+	<div class="widget-content">
+		<ul class="block-grid one-up mobile-one-up">
+			<% @event.instances.each do |i| %>
+				<li>
+					<%= link_to i.instance_type.name, i %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>

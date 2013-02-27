@@ -1,0 +1,7 @@
+<ul class="unstyled">
+	<% @event_type.instance_types.each do |t| %>
+		<li>
+			<%= link_to t.name, remove_instance_type_from_event_type_path(t, event_type_id: @event_type), remote: true %>
+		</li>
+	<% end %>
+</ul>

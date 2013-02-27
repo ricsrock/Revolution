@@ -1,0 +1,3 @@
+$('#results-area').html("<%=j render :partial => 'results' %>");
+$('#results-list').click(function(){$(this).toggle();});
+$("*:not(#results-list)").live("click", function(){$("#results-list").hide();});

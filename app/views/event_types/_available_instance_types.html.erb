@@ -1,0 +1,7 @@
+<ul class="unstyled">
+	<% @event_type.available_instance_types.each do |i| %>
+		<li>
+			<%= link_to i.name, add_instance_type_to_event_type_path(i, event_type_id: @event_type), remote: true %>
+		</li>
+	<% end %>
+</ul>

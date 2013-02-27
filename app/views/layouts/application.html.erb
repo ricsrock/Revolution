@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	
+	<!-- Uncomment to make IE8 render like IE7 -->
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+	
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  
+	<!-- Included CSS Files -->
+	<%= stylesheet_link_tag    "application" %>
+	
+	<!-- Included JS Files  -->
+	<%= javascript_include_tag "application" %>
+  
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  	<div class="row">
+	  <div class="twelve columns">
+
+	    <!-- Navigation -->
+
+	      <%= render :partial => 'layouts/top_bar' %>
+
+	    <!-- End Navigation -->
+
+	  </div>
+	</div>
+	
+	<div class="row">
+    <div class="twelve columns">
+      <div class="row">
+
+    <!-- Content Area -->
+
+		<div id="messages">
+			<%= render partial: 'layouts/messages' %>
+		</div>
+
+        <div class="three columns">
+          <div class="panel radius">
+		  	<h5>More Navigation</h5>
+			<h5 class="subheader">(If we need it)</h5>
+			<%= yield(:sidebar) %>
+		  </div>
+        </div>
+
+        <div class="nine columns">
+			<%= yield %>
+        </div>
+
+    <!-- End Content Area -->
+
+      </div>
+    </div>
+  </div>
+
+<div id="myModal" class="reveal-modal large">
+  <h2>Awesome. I have it.</h2>
+  <p class="lead">Your couch.  It is mine.</p>
+  <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+</body>
+</html>
