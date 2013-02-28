@@ -124,6 +124,10 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     fssm (0.2.10)
+    git-deploy (0.5.4)
+      net-scp
+      net-ssh
+      thor
     hike (1.2.1)
     i18n (0.6.1)
     jbuilder (1.0.2)
@@ -153,6 +157,9 @@ GEM
       sassy-math (>= 1.5)
     multi_json (1.5.0)
     mysql (2.9.0)
+    net-scp (1.1.0)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.6.5)
     polyglot (0.3.3)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -205,6 +212,7 @@ DEPENDENCIES
   compass-rails!
   font-awesome-rails
   foundation-icons-sass-rails
+  git-deploy
   jbuilder (~> 1.0.1)
   jquery-rails
   jquery-turbolinks
