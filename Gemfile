@@ -6,7 +6,6 @@ gem 'rails', '= 4.0.0.beta1'     #github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
-gem 'mysql'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -59,6 +58,7 @@ gem 'unicorn'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
+  gem 'mysql'
 end
 
 group :test do
@@ -68,5 +68,9 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'sqlite3'
+end
+
+group :production do
+  gem 'mysql2'
 end
 
