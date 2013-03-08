@@ -36,7 +36,7 @@ gem 'awesome_nested_set'
 gem 'kaminari'
 gem 'chronic'
 gem 'carrierwave'
-gem 'rmagick', '2.13.2'
+gem 'rmagick', '2.13.2', :path => "vendor/gems/rmagick-2.13.2"
 gem 'git-deploy'
 gem "fog", "~> 1.3.1"
 gem "faker"

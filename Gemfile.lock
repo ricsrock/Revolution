@@ -58,6 +58,11 @@ PATH
   specs:
     mysql (2.9.1)
 
+PATH
+  remote: vendor/gems/rmagick-2.13.2
+  specs:
+    rmagick (2.13.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -225,7 +230,6 @@ GEM
     rake (10.0.3)
     rdoc (3.12.2)
       json (~> 1.4)
-    rmagick (2.13.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -316,7 +320,7 @@ DEPENDENCIES
   launchy
   mysql (= 2.9.1)!
   rails (= 4.0.0.beta1)
-  rmagick (= 2.13.2)
+  rmagick (= 2.13.2)!
   rspec-rails (~> 2.0)
   sass-rails!
   simple_form!
