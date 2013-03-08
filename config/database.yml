@@ -21,7 +21,10 @@ test:
   socket: /tmp/mysql.sock
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql
+  database: newrev_production
+  username: root
+  password:
+  socket: /tmp/mysql.sock
   pool: 5
   timeout: 5000
