@@ -6,7 +6,7 @@ gem 'rails', '= 4.0.0.beta1'     #github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
-gem 'mysql'
+gem 'mysql', '2.9.1', :path => "vendor/gems/mysql-2.9.1"
 
 # Gems used only for assets and not required
 # in production environments by default.
