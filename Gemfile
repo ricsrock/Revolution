@@ -58,7 +58,7 @@ gem 'unicorn'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
-  gem 'mysql'
+  #gem 'mysql'
 end
 
 group :test do
