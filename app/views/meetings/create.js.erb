@@ -1,0 +1,8 @@
+<% if @meeting.errors.any? %>
+	$('#myModal').html("<%= j render :partial => 'meetings/form', :meeting => @meeting %>");
+<% else %>
+	$('#meetings').html("<%= j render partial: 'instances/meetings', locals: {:object => @object} %>");
+	$('#myModal').trigger('reveal:close');
+	$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+	<% flash.discard %>
+<% end %>

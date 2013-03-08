@@ -2,7 +2,7 @@ class InstanceType < ActiveRecord::Base
   has_many :auto_instance_types
   has_many :event_types, through: :auto_instance_types
   has_many :auto_groups
-  has_many :groups, through: :auto_groups, order: :name
+  has_many :groups, -> { order('groups.name ASC') }, through: :auto_groups
   
   validates :start_time, :presence => true
   

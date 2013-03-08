@@ -198,3 +198,11 @@ ul.unstyled {
 	padding-top:3px;
 	padding-bottom: 3px;
 }
+
+.person-image {
+	border-radius: 5px;
+	margin: 5px;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 5px 5px 5px #888;
+}

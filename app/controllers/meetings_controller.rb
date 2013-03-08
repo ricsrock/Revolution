@@ -1,10 +1,12 @@
 class MeetingsController < ApplicationController
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  
+  respond_to :html, :js
 
   # GET /meetings
   # GET /meetings.json
   def index
-    @meetings = Meeting.all
+    @meetings = Meeting.load
   end
 
   # GET /meetings/1
@@ -15,6 +17,8 @@ class MeetingsController < ApplicationController
   # GET /meetings/new
   def new
     @meeting = Meeting.new
+    @instance = Instance.find(params[:instance_id])
+    @groups = @instance.available_groups
   end
 
   # GET /meetings/1/edit
@@ -24,17 +28,14 @@ class MeetingsController < ApplicationController
   # POST /meetings
   # POST /meetings.json
   def create
+    @instance = Instance.find(params[:meeting][:instance_id])
     @meeting = Meeting.new(meeting_params)
-
-    respond_to do |format|
-      if @meeting.save
-        format.html { redirect_to @meeting, notice: 'Meeting was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @meeting }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @meeting.errors, status: :unprocessable_entity }
-      end
+    @groups = @instance.available_groups
+    if @meeting.save
+      flash[:notice] = "New meeting successfully added."
+      @object = @meeting.instance
     end
+    respond_with( @meeting, layout: !request.xhr? )
   end
 
   # PATCH/PUT /meetings/1

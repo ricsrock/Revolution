@@ -1,0 +1,33 @@
+<div class="panel radius">
+	<h5 class="subheader">Marking attendance for <%= @event.event_type.name %>, <%= link_to @event.date.to_s, @event %></h5>
+</div>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th>Name</th>
+		<% @instances.each do |i| %>
+			<th>
+				<%= i.instance_type.name %>
+			</th>
+		<% end %>			
+	  </tr>
+  </thead>
+  <tbody>
+	<%= form_tag post_event_path(@event) do %>
+		<% @people.each do |person| %>
+		  <tr>
+		    <td><%= person.full_name %></td>
+			<% @instances.each do |instance| %>
+				<% @present_people_ids = instance.present_people_ids %>
+				<td>
+					<%= check_box_tag for_field(instance) +'[]', person.id, @present_people_ids.include?(person.id), disabled: @present_people_ids.include?(person.id) %>
+				</td>
+			<% end %>		
+		  </tr>
+		<% end %>
+  </tbody>
+</table>
+	<%= button_tag(type: :submit, class: "button radius") { icon('check') +' Mark Selected' } %>
+<% end %>
+

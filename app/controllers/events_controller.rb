@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :mark, :post]
 
   # GET /events
   # GET /events.json
@@ -63,6 +63,30 @@ class EventsController < ApplicationController
   
   def search
     @events = Event.where(:date => do_range(params[:range_selector]).start_date..do_range(params[:range_selector]).end_date)
+  end
+  
+  def mark
+    @people = Person.all
+    #@instance_names = @event.instances.collect {|i| i.instance_type.name.parameterize.underscore}
+    @instances = @event.instances
+  end
+  
+  def post
+    @first_service = @event.instances.where('instance_types.name LIKE ?', '1st Service%').includes(:instance_type).references(:instance_type).first
+    if params[:instance_type_1]
+      params[:instance_type_1].each do |id|
+        @person = Person.find(id)
+        @person.checkin(instance_id: @first_service.id)
+      end
+    end
+    @second_service = @event.instances.where('instance_types.name LIKE ?', '2nd Service%').includes(:instance_type).references(:instance_type).first
+    if params[:instance_type_2]
+      params[:instance_type_2].each do |id|
+        @person = Person.find(id)
+        @person.checkin(instance_id: @second_service.id)
+      end
+    end
+    redirect_to mark_event_path(@event)
   end
 
   private

@@ -15,11 +15,9 @@
 <%= widget_box("Meetings") do %>
 	<div class="widget-content">
 		<ul class="block-grid one-up mobile-one-up">
-			<% @instance.meetings.each do |meeting| %>
-				<li>
-					<%= link_to meeting.group.name, meeting %>
-				</li>
-			<% end %>
+			<div id="meetings">
+				<%= render :partial => 'meetings' %>
+			</div>
 		</ul>
 	</div>
 <% end %>

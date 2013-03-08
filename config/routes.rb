@@ -1,4 +1,5 @@
 NewrevF::Application.routes.draw do
+  devise_for :users
   get 'checkin/search' => 'checkin#search', as: :checkin_search
   
   
@@ -22,6 +23,10 @@ NewrevF::Application.routes.draw do
   resources :events do
     collection do
       get 'search'
+    end
+    member do
+      get 'mark'
+      post 'post'
     end
   end
 
@@ -60,7 +65,7 @@ NewrevF::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root to: 'welcome#index'
+  root to: 'households#index' #TODO: change this to dashboard
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

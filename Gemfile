@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails',     github: 'rails/rails'
+ruby "1.9.3"
+
+gem 'rails', '= 4.0.0.beta1'     #github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
@@ -18,7 +20,7 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
-  gem 'zurb-foundation'
+  gem 'zurb-foundation', '3.2.5'
   gem 'foundation-icons-sass-rails'
 end
 
@@ -34,7 +36,12 @@ gem 'awesome_nested_set'
 gem 'kaminari'
 gem 'chronic'
 gem 'carrierwave'
+gem 'rmagick', '2.13.2'
 gem 'git-deploy'
+gem "fog", "~> 1.3.1"
+gem "faker"
+gem "devise"
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
 
@@ -49,3 +56,17 @@ gem 'unicorn'
 
 # To use debugger
 # gem 'debugger'
+
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'launchy'
+  gem 'database_cleaner'
+  gem 'sqlite3'
+end
+

@@ -10,20 +10,20 @@
 		<li class="has-dropdown">
 			<a class="active" href="#">People</a>
 			<ul class="dropdown">
-				<li><%= link_to "Households", households_url %></li>
+				<li><%= link_icon "Households", households_url, 'home', nil %></li>
 			</ul>
 		</li>
 		<li class="divider"></li>
         <li class="has-dropdown"><a href="#">Groups</a>
 			<ul class="dropdown">
-				<li><%= link_to "Groups", groups_url %></li>
+				<li><%= link_icon "Groups", groups_url, 'group', nil %></li>
 			</ul>
 		</li>
 		<li class="divider"></li>
         <li class="has-dropdown"><a href="#">Events</a>
 			<ul class="dropdown">
-				<li><%= link_to "Events", events_url %></li>
-				<li><%= link_to "Check-In", checkin_index_url %></li>
+				<li><%= link_icon "Events", events_url, 'calendar', nil %></li>
+				<li><%= link_icon "Check-In", checkin_index_url, 'check', nil %></li>
 			</ul>
 		</li>
 		<li class="divider"></li>

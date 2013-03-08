@@ -1,14 +1,15 @@
-<%= simple_form_for(@meeting) do |f| %>
+<h4 class="subheader">Meeting</h4><hr>
+
+<%= simple_form_for(@meeting, remote: true) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :instance_id %>
-    <%= f.input :group_id %>
-    <%= f.input :room_id %>
-    <%= f.input :real_date %>
-    <%= f.input :comments %>
-    <%= f.input :num_marked %>
+    <%= f.input :instance_id, as: :hidden, input_html: {value: @instance.id} %>
+    <%= f.association :group, collection: @groups %>
+	<%= f.association :room, collection: Room.all %>
   </div>
+
+<br><br>
 
   <div class="form-actions">
     <%= f.button :submit %>

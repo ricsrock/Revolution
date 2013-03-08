@@ -1,8 +1,9 @@
 <%= simple_form_for @person, :html => {:multipart => true} do |f| %>
   <p>
-    <label>Image</label>
-    <%= image_tag(@person.avatar_url) if @person.avatar? %>
-    <%= f.file_field :image %>
+    <label>Add/Update Image</label>
+    <%= image_tag(@person.image_url) if @person.image? %>
+    <%= f.input :image, as: :file %>
     <%= f.hidden_field :image_cache %>
   </p>
+<%= f.button :submit, class: "button radius" %>
 <% end %>

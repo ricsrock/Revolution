@@ -1,0 +1,10 @@
+<% @instance.meetings.each do |meeting| %>
+	<li>
+		<%= link_to meeting.group.name, meeting %>
+	</li>
+<% end %>
+<li>
+	<%= link_to new_meeting_path(instance_id: @instance), remote: true, data: {'reveal-id' => "myModal"}, class: 'button small round' do %>
+		<%= icon('coffee') %> add meeting
+	<% end %>
+</li>

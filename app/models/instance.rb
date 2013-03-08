@@ -3,6 +3,7 @@ class Instance < ActiveRecord::Base
   belongs_to :event, :class_name => "Event", :foreign_key => "event_id"
   
   has_many :meetings
+  has_many :attendances, through: :meetings
   
   validates :instance_type_id, :event_id, :presence => true
   
@@ -31,6 +32,22 @@ class Instance < ActiveRecord::Base
   def starts_at
     (self.event.date.to_s(:db) + " " + self.instance_type.starts_at.to_s).to_time
   end
+  
+  def available_groups
+    Group.where('groups.id NOT IN
+                (SELECT meetings.group_id FROM meetings
+                WHERE (meetings.instance_id = ?)) AND
+                (groups.checkin_group = ?)', self.id, true).order(:name)
+  end
+  
+  def present_people_ids
+    self.attendances.collect {|a| a.person_id}
+  end
+  
+  def self.find_by_instance_type_name(name)
+    Instance.where('instance_types.name LIKE ?', name).includes(:instance_type).references(:instance_type)
+  end
+  
 
 
 end

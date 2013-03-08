@@ -9,8 +9,9 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="four columns">
-				<%= image_tag(@person.image_url) %>
+			<div class="three columns">
+				<%= image_tag(@person.image, class: 'person-image') %><br>
+				<%= button_icon 'edit image', edit_image_person_path(@person), 'camera', nil, 'tiny round' %>
 			</div>
 			<div class="eight columns">
 				<blockquote>

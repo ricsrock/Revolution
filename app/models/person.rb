@@ -43,8 +43,8 @@ class Person < ActiveRecord::Base
     end
 	end
 	
-	def checkin
-    meeting = Meeting.where(instance_id: Instance.current, group_id: self.default_group_id).first
+	def checkin(options={})
+    meeting = Meeting.where(instance_id: options[:instance_id] || Instance.current, group_id: options[:group_id] || self.default_group_id).first
     if meeting
       attendance = Attendance.new(person_id: self.id, meeting_id: meeting.id, checkin_time: Time.now)
       attendance.save
