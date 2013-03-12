@@ -7,6 +7,17 @@ GIT
       compass (>= 0.12.2, < 0.14)
 
 GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: d29b744d92a380e61d0c62149cc60e91ec4ba0f2
+  branch: rails4
+  specs:
+    devise (2.2.3)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (~> 4.0.0.beta)
+      warden (~> 1.2.1)
+
+GIT
   remote: git://github.com/plataformatec/simple_form.git
   revision: 67f812cabb47f3aeb5df6417dd774fdf4aee0a35
   specs:
@@ -53,15 +64,15 @@ GIT
       activesupport (>= 3.0)
       sprockets (~> 2.8)
 
-PATH
-  remote: vendor/gems/mysql-2.9.1
+GIT
+  remote: git://github.com/spectator/ransack.git
+  revision: a40055a59f7650352228bef17eb4c91e166a1875
+  ref: a40055a59f7650352228bef17eb4c91e166a1875
   specs:
-    mysql (2.9.1)
-
-PATH
-  remote: vendor/gems/rmagick-2.13.2
-  specs:
-    rmagick (2.13.2)
+    ransack (0.7.3)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      polyamorous (~> 0.6.0)
 
 GEM
   remote: https://rubygems.org/
@@ -119,10 +130,8 @@ GEM
       fssm (>= 0.2.7)
       sass (~> 3.1)
     database_cleaner (0.9.1)
-    devise (1.5.4)
-      bcrypt-ruby (~> 3.0)
-      orm_adapter (~> 0.0.3)
-      warden (~> 1.1)
+    devise-encryptable (0.1.1)
+      devise (>= 2.1.0.rc)
     diff-lcs (1.2.1)
     erubis (2.7.0)
     excon (0.13.4)
@@ -199,11 +208,14 @@ GEM
       sass (>= 3.2.0)
       sassy-math (>= 1.5)
     multi_json (1.6.1)
+    mysql (2.9.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.6)
     nokogiri (1.5.6)
-    orm_adapter (0.0.7)
+    orm_adapter (0.4.0)
+    polyamorous (0.6.0)
+      activerecord (>= 3.0)
     polyglot (0.3.3)
     pry (0.9.12)
       coderay (~> 1.0.5)
@@ -230,6 +242,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12.2)
       json (~> 1.4)
+    rmagick (2.13.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -304,7 +317,8 @@ DEPENDENCIES
   coffee-rails!
   compass-rails!
   database_cleaner
-  devise
+  devise!
+  devise-encryptable
   factory_girl_rails
   faker
   fog (~> 1.3.1)
@@ -318,9 +332,10 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   launchy
-  mysql (= 2.9.1)!
+  mysql (= 2.9.1)
   rails (= 4.0.0.beta1)
-  rmagick (= 2.13.2)!
+  ransack!
+  rmagick (= 2.13.2)
   rspec-rails (~> 2.0)
   sass-rails!
   simple_form!

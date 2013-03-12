@@ -206,3 +206,12 @@ ul.unstyled {
 	-webkit-box-shadow: 10px 10px 5px #888;
 	box-shadow: 5px 5px 5px #888;
 }
+
+.hint {
+	display: block;
+	font-size: 12px;
+	margin-top: -10px;
+	padding-bottom: 10px;
+	font-style: italic;
+	color: #B2B2B2;
+}

@@ -6,6 +6,7 @@
 
   <section>
     <ul class="left">
+		<% if user_signed_in? %>
 		<li class="divider"></li>
 		<li class="has-dropdown">
 			<a class="active" href="#">People</a>
@@ -34,9 +35,20 @@
 				<li><%= link_to "Instance Types", instance_types_url %></li>
 			</ul>
 		</li>
+		<li class="divider"></li>
+        <li class="has-dropdown"><a href="#">Account</a>
+			<ul class="dropdown">
+				<% if user_signed_in? %>
+				<li><%= link_to "Sign Out " + current_user.login, destroy_user_session_path, method: :delete %></li>
+				<li><%= link_to "Edit", edit_user_registration_path %></li>
+				<% end %>
+			</ul>
+		</li>
+		<% end %>
     </ul>
 
     <ul class="right">
+		<% if user_signed_in? %>
 	    <li class="search">
 			<%= form_tag do_search_url, :method => :get, :remote => true do %>
 				<%= text_field_tag :q, nil, :class => 'search-query', :type => "search", :placeholder => 'Person, Household, Group' %>
@@ -45,6 +57,7 @@
 			
 			</div>
 	    </li>
+		<% end %>
     </ul>
   </section>
 </nav>

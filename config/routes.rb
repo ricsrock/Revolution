@@ -1,5 +1,5 @@
 NewrevF::Application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "registrations"}
   get 'checkin/search' => 'checkin#search', as: :checkin_search
   
   

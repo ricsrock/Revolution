@@ -6,7 +6,7 @@ gem 'rails', '= 4.0.0.beta1'     #github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
-gem 'mysql', '2.9.1', :path => "vendor/gems/mysql-2.9.1"
+gem 'mysql', '2.9.1'#, :path => "vendor/gems/mysql-2.9.1"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -36,11 +36,13 @@ gem 'awesome_nested_set'
 gem 'kaminari'
 gem 'chronic'
 gem 'carrierwave'
-gem 'rmagick', '2.13.2', :path => "vendor/gems/rmagick-2.13.2"
+gem 'rmagick', '2.13.2'#, :path => "vendor/gems/rmagick-2.13.2"
 gem 'git-deploy'
 gem "fog", "~> 1.3.1"
 gem "faker"
-gem "devise"
+gem "devise", github: "plataformatec/devise", branch: "rails4"
+gem "devise-encryptable"
+gem "ransack", github: "spectator/ransack", ref: 'a40055a59f7650352228bef17eb4c91e166a1875'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
