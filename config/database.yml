@@ -22,9 +22,9 @@ test:
 
 production:
   adapter: mysql
-  database: newrev_production
+  database: rev_db
   username: root
-  password:
+  password: r0oT
   socket: /tmp/mysql.sock
   pool: 5
   timeout: 5000

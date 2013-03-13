@@ -20,7 +20,7 @@
 .sass-cache
 capybara-*.html
 .rspec
-# .rvmrc
+.rvmrc
 /.bundle
 /vendor/bundle
 /log/*
