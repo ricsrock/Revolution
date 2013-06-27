@@ -13,4 +13,12 @@ class GroupMailer < ActionMailer::Base
     )
   end
   
+  def test
+    mail(
+      to: "lowell@rivervalleychurch.net",
+      subject: 'test',
+      from: "admin@info.rivervalleychurch.net"
+    )
+  end
+  
 end
