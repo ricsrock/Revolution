@@ -68,9 +68,9 @@ NewrevF::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              'localhost',
-    port:                 25,
-    domain:               'macserver.local'
+    address: 'localhost',
+    port: 25,
+    domain: 'macserver.local'
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
