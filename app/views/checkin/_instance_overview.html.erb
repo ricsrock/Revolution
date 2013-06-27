@@ -1,0 +1,9 @@
+<h4 class="subheader">Overview</h4><hr>
+<h5 class="subheader right">current/total</h5>
+<% Instance.current.meetings.each do |m| %>
+	<div class="row">
+		<div class="twelve columns">
+			<%= link_to m.group.name, m %> <span class="right">(<%= m.current_attendances.length %>/<%= m.attendances.length %>)</span>
+		</div>
+	</div>
+<% end %>

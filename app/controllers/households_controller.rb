@@ -1,11 +1,11 @@
 class HouseholdsController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_household, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_household, only: [:show, :edit, :update, :destroy, :map]
+  authorize_resource
   # GET /households
   # GET /households.json
   def index
-    @households = Household.all
+    @households = Household.page(params[:page]).order(:name)
   end
 
   # GET /households/1
@@ -61,6 +61,10 @@ class HouseholdsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def map
+    @json = @household.to_gmaps4rails
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -71,7 +75,7 @@ class HouseholdsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def household_params
       params.require(:household).permit(:name, :address1, :address2, :city, :state, :zip,
-                                        people_attributes: [:first_name, :last_name, :gender, :household_position, :birthdate, :id, :_destroy],
-                                        phones_attributes: [:number, :primary, :comments, :_destroy, :id])
+                                        people_attributes: [:first_name, :last_name, :gender, :household_position, :birthdate, :id, :allergies, :default_group_id, :_destroy],
+                                        phones_attributes: [:number, :primary, :comments, :_destroy, :id, :comm_type_id])
     end
 end

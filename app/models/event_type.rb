@@ -1,6 +1,7 @@
 class EventType < ActiveRecord::Base
   has_many :auto_instance_types, :dependent => :destroy # destroy all auto_instance_types when event_type is destroyed
   has_many :instance_types, :through => :auto_instance_types
+  has_many :events, dependent: :restrict_with_exception
   
   
   def available_instance_types

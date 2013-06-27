@@ -1,0 +1,5 @@
+<%= field_set_tag "Tag" do %>
+	<%= f.input :name, wrapper_html: {class: "four columns"} %>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove this tag", '#', class: "remove_fields small round button alert right" %>
+<% end %>

@@ -1,0 +1,10 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @cadence.name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', cadences_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_cadence_path(@cadence), 'edit', nil, 'small round' %>
+</div>

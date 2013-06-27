@@ -1,0 +1,13 @@
+<div style="width:450px;display:inline;float:right;background-color: whitesmoke;line-height:40px;border-radius:25px;">
+	<%# ["Phone Number (last 4)", "Last Name"].each do |by| %>
+		<label style="font-size:20px;display:inline;">
+			<%= radio_button_tag('by', "Phone Number (last 4)", @by == "Phone Number (last 4)" ? true : false, :style => "width:20px;height:20px;", :id => "the_phone_number_last_4_button") %>
+			<%= "Phone Number (last 4)" %>
+		</label>
+		<label style="font-size:20px;display:inline;">
+			<%= radio_button_tag('by', "Last Name", @by == "Last Name" ? true : false, :style => "width:20px;height:20px;", :id => "the_last_name_button") %>
+			<%= "Last Name" %>
+		</label>
+		
+	<%# end %>
+</div>

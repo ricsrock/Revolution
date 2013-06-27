@@ -1,0 +1,8 @@
+<h4 class="subheader">Quick <a class="primary"><%= @contact_type.name %></a> Contact for <a class="primary"><%= @person.full_name %></a></h4>
+
+<%= simple_form_for @contact, url: create_quick_contacts_path, method: :post do |f| %>
+	<%= f.input :comments %>
+	<%= f.input :contact_type_id, as: :hidden, input_html: { value: @contact_type.id } %>
+	<%= f.input :person_id, as: :hidden, input_html: { value: @person.id } %>
+	<%= f.submit nil, class: "button radius" %>
+<% end %>

@@ -1,0 +1,7 @@
+<ul class="unstyled">
+	<% @contact_form.contact_types.each do |t| %>
+		<li>
+			<%= link_to t.name, remove_contact_type_from_contact_form_path(t, contact_form_id: @contact_form), remote: true %>
+		</li>
+	<% end %>
+</ul>

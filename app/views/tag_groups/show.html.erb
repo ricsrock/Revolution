@@ -1,0 +1,12 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @tag_group.name %></li>
+	<li class="field">Tags:</li>
+	<li><%= @tag_group.tags.collect {|t| t.name}.to_sentence %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', tag_groups_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_tag_group_path(@tag_group), 'edit', nil, 'small round' %>
+</div>

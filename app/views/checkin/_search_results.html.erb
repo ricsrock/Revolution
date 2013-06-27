@@ -1,18 +1,27 @@
-<% @households.each do |household| %>
+<% if @households.empty? %>
 	<div class="panel">
-		<h5 class="subheader"><strong><%= link_to "The #{household.name} Household", household_path(household) %></strong></h5>
-		<% household.people.each do |person| %>
-			<div class="row <%= cycle('odd', 'even') %> checkin-row padded">
-				<div class="four columns">
-					<%= full_name(person) %>
-				</div>
-				<div class="four columns">
-					<%= person.default_group_name %>
-				</div>
-				<div class="four columns">
-					<%= check_box_tag "person_check[]", person.id  %>
-				</div>
-			</div>
-		<% end %>
+		<h5 class="subheader">
+			Your search returned no matching households.
+		</h5>
 	</div>
+<% else %>
+	<% households = @households %>
+	<% households.each do |household| %>
+		<div class="panel radius">
+			<h5 class="subheader"><strong><%= link_to "The #{household.name} Household", household_path(household) %></strong></h5>
+			<% household.people.each do |person| %>
+				<div class="row <%= cycle('odd', 'even') %> checkin-row padded">
+					<div class="four columns">
+						<%= full_name(person) %>
+					</div>
+					<div class="four columns">
+						<%= person.default_group_name %>
+					</div>
+					<div class="four columns">
+						<%= check_box_tag "person_check[]", person.id, false, style: "width:30px;height:30px;"%>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
 <% end %>

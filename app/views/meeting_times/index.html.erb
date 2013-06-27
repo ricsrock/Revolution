@@ -1,0 +1,24 @@
+<h3 class="subheader">Listing Meeting Times</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Time</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @meeting_times.each do |meeting_time| %>
+	  <tr>
+	    <td><%= meeting_time.time.to_time.to_s(:time) rescue nil %></td>
+	    <td><%= link_to '', edit_meeting_time_path(meeting_time), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', meeting_time, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Meeting Time", new_meeting_time_path, class: "button radius"  %>

@@ -1,0 +1,26 @@
+<h3>Listing Permissions</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Resource</th>
+			<th>Action</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @permissions.each do |permission| %>
+	  <tr>
+	    <td><%= permission.resource_name %></td>
+	    <td><%= permission.ability_name %></td>
+	    <td><%= link_to '', edit_permission_path(permission), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', permission, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Permission", new_permission_path, class: "button radius"  %>

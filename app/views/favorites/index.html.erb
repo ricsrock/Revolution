@@ -1,0 +1,26 @@
+<h3>Listing Favorites</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Favoritable</th>
+			<th>Belongs_to</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @favorites.each do |favorite| %>
+	  <tr>
+	    <td><%= favorite.favoritable %></td>
+	    <td><%= favorite.belongs_to %></td>
+	    <td><%= link_to '', edit_favorite_path(favorite), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', favorite, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Favorite", new_favorite_path, class: "button radius"  %>

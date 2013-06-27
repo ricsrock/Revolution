@@ -1,0 +1,28 @@
+<h3>Listing Animals</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Name</th>
+			<th>Updated_by</th>
+			<th>Created_by</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @animals.each do |animal| %>
+	  <tr>
+	    <td><%= animal.name %></td>
+	    <td><%= animal.updated_by %></td>
+	    <td><%= animal.created_by %></td>
+	    <td><%= link_to '', edit_animal_path(animal), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', animal, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Animal", new_animal_path, class: "button radius"  %>

@@ -1,0 +1,26 @@
+<h3>Listing Tag Groups</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+	    <th>Name</th>
+		<th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @tag_groups.each do |tag_group| %>
+	  <tr>
+		<td>
+			<%= link_to tag_group.name, tag_group %>
+		</td>
+	    <td><%= link_to '', edit_tag_group_path(tag_group), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', tag_group, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Tag Group", new_tag_group_path, class: "button radius"  %>

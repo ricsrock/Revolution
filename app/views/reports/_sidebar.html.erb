@@ -1,0 +1,6 @@
+<h5 class="subheader">Filter/Search Reports</h5>
+<%= search_form_for @q, builder: SimpleForm::FormBuilder do |f| %>
+	<%= f.input :name_cont, label: "Report Name" %>
+	<%= f.input :record_type_id_eq, collection: RecordType.all.order(:name), label: "Record Type" %>
+	<%= f.submit "Search", class: 'button radius small' %>
+<% end %>

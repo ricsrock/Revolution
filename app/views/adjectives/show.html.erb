@@ -1,0 +1,14 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @adjective.name %></li>
+	<li class="field">Updated_by:</li>
+	<li><%= @adjective.updated_by %></li>
+	<li class="field">Created_by:</li>
+	<li><%= @adjective.created_by %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', adjectives_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_adjective_path(@adjective), 'edit', nil, 'small round' %>
+</div>

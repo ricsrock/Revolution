@@ -1,0 +1,12 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @checkin_background.name %></li>
+	<li class="field">Graphic:</li>
+	<li><%= @checkin_background.graphic %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', checkin_backgrounds_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_checkin_background_path(@checkin_background), 'edit', nil, 'small round' %>
+</div>

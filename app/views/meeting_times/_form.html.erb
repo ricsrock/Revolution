@@ -1,0 +1,12 @@
+<%= simple_form_for(@meeting_time) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :time, as: :string, input_html: { class: 'timepicker' }, wrapper_html: { class: 'two columns' } %>
+  </div>
+<div style="float:none;clear:both;">&nbsp;</div>
+<br>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+<li>
+	<%= link_to organization_path(result) do %>
+		<div class="result-item">
+			<div><%= icon('building') %> <%= result.name %> (#<%= result.id %>)</div>
+			<div><%= result.associates.collect {|a| a.full_name}.to_sentence %></div>
+			<div><%= result.address1 %>, <%= result.city %></div>
+			<div><strong>Email: </strong><%= result.emails.first.try(:email) %></div>
+			<div><strong>Phone: </strong><%= number_to_phone result.phones.first.try(:number) %></div>
+		</div>
+	<% end %>
+</li>

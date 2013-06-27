@@ -1,0 +1,14 @@
+<%= simple_form_for(@batch) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+	<%= f.input :date_collected, as: :string, input_html: { class: "datepicker" } %>
+	<%= f.input :count_total %>
+	<%= f.input :contributions_num %>
+	<%= f.input :comments %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

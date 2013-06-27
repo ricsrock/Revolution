@@ -1,0 +1,14 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @my_color.name %></li>
+	<li class="field">Updated_by:</li>
+	<li><%= @my_color.updated_by %></li>
+	<li class="field">Created_by:</li>
+	<li><%= @my_color.created_by %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', my_colors_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_my_color_path(@my_color), 'edit', nil, 'small round' %>
+</div>

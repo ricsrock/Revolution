@@ -1,0 +1,8 @@
+<%= simple_form_for @checkin_group do |f| %>
+	<%= f.input :name %>
+	<%= f.input :description, placeholder: "Internal use only" %>
+	<%= f.input :default_room_id, collection: Room.all.order(:name) %>
+	<%= f.input :meeting_is_called %>
+	<%= f.input :parent_id, :collection => nested_set_options(Group, @group) {|i| "#{'-' * i.level} #{i.name}" }, :label => "Select Parent Group" %>
+	<%= f.submit class: 'button radius' %>
+<% end %>

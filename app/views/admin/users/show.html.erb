@@ -1,0 +1,27 @@
+<%= four_up_two_up_widget_box("User Information") do %>
+	<li class="field">First Name:</li>
+	<li><%= @user.first_name %></li>
+	<li class="field">Last Name:</li>
+	<li><%= @user.last_name %></li>
+	<li class="field">Login:</li>
+	<li><%= @user.login %></li>
+	<li class="field">Email:</li>
+	<li><%= @user.email %></li>
+	<li class="field">Is Staff?:</li>
+	<li><%= check_box_tag "hi", "1", @user.is_staff, disabled: true %></li>
+	<li class="field">Sign-In Count:</li>
+	<li><%= @user.sign_in_count %></li>
+	<li class="field">Last Sign-In:</li>
+	<li><%= @user.last_sign_in_at %></li>
+	<li class="field">Confirmed At:</li>
+	<li><%= @user.confirmed_at %></li>
+	<li class="field">Security Role(s):</li>
+	<li><%= @user.roles.collect {|r| r.name}.to_sentence %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= link_to 'Index', admin_users_path, :class => 'button round small'  %>
+  <%= link_to 'Edit', edit_admin_user_path(@user), :class => 'button round small' %>
+  <%= link_to 'Delete', admin_user_path(@user), :method => 'delete', :confirm => 'Are you sure?', :class => 'button round small alert' %>
+</div>

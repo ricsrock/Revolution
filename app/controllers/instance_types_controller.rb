@@ -1,4 +1,6 @@
 class InstanceTypesController < ApplicationController
+  before_filter :authenticate_user!
+  
   before_action :set_instance_type, only: [:show, :edit, :update, :destroy]
 
   # GET /instance_types

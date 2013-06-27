@@ -1,4 +1,6 @@
 class MeetingsController < ApplicationController
+  before_filter :authenticate_user!
+  
   before_action :set_meeting, only: [:show, :edit, :update, :destroy]
   
   respond_to :html, :js

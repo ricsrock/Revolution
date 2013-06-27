@@ -1,0 +1,12 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Resource:</li>
+	<li><%= @permission.resource_name %></li>
+	<li class="field">Action:</li>
+	<li><%= @permission.ability_name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', permissions_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_permission_path(@permission), 'edit', nil, 'small round' %>
+</div>

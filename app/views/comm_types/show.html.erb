@@ -1,0 +1,10 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @comm_type.name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', comm_types_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_comm_type_path(@comm_type), 'edit', nil, 'small round' %>
+</div>

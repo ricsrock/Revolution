@@ -1,0 +1,33 @@
+<%= widget_box("Tags") do %>
+	<div class="widget-content">
+		<div id="tags">	
+			<div class="row twelve columns">
+				<h5 class="subheader">
+					Tags
+					<%= link_to '', new_tagging_path(person_id: person.id), "data-reveal-id" => "myModal", :remote => true, class: "general-enclosed foundicon-plus right", title: "add tag" %>
+				</h5>
+			</div><hr>
+			<table class="twelve responsive">
+				<tr>
+					<th>Tag</th>
+					<th>Start Date</th>
+					<th>End Date</th>
+					<th>Comments</th>
+					<th></th>
+				</tr>
+				<% person.taggings.each do |tagging| %>
+					<tr>
+						<td><%= tagging.full_name %></td>
+						<td><%= tagging.start_date %></td>
+						<td><%= tagging.end_date %></td>
+						<td><%= tagging.comments %></td>
+						<td>
+							<%= link_to '', edit_tagging_path(tagging), class: "general-enclosed foundicon-edit", "data-reveal-id" => "myModal", :remote => true %>&nbsp;&nbsp;
+							<%= link_to '', tagging_path(tagging), method: :delete, data: {confirm: "Are you sure you want to destroy this tag record forever?"}, class: "general-enclosed foundicon-minus" %>
+						</td>
+					</tr>
+				<% end %>		
+			</table>
+		</div>
+	</div>
+<% end %>

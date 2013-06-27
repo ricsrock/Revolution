@@ -5,7 +5,7 @@
 #   gem 'sqlite3'
 development:
   adapter: mysql
-  database: revolution_development
+  database: rev_restore4
   username: root
   password:
   socket: /tmp/mysql.sock

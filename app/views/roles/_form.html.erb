@@ -1,0 +1,16 @@
+<%= simple_form_for(@role) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :alias %>
+    <%= f.input :description %>
+	<%= field_set_tag "Permissions" do %>
+	<%= f.association :permissions, as: :check_boxes, label_method: :sentence, label: "Select permissions for this Security Role:"  %>
+	<% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

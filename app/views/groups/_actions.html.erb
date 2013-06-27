@@ -1,0 +1,6 @@
+<%= field_set_tag "Actions" do %>
+	<%= link_icon 'SMS', sms_group_path(@group), 'comment', '2' %>
+	<%= link_icon 'Email', email_group_path(@group), 'envelope', '2' %>
+	<%= link_icon 'Print Roster', group_path(@group, format: 'pdf'), 'print', "2" %>
+	<span data-no-turbolink><%= link_icon 'Export People', export_people_group_path(@group), 'download-alt', "2" %></span>
+<% end %>

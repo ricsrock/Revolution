@@ -1,0 +1,22 @@
+<h3>Listing Enrollments</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @enrollments.each do |enrollment| %>
+	  <tr>
+	    <td><%= link_to '', edit_enrollment_path(enrollment), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', enrollment, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Enrollment", new_enrollment_path, class: "button radius"  %>

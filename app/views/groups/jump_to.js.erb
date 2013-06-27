@@ -1,0 +1,10 @@
+$("#group").html("<%= j render partial: @partial_name, locals: { group: @group } %>");
+$("#enrollments").delay(1000).html("<%= j render partial: 'enrollments', locals: { group: @group } %>");
+
+$(".group-jumper").observe_field(1, function( ) {
+	var data = {'group_id' : $(this).val()};
+	var url = '/groups/jump_to';
+	$.get(url, data, function(html) {
+		$("#property_operator").html(html);
+	});
+});

@@ -1,0 +1,34 @@
+<%= raw group_breadcrumb(@group.id) %>
+
+<%= render :partial => 'group_header' %>
+
+<%= four_up_two_up_widget_box("Basic Information for Group: #{group_icon(@group)} #{@group.name}") do %>
+		<li class="field">Name:</li>
+		<li><%= @group.name %></li>
+		<li class="field">Description:</li>
+		<li><%= @group.description %></li>
+		<li class="field">Default Room:</li>
+		<li><%= @group.default_room.name rescue nil %></li>
+		<li class="field">Staff Ratio:</li>
+		<li><%= @group.staff_ratio %></li>
+		<li class="field">Meeting Is Called:</li>
+		<li><%= @group.meeting_is_called %></li>
+		<li class="field">Checkin Group?:</li>
+		<li><%= check_box_tag @group, @group.checkin_group, @group.checkin_group, disabled: true %></li>
+		<%= render partial: 'admin_box', locals: { group: @group } %>
+<% end  %>
+  
+
+<div class="form-actions">
+  <span data-no-turbolink><%= link_to 'Groups Tree', groups_path, :class => 'button round small' %></span>
+  <%= link_to 'Edit', edit_group_path(@group), :class => 'button round secondary small' %>
+  <%= link_to 'Delete', group_path(@group), :method => 'delete', :confirm => 'Are you sure?', :class => 'button round alert small' %>
+</div>
+
+<%= render partial: 'actions', locals: { group: @group } %>
+
+<% content_for :sidebar do -%>
+	<div id="enrollments">
+		<%= render :partial => 'enrollments', locals: { group: @group } %>
+	</div>
+<% end -%>

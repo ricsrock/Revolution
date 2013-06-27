@@ -1,0 +1,2 @@
+class Branch < Group
+end

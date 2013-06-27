@@ -1,0 +1,28 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @report.name %></li>
+	<li class="field">Record Type:</li>
+	<li><%= @report.record_type.name %></li>
+	<li class="field">Group By:</li>
+	<li><%= @report.group_by.column_name %></li>
+	<li class="field">Layout:</li>
+	<li><%= @report.layout.name %></li>
+	<li class="field">Created_by:</li>
+	<li><%= @report.created_by %></li>
+	<li class="field">Updated_by:</li>
+	<li><%= @report.updated_by %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', reports_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_report_path(@report), 'edit', nil, 'small round' %>
+</div>
+
+<%= field_set_tag "Actions" do %>
+	<div class="twelve columns">
+		<div class="four columns">
+		  	<%= link_icon 'Print', report_path(@report, format: 'pdf'), 'print', "2" %>
+		</div>
+	</div>
+<% end %>

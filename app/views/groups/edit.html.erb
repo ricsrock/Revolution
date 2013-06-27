@@ -1,6 +1,8 @@
-<h3>Editing Group</h3>
+<h3 class="subheader">Editing Group</h3>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @group %> |
-<%= link_to 'Index', groups_path, class: "button radius" %>
+<div class="form-actions">
+	<%= link_to 'Back', @group, class: 'button round small' %>
+	<%= link_to 'Index', groups_path, class: "button round small" %>
+</div>

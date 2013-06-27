@@ -1,0 +1,3 @@
+$('#enrollments').html("<%= j render partial: '/groups/enrollments', locals: { group: @group } %>");
+$('#messages').html("<%= j render partial: '/layouts/messages' %>");
+<% flash.discard %>

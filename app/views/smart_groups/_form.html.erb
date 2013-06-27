@@ -1,0 +1,33 @@
+<%= simple_form_for(@smart_group) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+	<%= f.input :name %>
+	<%= f.input :definition %>
+  </div>
+	<% if @smart_group.smart_group_rules.reject {|r| r.new_record?}.length > 0 %>
+		<%= field_set_tag "Existing Rules" do %>
+			<% @smart_group.smart_group_rules.each do |rule| %>
+				<% unless rule.new_record? %>
+					<div class="row">
+						<div class="eight columns">People <%= to_sentence(rule) %></div>
+						<div class="four columns">
+							<%= link_to '', rule, method: :delete, data: {confirm: "Are you sure you want to destroy this smart group rule?"}, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+						</div>
+					</div>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+
+	<%= f.simple_fields_for :smart_group_rules do |smart_group_rule_form| %>
+		<%= render 'smart_group_rule_fields', f: smart_group_rule_form %>
+	<% end %>
+
+	<%= link_to_add_fields "Add Rule", f, :smart_group_rules %><br><br>
+
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

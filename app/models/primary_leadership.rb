@@ -1,0 +1,3 @@
+class PrimaryLeadership < Leadership
+  
+end

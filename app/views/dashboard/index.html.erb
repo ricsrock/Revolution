@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="twelve columns">
+		<h4>Hello, <%= current_user.first_name %>! <a class="subheader">Welcome to your <a class="primary">Revolution!</a> dashboard.</a></h4>
+	</div>
+</div>
+
+<div class="row">
+	<div class="six columns">
+		<%= field_set_tag "My Tasks (#{current_user.contacts.open.size})" do %>
+			<div class="twelve columns">
+				<div class="six columns padded">
+					<%= link_to 'Manage Contacts', manage_contacts_path, class: "button round tiny" %>
+				</div>
+			</div>
+			<% current_user.contacts.open.order(:created_at).each do |contact| %>
+				<div class="twelve columns <%= cycle('odd', 'even') %> padded">
+					<div class="twelve columns">
+						<%= title(contact) %>
+					</div>
+					<div class="twelve columns">
+						<div class="four columns small left padded"><%= time_ago_in_words contact.created_at %> old</div>
+						<div class="eight columns right padded"><%= button_icon('follow-up', contact_path(contact), 'ok', nil, 'tiny round right padded') %></div>
+					</div>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+

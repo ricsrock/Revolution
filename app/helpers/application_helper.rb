@@ -1,5 +1,10 @@
 module ApplicationHelper
   
+  
+  # not with remote: true, just a standard link that points to nowhere
+  # the js is watching this link's class
+  # this helper builds up entire fields_for instance around the new object and assigns all of it to the 'fields' variable
+  # 'fields' is sent to the js via data: { fields: fields }
   def link_to_add_fields(name, f, association)
       new_object = f.object.send(association).klass.new
       id = new_object.object_id
@@ -44,4 +49,33 @@ module ApplicationHelper
       link_to(url, html_options = { :class => class_to_add }) {icon(name, size) + " " + text}
     end
     
+    def flash_class(name)
+      case name
+      when :notice
+        "success"
+      when :error
+        "alert"
+      when :alert
+        "alert"
+      when :secondary
+        "secondary"
+      when :warning
+        "warning"
+      else
+        ""
+      end
+    end
+    
+    def which_icon(name)
+      case name
+      when :notice
+        "icon-ok-sign"
+      when :error
+        "icon-exclamation-sign"
+      when :alert
+        "icon-exclamation-sign"
+      else
+        "icon-info-sign"
+      end
+    end
 end

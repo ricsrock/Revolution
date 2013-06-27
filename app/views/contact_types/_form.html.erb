@@ -1,0 +1,17 @@
+<%= simple_form_for(@contact_type) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.association :default_responsible_user, label_method: :full_name %>
+    <%= f.input :multiple_close %>
+    <%= f.input :notiphy, hint: "Do you want to auto-send an email to the responsible user when a contact of this type is created?" %>
+    <%= f.input :confidential, hint: "Only users with proper permissions will be able to view contacts of this type" %>
+	<%= f.input :quick_contact, hint: "You must choose a default follow-up type is this is checked" %>
+	<%= f.association :default_follow_up_type, hint: "You must check 'quick contact' if you select a default follow-up type" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

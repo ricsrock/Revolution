@@ -1,4 +1,6 @@
 class EmailsController < ApplicationController
+  before_filter :authenticate_user!
+  
   respond_to :html, :js
   before_action :set_email, only: [:show, :edit, :update, :destroy]
   
@@ -52,6 +54,31 @@ class EmailsController < ApplicationController
       flash[:notice] = "Email was destroyed forever."
       redirect_to @go_to
     end
+  end
+  
+  def send_out
+    @errors = []
+    @recipient_ids = params[:recipient_ids]
+    @message = params[:body]
+    @subject = params[:subject]
+    if @recipient_ids.blank?
+      @errors << "You must select at least one recipient"
+    end
+    if @message.blank?
+      @errors << "Your email has no message"
+    end
+    if @subject.blank?
+      @errors << "Your message has no subject"
+    end
+    if @errors.empty?
+      @recipient_ids.each do |id|
+        GroupMailer.delay.message_per_person(id, current_user.id, @subject, @message)
+      end
+      flash[:notice] = "Your message is being sent."
+    else
+      flash[:error] = "#{@errors.collect {|m| m}.to_sentence}"
+    end
+    redirect_to user_session[:return_to] || groups_url
   end
 
   private

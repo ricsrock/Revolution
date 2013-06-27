@@ -1,0 +1,34 @@
+<h3 class="subheader"><a class='icon-building'></a> Listing Organizations</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th>Name</th>
+		<th>Address1</th>
+		<th>Address</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Zip</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @organizations.each do |organization| %>
+	  <tr>
+	    <td><%= link_to organization.name, organization %></td>
+	    <td><%= organization.address1 %></td>
+	    <td><%= organization.address %></td>
+	    <td><%= organization.city %></td>
+	    <td><%= organization.state %></td>
+	    <td><%= organization.zip %></td>
+	    <td><%= link_to '', edit_organization_path(organization), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', organization, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Organization", new_organization_path, class: "button radius"  %>

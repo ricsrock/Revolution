@@ -1,0 +1,47 @@
+<% if @referrer == "/checkin/self" %>
+	$("#search_text").html("<%= j render partial: 'search_text' %>");
+	$("#search_choice").html("<%= j render partial: 'search_choice' %>");
+	$("#pad_area").html("<%= j render partial: @pad %>");
+	$("#results_area").html("");
+<% else %>
+	<% logger.info " ------- referrer is NOT /checkin/self" %>
+	$("#instance-overview").html("<%= j render 'instance_overview' %>");
+	$("#checkin-search-form")[0].reset();
+	$("#results").html("<%= j render partial: 'search_results' %>");
+<% end %>
+
+$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+
+<% flash.discard %>
+$('#messages').delay(5000).fadeOut();
+$('#messages').show();
+
+$("#the_last_name_button").bind("click", function() {
+	var data = {'search_choice' : 'last_name'};
+	var url = '/checkin/search_choice';
+	$.get(url, data, function(html) {
+		$("#property_operator").html(html);
+	});
+});
+
+$("#the_phone_number_last_4_button").bind("click", function() {
+	var data = {'search_choice' : 'phone_number'};
+	var url = '/checkin/search_choice';
+	$.get(url, data, function(html) {
+		$("#property_operator").html(html);
+	});
+});
+
+
+
+<% @attendances.each do |attendance| %>
+	<% if attendance.person.has_allergies? %>
+		<%= render :partial => 'print_child_sticker_allergies', locals: { attendance: attendance } %>
+		<%= render :partial => 'print_parent_receipt', locals: { attendance: attendance } %>
+		<%= render :partial => 'print_teacher_copy_allergies', locals: { attendance: attendance } %>
+	<% else %>
+		<%= render :partial => 'print_child_sticker', locals: { attendance: attendance } %>
+		<%= render :partial => 'print_parent_receipt', locals: { attendance: attendance } %>
+		<%= render :partial => 'print_teacher_copy', locals: { attendance: attendance } %>
+	<% end %>
+<% end %>

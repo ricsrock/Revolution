@@ -1,0 +1,49 @@
+<h5 class="subheader">Managing <%= current_user.first_name %>'s Contacts</h5><hr>
+
+<div id="search-controls" class="panel radius">
+	<%= search_form_for @q, url: manage_contacts_path, builder: SimpleForm::FormBuilder do |f| %>
+		<%= f.input :status_cont, collection: ['Open', 'In Progress', 'Closed'], label: "Status", wrapper_html: { class: "two columns" } %>
+		<%= f.input :contact_type_name_cont, collection: ContactType.all.order(:name).collect(&:name), label: "Contact Type", wrapper_html: { class: "three columns" } %>
+		<%= f.input :range_selector_cont, collection: NamedDateRanges::RANGES, label: "Created Range", wrapper_html: { class: "three columns" } %>
+		<%= f.input :person_last_name_cont, label: "Last Name Contains", wrapper_html: { class: "three columns" } %>
+		<%= f.submit "Search", class: "button tiny round", wrapper_html: { class: "one columns" } %>
+	<% end %><br><br>
+</div>
+
+<%= form_tag act_on_multiple_contacts_path, method: :put do -%>
+<table class="twelve responsive">
+	<thead>
+		<tr>
+			<th>Select</th>
+			<th>Contact Type</th>
+			<th>Person</th>
+			<th>Status</th>
+			<th>Created At</th>
+			<th>Follow-Up</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @contacts.each do |contact| %>
+			<tr>
+				<td><%= check_box_tag 'contact[selected_ids][]', contact.id %></td>
+				<td><%= contact.contact_type.name %></td>
+				<td><%= contact.person.full_name %></td>
+				<td><%= contact.status %></td>
+				<td><%= contact.created_at.to_time.to_s(:long) %></td>
+				<td><%= button_icon('follow-up', contact_path(contact), 'ok', nil, 'tiny round') %></td>
+			</tr>
+		<%- end -%>
+	</tbody>
+</table>
+
+<div class="panel radius">
+	<div class="six columns">
+		Select an action: <%= select('contact', 'choice', Contact::ACTIONS) %>
+	</div>
+	<div class="six columns">
+		<br>
+		<%= submit_tag "Submit", class: "button radius small" %>
+	</div>
+	<p>&nbsp;</p>
+</div>
+<%- end -%>

@@ -1,0 +1,9 @@
+<% if @contributor %>
+	<% f = @form %>
+	<%= @contributor.full_name %>
+	<%= raw address_block(@contributor) %>
+	<%= f.hidden_field :contributable_id, value: @contributor.id %>
+	<%= f.hidden_field :contributable_type, value: @contributor.class.name %>
+<% else %>
+	<%= link_to 'choose contributor', find_person_contributions_path, remote: true %>
+<% end %>

@@ -1,0 +1,4 @@
+# APP_CONFIG = YAML.load_file("#{Rails.root}/config/initializers/config.yml")[RAILS_ENV]
+CONFIG = YAML.load(File.read(File.expand_path('../config.yml', __FILE__)))
+CONFIG.merge! CONFIG.fetch(Rails.env, {})
+CONFIG.symbolize_keys!

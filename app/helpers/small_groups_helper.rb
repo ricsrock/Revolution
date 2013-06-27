@@ -1,0 +1,2 @@
+module SmallGroupsHelper
+end

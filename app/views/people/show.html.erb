@@ -9,11 +9,14 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="three columns">
-				<%= image_tag(@person.image, class: 'person-image') %><br>
-				<%= button_icon 'edit image', edit_image_person_path(@person), 'camera', nil, 'tiny round' %>
+			<div class="three columns text-center">
+				<div class="twelve columns center"><%= image_tag(@person.image_url, class: 'person-image') %></div><br>
+				<div class="twelve columns center">
+					<%= button_icon 'edit image', edit_image_person_path(@person), 'camera', nil, 'tiny round' %><br>
+					<%= button_icon 'get facebook pic', image_from_facebook_person_path(@person), 'camera', nil, 'tiny round' if @person.facebook_url.present? %>
+				</div>
 			</div>
-			<div class="eight columns">
+			<div class="nine columns">
 				<blockquote>
 					<p>
 						<%= @person.household.address1 %><br>
@@ -41,18 +44,50 @@
 	<li><%= @person.gender %></li>
 	<li class="field">Allergies:</li>
 	<li><%= @person.allergies %></li>
+	<li class="field" style="padding-left: 40px;">
+		<%= button_icon 'Edit', edit_person_path(@person), 'edit', nil , "small round" %> &nbsp;
+	</li>
 <% end %>
 
-<%= button_icon 'Edit', edit_person_path(@person), 'edit', nil , "small round" %> &nbsp;
-<%= button_icon 'Index', people_path, 'list', nil, "small round" %><br><br>
+<div class="show-for-small">
+	<%= widget_box("Quick Contacts") do %>
+		<div class="widget-content">
+			<% ContactType.quick.each do |ct| %>
+				<div class="six columns padded">
+					<%= link_to ct.name, new_quick_contacts_path(contact_type_id: ct.id, person_id: @person.id), class: "button round small" %>
+				</div>
+			<% end %>
+			<p><br></p>
+		</div>
+	<% end %>
+</div>
 
-<%= widget_box("Communication") do %>
-	<div class="widget-content">
-		<div id="phones">			
-			<%= render :partial => 'shared/phones', :locals => {:object => @person} %>
-		</div>
-		<div id="emails">			
-			<%= render :partial => 'shared/emails', :locals => {:object => @person} %>
-		</div>
+
+<dl class="tabs">
+  <dd class="active"><a href="#communication">Communication</a></dd>
+  <dd><a href="#tags">Tags</a></dd>
+  <dd><a href="#contacts">Contacts</a></dd>
+  <dd><a href="#simple3">Simple Tab 3</a></dd>
+  <dd><a href="#simple4">Simple Tab 4</a></dd>
+</dl>
+<ul class="tabs-content">
+  <li class="active" id="communicationTab">
+	<%= render :partial => 'communication' %>
+  </li>
+  <li id="tagsTab">
+	<div id="tags">
+		<%= render :partial => 'tags', locals: {person: @person} %>
 	</div>
-<% end %>
+  </li>
+  <li id="contactsTab">
+	<div id="contacts">
+		<%= render :partial => 'contacts', locals: {person: @person} %>
+	</div>
+  </li>
+  <li id="simple3Tab">
+	<div>This is simple tab 3s content.</div>
+  </li>
+  <li id="simple4Tab">
+	<div>This is simple tab 4s content.</div>
+  </li>
+</ul>

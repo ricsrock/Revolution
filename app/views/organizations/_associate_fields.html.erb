@@ -1,0 +1,7 @@
+<%= field_set_tag 'Associate' do %>
+	<%= f.input :first_name, wrapper_html: {class: "six columns"} %>
+	<%= f.input :last_name, wrapper_html: {class: "six columns"} %>
+	<%= f.input :comments, wrapper_html: {class: "twelve columns"} %>
+	<%= f.hidden_field :_destroy %>
+	<%= link_to "remove this associate", '#', class: "remove_fields small round button alert right" %>
+<% end %>

@@ -1,0 +1,33 @@
+<% @enrollments = @group.enrolled(@value || 'current') %>
+
+<h4 class="subheader">Enrollments (<%= @enrollments.size %>)</h4>
+<% if @group.is_a?(Branch) %>
+	<p class="subheader">A Branch can't have enrollments.</p>
+<% else %>
+	<dl class="sub-nav">
+		<dd class="<%= @value == 'current' ? 'active' : nil %>">
+			<%= link_to "Current", filter_enrollments_group_path(@group, value: 'current'), remote: true %>
+		</dd>
+		<dd class="<%= @value == 'past' ? 'active' : nil %>">
+			<%= link_to "Past", filter_enrollments_group_path(@group, value: 'past'), remote: true %>
+		</dd>
+		<dd class="<%= @value == 'all' ? 'active' : nil %>">
+			<%= link_to "All", filter_enrollments_group_path(@group, value: 'all'), remote: true %>
+		</dd>
+	</dl>
+	<% @enrollments.each do |r| %>
+		<div class="row padded">
+			<div class="eight columns">
+				<%= r.person.full_name %>
+			</div>
+			<div class="four columns">
+				<% if r.current? %>
+					<%= link_to(unenroll_enrollment_path(r), remote: :true, title: 'un-enroll from group') { "<i class='icon-minus-sign'></i>".html_safe } %>
+				<% else %>
+					<%= link_to(re_enroll_enrollment_path(r), remote: :true, title: 're-enroll into group') { "<i class='icon-plus-sign'></i>".html_safe } %>
+					<%= link_to(undo_enrollment_path(r), remote: :true, title: 'destroy enrollment', data: { confirm: "Are you sure you want to destroy this enrollment record forever?" }) { "<i class='icon-trash'></i>".html_safe } %>
+				<% end %>
+			</div>
+		</div>
+	<% end %>
+<% end %>

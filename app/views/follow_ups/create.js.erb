@@ -1,0 +1,9 @@
+<% if @follow_up.errors.any? %>
+	$('#myModal').html("<%= escape_javascript(render :partial => 'form', :follow_up => @follow_up) %>");
+<% else %>
+	$('#follow_ups').html("<%= j render partial: 'contacts/follow_ups', locals: { :object => @object } %>");
+	$('#contact').html("<%= j render partial: 'contacts/contact', locals: { contact: @contact } %>");
+	$('#myModal').trigger('reveal:close');
+	$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+	<% flash.discard %>
+<% end %>

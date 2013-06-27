@@ -1,0 +1,46 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @contact_form.name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', contact_forms_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_contact_form_path(@contact_form), 'edit', nil, 'small round' %>
+</div>
+<br>
+<div class="panel radius">
+	<h5 class="subheader">
+		The assigned Contact Types will be shown on the <%= @contact_form.name %> Contact Form.
+	</h5>
+</div>
+<div class="row">
+	<div class="six columns">		
+		<div class="widget-box">
+			<div class="widget-title">
+				<h4>Available Contact Types</h4>
+			</div>
+			<div class="widget-content">
+				<div class="row">
+					<div id="available-contact_types" class="twelve columns">
+						<%= render :partial => 'available_contact_types' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="six columns">		
+		<div class="widget-box">
+			<div class="widget-title">
+				<h4>Assigned Contact Types</h4>
+			</div>
+			<div class="widget-content">
+				<div class="row">
+					<div id="assigned-contact_types" class="twelve columns">
+						<%= render :partial => 'assigned_contact_types' %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+<%= four_up_two_up_widget_box("Basic Information for Security Role") do %>
+	<li class="field">Name:</li>
+	<li><%= @role.name %></li>
+	<li class="field">Alias:</li>
+	<li><%= @role.alias %></li>
+	<li class="field">Description:</li>
+	<li><%= @role.description %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', roles_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_role_path(@role), 'edit', nil, 'small round' %>
+</div>
+<br>
+<%= widget_box("Permissions") do %>
+<div class="row">
+	<div class="twelve columns"><br>
+		<ul class="unstyled-padded">
+			<% @role.permissions.default_order.each do |p| %>
+				<li class="inline">
+					<%= check_box_tag('permission', '1', true, disabled: true) %>
+				</li>
+				<li class="inline"><%= p.sentence %></li>
+				<li></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+<% end %>

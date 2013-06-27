@@ -1,0 +1,10 @@
+<% @available_people.each do |person| %>
+	<div>
+		<div class="six columns padded">
+			<%= link_to person.full_name, enroll_person_group_path(@group, person_id: person.id), remote: true %>
+		</div>
+		<div class="six columns padded">
+			Age: <%= person.age %>
+		</div>
+	</div>
+<% end %>

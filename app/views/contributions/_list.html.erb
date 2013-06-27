@@ -1,0 +1,20 @@
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th>Contributor</th>
+	    <th>Amount</th>
+		<th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @batch.contributions.includes(:contributable).sort_by {|c| c.contributable.search_order rescue nil}.each do |c| %>
+	  <tr>
+		<td><%= c.contributable.full_name %></td>
+		<td><%= number_to_currency c.total %></td>
+		<td>
+			<%= link_to '', contribution_path(c, batch_id: @batch), method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+		</td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>

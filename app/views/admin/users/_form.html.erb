@@ -1,0 +1,19 @@
+<%= simple_form_for([:admin,@user]) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :login %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= f.input :is_staff %>
+	<%= f.input :person_name, :input_html => {data: {autocomplete_source: search_people_path}}, :hint => "You must first create a person record for this user." %>
+	<%= f.association :roles, as: :check_boxes %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

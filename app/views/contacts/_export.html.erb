@@ -1,0 +1,19 @@
+<div class="row">
+	<div class="twelve columns">
+		<div class="panel radius">
+			<p class="subheader">This action will export <%= pluralize(@contact_ids.size, 'selected contact') %>. A CSV file for mail merge will be downloaded to your desktop.</p>
+		</div>
+		<%= field_set_tag "Export" do %>
+			<%= form_tag export_contacts_path(contact_ids: @contact_ids), method: :put, builder: SimpleForm::FormBuilder do %>
+				<div class="three columns padded">
+					<%= submit_tag "Export Contacts", class: "button radius small" %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns">
+		<%= link_to 'Manage Contacts', manage_contacts_path, class: "button round small" %>
+	</div>
+</div>

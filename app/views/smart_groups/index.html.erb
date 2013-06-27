@@ -1,0 +1,38 @@
+<h3 class="subheader"><a class="icon-cog"></a> Listing Smart Groups</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+	    <th>Name</th>
+		<th>Definition</th>
+		<th># Found</th>
+		<th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @smart_groups.each do |smart_group| %>
+	  <tr>
+		<td><%= link_to smart_group.name, smart_group %></td>
+		<td><%= smart_group.definition %></td>
+		<td><%= smart_group.number_found %></td>
+	    <td><%= link_to '', edit_smart_group_path(smart_group), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', smart_group, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>&nbsp;&nbsp;&nbsp;
+			<% if smart_group.favorite?(current_user) %>
+				<%= link_to '', remove_from_favorites_path(klass: "SmartGroup", id: smart_group.id), title: 'favorite', class: 'icon-heart' %>
+			<% else %>
+				<%= link_to '', add_to_favorites_path(klass: "SmartGroup", id: smart_group.id), title: 'favorite', class: 'icon-heart-empty' %>
+			<% end %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+<%= paginate @smart_groups %>
+<%= button_icon "New Smart Group", new_smart_group_path, 'cog', '', "radius"  %>
+<%# link_to "New Smart Group", new_smart_group_path, class: "button radius"  %><br><br>
+
+<% content_for :sidebar do -%>
+	<%= render 'sidebar' %>
+<% end -%>

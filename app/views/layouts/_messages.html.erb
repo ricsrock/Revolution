@@ -1,10 +1,14 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
     <div class="twelve columns">
-		<div class="alert-box <%= name == :notice ? "success" : "alert" %>">
-	      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+		<div class="alert-box <%= flash_class(name) %>">
+		  <div id="flash_<%= name %>">
+			<i class="<%= which_icon(name) %>"></i>
+		  	<%= msg %>
+		  </div>
+	      <%# content_tag :div, msg, :id => "flash_#{name}" %>
 		  <a href="" class="close">&times;</a>
      	</div>
-  </div>
+  	</div>
   <% end %>
 <% end %>

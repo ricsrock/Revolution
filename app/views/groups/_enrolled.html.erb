@@ -1,0 +1,11 @@
+<h5 class="subheader">Enrolled People</h5>
+<% @group.enrollments.includes(:person).order('people.last_name, people.first_name ASC').each do |enrollment| %>
+	<div class="row padded">
+		<div class="eight columns">
+			<%= enrollment.person.full_name %>
+		</div>
+		<div class="four columns">
+			<%= status_badge(enrollment) %>
+		</div>
+	</div>
+<% end %>

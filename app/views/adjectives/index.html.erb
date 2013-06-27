@@ -1,0 +1,28 @@
+<h3>Listing Adjectives</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Name</th>
+			<th>Updated_by</th>
+			<th>Created_by</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @adjectives.each do |adjective| %>
+	  <tr>
+	    <td><%= adjective.name %></td>
+	    <td><%= adjective.updated_by %></td>
+	    <td><%= adjective.created_by %></td>
+	    <td><%= link_to '', edit_adjective_path(adjective), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', adjective, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Adjective", new_adjective_path, class: "button radius"  %>

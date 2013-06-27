@@ -1,0 +1,38 @@
+<div style="width:972px;margin: 0 auto;">
+	<div style="float:none;clear:both;">
+		<% Checkin::ALPHA_KEYBOARD[0..11].each do |l| %>
+			<span>
+				 <% unless l[0].blank? %>
+				 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0], :search => @search || "", :pad => @pad), remote: true, style: "width:#{l[1]}em;", class: "key_button" %>
+				 <% else %>
+						<a style="width:<%= l[1] %>em;height:3.3em;" class="dead_button" disabled="disabled"></a>
+				 <% end %>
+			</span>
+		<% end %>
+	</div>
+	<div style="float:none;clear:both;">
+		<% Checkin::ALPHA_KEYBOARD[12..22].each do |l| %>
+			<span>
+				 <% unless l[0].blank? %>
+				 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0],:search => @search || "", :pad => @pad) , remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+				 <% else %>
+						<a style="width:<%= l[1] %>em;height:3.3em;" class="dead_button" disabled="disabled"></a>
+				 <% end %>
+			</span>
+		<% end %>		
+	</div>
+	<div style="float:none;clear:both;">
+		<% Checkin::ALPHA_KEYBOARD[23..31].each do |l| %>
+			<span>
+				 <% unless l[0].blank? %>
+				 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0],:search => @search || "", :pad => @pad), remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+				 <% else %>
+						<a style="width:<%= l[1] %>em;height:3.3em;" class="dead_button" disabled="disabled"></a>
+				 <% end %>
+			</span>
+		<% end %>		
+	</div>
+	<div style="float:none;clear:both;">
+		&nbsp;
+	</div>
+</div>

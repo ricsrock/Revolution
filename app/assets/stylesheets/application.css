@@ -15,5 +15,6 @@
  *= require font-awesome
  *= require jquery.ui.datepicker
  *= require jquery.timepicker
+ *= require gmaps4rails
  *= require_tree .
  */

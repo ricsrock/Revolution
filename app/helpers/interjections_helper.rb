@@ -1,0 +1,2 @@
+module InterjectionsHelper
+end

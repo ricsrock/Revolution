@@ -1,0 +1,7 @@
+<ul class="unstyled">
+	<% @contact_form.available_contact_types.each do |c| %>
+		<li>
+			<%= link_to c.name, add_contact_type_to_contact_form_path(c, contact_form_id: @contact_form), remote: true %>
+		</li>
+	<% end %>
+</ul>

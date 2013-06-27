@@ -1,9 +1,9 @@
 <table class="twelve responsive">
   <thead>
 	  <tr>
-			<th>Name</th>
+			<th><%= sort_link @q, :name, "Name", data: {no_turbo_link: 'true'} %></th>
 			<th>Event Type</th>
-			<th>Date</th>
+			<th><%= sort_link @q, :date, "Date", data: {no_turbo_link: 'true'} %></th>
 			<th># Instances</th>
 			<th># Meetings</th>
 	    <th></th>

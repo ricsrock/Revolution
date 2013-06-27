@@ -1,0 +1,26 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">To:</li>
+	<li><%= pluralize(@message.recipients.size, "person") %></li>
+	<li class="field">From Number:</li>
+	<li><%= @message.from %></li>
+	<li class="field">Body:</li>
+	<li><%= @message.body %></li>
+	<li class="field">Sender:</li>
+	<li><%= @message.from_person.full_name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', messages_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_message_path(@message), 'edit', nil, 'small round' %>
+</div>
+<hr>
+<div id="thread row">
+	<% @message.descendants.each do |message| %>
+		<div class="panel radius callout offset-by-<%= translate_number(message.ancestry_depth.to_s) %>">
+			<%= message.from_person.full_name %> said:<br>
+			"<%= message.body %>"<br>
+			To: <%= message.recipients.collect {|r| r.person.full_name}.to_sentence %> <%= message.ancestry_depth %>
+		</div>
+	<% end %>
+</div>

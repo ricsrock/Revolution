@@ -1,0 +1,16 @@
+<%= simple_form_for(@permission) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :ability_name, wrapper_html: { class: "six columns" } %>
+    <%= f.input :resource_name, collection: Permission::RESOURCES, wrapper_html: { class: "six columns" } %>
+  </div>
+
+  <div class="row">
+	&nbsp;
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

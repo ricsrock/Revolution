@@ -1,0 +1,32 @@
+<h4 class="subheader"><%= page_entries_info @donations %></h4><hr>
+<table class="twelve responsive">
+	<thead>
+		<tr>
+			<th>Contributor</th>
+			<th>Date</th>
+			<th>Fund</th>
+			<th>Amount</th>
+			<th>By</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @donations.each do |donation| %>
+			<tr>
+				<td><%= donation.contribution.contributable.full_name %></td>
+				<td><%= donation.contribution.date.to_date.to_s(:long) %></td>
+				<td><%= donation.fund.name %></td>
+				<td><%= number_to_currency donation.amount %></td>
+				<td><%= donation.created_by %></td>
+			</tr>
+		<% end %>
+			<tr>
+				<th colspan=3>TOTAL</th>
+				<td><%= number_to_currency @donations.collect {|d| d.amount}.sum %></td>
+				<td></td>
+			</tr>
+	</tbody>
+</table>
+
+<% content_for :sidebar do -%>
+	<%= render partial: "sidebar" %>
+<% end -%>

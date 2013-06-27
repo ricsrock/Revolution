@@ -1,0 +1,22 @@
+<div class="row">
+	<% if f.object.new_record? %>
+		<%= field_set_tag 'Smart Group Rule' do %>
+			<%= f.association :smart_group_property, collection: SmartGroupProperty.all.order('prose ASC'), label_method: :prose, wrapper_html: {class: "four columns"}, input_html: {class: "property_selector", data: {id: f.object.object_id}} %>
+			<div class="six columns" id="property_fields_<%= f.object.object_id %>"></div>
+			<%= f.hidden_field :_destroy %>
+			<div class="two columns">
+				<%= link_to "remove this rule", '#', class: "remove_fields small round button alert right" %>
+			</div>
+		<% end %>
+	<% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	$(".property_selector").observe_field(1, function( ) {
+		var data = {'property_id' : $(this).val(), 'object_id' : $(this).data('id')};
+		var url = '/smart_groups/property_selected';
+		$.get(url, data, function(html) {
+			$("#property_operator").html(html);
+		});
+	});
+</script>

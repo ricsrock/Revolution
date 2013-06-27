@@ -1,0 +1,37 @@
+<% content_for :body do -%>
+	<body class="body-class">
+<% end -%>
+
+<%= content_for?(:body) ? yield(:body) : raw("<body>") %>
+
+
+<div class="content padded" style="padding-top:40px !important;">
+	<div class="twelve columns">
+		<div class="six columns" id="search_text">
+			<%= render :partial => 'search_text' %>
+		</div>
+		<div class="six columns" id="search_choice">
+			<%= render :partial => 'search_choice' %>
+		</div>
+	</div>
+
+
+	<div class="twelve columns">
+		<div class="centered" id="pad_area" style="text-align:center;">
+			<%= render partial: @pad %>
+		</div>
+	</div>
+	
+	<div class="twelve columns">
+		<div class="two columns centered" id="search_button" style="text-align:center;">
+			<%= render :partial => 'search_button', locals: { search: @search } %>
+		</div>
+	</div>
+	
+	<div class="twelve columns">
+		<div class="nine columns centered" id="results_area">
+			<%= render :partial => "self_checkin_form", locals: { households: @households } %>
+		</div>
+	</div>
+	
+</div>

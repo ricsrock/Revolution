@@ -1,0 +1,36 @@
+<h3 class="subheader"><%= page_entries_info @contacts %></h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th>ID</th>
+		<th><%= sort_link @q, :responsible_user_last_first_name, "Responsible User" %></th>
+		<th><%= sort_link @q, :contact_type_name, "Contact Type" %></th>
+		<th><%= sort_link @q, :person_last_first_name, "Person" %></th>
+		<th>Comments</th>
+		<th><%= sort_link @q, :status, "Status" %></th>
+		<th><%= sort_link @q, :created_at, "Created" %></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @contacts.each do |contact| %>
+	  <tr>
+		<td><%= link_to contact.id, contact %></td>
+	    <td><%= contact.responsible_user.full_name %></td>
+	    <td><%= contact.contact_type.name %></td>
+	    <td><%= link_to contact.person.full_name, person_path(contact.person) rescue nil %></td>
+	    <td><%= contact.comments %></td>
+	    <td><%= contact.status %></td>
+		<td><%= contact.created_at.strftime('%x') %></td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= paginate @contacts %>
+
+<% content_for :sidebar do -%>
+	<%= render 'sidebar' %>
+<% end -%>

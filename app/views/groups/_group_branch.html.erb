@@ -1,0 +1,16 @@
+<li>
+	<div class="title">
+		<h5 class="subheader"><%= group_icon(group) %> <%= group.name %></h5>
+	</div>
+	<div class="content">
+		<div id="group-detail">
+			<hr>
+			<%= render :partial => 'group_details', locals: { group: group } %>
+		</div>
+		<ul class="accordion">
+			<% group.children.each do |group| %>
+				<%= render partial: "group_branch", locals: { group: group } %>
+			<% end %>
+		</ul>
+	</div>
+</li>

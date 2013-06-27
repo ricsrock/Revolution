@@ -1,0 +1,18 @@
+<%= search_form_for @q, :builder => SimpleForm::FormBuilder do |f| %>
+  <%= f.input :contact_type_name_eq_any, :collection => ContactType.all.order(:name).map {|c| c.name}, :as => :check_boxes,
+			  label: "Contact Type", wrapper_html: { class: 'indented-checkbox-wrapper' }, input_html: { class: 'indented-checkbox' } %>
+  <br>
+  <%= f.input :person_last_name_or_person_first_name_cont_any, label: "Person", input_html: {placeholder: "FirstName LastName"} %>
+  <br>
+  <%= f.input :responsible_user_id_eq_any, collection: User.active.order('last_name, first_name ASC'), as: :check_boxes, label_method: :full_name, label: "Responsible User" %>
+  <br>
+  <%= f.input :status_eq_any, collection: Contact::STATUSES, as: :check_boxes, label: "Status" %>
+  <br>
+  <%= f.input :range_selector_cont, collection: NamedDateRanges::RANGES, label: "Date Range", prompt: true, selected: @range %>
+
+  <%= f.submit "Search", class: 'button radius small' %>
+<% end %>
+<% if @search_params %>
+	<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Contacts"), class: 'button round small' %>
+<% end %>
+

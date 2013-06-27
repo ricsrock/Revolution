@@ -1,10 +1,16 @@
 class EventsController < ApplicationController
+  before_filter :authenticate_user!
+  
   before_action :set_event, only: [:show, :edit, :update, :destroy, :mark, :post]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.includes(:event_type, :meetings, :instances => :meetings).order(:date).page(params[:page])
+    params[:q] = Event.fix_params(params[:q]) if params[:q]
+    @q = Event.includes(:event_type, :meetings, :instances => :meetings).page(params[:page]).search(params[:q])
+    @q.sorts = 'date desc' if @q.sorts.empty?
+    @events = @q.result(distinct: true)
+    @range = params[:q][:range_selector_cont] if params[:q]
   end
 
   # GET /events/1
@@ -62,7 +68,7 @@ class EventsController < ApplicationController
   end
   
   def search
-    @events = Event.where(:date => do_range(params[:range_selector]).start_date..do_range(params[:range_selector]).end_date)
+    @events = Event.where(:date => do_range(params[:range_selector]).start_date..do_range(params[:range_selector]).end_date).order('events.date DESC')
   end
   
   def mark

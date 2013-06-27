@@ -1,0 +1,5 @@
+<% smart_group_rule_fields = @smart_group_form.simple_fields_for :smart_group_rules, SmartGroupRule.new, child_index: @id do |f|
+		render partial: @partial_name, locals: { f: f }
+	end %>
+
+$("#property_fields_<%= @id %>").html("<%= j smart_group_rule_fields %>");

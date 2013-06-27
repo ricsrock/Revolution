@@ -1,0 +1,23 @@
+$.get('/labels/teacher_copy_allergies.label', function(labelXml) {
+	var label = dymo.label.framework.openLabelXml(labelXml);
+	label.setObjectText("event_date", "<%= attendance.date.to_s(:long) %>");
+	label.setObjectText("security_phrase", "<%= attendance.security_code %>");
+	label.setObjectText("call_number", "<%= attendance.call_number %>");
+	label.setObjectText("full_name", "<%= attendance.person.full_name %>");
+	label.setObjectText("responsible_people", "<%= attendance.person.household.responsible_people %>");
+	label.setObjectText("allergies", "<%= attendance.person.allergies %>");
+	var printers = dymo.label.framework.getPrinters();
+	if (printers.length == 0)
+	    throw "No DYMO printers are installed. Install DYMO printers.";
+	var printerName = "";
+	for (var i = 0; i < printers.length; ++i)
+	{
+	    var printer = printers[i];
+	    if (printer.printerType == "LabelWriterPrinter")
+	    {
+	        printerName = printer.name;
+	        break;
+	    }
+	}
+	label.print(printerName);
+}, "text");

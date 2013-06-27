@@ -1,0 +1,28 @@
+<%= simple_form_for(@message)  do |f| %>
+	<%= f.error_notification %>
+	
+	<%= f.input :body %>
+	<table class="twelve responsive">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Person</th>
+				<th>Number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @smart_group.result.order('last_name ASC, first_name ASC').each_with_index do |person, index| %>
+				<tr>
+					<td>
+						<%= check_box_tag "message[recipients_attributes][#{index}][person_id]", person.id, false , disabled: person.no_mobile_number? %>
+					</td>
+					<td>
+						<%= person.full_name %>
+					</td>
+					<td><%= person.mobile_number %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= f.button :submit %>
+<% end %>

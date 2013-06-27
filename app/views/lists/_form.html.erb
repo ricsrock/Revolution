@@ -1,0 +1,6 @@
+<%= simple_form_for @list do |f| %>
+	<%= f.input :name %>
+	<%= f.input :description, placeholder: "Internal use only" %>
+	<%= f.input :parent_id, :collection => nested_set_options(Group, @group) {|i| "#{'-' * i.level} #{i.name}" }, :label => "Select Parent Group" %>
+	<%= f.submit class: 'button radius' %>
+<% end %>

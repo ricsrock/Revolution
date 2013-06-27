@@ -1,0 +1,26 @@
+<h3 class="subheader">Listing Checkin Groups</h3>
+
+<dl class="sub-nav">
+	<dt>Sort:</dt>
+	<dd><%= sort_link @q, :name, "Name" %></dd>
+</dl>
+
+
+<% @checkin_groups.each do |checkin_group| %>
+	<div class="panel radius">
+		<div class="twelve columns">
+			<h5 class="subheader"><%= link_to checkin_group.name, checkin_group.becomes(Group) %></h5>
+		</div>
+		&nbsp;
+	</div>
+<% end %>
+
+<%= paginate @checkin_groups %>
+
+<% content_for :sidebar do -%>
+	<%= search_form_for @q, builder: SimpleForm::FormBuilder do |f| %>
+		<%= f.input :name_cont, label: "Name" %>
+		<%= f.input :status_cont, collection: SmallGroup::STATUSES, label: "Status", selected: @status %>
+		<%= f.submit "Search", class: 'button small round' %>
+	<% end %>
+<% end -%>

@@ -30,4 +30,22 @@ NewrevF::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   :location => '/usr/sbin/sendmail',
+  #   :arguments => '-i -t'
+  # }
+  
+  config.middleware.use ExceptionNotifier,
+    :email => {
+      :email_prefix => "[RevolutionError] ",
+      :sender_address => %{"donotreply" <donotreply@local.rivervalleychurch.net>},
+      :exception_recipients => %w{lowell@rivervalleychurch.net}
+    }
+  
+  Delayed::Worker.logger = Rails.logger
+  
 end
+

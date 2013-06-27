@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="twelve columns">
+		<div class="panel radius">
+			<p class="subheader">This action will close <%= pluralize(@contact_ids.size, 'selected contact') %>. A follow-up of the selected type will be added to each contact along with the notes you enter here.</p>
+		</div>
+		<%= field_set_tag "Multi-Close" do %>
+			<%= form_tag multi_close_contacts_path(contact_ids: @contact_ids), method: :put, builder: SimpleForm::FormBuilder do %>
+				<div class="three columns padded">
+					<label>Follow-Up Type:</label>
+					<%= select_tag "follow_up[follow_up_type_id]", options_from_collection_for_select(FollowUpType.all, :id, :name) %>
+				</div>
+				<div class="six columns padded">
+					<label>Follow-Up Notes:</label>
+					<%= text_area 'follow_up', 'notes' %>
+				</div>
+				<div class="three columns padded">
+					<br><br>
+					<%= submit_tag "Submit", class: "button radius small" %>
+				</div>
+			<% end %>
+		<% end %>
+	</div>
+</div>
+<div class="row">
+	<div class="twelve columns">
+		<%= link_to 'Manage Contacts', manage_contacts_path, class: "button round small" %>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Time:</li>
+	<li><%= @meeting_time.time %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', meeting_times_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_meeting_time_path(@meeting_time), 'edit', nil, 'small round' %>
+</div>

@@ -1,0 +1,14 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">First_name:</li>
+	<li><%= @associate.first_name %></li>
+	<li class="field">Last_name:</li>
+	<li><%= @associate.last_name %></li>
+	<li class="field">Comments:</li>
+	<li><%= @associate.comments %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', associates_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_associate_path(@associate), 'edit', nil, 'small round' %>
+</div>

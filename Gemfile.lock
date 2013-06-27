@@ -1,4 +1,18 @@
 GIT
+  remote: git://github.com/barsoom/prawn-print.git
+  revision: 64696b4ecc2ff966046207012169d8df36794d8b
+  specs:
+    prawn-print (0.0.2)
+      prawn (>= 0.12.0)
+
+GIT
+  remote: git://github.com/fiedl/Google-Maps-for-Rails.git
+  revision: 6266f74a0ee02172f3f6a71d467340cbf9709995
+  ref: 6266f74a0ee02172f3f6a71d467340cbf9709995
+  specs:
+    gmaps4rails (2.0.0.pre)
+
+GIT
   remote: git://github.com/milgner/compass-rails.git
   revision: 1749c06f15dc4b058427e7969810457213647fb8
   ref: 1749c06f15dc4b058427e7969810457213647fb8
@@ -27,15 +41,15 @@ GIT
 
 GIT
   remote: git://github.com/rails/activerecord-deprecated_finders.git
-  revision: c00788c2b7e01170f63bd9651f7efd8deb4bd4b0
+  revision: f6ed71d62d47f0f6397b5b3e801271567f30f960
   specs:
-    activerecord-deprecated_finders (0.0.3)
+    activerecord-deprecated_finders (1.0.3)
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: 6c2e2ac6c77051c4e1d3e70f197f85df53935e76
+  revision: a1b72178714fbf0033fe076b7e51f57eff152bdd
   specs:
-    arel (4.0.0.beta1.20130225132415)
+    arel (4.0.0.20130418133826)
 
 GIT
   remote: git://github.com/rails/coffee-rails.git
@@ -57,55 +71,75 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: afce1e65f7c6df4ae96522b26e755915d238ff80
+  revision: b522561d2d83b83c99e9aa54c8079fd1241fdf49
   specs:
-    sprockets-rails (2.0.0.rc3)
+    sprockets-rails (2.0.0)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
 
 GIT
-  remote: git://github.com/spectator/ransack.git
-  revision: a40055a59f7650352228bef17eb4c91e166a1875
-  ref: a40055a59f7650352228bef17eb4c91e166a1875
+  remote: git://github.com/smartinez87/exception_notification.git
+  revision: 52d3b79f68cd4ec48d2b79e2478674c2256eddee
+  branch: master
+  specs:
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
+
+GIT
+  remote: https://github.com/ernie/ransack
+  revision: 4078f4fd0ff8b48658e1b69fe8bce0c36933f19c
+  branch: rails-4
   specs:
     ransack (0.7.3)
-      actionpack (>= 3.0)
-      activerecord (>= 3.0)
+      actionpack
+      activerecord
       polyamorous (~> 0.6.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (4.0.0.beta1)
-      actionpack (= 4.0.0.beta1)
+    Ascii85 (1.0.2)
+    actionmailer (4.0.0.rc1)
+      actionpack (= 4.0.0.rc1)
       mail (~> 2.5.3)
-    actionpack (4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
+    actionpack (4.0.0.rc1)
+      activesupport (= 4.0.0.rc1)
       builder (~> 3.1.0)
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    activemodel (4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
+    activemodel (4.0.0.rc1)
+      activesupport (= 4.0.0.rc1)
       builder (~> 3.1.0)
-    activerecord (4.0.0.beta1)
-      activemodel (= 4.0.0.beta1)
-      activerecord-deprecated_finders (~> 0.0.3)
-      activesupport (= 4.0.0.beta1)
-      arel (~> 4.0.0.beta1)
-    activesupport (4.0.0.beta1)
-      i18n (~> 0.6.2)
+    activerecord (4.0.0.rc1)
+      activemodel (= 4.0.0.rc1)
+      activerecord-deprecated_finders (~> 1.0.2)
+      activesupport (= 4.0.0.rc1)
+      arel (~> 4.0.0)
+    activesupport (4.0.0.rc1)
+      i18n (~> 0.6, >= 0.6.4)
       minitest (~> 4.2)
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
-      tzinfo (~> 0.3.33)
+      tzinfo (~> 0.3.37)
+    acts_as_stampable (0.0.3)
     addressable (2.3.3)
-    atomic (1.0.1)
+    afm (0.2.0)
+    ancestry (1.3.0)
+      activerecord (>= 2.3.14)
+    atomic (1.1.9)
     awesome_nested_set (2.1.6)
       activerecord (>= 3.0.0)
     bcrypt-ruby (3.0.1)
+    better_errors (0.8.0)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.1)
+      debug_inspector (>= 0.0.1)
     builder (3.1.4)
+    cancan (1.6.9)
     capybara (2.0.2)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -129,7 +163,14 @@ GEM
       chunky_png (~> 1.2)
       fssm (>= 0.2.7)
       sass (~> 3.1)
+    daemons (1.1.9)
     database_cleaner (0.9.1)
+    debug_inspector (0.0.2)
+    delayed_job (4.0.0.beta1)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0.beta2)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (~> 4.0.0.beta1)
     devise-encryptable (0.1.1)
       devise (>= 2.1.0.rc)
     diff-lcs (1.2.1)
@@ -162,6 +203,7 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     fssm (0.2.10)
+    geocoder (1.1.6)
     git-deploy (0.5.4)
       net-scp
       net-ssh
@@ -175,7 +217,9 @@ GEM
     guard-rspec (2.5.0)
       guard (>= 1.1)
       rspec (~> 2.11)
-    hike (1.2.1)
+    hashery (2.1.0)
+    highline (1.6.16)
+    hike (1.2.3)
     i18n (0.6.4)
     jbuilder (1.0.2)
       activesupport (>= 3.0.0)
@@ -187,7 +231,8 @@ GEM
     jquery-ui-rails (4.0.1)
       jquery-rails
       railties (>= 3.1.0)
-    json (1.7.7)
+    jwt (0.1.8)
+      multi_json (>= 1.5)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -196,27 +241,35 @@ GEM
       addressable (~> 2.3)
     listen (0.7.3)
     lumberjack (1.0.2)
-    mail (2.5.3)
-      i18n (>= 0.4.0)
+    mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.1)
-    mime-types (1.21)
-    minitest (4.6.2)
+    mime-types (1.23)
+    minitest (4.7.4)
     modular-scale (1.0.6)
       compass (>= 0.12.1)
       sass (>= 3.2.0)
       sassy-math (>= 1.5)
-    multi_json (1.6.1)
+    multi_json (1.7.6)
     mysql (2.9.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.6.6)
     nokogiri (1.5.6)
     orm_adapter (0.4.0)
-    polyamorous (0.6.0)
+    pdf-reader (1.3.3)
+      Ascii85 (~> 1.0.0)
+      afm (~> 0.2.0)
+      hashery (~> 2.0)
+      ruby-rc4
+      ttfunk
+    polyamorous (0.6.3)
       activerecord (>= 3.0)
     polyglot (0.3.3)
+    prawn (0.12.0)
+      pdf-reader (>= 0.9.0)
+      ttfunk (~> 1.0.2)
     pry (0.9.12)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -224,24 +277,21 @@ GEM
     rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (4.0.0.beta1)
-      actionmailer (= 4.0.0.beta1)
-      actionpack (= 4.0.0.beta1)
-      activerecord (= 4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
+    rails (4.0.0.rc1)
+      actionmailer (= 4.0.0.rc1)
+      actionpack (= 4.0.0.rc1)
+      activerecord (= 4.0.0.rc1)
+      activesupport (= 4.0.0.rc1)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.0.0.beta1)
-      sprockets-rails (~> 2.0.0.rc3)
-    railties (4.0.0.beta1)
-      actionpack (= 4.0.0.beta1)
-      activesupport (= 4.0.0.beta1)
+      railties (= 4.0.0.rc1)
+      sprockets-rails (~> 2.0.0.rc4)
+    railties (4.0.0.rc1)
+      actionpack (= 4.0.0.rc1)
+      activesupport (= 4.0.0.rc1)
       rake (>= 0.8.7)
-      rdoc (~> 3.4)
-      thor (>= 0.17.0, < 2.0)
+      thor (>= 0.18.1, < 2.0)
     raindrops (0.10.0)
-    rake (10.0.3)
-    rdoc (3.12.2)
-      json (~> 1.4)
+    rake (10.0.4)
     rmagick (2.13.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -259,6 +309,7 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     ruby-hmac (0.4.0)
+    ruby-rc4 (0.1.5)
     rubyzip (0.9.9)
     sass (3.2.6)
     sassy-math (1.5)
@@ -269,23 +320,31 @@ GEM
       rubyzip
       websocket (~> 1.0.4)
     slop (3.4.3)
-    sprockets (2.9.0)
+    sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.7)
     terminal-table (1.4.5)
-    thor (0.17.0)
+    thor (0.18.1)
     thread_safe (0.1.0)
       atomic
-    tilt (1.3.4)
-    treetop (1.4.12)
+    tilt (1.4.1)
+    treetop (1.4.14)
       polyglot
       polyglot (>= 0.3.1)
+    ttfunk (1.0.3)
+    tunnlr_connector (1.0.3)
+      highline (>= 1.5.0)
+      net-ssh (>= 2.0.15)
     turbolinks (1.0.0)
       coffee-rails
-    tzinfo (0.3.36)
+    twilio-ruby (3.9.0)
+      builder (>= 2.1.2)
+      jwt (>= 0.1.2)
+      multi_json (>= 1.3.0)
+    tzinfo (0.3.37)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -309,22 +368,32 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-deprecated_finders!
+  acts_as_stampable (~> 0.0.3)
+  ancestry
   arel!
   awesome_nested_set
+  better_errors
+  binding_of_caller
+  cancan
   capybara
   carrierwave
   chronic
   coffee-rails!
   compass-rails!
+  daemons
   database_cleaner
+  delayed_job_active_record (= 4.0.0.beta2)
   devise!
   devise-encryptable
+  exception_notification!
   factory_girl_rails
   faker
   fog (~> 1.3.1)
   font-awesome-rails
   foundation-icons-sass-rails
+  geocoder
   git-deploy
+  gmaps4rails!
   guard-rspec
   jbuilder (~> 1.0.1)
   jquery-rails
@@ -333,7 +402,9 @@ DEPENDENCIES
   kaminari
   launchy
   mysql (= 2.9.1)
-  rails (= 4.0.0.beta1)
+  prawn
+  prawn-print!
+  rails (= 4.0.0.rc1)
   ransack!
   rmagick (= 2.13.2)
   rspec-rails (~> 2.0)
@@ -341,7 +412,9 @@ DEPENDENCIES
   simple_form!
   sprockets-rails!
   sqlite3
+  tunnlr_connector
   turbolinks
+  twilio-ruby
   uglifier (>= 1.0.3)
   unicorn
   zurb-foundation (= 3.2.5)

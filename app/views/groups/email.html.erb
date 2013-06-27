@@ -1,0 +1,30 @@
+<h4 class="subheader"><a>Create Your Email</a></h4>
+
+<%= form_tag send_out_emails_path, method: :get  do %>
+	<%= text_field_tag :subject, nil, placeholder: "Subject" %>
+	<p>Hi FirstName!</p>
+	<%= text_area_tag :body, nil, placeholder: "Your message" %>
+	<table class="twelve responsive">
+		<thead>
+			<tr>
+				<th><%= check_box_tag 'toggle', 'hi', false %></th>
+				<th>Person</th>
+				<th>Number</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @enrollments.each_with_index do |r, index| %>
+				<tr>
+					<td>
+						<%= check_box_tag "recipient_ids[]", r.person.id, false , disabled: r.person.no_email? %>
+					</td>
+					<td>
+						<%= r.person.full_name %>
+					</td>
+					<td><%= r.person.best_email %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= submit_tag "Send Email To Selected People", class: 'button radius' %>
+<% end %>

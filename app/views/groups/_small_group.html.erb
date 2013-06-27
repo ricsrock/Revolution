@@ -1,0 +1,48 @@
+<%= raw group_breadcrumb(@group.id) %>
+
+<h3 class="subheader">Small Group: <%= @group.name %></h3>
+
+<div class="twelve columns">
+	<ul class="block-grid four-up mobile-two-up">
+		<li class="field">Description:</li>
+		<li><%= @group.description %></li>
+		<li class="field">Blurb:</li>
+		<li><%= @group.blurb %></li>
+		<li class="field">Weekday(s):</li>
+		<li><%= @group.weekdays.collect {|w| w.name}.to_sentence %></li>
+		<li class="field">Meeting Time(s):</li>
+		<li><%= @group.meeting_times.collect {|t| t.s_time}.to_sentence %></li>
+		<li class="field">Cadence:</li>
+		<li><%= @group.cadence.name rescue nil %></li>
+		<li class="field">Primary Leader(s):</li>
+		<li><%= @group.primary_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
+		<li class="field">Support Leader(s):</li>
+		<li><%= @group.support_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
+		<li class="field">Status:</li>
+		<li><%= status_label(@group) %></li>
+		<li class="field">Archived At:</li>
+		<li><%= @group.archived_at %></li>
+		<%= render partial: 'admin_box', locals: { group: @group } %>
+	</ul>
+</div>
+
+<div class="form-actions">
+	<%= link_to 'Edit', edit_small_group_path(@group), class: "button round small" %>
+	<% if @group.status == 'Active' %>
+		<%= link_to 'Archive', archive_group_path(@group), class: "button round small" %>
+	<% end %>
+	<% if @group.status == 'Archived' %>
+		<%= link_to 'Activate', activate_group_path(@group), class: "button round small alert" %>
+	<% end %>
+	<%= link_to 'Delete', group_path(@group), :method => 'delete', :confirm => 'Are you sure?', :class => 'button round alert small' %>
+	<%= link_to 'Enroll', enroll_group_path(@group), class: "button round small" %>
+</div>
+
+<%= render partial: 'actions', locals: { group: @group } %>
+
+<% content_for :sidebar do -%>
+	<div id="enrollments">
+		<%= render :partial => 'enrollments', locals: { group: @group } %>
+	</div>
+<% end -%>
+

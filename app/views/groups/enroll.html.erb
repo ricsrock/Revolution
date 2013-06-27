@@ -1,0 +1,23 @@
+<h3 class="subheader">Enrolling Into Group: <%= link_to @group.name, @group.becomes(Group) %></h3><hr>
+
+<div class="row">
+	<div class="six columns panel radius">
+		<h5 class="subheader">Click a Name to Enroll</h5>
+		<div class="row">
+			<div class="eight columns">
+				<%= form_tag search_people_group_path(@group), method: :get, remote: true do %>
+					<%= text_field_tag :term, nil, type: 'search', placeholder: 'FirstName LastName', class: "search-field", style: "margin-top:8px;",  size: 20 %>
+			</div>
+			<div class="four columns">
+				<%= submit_tag "Search", class: "button radius small inline" %>
+				<% end %>
+			</div>
+		</div>
+		<div class="row" id="results">
+			<%= render :partial => 'results' %>
+		</div>
+	</div>
+	<div id="enrolled" class="five columns panel radius">
+		<%= render :partial => 'enrolled' %>
+	</div>
+</div>

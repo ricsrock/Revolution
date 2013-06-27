@@ -1,0 +1,28 @@
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th>Name</th>
+		<th>Default Room</th>
+		<th>Staff Ratio</th>
+		<th>Meeting Is Called</th>
+		<th>Checkin Group?</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @groups.each do |group| %>
+	  <tr>
+	    <td><%= link_to group.name, group %></td>
+	    <td><%= group.default_room.name rescue nil %></td>
+	    <td><%= group.staff_ratio %></td>
+	    <td><%= group.meeting_is_called %></td>
+	    <td><%= group.checkin_group %></td>
+	    <td><%= link_to '', edit_group_path(group), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', group, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />

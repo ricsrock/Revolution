@@ -1,0 +1,19 @@
+<%= form_tag create_multiple_contacts_path(person_id: @person), method: :post do %>
+  <%# f.error_notification %>
+
+  <% ContactType.all.each_with_index do |contact_type, index| %>
+	<%= simple_fields_for :contact_type, contact_type do |f| %>
+	  <div class="form-inputs row <%= cycle('odd', 'even') %>">
+		<%= f.input :included, as: :boolean, label: contact_type.name, input_html: { index: index }, wrapper_html: { class: "three columns" } %>
+		<%= f.input :responsible_user_id, collection: User.all, label_method: :full_name, prompt: "-- accept default --", input_html: { index: index }, wrapper_html: { class: "three columns" } %>
+		<%= f.input :comments, input_html: {index: index }, wrapper_html: { class: "four columns" } %>
+		<%= f.input :contact_type_id, as: :hidden, input_html: { index: index, value: contact_type.id } %>
+		<%= f.input :person_id, as: :hidden, input_html: { index: index, value: @person.id } %>
+	  </div>
+	<% end %>
+  <% end %>
+
+  <div class="form-actions">
+    <%= submit_tag 'Create Contacts', class: "button radius" %>
+  </div>
+<% end %>

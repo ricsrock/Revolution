@@ -1,0 +1,21 @@
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th></th>
+	    <th># Contributions</th>
+		<th>$ Amount</th>
+	  </tr>
+  </thead>
+  <tbody>
+	  <tr>
+		<th>Batch:</th>
+		<td><%= @batch.contributions_num %></td>
+		<td><%= number_to_currency @batch.count_total %></td>
+	  </tr>
+	  <tr>
+		<th>Recorded:</th>
+		<td class="<%= number_formatter(@batch.contributions.length, @batch.contributions_num) %>"><%= @batch.contributions.length %></td>
+		<td class="<%= number_formatter(@batch.amount_recorded, @batch.count_total) %>"><%= number_to_currency @batch.amount_recorded %></td>
+	  </tr>
+  </tbody>
+</table>

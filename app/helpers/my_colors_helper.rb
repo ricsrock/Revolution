@@ -1,0 +1,2 @@
+module MyColorsHelper
+end

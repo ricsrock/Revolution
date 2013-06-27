@@ -1,0 +1,49 @@
+<h3 class="subheader"><a class="icon-user"></a> Listing Users</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th>Login</th>
+		<th><%= sort_link @q, :last_first_name, "Name" %></th>
+		<th>Security Role(s)</th>
+	    <th></th>
+		<th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @users.each do |user| %>
+	  <tr>
+	    <td><%= link_to user.login, admin_user_path(user) %></td>
+		<td><%= user.full_name %></td>
+		<td><%= user.roles.collect(&:name).to_sentence %></td>
+		<td>
+			<% if user.confirmed? %>
+				<%= link_to "un-confirm", unconfirm_admin_user_path(user), class: 'button round small' %>
+			<% else %>
+				<%= link_to "confirm", confirm_admin_user_path(user), class: 'button round small alert' %>
+			<% end %>
+		</td>
+	    <td><%= link_to '', edit_admin_user_path(user), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+			<%= link_to '', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= paginate @users %>
+
+<%= link_to "New User", new_admin_user_path, class: "button radius"  %>
+
+<% content_for :sidebar do -%>
+	<%= search_form_for [:admin, @q], builder: SimpleForm::FormBuilder do |f| %>
+		<%= f.input :full_name_cont, input_html: { placeholder: "First LastName" }, label: "Name" %>
+		<%= f.input :roles_id_eq_any, collection: Role.all, as: :check_boxes, label: "Security Roles" %>
+		<h5 class="subheader">User Status</h5>
+		<%= f.input :confirmed_at_present, as: :boolean, label: "Active" %>
+		<%= f.input :confirmed_at_null, as: :boolean, label: "In-Active" %>
+		<%= f.submit "Search", class: 'button radius small' %>
+	<% end %>
+<% end -%>

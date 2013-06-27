@@ -1,0 +1,3 @@
+<%= f.input :extra, collection: Group.leaves, wrapper_html: {class: 'four columns'} %>
+<%= f.association :operator, collection: @operators, label_method: :prose, wrapper_html: {class: 'four columns'} %>
+<%= f.input :content, wrapper_html: { class: "four columns"}, hint: @property.instructions %>

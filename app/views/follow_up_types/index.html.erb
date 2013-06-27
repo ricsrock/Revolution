@@ -1,0 +1,24 @@
+<h3>Listing Follow-Up Types</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Name</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @follow_up_types.each do |follow_up_type| %>
+	  <tr>
+	    <td><%= follow_up_type.name %></td>
+	    <td><%= link_to '', edit_follow_up_type_path(follow_up_type), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', follow_up_type, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Follow-Up Type", new_follow_up_type_path, class: "button radius"  %>

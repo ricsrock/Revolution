@@ -1,0 +1,13 @@
+<div id="search-controls">
+	<%= search_form_for @q, builder: SimpleForm::FormBuilder do |f| %>
+  		<%= f.input :range_selector_cont, collection: NamedDateRanges::RANGES, label: "Date Range", prompt: true, selected: @range %>
+		<%= f.input :tag_tag_group_id_eq, collection: TagGroup.all.order(:name), label: "TagGroup"%>
+		<span id="tags">
+			<%= render :partial => 'tag_check_boxes', locals: { f: f } %>
+		</span>
+		<%= f.submit "Search", class: "button tiny round" %>
+	<% end %><br><br>
+	<% if @search_params %>
+		<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Tags") %>
+	<% end %>
+</div>

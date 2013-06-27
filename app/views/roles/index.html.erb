@@ -1,0 +1,28 @@
+<h3>Listing Security Roles</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Name</th>
+			<th>Alias</th>
+			<th>Description</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @roles.each do |role| %>
+	  <tr>
+	    <td><%= link_to role.name, role %></td>
+	    <td><%= role.alias %></td>
+	    <td><%= role.description %></td>
+	    <td><%= link_to '', edit_role_path(role), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', role, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Security Role", new_role_path, class: "button radius"  %>

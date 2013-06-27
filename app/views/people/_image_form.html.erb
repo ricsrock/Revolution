@@ -1,6 +1,6 @@
 <%= simple_form_for @person, :html => {:multipart => true} do |f| %>
   <p>
-    <label>Add/Update Image</label>
+    <h3 class="subheader">Add/Update Image</h3>
     <%= image_tag(@person.image_url) if @person.image? %>
     <%= f.input :image, as: :file %>
     <%= f.hidden_field :image_cache %>

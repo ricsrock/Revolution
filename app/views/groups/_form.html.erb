@@ -3,6 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
+	<%= f.input :description, placeholder: "Internal use only" %>
     <%= f.association :default_room %>
     <%= f.input :staff_ratio %>
     <%= f.input :meeting_is_called %>

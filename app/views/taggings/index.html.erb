@@ -1,0 +1,35 @@
+<h4 class="subheader"><a class="icon-tag"></a> Listing Tags</h4>
+
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+	    <th>Start Date</th>
+		<th>Tag</th>
+		<th>Person</th>
+		<th>Comments</th>
+		<th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @taggings.each do |tagging| %>
+	  <tr>
+		<td><%= tagging.start_date.to_time.strftime('%x') %></td>
+		<td><%= name_with_group(tagging) %></td>
+		<td><%= tagging.person.full_name %></td>
+		<td><%= tagging.comments %></td>
+	    <td><%= link_to '', edit_tagging_path(tagging), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', tagging, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= paginate @taggings %>
+
+<% content_for :sidebar do -%>
+	<%= render :partial => 'sidebar' %>
+<% end -%>

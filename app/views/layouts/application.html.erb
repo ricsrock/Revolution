@@ -46,17 +46,18 @@
 			<%= render partial: 'layouts/messages' %>
 		</div>
 		
-		<% if content_for?(:sidebar) %>
-        <div class="three columns">
-          <div class="panel radius">
-			<%= yield(:sidebar) %>
-		  </div>
-        </div>
-		<% end %>
-
         <div class="<%= content_for?(:sidebar) ? 'nine' : 'twelve' %> columns">
 			<%= yield %>
         </div>
+
+		<% if content_for?(:sidebar) %>
+	        <div class="three columns">
+	          <div class="panel radius" style="background-color: whiteSmoke;">
+				<%= yield(:sidebar) %>
+			  </div>
+	        </div>
+		<% end %>
+
 
     <!-- End Content Area -->
 

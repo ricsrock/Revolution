@@ -1,4 +1,6 @@
 class PhonesController < ApplicationController
+  before_filter :authenticate_user!
+  
   respond_to :html, :js
   before_action :set_phone, only: [:show, :edit, :update, :destroy]
 
@@ -67,6 +69,6 @@ class PhonesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def phone_params
-      params.require(:phone).permit(:phonable_type, :phonable_id, :number, :primary, :comments)
+      params.require(:phone).permit(:phonable_type, :phonable_id, :number, :primary, :comments, :comm_type_id)
     end
 end

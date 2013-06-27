@@ -1,0 +1,31 @@
+<%= four_up_two_up_widget_box("<h3><i class='icon-building'></i> #{@organization.name}</h3>".html_safe) do %>
+	<li class="field">Name:</li>
+	<li><%= @organization.name %></li>
+	<li class="field">Address1:</li>
+	<li><%= @organization.address1 %></li>
+	<li class="field">Address:</li>
+	<li><%= @organization.address %></li>
+	<li class="field">City:</li>
+	<li><%= @organization.city %></li>
+	<li class="field">State:</li>
+	<li><%= @organization.state %></li>
+	<li class="field">Zip:</li>
+	<li><%= @organization.zip %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', organizations_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_organization_path(@organization), 'edit', nil, 'small round' %>
+</div>
+<br><br>
+<%= widget_box("Communication") do %>
+	<div class="widget-content">
+		<div id="phones">			
+			<%= render :partial => 'shared/phones', :locals => {:object => @organization} %>
+		</div>
+		<div id="emails">			
+			<%= render :partial => 'shared/emails', :locals => {:object => @organization} %>
+		</div>
+	</div>
+<% end %>

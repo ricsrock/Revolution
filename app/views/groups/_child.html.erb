@@ -1,0 +1,8 @@
+<dd style="margin-left:<%= child.level %>em;"><%= child.name %></dd>
+<% if child.has_children? %>
+	<dl>
+		<% child.children.each do |child| %>
+			<%= render partial: 'child', locals: { child: child } %>
+		<% end %>
+	</dl>
+<% end %>

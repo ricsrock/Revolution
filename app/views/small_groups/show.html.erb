@@ -1,0 +1,20 @@
+<h3 class="subheader"><%= @small_group.name %></h3>
+
+<div class="twelve columns">
+	<ul class="block-grid four-up mobile-two-up">
+		<li class="field">Blurb:</li>
+		<li><%= @small_group.blurb %></li>
+		<li class="field">Weekday(s):</li>
+		<li><%= @small_group.weekdays.collect {|w| w.name}.to_sentence %></li>
+		<li class="field">Meeting Time(s):</li>
+		<li><%= @small_group.meeting_times.collect {|t| t.s_time}.to_sentence %></li>
+		<li class="field">Cadence:</li>
+		<li><%= @small_group.cadence.name rescue nil %></li>
+		<li class="field">Primary Leader(s):</li>
+		<li><%= @small_group.primary_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
+		<li class="field">Support Leader(s):</li>
+		<li><%= @small_group.support_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
+	</ul>
+</div>
+
+<%= link_to 'Edit', edit_small_group_path, class: "button round small" %>

@@ -8,7 +8,7 @@
 	<div class="widget-content">
 		<div class="row">
 			<div class="twelve columns">
-				<%= @household.people.collect {|p| link_to(family_name(p), person_path(p))}.to_sentence.html_safe %>
+				<%= household_list(@household) %>
 				<span class="right">
 					<%= button_icon 'add person', new_person_path(household_id: @household), 'plus', nil, 'round tiny success' %>
 				</span>
@@ -25,6 +25,7 @@
 						<%= @household.city %>, <%= @household.state %>  <%= @household.zip %>
 					</p>
 				</blockquote>
+				<%= link_to 'Show On Map', map_household_path(@household), data: {no_turbolink: true}, class: 'button round tiny' if @household.geocoded? %>
 			</div>
 		</div>
 	</div>
@@ -40,7 +41,6 @@
 		</div>
 	</div>
 <% end %>
-
 
 
 <%= button_icon 'Edit', edit_household_path(@household), 'edit', nil, "small round" %> &nbsp;

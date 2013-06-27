@@ -1,0 +1,13 @@
+<% if @contribution.errors.any? %>
+	$('#contribution-form').html("<%= j render :partial => 'form', :contribution => @contribution %>");
+	$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+	<% flash.discard %>
+<% else %>
+	$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+	$('#new_contribution')[0].reset();
+	$('#contribution-form').html("<%= j render 'form' %>");
+	<% flash.discard %>
+	$('#contributions-list').html("<%= j render 'list' %>");
+	$('#stats').html("<%= j render 'stats' %>");
+<% end %>
+$('.datepicker').datepicker({ dateFormat: "yy-mm-dd" })

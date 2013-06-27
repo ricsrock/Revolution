@@ -1,0 +1,22 @@
+<h3>Listing Smart_group_rules</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @smart_group_rules.each do |smart_group_rule| %>
+	  <tr>
+	    <td><%= link_to '', edit_smart_group_rule_path(smart_group_rule), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', smart_group_rule, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Smart_group_rule", new_smart_group_rule_path, class: "button radius"  %>

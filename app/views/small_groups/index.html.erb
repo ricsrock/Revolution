@@ -1,0 +1,27 @@
+<h3 class="subheader">Listing Small Groups</h3>
+
+<dl class="sub-nav">
+	<dt>Sort:</dt>
+	<dd><%= sort_link @q, :name, "Name" %></dd>
+</dl>
+
+
+<% @small_groups.each do |small_group| %>
+	<div class="panel radius">
+		<div class="twelve columns">
+			<h5 class="subheader"><%= link_to small_group.name, small_group.becomes(Group) %></h5>
+		</div>
+		&nbsp;
+	</div>
+<% end %>
+
+<%= paginate @small_groups %>
+
+<% content_for :sidebar do -%>
+	<%= search_form_for @q, builder: SimpleForm::FormBuilder do |f| %>
+		<%= f.input :name_cont, label: "Name" %>
+		<%= f.input :weekdays_id_eq_any, collection: Weekday.all, as: :check_boxes, label: "Weekday(s)" %>
+		<%= f.input :status_cont, collection: SmallGroup::STATUSES, label: "Status", selected: @status %>
+		<%= f.submit "Search", class: 'button small round' %>
+	<% end %>
+<% end -%>

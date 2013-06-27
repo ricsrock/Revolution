@@ -1,0 +1,4 @@
+<%= search_form_for [:admin, @q], builder: SimpleForm::FormBuilder do |f| %>
+	<%= f.input :name_cont, label: "Name" %>
+	<%= f.submit "Search", class: 'button small radius' %>
+<% end %>

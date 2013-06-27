@@ -6,7 +6,9 @@ class Meeting < ActiveRecord::Base
    has_many :attendances
    
    validates :instance_id, :group_id, :room_id, :presence => true
-      
+  
+   acts_as_stampable
+   
    def current_attendances
      self.attendances.where(checkout_time: nil)
    end

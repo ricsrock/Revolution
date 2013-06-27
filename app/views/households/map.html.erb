@@ -1,0 +1,7 @@
+<%= gmaps(markers: {data: @json}, map_options: {auto_zoom: false, zoom: 16}) %>
+<%= yield :scripts %>
+
+<div class="form-actions">
+	
+	<%= link_to 'Back to Household', @household, class: "button round small" %>
+</div>

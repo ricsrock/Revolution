@@ -1,0 +1,17 @@
+<ul class="block-grid four-up mobile-two-up">
+	<% if group.children.length == 0 %>
+		<li class="field"># enrolled:</li>
+		<li><%= group.enrollments.size %></li>
+		<li class="field">Default Room:</li>
+		<li><%= group.default_room.name rescue nil %></li>
+	<% end %>
+	<li class="field">Edit:</li>
+	<li>
+		<%= link_to '', edit_group_path(group), title: 'edit', class: "general-enclosed foundicon-edit" %>
+	</li>
+	<li class="field">Show:</li>
+	<li>
+		<%= link_to '', group_path(group), title: 'show', class: "icon-eye-open" %>
+	</li>
+	
+</ul>

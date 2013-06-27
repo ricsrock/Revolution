@@ -1,0 +1,23 @@
+<h4 class="subheader">Tag</h4><hr>
+<%= simple_form_for(@tagging, remote: true) do |f| %>
+  <%= f.error_notification %>
+
+<div id="errors"></div>
+
+  <div class="form-inputs">
+	<%= f.association :tag_group, wrapper_html: {class: 'four columns', style: 'padding-bottom: 10px;'} %>
+	<div class='input four columns' style="display: <%= @tagging.tag_id.blank? ? 'none' : 'block'%>;">
+		<%= f.label :tag, class: 'select control-label' %>
+		<%= f.grouped_collection_select :tag_id, TagGroup.order(:name), :tags, :name, :id, :name, include_blank: true %>
+	</div>
+	<hr>
+	<%= f.input :start_date, as: :string, wrapper_html: { class: 'four columns' }, input_html: { class: 'datepicker' } %>
+	<%= f.input :end_date, as: :string, wrapper_html: { class: 'four columns' }, input_html: { class: 'datepicker' } %><hr>
+	<%= f.input :comments %>
+	<%= f.input :person_id, as: :hidden, input_html: {value: @person.id} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

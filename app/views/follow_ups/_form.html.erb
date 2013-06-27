@@ -1,0 +1,19 @@
+<h4 class="subheader">Follow-Up</h4><hr>
+<%= simple_form_for(@follow_up, remote: true) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :follow_up_type %>
+    <%= f.input :notes %>
+    <%= f.input :contact_id, as: :hidden %>
+ 	<%= f.input :close, as: :boolean, wrapper_html: { class: "six columns" } %>
+	<%= f.input :transfer_user_id, collection: User.all.order(:last_name), label: "Transfer to User", label_method: :full_name, wrapper_html: { class: "six columns" } %>
+	<div>
+		&nbsp;
+	</div>
+  </div><br><br>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -11,11 +11,13 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery.turbolinks
 //= require jquery.ui.datepicker
 //= require jquery.timepicker
 //= require jquery_ujs
 //= require foundation
+//= require DYMO.Label.Framework.latest
 //= require responsive-tables
 //= require jquery.observe_field
 //= require project

@@ -4,6 +4,14 @@ module PeopleHelper
     person.first_name + ' ' + person.last_name
   end
   
+  def name_with_id(object)
+    if object.is_a?(Person)
+      full_name(object) + ' (#' + object.id.to_s + ')'
+    else
+      object.name + ' (#' + object.id.to_s + ')'
+    end
+  end
+  
   def family_name(person)
     if person.last_name == person.household.name
       person.first_name
@@ -14,7 +22,7 @@ module PeopleHelper
   
   def household_people(person)
     a = []
-    person.household.people.each do |p|
+    person.household.people.sort_by(&:sort_order).each do |p|
       if p.id == person.id
         a << family_name(p)
       else
@@ -46,5 +54,27 @@ module PeopleHelper
     result ||= person.emails.first
     result ? result.email : "no email"
   end
+  
+	def address_block(person)
+	  block = '<span>'
+	  unless person.address1.blank?
+	    block << '<div>' + person.address1 + '</div>'
+    end
+    unless person.address2.blank?
+      block << '<div>' + person.address2 + '</div>'
+    end
+    unless person.city.blank?
+    block << '<div>' + person.city + ' '
+    end
+    unless person.state.blank?
+      block << person.state + '  '
+    end
+    unless person.zip.blank?
+      block << person.zip.to_s
+    end
+    block << '</div>'
+	  block << '</span>'
+	  block
+	end
   
 end

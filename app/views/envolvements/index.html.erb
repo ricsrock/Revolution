@@ -1,0 +1,22 @@
+<h3>Listing Envolvements</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @envolvements.each do |envolvement| %>
+	  <tr>
+	    <td><%= link_to '', edit_envolvement_path(envolvement), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', envolvement, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Envolvement", new_envolvement_path, class: "button radius"  %>

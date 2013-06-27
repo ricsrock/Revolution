@@ -1,0 +1,27 @@
+<%= raw group_breadcrumb(@group.id) %>
+
+<%= render :partial => 'group_header' %>
+
+<%= four_up_two_up_widget_box("Basic Information for List") do %>
+	<li class="field">Name:</li>
+	<li><%= @group.name %></li>
+	<li class="field">Description:</li>
+	<li><%= @group.description %></li>
+	<%= render partial: 'admin_box', locals: { group: @group } %>
+<% end  %>
+  
+
+<div class="form-actions">
+  <span data-no-turbolink><%= link_to 'Groups Tree', groups_path, :class => 'button round small' %></span>
+  <%= link_to 'Edit', edit_list_path(@group), :class => 'button round secondary small' %>
+  <%= link_to 'Delete', group_path(@group), :method => 'delete', :confirm => 'Are you sure?', :class => 'button round alert small' %>
+  <%= link_to 'Enroll', enroll_group_path(@group), class: "button round small" %>
+</div>
+
+<%= render partial: 'actions', locals: { group: @group } %>
+
+<% content_for :sidebar do -%>
+	<div id="enrollments">
+		<%= render :partial => 'enrollments', locals: { group: @group } %>
+	</div>
+<% end -%>

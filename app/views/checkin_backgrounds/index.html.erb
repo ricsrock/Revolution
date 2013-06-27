@@ -1,0 +1,21 @@
+<h3 class="subheader">Listing Checkin Backgrounds</h3>
+
+<ul class="block-grid four-up mobile-two-up">
+	<% @checkin_backgrounds.each do |checkin_background| %>
+		<li>
+			<div class="twelve-columns">
+				<div><%= image_tag checkin_background.graphic_url, class: 'checkin-background-thumb' %></div>
+				<div class="twelve-columns">
+					<%= link_to '', edit_checkin_background_path(checkin_background), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+				    <%= link_to '', checkin_background, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>&nbsp;&nbsp;&nbsp;
+					<%= link_to '', favorite_checkin_background_path(checkin_background), title: 'favorite', class: "icon-heart#{current_user.preferences[:favorite_checkin_background_id] == checkin_background.id ? '' : '-empty'}" %>
+				</div>
+			</div>
+		</li>
+	<% end %>
+</ul>
+
+
+<br />
+
+<%= link_to "New Checkin Background", new_checkin_background_path, class: "button radius"  %>

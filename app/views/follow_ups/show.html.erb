@@ -1,0 +1,18 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Notes:</li>
+	<li><%= @follow_up.notes %></li>
+	<li class="field">Contact_id:</li>
+	<li><%= @follow_up.contact_id %></li>
+	<li class="field">Created_by:</li>
+	<li><%= @follow_up.created_by %></li>
+	<li class="field">Updated_by:</li>
+	<li><%= @follow_up.updated_by %></li>
+	<li class="field">Follow_up_type_id:</li>
+	<li><%= @follow_up.follow_up_type_id %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', follow_ups_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_follow_up_path(@follow_up), 'edit', nil, 'small round' %>
+</div>

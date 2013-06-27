@@ -1,0 +1,4 @@
+<% if @tags %>
+	<% f = @form %>
+	<%= f.input :tag_id_eq_any, collection: @tags.order(:name), as: :check_boxes, label: "Tag(s)" %>
+<% end %>

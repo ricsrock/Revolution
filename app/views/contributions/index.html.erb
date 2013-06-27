@@ -1,0 +1,22 @@
+<h3>Listing Contributions</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @contributions.each do |contribution| %>
+	  <tr>
+	    <td><%= link_to '', edit_contribution_path(contribution), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', contribution, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Contribution", new_contribution_path, class: "button radius"  %>

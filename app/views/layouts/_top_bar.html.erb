@@ -1,6 +1,6 @@
 <nav class="top-bar contain-to-grid">
   <ul>
-    <li class="name"><h1><a href="#">Revolution</a></h1></li>
+    <li class="name"><h1><a href="/">Revolution!</a></h1></li>
     <li class="toggle-topbar"><a href="#"></a></li>
   </ul>
 
@@ -12,12 +12,23 @@
 			<a class="active" href="#">People</a>
 			<ul class="dropdown">
 				<li><%= link_icon "Households", households_url, 'home', nil %></li>
+				<li><%= link_icon "New Household", new_household_path, 'plus-sign', nil %></li>
+				<li><%= link_icon "Organizations", organizations_url, 'building', nil %></li>
 			</ul>
 		</li>
 		<li class="divider"></li>
         <li class="has-dropdown"><a href="#">Groups</a>
 			<ul class="dropdown">
-				<li><%= link_icon "Groups", groups_url, 'group', nil %></li>
+				<li><%= link_icon "About Groups", about_groups_path, 'question-sign', nil %></li>
+				<li data-no-turbolink><%= link_icon "Groups Tree", groups_url, 'sitemap', nil %></li>
+				<li><%= link_icon "Small Groups", small_groups_url, 'group', nil %></li>
+				<li><%= link_icon "New Small Group", new_small_group_path, 'plus-sign', nil %></li>
+				<li><%= link_icon "Checkin Groups", checkin_groups_url, 'check', nil %></li>
+				<li><%= link_icon "New Checkin Group", new_checkin_group_path, 'plus-sign', nil %></li>
+				<li><%= link_icon "Lists", lists_url, 'list', nil %></li>
+				<li><%= link_icon "New List", new_list_path, 'plus-sign', nil %></li>
+				<li><%= link_icon "Smart Groups", smart_groups_url, 'cog', nil %></li>
+				<li><%= link_icon "Tags", taggings_url, 'tag', nil %></li>
 			</ul>
 		</li>
 		<li class="divider"></li>
@@ -25,14 +36,48 @@
 			<ul class="dropdown">
 				<li><%= link_icon "Events", events_url, 'calendar', nil %></li>
 				<li><%= link_icon "Check-In", checkin_index_url, 'check', nil %></li>
+				<li><%= link_icon "Self Check-In", self_checkin_index_url, 'check', nil %></li>
 			</ul>
 		</li>
 		<li class="divider"></li>
         <li class="has-dropdown"><a href="#">Admin</a>
 			<ul class="dropdown">
+				<li><%= link_to "Users", admin_users_url %></li>
+				<li><%= link_to "Security Roles", roles_url %></li>
+				<li><%= link_icon "Reports", reports_url, 'list-alt', nil %></li>
 				<li><%= link_to "Rooms", rooms_url %></li>
 				<li><%= link_to "Event Types", event_types_url %></li>
 				<li><%= link_to "Instance Types", instance_types_url %></li>
+				<li><%= link_to "Communication Types", comm_types_url %></li>
+				<li><%= link_to "Groups", admin_groups_url %></li>
+				<li class="has-dropdown"><a href="#">Financial</a>
+					<ul class="dropdown">
+						<li><%= link_to "Batches", batches_url %></li>
+						<li><%= link_to "Donations", donations_url %></li>
+					</ul>
+				</li>
+				<li class="has-dropdown"><a href="#">Tags</a>
+					<ul class="dropdown">
+						<li><%= link_to "Tag Groups", tag_groups_url %></li>
+					</ul>
+				</li>
+				<li class="has-dropdown"><a href="#">Contacts</a>
+					<ul class="dropdown">
+						<li><%= link_to "Contacts", contacts_url %></li>
+						<li><%= link_to "Contact Types", contact_types_url %></li>
+						<li><%= link_to "Follow-Up Types", follow_up_types_url %></li>
+					</ul>
+				</li>
+				<li class="has-dropdown"><a href="#">Checkin</a>
+					<ul class="dropdown">
+						<li><%= link_to "Animals", animals_url %></li>
+						<li><%= link_to "Colors", my_colors_url %></li>
+						<li><%= link_to "Adjectives", adjectives_url %></li>
+						<li><%= link_to "Interjections", interjections_url %></li>
+						<li><%= link_to "Checkin Backgrounds", checkin_backgrounds_url %></li>
+					</ul>
+				</li>
+				
 			</ul>
 		</li>
 		<li class="divider"></li>

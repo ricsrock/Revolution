@@ -1,4 +1,6 @@
 class InstancesController < ApplicationController
+  before_filter :authenticate_user!
+  
   before_action :set_instance, only: [:show, :edit, :update, :destroy]
 
   # GET /instances

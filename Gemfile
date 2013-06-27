@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby "1.9.3"
 
-gem 'rails', '= 4.0.0.beta1'     #github: 'rails/rails'
+gem 'rails', '= 4.0.0.rc1'     #github: 'rails/rails'
 gem 'arel',      github: 'rails/arel'
 gem 'activerecord-deprecated_finders', github: 'rails/activerecord-deprecated_finders'
 
@@ -31,18 +31,30 @@ gem 'simple_form', github: 'plataformatec/simple_form'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 
-gem "font-awesome-rails"
+gem "acts_as_stampable", "~> 0.0.3"
+gem 'ancestry'
 gem 'awesome_nested_set'
-gem 'kaminari'
-gem 'chronic'
+gem 'cancan'
 gem 'carrierwave'
-gem 'rmagick', '2.13.2'#, :path => "vendor/gems/rmagick-2.13.2"
-gem 'git-deploy'
-gem "fog", "~> 1.3.1"
-gem "faker"
+gem 'chronic'
+gem 'daemons'
+gem 'delayed_job_active_record', '4.0.0.beta2'
 gem "devise", github: "plataformatec/devise", branch: "rails4"
 gem "devise-encryptable"
-gem "ransack", github: "spectator/ransack", ref: 'a40055a59f7650352228bef17eb4c91e166a1875'
+gem "faker"
+gem "fog", "~> 1.3.1"
+gem "font-awesome-rails"
+gem 'geocoder'
+gem 'git-deploy'
+gem 'gmaps4rails', github: "fiedl/Google-Maps-for-Rails", ref: "6266f74a0ee02172f3f6a71d467340cbf9709995"
+gem 'kaminari'
+gem 'prawn'
+gem 'prawn-print', :git => 'git://github.com/barsoom/prawn-print.git'
+gem "ransack", :git => "https://github.com/ernie/ransack", :branch => 'rails-4'
+gem 'rmagick', '2.13.2'#, :path => "vendor/gems/rmagick-2.13.2"
+gem 'tunnlr_connector', :require => "tunnlr"
+gem 'twilio-ruby'
+gem "exception_notification", github: "smartinez87/exception_notification", branch: "master"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
@@ -61,6 +73,11 @@ gem 'unicorn'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.0"
+end
+
+group :development do
+  gem "better_errors"
+  gem 'binding_of_caller'
 end
 
 group :test do

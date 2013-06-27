@@ -1,0 +1,7 @@
+<%= search_form_for @search, :builder => SimpleForm::FormBuilder do |f| %>
+	<%= f.input :contribution_contributable_of_Person_type_full_name_cont, label: "First Last Name" %>
+	<%= f.input :contribution_contributable_of_Organization_type_name_cont, label: "Organization Name" %>
+	<%= f.input :range_selector_cont, collection: NamedDateRanges::RANGES, label: "Date Range", prompt: true, selected: @range %>
+	<%= f.input :fund_id_eq, collection: Fund.all.order(:name), label: "Fund", prompt: "All Funds", include_blank: true %>
+	<%= f.submit nil, class: 'button radius small' %>
+<% end %>

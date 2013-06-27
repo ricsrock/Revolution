@@ -1,0 +1,28 @@
+<h3>Listing Interjections</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Name</th>
+			<th>Updated_by</th>
+			<th>Created_by</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @interjections.each do |interjection| %>
+	  <tr>
+	    <td><%= interjection.name %></td>
+	    <td><%= interjection.updated_by %></td>
+	    <td><%= interjection.created_by %></td>
+	    <td><%= link_to '', edit_interjection_path(interjection), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', interjection, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Interjection", new_interjection_path, class: "button radius"  %>

@@ -1,0 +1,15 @@
+<%= simple_form_for(@checkin_background, html: { multipart: true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+	<%= image_tag(@checkin_background.image_url) if @checkin_background.graphic? %>
+    <%= f.input :name %>
+    <%= f.input :graphic, as: :file %>
+    <%= f.hidden_field :graphic_cache %>
+
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "button radius" %>
+  </div>
+<% end %>

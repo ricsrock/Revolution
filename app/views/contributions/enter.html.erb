@@ -1,0 +1,13 @@
+<h4>Enter Contributions for Batch #<%= @batch.id %></h4><hr>
+
+<div id="stats">
+	<%= render :partial => 'stats' %>
+</div>
+
+<div id="contribution-form"class="panel radius money-green">
+	<%= render 'form' %>
+</div>
+
+<div id="contributions-list">
+	<%= render :partial => 'list' %>
+</div>

@@ -45,7 +45,7 @@
     background-image: -linear-gradient(top, #fdfdfd 0%, #eaeaea 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fdfdfd', endColorstr='#eaeaea',GradientType=0 ); /* IE6-9 */
     border-bottom: 1px solid #CDCDCD;
-    height: 36px;
+    height: 40px;
 }
 .widget-title .nav-tabs {
     border-bottom: 0 none;
@@ -99,7 +99,7 @@
     font-size: 14px;
     font-weight: bold;
     padding: 12px;
-    line-height: 12px;
+    line-height: 16px;
     margin: 0;
 }
 .widget-title h3 {
@@ -159,7 +159,7 @@ ul.results > li {
 	float:none;
 	padding:5px;
 	line-height:14px;
-	min-height: 60px !important;
+	min-height: 74px !important;
 }
 
 ul.results > li > a {
@@ -182,11 +182,11 @@ ul.unstyled {
 }
 
 .odd {
-	background-color: #ECECEC;
+	background-color: #F9F9F9;
 }
 
 .even {
-	background-color: #FBFBFB;
+	background-color: transparent;
 }
 
 .checkin-row {
@@ -195,8 +195,8 @@ ul.unstyled {
 }
 
 .padded {
-	padding-top:3px;
-	padding-bottom: 3px;
+	padding-top:5px !important;
+	padding-bottom: 5px !important;
 }
 
 .person-image {
@@ -210,8 +210,98 @@ ul.unstyled {
 .hint {
 	display: block;
 	font-size: 12px;
-	margin-top: -10px;
+	margin-top: 0px;
 	padding-bottom: 10px;
 	font-style: italic;
 	color: #B2B2B2;
 }
+
+.bottom-padding {
+	margin-bottom: 12px;
+}
+
+.money-green {
+	background-color: #E5FFE0;
+}
+
+.green-text {
+	color: green;
+	font-weight: bold;
+}
+
+.red-text {
+	color: red;
+	font-weight: bold;
+}
+
+.small {
+	font-size: 11px;
+}
+
+ul.ui-autocomplete {
+  position: absolute;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: solid 1px #999;
+  cursor: default;
+  li {
+    background-color: #FFF;
+    border-top: solid 1px #DDD;
+    margin: 0;
+    padding: 0;
+    a {
+      color: #000;
+      display: block;
+      padding: 3px;
+    }
+    a.ui-state-hover, a.ui-state-active {
+      background-color: #FFFCB2;
+    }
+  }
+}
+
+.error > .boolean {
+	padding-bottom: 10px;
+}
+
+div.select {
+	padding-bottom: 10px !important;
+}
+
+.breadcrumb	{
+	
+}
+
+ul.unstyled-padded {
+	padding-left: 20px;
+	list-style:none;
+}
+
+li.inline {
+	display: inline;
+	padding: 5px;
+}
+
+.indented-checkbox-wrapper label {
+	display: block;
+	padding-left: 1em;
+	text-indent: -1em;
+}
+
+.indented-checkbox {
+}
+
+.search-field {
+	font-size: 30px !important;
+}
+
+dl.horizontal dt {
+	font-weight: bold;
+}
+
+dl.horizontal dd {
+	margin-bottom: 20px;
+}
+
+

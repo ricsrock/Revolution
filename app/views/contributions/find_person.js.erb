@@ -1,0 +1,6 @@
+$("#contributor-info").html("<%= j render 'contributor_chooser' %>")
+$(".live-search").observe_field(1, function( ) {
+	var url = 'search_person';
+	var data = { 'q' : $(this).val() };
+	$.get(url, data);
+});

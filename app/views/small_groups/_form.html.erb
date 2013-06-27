@@ -1,0 +1,36 @@
+<%= simple_form_for @small_group do |f| %>
+	<%= f.input :name %>
+	<%= f.input :description, placeholder: "Internal use only" %>
+	<%= f.input :blurb, placeholder: "Published for marketing purposes" %>
+	<%= f.association :weekdays, as: :check_boxes, label: "Weekday(s)" %>
+	<br>
+	<%= f.association :meeting_times, as: :check_boxes, label_method: :s_time, label: "Meeting Time(s)" %>
+	<br>
+	<%= f.input :cadence_id, :collection => Cadence.all.order(:name) %>
+	<%= f.input :parent_id, :collection => nested_set_options(Group, @group) {|i| "#{'-' * i.level} #{i.name}" }, :label => "Select Parent Group" %>
+	
+	<%= f.simple_fields_for :primary_leaderships do |p_leadership_form| %>
+		<%= render 'primary_leadership_fields', f: p_leadership_form %>
+	<% end %>
+	<div class='row'>
+		<div class="twelve columns">
+			<%= link_to_add_fields "Add Primary Leader", f, :primary_leaderships %>
+		</div>
+	</div>
+	
+	<%= f.simple_fields_for :support_leaderships do |s_leadership_form| %>
+		<%= render 'support_leadership_fields', f: s_leadership_form %>
+	<% end %>
+	<div class='row'>
+		<div class="twelve columns">
+			<%= link_to_add_fields "Add Support Leader", f, :support_leaderships %>
+		</div>
+	</div>
+	
+	
+	
+		
+	
+	
+	<%= f.submit nil, class: "button radius" %>
+<% end %>

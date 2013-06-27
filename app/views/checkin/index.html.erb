@@ -8,7 +8,7 @@
 
 <% if Instance.current %>
 	<div class="row">
-			<%= form_tag checkin_search_path, method: :get, remote: true do %>
+			<%= form_tag checkin_search_path, method: :get, remote: true, id: "checkin-search-form" do %>
 				<div class="eight columns">
 					<%= text_field :search, :q, placeholder: "Last Name or Last 4 of Phone" %>
 				</div>
@@ -20,7 +20,7 @@
 
 	<div class="row">
 		<div class="twelve columns">
-			<%= form_tag checkin_selected_checkin_index_path, class: "custom" do %>
+			<%= form_tag checkin_selected_checkin_index_path, class: "custom", remote: true do %>
 			<div id="results">
 				<%= render :partial => 'search_results' %>
 			</div>
@@ -33,11 +33,7 @@
 <% end %>
 
 <% content_for :sidebar do -%>
-	<% Instance.current.meetings.each do |m| %>
-		<div class="row">
-			<div class="twelve columns">
-				<%= link_to m.group.name, m %> (<%= m.current_attendances.length %>/<%= m.attendances.length %>)
-			</div>
-		</div>
-	<% end %>
+	<div id="instance-overview">
+		<%= render :partial => 'instance_overview' %>
+	</div>
 <% end -%>

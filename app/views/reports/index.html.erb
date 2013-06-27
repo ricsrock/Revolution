@@ -1,0 +1,40 @@
+<h3 class="subheader"><a class="icon-list-alt"></a> Listing Reports</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+		<th><%= sort_link @q, :name, "Name" %></th>
+		<th><%= sort_link @q, :record_type_name, "Record Type" %></th>
+		<th>Group By</th>
+		<th>Layout</th>
+		<th>Created By</th>
+		<th>Updated By</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @reports.each do |report| %>
+	  <tr>
+	    <td><%= link_to report.name, report %></td>
+	    <td><%= report.record_type.name %></td>
+	    <td><%= report.group_by.column_name %></td>
+	    <td><%= report.layout.name %></td>
+	    <td><%= report.created_by %></td>
+	    <td><%= report.updated_by %></td>
+	    <td><%= link_to '', edit_report_path(report), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', report, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= paginate @reports %>
+
+<%# link_to "New Report", new_report_path, class: "button radius"  %>
+
+<% content_for :sidebar do -%>
+	<%= render :partial => 'sidebar' %>
+<% end -%>

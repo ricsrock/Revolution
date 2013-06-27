@@ -1,0 +1,37 @@
+<%= widget_box("Follow-Ups") do %>
+	<div class="widget-content">
+		<div id="contact_follow_ups">	
+			<div class="row twelve columns">
+				<h5 class="subheader">
+					Follow-Ups
+				  	<%= link_to '', new_follow_up_path(contact_id: @contact.id), "data-reveal-id" => "myModal", :remote => true, class: "general-enclosed foundicon-plus right", title: "add follow-up" %>
+				</h5>
+			</div><hr>
+			<% if @contact.follow_ups.empty? %>
+				<div class="panel radius">
+					<p class="lead">This contact has no follow-ups.</p>
+				</div>
+			<% else %>
+				<table class="twelve responsive">
+					<tr>
+						<th>Date</th>
+						<th>Follow-Up Type</th>
+						<th>Notes</th>
+						<th></th>
+					</tr>
+					<% @contact.follow_ups.order(:created_at).each do |follow_up| %>
+						<tr>
+							<td><%= follow_up.created_at.to_time.to_s(:long) %></td>
+							<td><%= follow_up.follow_up_type.name %></td>
+							<td><%= follow_up.notes %></td>
+							<td>
+								<%# link_to '', edit_tagging_path(tagging), class: "general-enclosed foundicon-edit", "data-reveal-id" => "myModal", :remote => true %>&nbsp;&nbsp;
+								<%# link_to '', tagging_path(tagging), method: :delete, data: {confirm: "Are you sure you want to destroy this tag record forever?"}, class: "general-enclosed foundicon-minus" %>
+							</td>
+						</tr>
+					<% end %>		
+				</table>
+			<% end %>
+		</div>
+	</div>
+<% end %>

@@ -1,0 +1,32 @@
+<h3>Listing Leaderships</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>Leadable_id</th>
+			<th>Leadable_type</th>
+			<th>Type</th>
+			<th>Person_id</th>
+			<th>Title</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @leaderships.each do |leadership| %>
+	  <tr>
+	    <td><%= leadership.leadable_id %></td>
+	    <td><%= leadership.leadable_type %></td>
+	    <td><%= leadership.type %></td>
+	    <td><%= leadership.person_id %></td>
+	    <td><%= leadership.title %></td>
+	    <td><%= link_to '', edit_leadership_path(leadership), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', leadership, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Leadership", new_leadership_path, class: "button radius"  %>

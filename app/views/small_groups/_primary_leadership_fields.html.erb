@@ -1,0 +1,8 @@
+<div class="row">
+	<%= field_set_tag "Primary Leader" do %>
+		<%= f.input :person_name, :input_html => {class: 'person_picker', data: {autocomplete_source: search_people_path}}, :hint => "Search by typing a person's name.", wrapper_html: { class: 'five columns' } %>
+		<%= f.input :title, wrapper_html: { class: 'five columns' }  %>
+		<%= f.hidden_field :_destroy %>
+		<%= link_to "remove this leader", '#', class: "remove_fields small round button alert right" %>
+	<% end %>
+</div>

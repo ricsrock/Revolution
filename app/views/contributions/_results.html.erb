@@ -1,0 +1,9 @@
+<% if ! @results.empty? %>
+	<ul class="unstyled">
+		<% @results.each do |r| %>
+			<li>
+				<%= link_to name_with_id(r), choose_person_contributions_path(contributor_id: r, contributor_class: r.class.name), remote: true %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

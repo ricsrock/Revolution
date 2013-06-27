@@ -1,0 +1,3 @@
+$("#search_text").html("<%= j render partial: 'search_text', locals: { search: @search } %>");
+$("#pad_area").html("<%= j render partial: @pad, locals: { search: @search } %>");
+$("#search_button").html("<%= j render partial: 'search_button', locals: { search: @search } %>");

@@ -1,0 +1,30 @@
+<%= four_up_two_up_widget_box("Batch Information") do %>
+	<li class="field">Date:</li>
+	<li><%= @batch.date_collected %></li>
+	<li class="field">Count Total:</li>
+	<li><%= number_to_currency @batch.count_total %></li>
+	<li class="field"># of Contributions:</li>
+	<li><%= @batch.contributions_num %></li>
+	<li class="field">Comments:</li>
+	<li><%= @batch.comments %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', batches_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_batch_path(@batch), 'edit', nil, 'small round' %>
+</div>
+
+<%= field_set_tag "Actions" do %>
+	<div class="twelve columns">
+		<div class="four columns">
+			<%= link_icon 'Enter Contributions', enter_contributions_path(batch_id: @batch), 'money', "2" %>
+		</div>
+		<div class="four columns">
+		  	<%= link_icon 'Deposit Sheet', batch_path(@batch, format: 'pdf'), 'print', "2" %>
+		</div>
+		<div class="four columns">
+		  	<%= link_icon 'Breakout', breakout_batch_path(@batch, format: 'pdf'), 'print', "2" %>
+		</div>
+	</div>
+<% end %>

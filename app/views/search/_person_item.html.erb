@@ -7,4 +7,6 @@
 			<div><strong>Phone: </strong><%= best_phone(result) %></div>
 		</div>
 	<% end %>
+	<div style="float:right;"><%= link_to 'add contact', new_contact_path(person_id: result.id) %></div>
+	<div style="float:none;clear:both;"></div>
 </li>

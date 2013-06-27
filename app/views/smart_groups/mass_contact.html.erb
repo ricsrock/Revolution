@@ -1,0 +1,27 @@
+<%= simple_form_for(@contact, url: mass_create_contacts_path(smart_group_id: @smart_group.id), method: :post)  do |f| %>
+	<%= f.error_notification %>
+	
+	<%= f.association :contact_type, wrapper_html: { class: "six columns" } %>
+	<%= f.input :comments, wrapper_html: { class: "six columns" } %>
+	<table class="twelve responsive">
+		<thead>
+			<tr>
+				<th></th>
+				<th>Person</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @smart_group.result.order('last_name ASC, first_name ASC').each_with_index do |person, index| %>
+				<tr>
+					<td>
+						<%= check_box_tag "contact[mass_recipients][]", person.id, false %>
+					</td>
+					<td>
+						<%= person.full_name %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%= f.button :submit, "Create Contact for Selected People" %>
+<% end %>

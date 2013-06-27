@@ -1,0 +1,18 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Leadable_id:</li>
+	<li><%= @leadership.leadable_id %></li>
+	<li class="field">Leadable_type:</li>
+	<li><%= @leadership.leadable_type %></li>
+	<li class="field">Type:</li>
+	<li><%= @leadership.type %></li>
+	<li class="field">Person_id:</li>
+	<li><%= @leadership.person_id %></li>
+	<li class="field">Title:</li>
+	<li><%= @leadership.title %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', leaderships_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_leadership_path(@leadership), 'edit', nil, 'small round' %>
+</div>

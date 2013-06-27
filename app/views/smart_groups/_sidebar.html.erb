@@ -1,0 +1,4 @@
+<%= search_form_for @q, builder: SimpleForm::FormBuilder do |f| %>
+	<%= f.input :favorites_eq, as: :boolean, label: " Favorites Only", input_html: { checked: @params && @params.keys.include?('favorites_eq') && @params['favorites_eq'] == "1" } %>
+	<%= f.submit "Search", class: "button tiny round", wrapper_html: { class: "one columns" } %>
+<% end %><br><br>

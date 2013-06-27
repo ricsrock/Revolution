@@ -11,4 +11,17 @@ module HouseholdsHelper
     result ||= household.emails.first
     result ? result.email : "no email"
   end
+  
+  def household_list(household)
+    a = []
+    household.people.sort_by(&:sort_order).each do |p|
+      a << link_to(family_name(p), person_path(p))
+    end
+    raw a.to_sentence
+  end
+  
+  def names_with_ages(household)
+    household.people.sort_by {|p| p.sort_order}.collect {|s| s.family_name + ' (' + s.age.to_s + ')'}.to_sentence
+  end
+  
 end

@@ -1,0 +1,28 @@
+<h3>Listing Messages</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>To</th>
+			<th>From</th>
+			<th>Body</th>
+			<th>Replies</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @messages.each do |message| %>
+	  <tr>
+	    <td><%= message.recipients.size %></td>
+	    <td><%= message.from %></td>
+	    <td><%= link_to message.body, message %></td>
+		<td><%= message.descendants.size %></td>
+	    <td><%= link_to '', edit_message_path(message), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', message, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />

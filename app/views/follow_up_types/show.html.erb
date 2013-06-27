@@ -1,0 +1,10 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @follow_up_type.name %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', follow_up_types_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_follow_up_type_path(@follow_up_type), 'edit', nil, 'small round' %>
+</div>

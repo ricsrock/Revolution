@@ -1,0 +1,8 @@
+<h1>Orphans#people</h1>
+<% @people.each do |person| %>
+	<div class="panel radius">
+		<div class="twelve">
+			<%= person.full_name rescue nil %>
+		</div>
+	</div>
+<% end %>
