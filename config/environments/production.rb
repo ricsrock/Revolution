@@ -89,4 +89,14 @@ NewrevF::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  
+  config.action_mailer.default_url_options = { :host => 'local.rivervalleychurch.net' }
+  
+  config.middleware.use ExceptionNotifier,
+    :email => {
+      :email_prefix => "[RevolutionError] ",
+      :sender_address => %{"donotreply" <donotreply@local.rivervalleychurch.net>},
+      :exception_recipients => %w{lowell@rivervalleychurch.net}
+    }
+  
 end
