@@ -28,6 +28,9 @@ NewrevF::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+  config.assets.prefix = "/dev-assets"
+  config.assets.js_compressor  = :uglifier
+  
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   
