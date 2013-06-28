@@ -29,7 +29,7 @@
 	</div>
 	
 	<div class="twelve columns">
-		<div class="nine columns centered" id="results_area">
+		<div class="nine columns centered" id="results_area" style="max-height:700px;overflow:scroll;">
 			<%= render :partial => "self_checkin_form", locals: { households: @households } %>
 		</div>
 	</div>

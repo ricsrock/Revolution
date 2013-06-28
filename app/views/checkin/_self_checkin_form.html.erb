@@ -1,16 +1,16 @@
 <div class="padded">
 	<% if @households %>
+		<div class="panel radius" style="text-align:center;">
+			<h5 class="subheader"><em>Scroll down if necessary</em></h5>
+		</div>
 		<%= form_tag checkin_selected_checkin_index_path, class: "custom", remote: true do %>
 			<div id="results">
 				<%= render :partial => 'search_results' %>
 			</div>
-			<% if @households.empty? %>
-				<%= link_to "Search Again", self_checkin_index_path, class: "button radius" %>
-			<% else %>
-				<%= button_tag(:type => 'submit', class: "button radius") do %>
-					<i class="icon-check"></i> Checkin Selected
-				<% end %>
+			<%= button_tag(:type => 'submit', class: "button radius") do %>
+				<i class="icon-check"></i> Checkin Selected
 			<% end %>
+			<%= link_to "Search Again", self_checkin_index_path, class: "button radius success right" %>
 		<% end %>
 	<% end %>
 </div>

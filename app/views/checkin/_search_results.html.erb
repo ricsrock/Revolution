@@ -8,7 +8,7 @@
 	<% households = @households %>
 	<% households.each do |household| %>
 		<div class="panel radius">
-			<h5 class="subheader"><strong><%= link_to "The #{household.name} Household", household_path(household) %></strong></h5>
+			<h5 class="subheader"><strong><a>The <%= household.name %> Household</a></strong></h5>
 			<% household.people.each do |person| %>
 				<div class="row <%= cycle('odd', 'even') %> checkin-row padded">
 					<div class="four columns">
