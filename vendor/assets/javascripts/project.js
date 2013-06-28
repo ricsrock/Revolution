@@ -1,5 +1,14 @@
 $('.close-reveal-modal').trigger('reveal:close');
 
+$('html').click(function() {
+  //Hide the search results if visible
+	$('#results-list').hide();
+});
+
+$('#results-list').click(function(event){
+    event.stopPropagation();
+});
+
 $(function(){
 	$(".search-query").observe_field(1, function( ) {
 	 	var form = $(this).parents("form");
