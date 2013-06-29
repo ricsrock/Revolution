@@ -20,7 +20,7 @@ gem 'coffee-rails', github: 'rails/coffee-rails'
 gem 'uglifier', '>= 1.0.3'
 gem 'compass-rails', github: 'milgner/compass-rails', ref: '1749c06f15dc4b058427e7969810457213647fb8'
 gem 'zurb-foundation', '3.2.5'
-gem 'foundation-icons-sass-rails'
+gem 'foundation-icons-sass-rails', github: 'zaiste/foundation-icons-sass-rails'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
