@@ -29,7 +29,7 @@ NewrevF::Application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
   
-  # config.assets.prefix = "/dev-assets"
+  config.assets.prefix = "/dev-assets"
   config.assets.js_compressor  = :uglifier
   
   
