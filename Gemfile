@@ -41,7 +41,7 @@ gem "devise", github: "plataformatec/devise", branch: "rails4"
 gem "devise-encryptable"
 gem "faker"
 gem "fog", "~> 1.3.1"
-gem "font-awesome-rails", "~> 3.2.1.1"
+#gem "font-awesome-rails", "~> 3.2.1.1"
 gem 'geocoder'
 gem 'git-deploy'
 gem 'gmaps4rails', github: "fiedl/Google-Maps-for-Rails", ref: "6266f74a0ee02172f3f6a71d467340cbf9709995"
