@@ -90,9 +90,16 @@ class ContributionsController < ApplicationController
   end
   
   def search_person
-    term = "%" + params[:q] + "%"
+    q = params[:q].split(',')
     @results = []
-    Person.where('first_name LIKE ? OR last_name LIKE ?', term, term).limit(10).order('last_name ASC, first_name ASC').each { |p| @results << p }
+    if q.length == 1
+      term = "%" + params[:q] + "%"
+      Person.where('first_name LIKE ? OR last_name LIKE ?', term, term).limit(10).order('last_name ASC, first_name ASC').each { |p| @results << p }
+    else
+      term1 = "%" + q.first.strip + "%"
+      term2 = "%" + q.last.strip + "%"
+      Person.where('first_name LIKE ? AND last_name LIKE ?', term2, term1).limit(10).order('last_name ASC, first_name ASC').each { |p| @results << p }
+    end
     Organization.where('name LIKE ?', term).limit(5).order('name ASC').each { |o| @results << o }
   end
   
