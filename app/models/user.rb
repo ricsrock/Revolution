@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
   
   def favorite_checkin_background
-    if ! self.preferences[:favorite_checkin_background_id].blank?
+    if ( ! self.preferences[:favorite_checkin_background_id].blank? ) && CheckinBackground.find_by_id(self.preferences[:favorite_checkin_background_id])
       CheckinBackground.find(self.preferences[:favorite_checkin_background_id])
     else
       false
