@@ -46,6 +46,9 @@
 			<%= render partial: 'layouts/messages' %>
 		</div>
 		
+		<div id="page-spinner"></div>
+		
+		
         <div class="<%= content_for?(:sidebar) ? 'nine' : 'twelve' %> columns">
 			<%= yield %>
         </div>
@@ -71,6 +74,7 @@
   <p>Im a cool paragraph that lives inside of an even cooler modal. Wins</p>
   <a class="close-reveal-modal">&#215;</a>
 </div>
+
 
 </body>
 </html>
