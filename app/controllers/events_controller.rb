@@ -72,7 +72,8 @@ class EventsController < ApplicationController
   end
   
   def mark
-    @people = Person.all
+    @search = Person.order('last_name, first_name ASC').search(params[:q])
+    @people = @search.result
     #@instance_names = @event.instances.collect {|i| i.instance_type.name.parameterize.underscore}
     @instances = @event.instances
   end

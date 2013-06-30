@@ -6,6 +6,7 @@ class DonationsController < ApplicationController
     @search = Donation.page(params[:page]).search(params[:q])
     @donations = @search.result
     @range = params[:q][:range_selector_cont] if params[:q]
+    @total_set = Donation.search(params[:q]).result
   end
 
   def show

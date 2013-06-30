@@ -20,12 +20,19 @@
 			</tr>
 		<% end %>
 			<tr>
-				<th colspan=3>TOTAL</th>
+				<th colspan=3>TOTAL THIS PAGE</th>
 				<td><%= number_to_currency @donations.collect {|d| d.amount}.sum %></td>
+				<td></td>
+			</tr>
+			<tr>
+				<th colspan=3>TOTAL FOR SEARCH</th>
+				<td><%= number_to_currency @total_set.collect {|d| d.amount}.sum %></td>
 				<td></td>
 			</tr>
 	</tbody>
 </table>
+
+<%= paginate @donations %>
 
 <% content_for :sidebar do -%>
 	<%= render partial: "sidebar" %>

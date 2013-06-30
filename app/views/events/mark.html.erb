@@ -31,3 +31,12 @@
 	<%= button_tag(type: :submit, class: "button radius") { icon('check') +' Mark Selected' } %>
 <% end %>
 
+<% content_for :sidebar do -%>
+	<%= search_form_for @search, url: mark_event_path(@event), builder: SimpleForm::FormBuilder do |f| %>
+		<%= f.input :full_name_cont, placeholder: 'Last FirstName' %>
+		<%= f.input :attendance_status_eq, collection: Person::STATUSES, label: 'Attendance Status' %>
+		<%= f.submit nil, class: 'button radius' %>
+	<% end %>
+<% end -%>
+<br><br>
+
