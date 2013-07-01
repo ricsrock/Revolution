@@ -7,7 +7,7 @@
     <%= f.input :notes %>
     <%= f.input :contact_id, as: :hidden %>
  	<%= f.input :close, as: :boolean, wrapper_html: { class: "six columns" } %>
-	<%= f.input :transfer_user_id, collection: User.all.order(:last_name), label: "Transfer to User", label_method: :full_name, wrapper_html: { class: "six columns" } %>
+	<%= f.input :transfer_user_id, collection: User.active.order(:last_name), label: "Transfer to User", label_method: :full_name, wrapper_html: { class: "six columns" } %>
 	<div>
 		&nbsp;
 	</div>

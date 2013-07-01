@@ -256,6 +256,7 @@ class Person < ActiveRecord::Base
       false
     end
     rescue ActiveRecord::RecordInvalid => invalid
+      logger.info "Invalid Attendance Record: #{invalid.record.inspect}"
       invalid.record
 	end
 	

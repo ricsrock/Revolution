@@ -19,13 +19,13 @@ class Instance < ActiveRecord::Base
   end
   
   def self.current # you can be 30 minutes late and still be checked into first service... after that, you get checked into 2nd service
-    event = Event.where('date >= ?', Time.now.to_date.to_s(:db)).order('date ASC').first
-    instance = event.instances.select {|i| i.starts_at >= Time.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
+    event = Event.where('date >= ?', Time.zone.now.to_date.to_s(:db)).order('date ASC').first
+    instance = event.instances.select {|i| i.starts_at >= Time.zone.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
     if instance
       instance
     else
-      event = Event.where('date > ?', Time.now.to_date.to_s(:db)).order('date ASC').first
-      instance = event.instances.select {|i| i.starts_at >= Time.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
+      event = Event.where('date > ?', Time.zone.now.to_date.to_s(:db)).order('date ASC').first
+      instance = event.instances.select {|i| i.starts_at >= Time.zone.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
     end
   end
   

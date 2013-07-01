@@ -4,7 +4,10 @@ class Attendance < ActiveRecord::Base
   
   validates_presence_of :person_id, :meeting_id, :on => :create, :message => "can't be blank"
   validates_uniqueness_of :person_id, :scope => :meeting_id, :on => :create, :message => "is already checked into this meeting"
-  validates :call_number, :security_code, :presence => true, :uniqueness => true
+  validates :call_number, :security_code, :presence => true
+  validate :call_number_must_be_unique_for_event
+  validate :security_code_must_be_unique_for_event
+  
   
   before_validation :set_call_number, :set_security_code, on: :create
   
@@ -104,6 +107,15 @@ class Attendance < ActiveRecord::Base
   #   @numbers = event.attendances.collect {|a| a.call_number}
   #   @numbers.include?(number) ? Attendance.unique_call_number(meeting_id) : number
   # end
+  
+  def security_code_must_be_unique_for_event
+    errors.add(:security_code, "Security Code is already taken for this event") if Attendance.find_by_code_this_event(self.security_code, self).present?
+  end
+  
+  def call_number_must_be_unique_for_event
+    errors.add(:call_number, "Call Number is already taken for this event") if Attendance.find_by_call_number_this_event(self.call_number, self).present?
+  end
+  
   
   
 end
