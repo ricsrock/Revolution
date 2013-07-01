@@ -27,7 +27,7 @@
 			<tr>
 				<td><%= check_box_tag 'contact[selected_ids][]', contact.id %></td>
 				<td><%= contact.contact_type.name %></td>
-				<td><%= contact.person.full_name %></td>
+				<td><%= contact.person.full_name rescue nil %></td>
 				<td><%= contact.status %></td>
 				<td><%= contact.created_at.to_time.to_s(:long) %></td>
 				<td><%= button_icon('follow-up', contact_path(contact), 'ok', nil, 'tiny round') %></td>
