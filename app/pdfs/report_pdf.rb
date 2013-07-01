@@ -24,7 +24,7 @@ class ReportPdf < Prawn::Document
       when "Contact Type"
         ContactsByContactTypePdf.send(@report.layout.name.downcase.to_sym, self, @objects, @view)
       when "Person"
-        ContactsByPersonPdf.send(@report.layout.name.downcase.to_sym, self, @objects)
+        ContactsByPersonPdf.send(@report.layout.name.downcase.to_sym, self, @objects, @view)
       end
     end
     
