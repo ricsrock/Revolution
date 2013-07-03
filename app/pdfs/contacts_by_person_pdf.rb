@@ -4,6 +4,7 @@ class ContactsByPersonPdf < Prawn::Document
     pdf.move_down 5
     pdf.text "There are #{contacts.size} contacts to report.", style: :italic
     pdf.move_down 20
+    contacts = contacts.select { |c| c.person.present? }
     contacts.sort_by {|c| c.person.last_first_name rescue nil}.group_by {|t| t.person.last_first_name rescue nil}.each do |person, contacts|
       pdf.text person + ' ('+ contacts.size.to_s + ')'
       pdf.stroke_horizontal_rule
