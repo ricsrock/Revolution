@@ -32,7 +32,10 @@ class Tagging < ActiveRecord::Base
     end
   end
   
-    
+  def self.magic_includes
+    Tagging
+  end
+  
   def full_name
     tag.tag_group.name + ': ' + tag.name
   end

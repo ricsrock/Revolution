@@ -2,7 +2,7 @@
   <%= f.input :contact_type_name_eq_any, :collection => ContactType.all.order(:name).map {|c| c.name}, :as => :check_boxes,
 			  label: "Contact Type", wrapper_html: { class: 'indented-checkbox-wrapper' }, input_html: { class: 'indented-checkbox' } %>
   <br>
-  <%= f.input :person_last_name_or_person_first_name_cont_any, label: "Person", input_html: {placeholder: "FirstName LastName"} %>
+  <%= f.input :contactable_of_Person_type_full_name_cont, label: "Person", input_html: {placeholder: "FirstName LastName"} %>
   <br>
   <%= f.input :responsible_user_id_eq_any, collection: User.active.order('last_name, first_name ASC'), as: :check_boxes, label_method: :full_name, label: "Responsible User" %>
   <br>

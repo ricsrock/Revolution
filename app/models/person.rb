@@ -17,7 +17,8 @@ class Person < ActiveRecord::Base
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :attendance_trackers, dependent: :destroy
-  has_many :contacts, dependent: :restrict_with_exception
+  # has_many :contacts, dependent: :restrict_with_exception
+  has_many :contacts, as: :contactable, dependent: :restrict_with_exception
   has_many :contributions, as: :contributable, dependent: :restrict_with_exception
   
   validates :first_name, :gender, :default_group_id, :attendance_status, presence: true

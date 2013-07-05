@@ -1,8 +1,9 @@
-<h3 class="subheader">New Contact for <%= link_to @person.full_name, @person %></h3>
+<h3 class="subheader">New Contact for <%= link_to @contactable.full_name, @contactable %></h3>
 <div>
 	<%= form_tag filter_contacts_url, method: :get, remote: true do %>
 		<%= select_tag "contact_form_selector", options_from_collection_for_select(ContactForm.all, :id, :name), prompt: "-- select form --", class: "filter-contacts-by-form" %>
-		<%= hidden_field_tag :person_id, @person.id %>
+		<%= hidden_field_tag :contactable_id, @contactable.id %>
+		<%= hidden_field_tag :contactable_type, @contactable.class.name %>
 	<% end %>
 </div>
 

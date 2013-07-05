@@ -9,7 +9,8 @@ class Contact < ActiveRecord::Base
   
   belongs_to :contact_type, :class_name => "ContactType", :foreign_key => "contact_type_id"
   belongs_to :responsible_user, :class_name => "User", :foreign_key => "responsible_user_id"
-  belongs_to :person, :class_name => "Person", :foreign_key => "person_id"
+  # belongs_to :person, :class_name => "Person", :foreign_key => "person_id"
+  belongs_to :contactable, polymorphic: true
   
   has_many :follow_ups
   
@@ -22,6 +23,8 @@ class Contact < ActiveRecord::Base
   after_create :notify_user
   
   attr_accessor :included
+  
+  delegate :first_name, :last_name, :address1, :address2, :city, :state, :zip, :best_number, :first_email, :last_first_name, :full_name, to: :contactable, allow_nil: true
   
   ransacker :range_selector do |parent|
     nil
@@ -62,6 +65,13 @@ class Contact < ActiveRecord::Base
     end
   end
   
+  def self.magic_includes
+    includes(:contact_type, :responsible_user).references(:contact_types, :users).joins("LEFT OUTER JOIN people ON (contacts.contactable_id = people.id AND contacts.contactable_type = 'Person')
+                                                                                         LEFT OUTER JOIN households ON (contacts.contactable_id = people.id AND contacts.contactable_type = 'Household')
+                                                                                         LEFT OUTER JOIN taggings ON taggings.person_id = people.id
+                                                                                         LEFT OUTER JOIN tags ON tags.id = taggings.tag_id")
+  end
+  
   def confidential?
     self.contact_type.confidential? ? true : false
   end
@@ -87,7 +97,11 @@ class Contact < ActiveRecord::Base
   end
   
   def set_stamp
-    self.stamp = self.person.last_first_name + ' (' + self.person.id.to_s + ')'
+    if self.contactable
+      self.stamp = self.contactable.last_first_name + ' (' + self.contactable.id.to_s + ')'
+    else
+      self.stamp = 'Unattributed'
+    end
   end
   
   def close!
@@ -130,15 +144,15 @@ class Contact < ActiveRecord::Base
   
   def attributes_for_export
     attributes = []
-    attributes << self.person.first_name
-    attributes << self.person.last_name
-    attributes << self.person.household.address1
-    attributes << self.person.household.address2
-    attributes << self.person.household.city
-    attributes << self.person.household.state
-    attributes << self.person.household.zip
-    attributes << self.person.best_number
-    attributes << self.person.first_email
+    attributes << self.first_name
+    attributes << self.last_name
+    attributes << self.address1
+    attributes << self.address2
+    attributes << self.city
+    attributes << self.state
+    attributes << self.zip
+    attributes << self.best_number
+    attributes << self.first_email
     attributes << self.contact_type.name
     attributes << self.comments
     attributes << self.created_by

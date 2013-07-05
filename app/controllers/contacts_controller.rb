@@ -12,7 +12,7 @@ class ContactsController < ApplicationController
   def index
     params[:q] = Contact.fix_params(params[:q]) if params[:q]
     # params[:q][:person_last_name_or_person_first_name_cont_any] = params[:q][:person_last_name_or_person_first_name_cont_any].split(' ') if params[:q] && params[:q][:person_last_name_or_person_first_name_cont_any]
-    @q = Contact.page(params[:page]).includes(:responsible_user, :contact_type, :person).search(params[:q])
+    @q = Contact.page(params[:page]).includes(:responsible_user, :contact_type, :contactable).search(params[:q])
     @contacts = @q.result(:distinct => true)
     @range = params[:q][:range_selector_cont] if params[:q]
     @search_params = params[:q] if params[:q].present? #&& params[:q][:tag_tag_group_id_eq].present?
@@ -27,9 +27,10 @@ class ContactsController < ApplicationController
   def new
     # @contact = Contact.new
     @contacts = []
-    @person = Person.find(params[:person_id])
+    @clazz = params[:contactable_type]
+    @contactable = @clazz.constantize.find(params[:contactable_id])
     ContactForm.first.contact_types.each do |contact_type|
-      @contacts << Contact.new(person_id: @person.id, contact_type_id: contact_type.id)
+      @contacts << Contact.new(contactable_id: @contactable.id, contactable_type: @contactable.class.name, contact_type_id: contact_type.id)
     end
   end
 
@@ -54,7 +55,8 @@ class ContactsController < ApplicationController
   end
   
   def create_multiple
-    @person = Person.find(params[:person_id])
+    @clazz = params[:contactable_type]
+    @contactable = @clazz.constantize.find(params[:contactable_id])
     number_saved = 0
     contacts = params[:contacts]
     contacts.each_value do |attributes|
@@ -66,7 +68,7 @@ class ContactsController < ApplicationController
       end
     end
     flash[:notice] = "#{number_saved} contacts were successfully created."
-    redirect_to person_path @person
+    redirect_to @contactable
   end
   
   def mass_create
@@ -80,7 +82,8 @@ class ContactsController < ApplicationController
       person_ids.each do |id|
         @contact = Contact.new(contact_type_id: params[:contact][:contact_type_id],
                                comments: params[:contact][:comments])
-        @contact.person_id = id
+        @contact.contactable_id = id
+        @contact.contactable_type = 'Person'
         if @contact.contact_type_id && @contact.save
           counter += 1
         end
@@ -116,9 +119,10 @@ class ContactsController < ApplicationController
   
   def filter
     @contact_form = ContactForm.find(params[:contact_form_selector])
-    @person = Person.find(params[:person_id])
+    @clazz = params[:contactable_type]
+    @contactable = @clazz.constantize.find(params[:contactable_id])
     @contacts = []
-    @contact_form.contact_types.each {|c| @contacts << Contact.new(person_id: @person.id, contact_type_id: c.id)}
+    @contact_form.contact_types.each {|c| @contacts << Contact.new(contactable_id: @contactable.id, contactable_type: @contactable.class.name, contact_type_id: c.id)}
   end
   
   def manage
@@ -200,7 +204,7 @@ class ContactsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
-      params.require(:contact).permit(:contact_type_id, :person_id, :responsible_user_id, :comments, :included, :mass_recipients)
+      params.require(:contact).permit(:contact_type_id, :contactable_id, :contactable_type, :responsible_user_id, :comments, :included, :mass_recipients)
     end
     
     def verify_admin

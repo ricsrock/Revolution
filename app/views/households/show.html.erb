@@ -9,9 +9,6 @@
 		<div class="row">
 			<div class="twelve columns">
 				<%= household_list(@household) %>
-				<span class="right">
-					<%= button_icon 'add person', new_person_path(household_id: @household), 'plus', nil, 'round tiny success' %>
-				</span>
 			</div>
 		</div>
 		<div class="row">
@@ -25,7 +22,20 @@
 						<%= @household.city %>, <%= @household.state %>  <%= @household.zip %>
 					</p>
 				</blockquote>
-				<%= link_to 'Show On Map', map_household_path(@household), data: {no_turbolink: true}, class: 'button round tiny' if @household.geocoded? %>
+				<div class="row">
+					<div class="two columns">
+						<%= link_to 'Show On Map', map_household_path(@household), data: {no_turbolink: true}, class: 'button round tiny' if @household.geocoded? %>
+					</div>
+					<div class="two columns">
+						<%= button_icon 'add person', new_person_path(household_id: @household), 'plus', nil, 'round tiny success' %>
+					</div>
+					<div class="two columns">
+						<%= button_icon 'add contact', new_contact_path(contactable_id: @household, contactable_type: 'Household'), 'plus', nil, 'round tiny success' %>
+					</div>
+					<div class="six columns">
+						&nbsp;
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

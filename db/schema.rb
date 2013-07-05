@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130630221333) do
+ActiveRecord::Schema.define(version: 20130703224936) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -217,10 +217,14 @@ ActiveRecord::Schema.define(version: 20130630221333) do
     t.string   "stamp"
     t.datetime "reopen_at"
     t.string   "status"
+    t.integer  "contactable_id"
+    t.string   "contactable_type"
   end
 
   add_index "contacts", ["closed_at"], name: "index_contacts_on_closed_at", using: :btree
   add_index "contacts", ["contact_type_id"], name: "index_contacts_on_contact_type_id", using: :btree
+  add_index "contacts", ["contactable_id"], name: "index_contacts_on_contactable_id", using: :btree
+  add_index "contacts", ["contactable_type"], name: "index_contacts_on_contactable_type", using: :btree
   add_index "contacts", ["created_at"], name: "index_contacts_on_created_at", using: :btree
   add_index "contacts", ["created_by"], name: "index_contacts_on_created_by", using: :btree
   add_index "contacts", ["deleted_at"], name: "index_contacts_on_deleted_at", using: :btree

@@ -17,7 +17,7 @@ class ReportsController < ApplicationController
   def show
     @p = YAML::load(@report.parameters)
     #@q = Tagging.search(@q) --- how do I knwo the model?
-    @q = @report.model_name.constantize.search(@p)
+    @q = @report.model_name.constantize.magic_includes.search(@p)
     @objects = @q.result(distinct: true)
     respond_to do |format|
       format.html

@@ -1,4 +1,4 @@
-<%= form_tag create_multiple_contacts_path(person_id: @person), method: :post do %>
+<%= form_tag create_multiple_contacts_path(contactable_id: @contactable, contactable_type: @contactable.class.name), method: :post do %>
 	<div id="form">	
 		<% @contacts.each do |contact| %>
 			<div class="row <%= cycle('odd', 'even') %> padded">
@@ -7,7 +7,8 @@
 					<%= f.input :responsible_user_id, collection: User.all, label_method: :full_name, prompt: "-- accept default --", wrapper_html: { class: "three columns padded" } %>
 					<%= f.input :comments, wrapper_html: { class: "four columns padded" } %>
 					<%= f.input :contact_type_id, as: :hidden, input_html: { value: contact.contact_type.id } %>
-					<%= f.input :person_id, as: :hidden, input_html: { value: @person.id } %>
+					<%= f.input :contactable_id, as: :hidden, input_html: { value: @contactable.id } %>
+					<%= f.input :contactable_type, as: :hidden, input_html: { value: @contactable.class.name } %>
 				<% end %>
 			</div>
 		<% end %>

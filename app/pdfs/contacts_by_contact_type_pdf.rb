@@ -11,12 +11,12 @@ class ContactsByContactTypePdf < Prawn::Document
       data = []
       columns = ["Person", "Date", "Comments", "Responsible", "Status"]
       data << columns
-      contacts.sort_by {|c| [c.person.last_first_name, c.created_at]}.each do |contact|
+      contacts.sort_by {|c| c.stamp}.each do |contact|
         attrs = []
-        attrs << contact.person.full_name
+        attrs << contact.full_name
         attrs << contact.created_at.strftime('%x')
         attrs << contact.comments
-        attrs << contact.responsible_user.full_name
+        attrs << contact.responsible_user.try(:full_name)
         attrs << contact.status
         data << attrs
       end
@@ -47,19 +47,23 @@ class ContactsByContactTypePdf < Prawn::Document
       pdf.text contact_type + ' ('+ contacts.size.to_s + ')'
       pdf.stroke_horizontal_rule
       pdf.move_down 20
-      contacts.sort_by {|c| c.person.last_first_name}.each do |contact|
-        pdf.formatted_text [{text: "#{contact.person.full_name}: ", :styles => [:bold]},
+      contacts.sort_by {|c| c.stamp}.each do |contact|
+        pdf.formatted_text [{text: "#{contact.full_name}: ", :styles => [:bold]},
                             {text: contact.comments}]
-        pdf.text "#{@view.names_with_ages(contact.person.household)}", style: :italic
-        contact.person.contacts.order(:created_at).each do |c|
-          pdf.text_box "#{c.created_at.strftime('%x')} - #{c.contact_type.name}: #{c.comments}", at: [30, pdf.cursor]
-          pdf.move_down 15
+        pdf.text "#{@view.contact_names_with_ages(contact)}", style: :italic
+        if contact.contactable
+          contact.contactable.contacts.order(:created_at).each do |c|
+            pdf.text_box "#{c.created_at.strftime('%x')} - #{c.contact_type.name}: #{c.comments}", at: [30, pdf.cursor]
+            pdf.move_down 15
+          end
         end
-        pdf.text_box "Tags:", at: [30, pdf.cursor], style: :bold
-        pdf.move_down 15
-        contact.person.taggings.order(:start_date).each do |t|
-          pdf.text_box "#{t.start_date.strftime('%x')} - #{t.tag.full_name}: #{t.comments}", at: [50, pdf.cursor]
+        if contact.contactable.is_a?(Person)
+          pdf.text_box "Tags:", at: [30, pdf.cursor], style: :bold
           pdf.move_down 15
+          contact.contactable.taggings.order(:start_date).each do |t|
+            pdf.text_box "#{t.start_date.strftime('%x') rescue nil} - #{t.tag.full_name}: #{t.comments}", at: [50, pdf.cursor]
+            pdf.move_down 15
+          end
         end
         pdf.move_down 20
       end

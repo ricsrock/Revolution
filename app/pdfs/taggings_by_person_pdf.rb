@@ -13,7 +13,7 @@ class TaggingsByPersonPdf < Prawn::Document
       data << columns
       taggings.sort_by {|t| t.start_date}.each do |tagging|
         attrs = []
-        attrs << tagging.start_date
+        attrs << tagging.start_date.to_time.strftime('%x')
         attrs << tagging.tag.full_name
         attrs << tagging.person.household.family_names
         attrs << tagging.person.attendance_status

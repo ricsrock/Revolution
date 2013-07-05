@@ -5,6 +5,8 @@ class Household < ActiveRecord::Base
   has_many :people, dependent: :restrict_with_exception
   has_many :phones, :as => :phonable, dependent: :destroy
   has_many :emails, :as => :emailable, dependent: :destroy
+  has_many :contacts, as: :contactable, dependent: :restrict_with_exception
+  
   
   accepts_nested_attributes_for :people, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :phones, reject_if: :all_blank, allow_destroy: true
@@ -70,6 +72,26 @@ class Household < ActiveRecord::Base
   
   def family_names
     self.people.sort_by { |p| p.sort_order }.collect {|person| person.family_name}.to_sentence
+  end
+  
+  # method used to make polyorphic contacts easier!
+  def full_name
+    self.name
+  end
+  
+  # method used to make polyorphic contacts easier!
+  def first_name
+    ''
+  end
+  
+  # method used to make polyorphic contacts easier!
+  def last_name
+    self.name
+  end
+  
+  # method used to make polyorphic contacts easier!
+  def last_first_name
+    self.name
   end
   
   

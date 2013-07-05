@@ -16,6 +16,10 @@ class Donation < ActiveRecord::Base
     where('donations.fund_id = ?', id)
   end
   
+  def self.magic_includes
+    Donation
+  end
+  
   def total_contribution
     self.contribution.update_attribute(:total, self.contribution.donations.sum(:amount))
   end

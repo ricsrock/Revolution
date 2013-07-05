@@ -5,7 +5,7 @@
 	<div class="widget-content">
 		<div class="row">
 			<div class="twelve columns">
-				The <%= link_to @person.household.name, household_path(@person.household) %> Household: <%= household_people(@person) %>
+				The <%= link_to @person.household.name, household_path(@person.household) %> Household: <%= household_people(@person) rescue nil %>
 			</div>
 		</div>
 		<div class="row">

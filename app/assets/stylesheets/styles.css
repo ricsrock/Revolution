@@ -199,6 +199,12 @@ ul.unstyled {
 	padding-bottom: 5px !important;
 }
 
+.padded-more {
+	padding-top:10px !important;
+	padding-bottom: 10px !important;
+}
+
+
 .person-image {
 	border-radius: 5px;
 	margin: 5px;
