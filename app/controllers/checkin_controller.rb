@@ -16,8 +16,9 @@ include CheckinHelper
     @errors = []
     @success_people_ids = []
     @attendances = []
+    @instance = current_user.current_instance_preference? ? current_user.current_instance_preference : nil
     @people.each do |person|
-      attendance = person.checkin
+      attendance = person.checkin(instance_id: @instance)
       if attendance.persisted?
         @true << attendance.person.full_name
         @success_people_ids << person.id
@@ -75,6 +76,10 @@ include CheckinHelper
     @by = "Phone Number (last 4)"
     @pad = "num_pad"
     @search = ""
+    # if current_user.current_instance_preference?
+    #   @instance = Instance.find(current_user.current_instance_preference)
+    #   flash[:alert] = "This station is temporarily checking into #{@instance.event.name}, #{@instance.instance_type.name}"
+    # end
     render(layout: 'self_checkin')
   end
   

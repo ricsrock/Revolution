@@ -1,5 +1,10 @@
 NewrevF::Application.routes.draw do
   get "orphans/people"
+  
+  get "preferences/edit_fav_instance", to: "preferences#edit_fav_instance", as: :edit_fav_instance
+  post "preferences/set_fav_instance", to: "preferences#set_fav_instance", as: :set_fav_instance
+  get "preferences/clear_fav_instance", to: "preferences#clear_fav_instance", as: :clear_fav_instance
+  
   resources :leaderships
 
   resources :cadences

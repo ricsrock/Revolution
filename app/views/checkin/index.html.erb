@@ -1,8 +1,16 @@
-<div class="panel radius">
-	<% if Instance.current %>
+<div class="panel radius <%= current_user.current_instance_preference? ? 'alert-panel' : '' %>">
+	<% if current_user.current_instance_preference? %>
+		<% @instance = Instance.find(current_user.preferences[:fav_instance_id]) %>
+		<h5 class="subheader">Currently Checking-In to <%= @instance.event.name %>, <%= link_to @instance.instance_type.name, instance_path(@instance) %></h5>
+	<% elsif Instance.current %>
 		<h5 class="subheader">Currently Checking-In to <%= Instance.current.event.name %>, <%= link_to Instance.current.instance_type.name, instance_path(Instance.current) %></h5>
 	<% else %>
 		<h5 class="subheader">There is no service instance to check people into. Please create a new event.</h5>
+	<% end %>
+	<% if current_user.current_instance_preference?	%>
+		<%= link_to 'clear override', clear_fav_instance_path %>
+	<% else %>
+		<%= link_to 'override', edit_fav_instance_path %>
 	<% end %>
 </div>
 

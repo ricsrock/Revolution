@@ -29,6 +29,10 @@ class Instance < ActiveRecord::Base
     end
   end
   
+  def self.future
+    Instance.where('events.date >= ?', Time.zone.today.to_date.to_s(:db)).includes(:event, :instance_type).references(:events, :instance_types).order('events.date, instance_types.name ASC')
+  end
+  
   def starts_at
     (self.event.date.to_s(:db) + " " + self.instance_type.starts_at.to_s).to_time
   end
@@ -46,6 +50,10 @@ class Instance < ActiveRecord::Base
   
   def self.find_by_instance_type_name(name)
     Instance.where('instance_types.name LIKE ?', name).includes(:instance_type).references(:instance_type)
+  end
+  
+  def full_name
+    self.event.date.to_s + ' - ' + self.event.event_type.name + ' ' + self.instance_type.name
   end
   
 

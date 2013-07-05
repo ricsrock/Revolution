@@ -6,6 +6,16 @@
 
 
 <div class="content padded" style="padding-top:40px !important;">
+	<% if current_user.current_instance_preference? %>
+		<% @instance = Instance.find(current_user.current_instance_preference) %>
+		<div class="row">
+			<div class="twelve columns">
+				<div class='alert-box alert'>
+					This station is temporarily checking into <%= @instance.event.name %>, <%= @instance.instance_type.name %>
+				</div>
+			</div>
+		</div>
+	<% end %>
 	<div class="twelve columns">
 		<div class="six columns" id="search_text">
 			<%= render :partial => 'search_text' %>

@@ -158,6 +158,14 @@ class User < ActiveRecord::Base
     update_attribute(:confirmed_at, nil)
   end
   
+  def current_instance_preference?
+    self.preferences[:fav_instance_id].present? && self.preferences[:fav_instance_set_on].present? && self.preferences[:fav_instance_set_on] == Time.zone.now.to_date.to_s(:db)
+  end
+  
+  def current_instance_preference
+    self.preferences[:fav_instance_id]
+  end
+  
   
   
 end

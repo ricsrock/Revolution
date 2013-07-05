@@ -1,0 +1,9 @@
+<%= form_tag set_fav_instance_path do %>
+	<ul class="block-grid two-up">
+		<% @instances.each do |instance| %>
+			<li class="field"><%= instance.full_name %></li>
+			<li><%= check_box_tag 'fav_instance_id[]', instance.id %></li>
+		<% end %>
+	</ul>
+	<%= submit_tag "Set Preference", class: "button radius" %>
+<% end %>
