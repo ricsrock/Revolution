@@ -6,7 +6,7 @@ class Person < ActiveRecord::Base
   STATUSES = ["Active", "Inactive", "Guest", "Deceased"]
   ADVANCE_DECLINE_VALUES = ["Guest Advance", "Guest Decline", "Inactive Advance", "Active Decline"]
   
-  belongs_to :household
+  belongs_to :household, inverse_of: :people
   belongs_to :default_group, :class_name => "Group", :foreign_key => "default_group_id"
   
   has_many :phones, :as => :phonable, dependent: :destroy
@@ -23,6 +23,7 @@ class Person < ActiveRecord::Base
   
   validates :first_name, :gender, :default_group_id, :attendance_status, presence: true
   validates :attendance_status, inclusion: { :in => Person::STATUSES }
+  validates_presence_of :household
   
   mount_uploader :image, ImageUploader
   

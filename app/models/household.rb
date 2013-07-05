@@ -2,7 +2,7 @@ class Household < ActiveRecord::Base
   
   validates :name, :address1, :city, :state, :zip, presence: true
   
-  has_many :people, dependent: :restrict_with_exception
+  has_many :people, inverse_of: :household, dependent: :restrict_with_exception
   has_many :phones, :as => :phonable, dependent: :destroy
   has_many :emails, :as => :emailable, dependent: :destroy
   has_many :contacts, as: :contactable, dependent: :restrict_with_exception
