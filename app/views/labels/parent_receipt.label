@@ -2,9 +2,9 @@
 <DieCutLabel Version="8.0" Units="twips">
   <PaperOrientation>Portrait</PaperOrientation>
   <Id>Shipping</Id>
-  <PaperName>30323 Shipping</PaperName>
+  <PaperName>30256 Shipping</PaperName>
   <DrawCommands>
-    <RoundRectangle X="0" Y="0" Width="3060" Height="5715" Rx="270" Ry="270"/>
+    <RoundRectangle X="0" Y="0" Width="3331" Height="5715" Rx="270" Ry="270"/>
   </DrawCommands>
   <ObjectInfo>
     <ShapeObject>
