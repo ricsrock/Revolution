@@ -17,15 +17,17 @@
 				</div>
 			</div>
 			<div class="nine columns">
-				<blockquote>
-					<p>
-						<%= @person.household.address1 rescue nil %><br>
-						<% if ! @person.household.address2.blank? rescue nil %>
-						<%= @person.household.address2 rescue nil %><br>
-						<% end %>
-						<%= @person.household.city rescue nil %>, <%= @person.household.state rescue nil %>  <%= @person.household.zip rescue nil %>
-					</p>
-				</blockquote>
+				<% if @person.household %>
+					<blockquote>
+						<p>
+							<%= @person.household.address1 %><br>
+							<% if ! @person.household.address2.blank? %>
+								<%= @person.household.address2 %><br>
+							<% end %>
+							<%= @person.household.city %>, <%= @person.household.state %>  <%= @person.household.zip %>
+						</p>
+					</blockquote>
+				<% end %>
 			</div>
 		</div>
 	</div>
