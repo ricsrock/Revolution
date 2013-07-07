@@ -266,7 +266,9 @@ class Person < ActiveRecord::Base
       attendance
       # true
     else
-      false
+      attendance = Attendance.new(person_id: self.id)
+      attendance.errors.add(:base, "There is no meeting for this person's default group")
+      attendance
     end
     rescue ActiveRecord::RecordInvalid => invalid
       logger.info "Invalid Attendance Record: #{invalid.record.inspect}"
