@@ -50,6 +50,11 @@ include CheckinHelper
     logger.info "households set to #{@households}"
     @pad = "num_pad"
     @by = "Phone Number (last 4)"
+    if current_user.current_instance_preference?
+      @instance = Instance.find(current_user.current_instance_preference)
+    else
+      @instance = Instance.current
+    end
   end
   
   def search

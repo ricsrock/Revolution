@@ -5,7 +5,7 @@
 	$("#results_area").html("");
 <% else %>
 	<% logger.info " ------- referrer is NOT /checkin/self" %>
-	$("#instance-overview").html("<%= j render 'instance_overview' %>");
+	$("#instance-overview").html("<%= j render 'instance_overview', instance: @instance %>");
 	$("#checkin-search-form")[0].reset();
 	$("#results").html("<%= j render partial: 'search_results' %>");
 <% end %>
