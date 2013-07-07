@@ -11,7 +11,7 @@ module AttendancesHelper
     if person.attend_count < 4
       last_part = "you for the #{person.attend_count.ordinalize} time!"
     else
-      last_part = "you for the #{person.attendances_this_year.size.ordinalize} time this year!"
+      last_part = "you for the #{person.unique_events_this_year.size.ordinalize} time this year!"
     end
     last_part
   end

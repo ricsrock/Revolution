@@ -5,7 +5,7 @@
 		<%= f.input :status_cont, collection: ['Open', 'In Progress', 'Closed'], label: "Status", wrapper_html: { class: "two columns" } %>
 		<%= f.input :contact_type_name_cont, collection: ContactType.all.order(:name).collect(&:name), label: "Contact Type", wrapper_html: { class: "three columns" } %>
 		<%= f.input :range_selector_cont, collection: NamedDateRanges::RANGES, label: "Created Range", wrapper_html: { class: "three columns" } %>
-		<%= f.input :person_last_name_cont, label: "Last Name Contains", wrapper_html: { class: "three columns" } %>
+	  	<%= f.input :contactable_of_Person_type_full_name_cont, label: "Person", input_html: {placeholder: "FirstName LastName"}, wrapper_html: { class: "three columns" } %>
 		<%= f.submit "Search", class: "button tiny round", wrapper_html: { class: "one columns" } %>
 	<% end %><br><br>
 </div>
@@ -16,7 +16,7 @@
 		<tr>
 			<th>Select</th>
 			<th>Contact Type</th>
-			<th>Person</th>
+			<th>Attributed To</th>
 			<th>Status</th>
 			<th>Created At</th>
 			<th>Follow-Up</th>
@@ -27,7 +27,7 @@
 			<tr>
 				<td><%= check_box_tag 'contact[selected_ids][]', contact.id %></td>
 				<td><%= contact.contact_type.name %></td>
-				<td><%= contact.person.full_name rescue nil %></td>
+				<td><%= contact.stamp rescue nil %></td>
 				<td><%= contact.status %></td>
 				<td><%= contact.created_at.to_time.to_s(:long) %></td>
 				<td><%= button_icon('follow-up', contact_path(contact), 'ok', nil, 'tiny round') %></td>

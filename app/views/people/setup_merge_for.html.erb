@@ -1,0 +1,54 @@
+<h3 class="subheader">Merging Person Records</h3>
+<div class="row">
+	<div class="six columns">
+	</div>
+	<div class="six columns">
+		<%= text_field_tag :q, nil, :class => 'live-search-person', :type => "search", :placeholder => 'Last, FirstName' %>
+		<div id="results">
+			<%= render :partial => 'people_results' %>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="six columns">
+		<div class="alert-box alert">
+			This record will be deleted!
+		</div>
+		<h4 class="subheader">Duplicate Record: <%= @person.full_name %> (<%= @person.id %>)</h4>
+		<h5 class="subheader">The <%= @person.household.name %> Household</h5>
+		<p><%= household_info_for_search_results(@person.household).html_safe %></p>
+	</div>
+	<div class="six columns" id="keeper_household_info">
+		
+	</div>
+</div>
+
+<div class="row">
+	<div class="six columns">
+		<ul class="block-grid four-up mobile-two-up">
+			<li class="field">Full Name:</li>
+			<li><%= @person.full_name %></li>
+			<li class="field">Default Group:</li>
+			<li><%= @person.default_group.name %></li>
+			<li class="field">Household Position:</li>
+			<li><%= @person.household_position %></li>
+			<li class="field">Birthdate:</li>
+			<li><%= @person.birthdate %></li>
+			<%= render partial: "/shared/admin_box", locals: { object: @person } %>
+		</ul>
+	</div>
+	<div class="six columns" id="keeper_person_info">
+		
+	</div>
+</div>
+
+
+<div class="row">
+	<div class="twelve columns">
+		<%= form_tag merge_person_path(@person) do %>
+		<div id="merge_form_guts">
+			
+		</div>
+		<% end %>
+	</div>
+</div>

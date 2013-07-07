@@ -1,0 +1,46 @@
+<div class="row">
+	<div class="twelve columns">
+		<h4 class="subheader">Moving <a><%= @person.full_name %></a> to New Household</h4>
+	</div>
+	<div class="twelve columns">
+		<div class="six columns">
+			<div class="twelve columns" style="height: 70px;">
+				<h4 class="subheader">Current Household Info</h4>
+			</div>
+			<% if @person.household %>
+				<h5 class="subheader">The <%= @person.household.name %> Household (<%= @person.household.id %>)</h5>
+				<em><%= names_with_ages(@person.household) %></em>
+				<blockquote>
+					<p>
+						<%= @person.household.address1 %><br>
+						<% if ! @person.household.address2.blank? %>
+							<%= @person.household.address2 %><br>
+						<% end %>
+						<%= @person.household.city %>, <%= @person.household.state %>  <%= @person.household.zip %>
+					</p>
+				</blockquote>
+			<% end %>
+		</div>
+		<div class="six columns">
+			<div class="twelve columns" style="height: 70px;">
+				<%= text_field_tag :q, nil, :class => 'live-search-household', :type => "search", :placeholder => 'Household Name' %>
+				<div id="results">
+					<%= render :partial => 'results' %>
+				</div>
+			</div>
+			<div id="new_household_info">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve columns">
+		<%= form_tag move_person_path(@person) do %>
+		<div id="form_guts">
+			
+		</div>
+		<% end %>
+	</div>
+</div>

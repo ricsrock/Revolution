@@ -52,6 +52,7 @@ gem "ransack", :git => "https://github.com/ernie/ransack", :branch => 'rails-4'
 gem 'rmagick', '2.13.2'#, :path => "vendor/gems/rmagick-2.13.2"
 gem 'tunnlr_connector', :require => "tunnlr"
 gem 'twilio-ruby'
+gem 'vpim'
 gem "exception_notification", github: "smartinez87/exception_notification", branch: "master"
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -69,8 +69,16 @@ $(function(){
 		});
 	});
 	
-	
-	
+	$(".live-search-household").observe_field(1, function( ) {
+		var url = '/people/search_household';
+		var data = { 'q' : $(this).val() };
+		$.get(url, data);
+	});
+	$(".live-search-person").observe_field(1, function( ) {
+		var url = '/people/search_person';
+		var data = { 'q' : $(this).val() };
+		$.get(url, data);
+	});
 	
 	
 	

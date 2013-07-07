@@ -9,15 +9,18 @@ class Person < ActiveRecord::Base
   belongs_to :household, inverse_of: :people
   belongs_to :default_group, :class_name => "Group", :foreign_key => "default_group_id"
   
+  # If you add a has_many, you MUST add that association to the merge process!
   has_many :phones, :as => :phonable, dependent: :destroy
   has_many :emails, :as => :emailable, dependent: :destroy
   has_many :attendances, dependent: :destroy
+  has_many :attended_meetings, through: :attendances, source: :meeting, uniq: true
+  has_many :attended_instances, through: :attended_meetings, source: :instance, uniq: true
+  has_many :attended_events, through: :attended_instances, source: :event, uniq: true
   has_many :enrollments, dependent: :destroy
   has_many :groups, through: :enrollments
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :attendance_trackers, dependent: :destroy
-  # has_many :contacts, dependent: :restrict_with_exception
   has_many :contacts, as: :contactable, dependent: :restrict_with_exception
   has_many :contributions, as: :contributable, dependent: :restrict_with_exception
   
@@ -127,6 +130,10 @@ class Person < ActiveRecord::Base
   
   def attendances_this_year
     attendances.where('events.date >= ?', Time.now.beginning_of_year.to_date).includes(meeting: {instance: :event}).references(:meetings, :instances, :events)
+  end
+  
+  def unique_events_this_year
+    attended_events.where('events.date >= ?', Time.zone.now.beginning_of_year.to_date.to_s(:db))
   end
   
   def tag_for_advance_decline_instance(v)
@@ -243,6 +250,10 @@ class Person < ActiveRecord::Base
     end
 	end
 	
+	def to_vcard
+	 #TODO: Finish this!
+	end
+	
 	def birthdate_to_s
 	  self.birthdate.blank? ? '' : self.birthdate.to_s(:db)
 	end
@@ -262,6 +273,79 @@ class Person < ActiveRecord::Base
       invalid.record
 	end
 	
+	def merge_phones_into(keeper)
+	  keeper_numbers = keeper.phones.collect {|p| p.number}
+	  self.phones.each do |phone|
+	    if keeper_numbers.include?(phone.number)
+	      phone.destroy
+      else
+        phone.update_attribute(:phonable_id, keeper.id)
+      end
+    end
+	end
+	
+	def merge_emails_into(keeper)
+	  keeper_emails = keeper.emails {|m| m.email}
+	  self.emails.each do |email|
+	    if keeper_emails.include?(email.email)
+	      email.destroy
+      else
+        email.update_attribute(:emailable_id, keeper.id)
+      end
+    end
+	end
+	
+	def merge_attendances_into(keeper)
+	  keeper_meetings = keeper.attendances.collect {|a| a.meeting_id}
+	  self.attendances.each do |attendance|
+	    if keeper_meetings.include?(attendance.meeting_id)
+	      attendance.destroy
+      else
+        attendance.update_attribute(:person_id, keeper.id)
+      end
+    end
+	end
+	
+	def merge_enrollments_into(keeper)
+	  keeper_groups = keeper.enrollments.collect {|n| n.group_id}
+	  self.enrollments.each do |enrollment|
+	    if keeper_groups.include?(enrollment.group_id)
+	      enrollment.destroy
+      else
+        enrollment.update_attribute(:person_id, keeper.id)
+      end
+    end
+	end
+	
+	def merge_taggings_into(keeper)
+	  self.taggings.each do |t|
+	    t.update_attribute(:person_id, keeper.id)
+    end
+	end
+	
+	def merge_attendance_trackers_into(keeper)
+	  keeper_trackers = keeper.attendance_trackers.collect {|a| a.group_id}
+	  self.attendance_trackers.each do |t|
+	    if keeper_trackers.include?(t.group_id)
+	      t.destroy
+      else
+        t.update_attribute(:person_id, keeper.id)
+      end
+    end
+	end
+	
+	def merge_contacts_into(keeper)
+	  self.contacts.each do |c|
+	    c.update_attribute(:contactable_id, keeper.id)
+    end
+	end
+	
+	def merge_contributions_into(keeper)
+	  self.contributions.each do |o|
+	    o.update_attribute(:contributable_id, keeper.id)
+    end
+	end
+		
 	def search_order
     self.last_name + "               "[0..15-self.last_name.length] + self.first_name
   end

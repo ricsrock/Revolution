@@ -1,0 +1,11 @@
+<h5 class="subheader">The <%= @new_household.name %> Household (<%= @new_household.id %>)</h5>
+<em><%= names_with_ages(@new_household) %></em>
+<blockquote>
+	<p>
+		<%= @new_household.address1 %><br>
+		<% if ! @new_household.address2.blank? %>
+			<%= @new_household.address2 %><br>
+		<% end %>
+		<%= @new_household.city %>, <%= @new_household.state %>  <%= @new_household.zip %>
+	</p>
+</blockquote>

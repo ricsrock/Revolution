@@ -37,6 +37,10 @@ class Attendance < ActiveRecord::Base
       AttendanceTracker.update_for_attendance(record.person_id, record.meeting.group_id)
   }
   
+  def self.un_checked_out
+    where(checkout_time: nil)
+  end
+  
   def checkout
     self.update_attribute(:checkout_time, Time.now)
   end

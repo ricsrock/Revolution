@@ -1,0 +1,6 @@
+<div class="alert-box success">
+	This record will be retained!
+</div>
+<h4 class="subheader">Keeper Record: <%= @keeper.full_name %> (<%= @keeper.id %>)</h4>
+<h5 class="subheader">The <%= @keeper.household.name %> Household</h5>
+<p><%= household_info_for_search_results(@keeper.household).html_safe %></p>

@@ -355,6 +355,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    vpim (0.695)
     warden (1.2.1)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -419,4 +420,5 @@ DEPENDENCIES
   twilio-ruby
   uglifier (>= 1.0.3)
   unicorn
+  vpim
   zurb-foundation (= 3.2.5)

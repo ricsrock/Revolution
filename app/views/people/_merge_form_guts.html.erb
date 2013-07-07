@@ -1,0 +1,2 @@
+<%= hidden_field_tag :keeper_id, @keeper.id %>
+<%= submit_tag 'Merge Records', class: 'button radius right', confirm: "Are you sure you want to merge this record into #{@keeper.full_name}?" %>

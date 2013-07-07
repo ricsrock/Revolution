@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_meeting, only: [:show, :edit, :update, :destroy]
+  before_action :set_meeting, only: [:show, :edit, :update, :destroy, :checkout_all, :undo_all]
   
   respond_to :html, :js
 
@@ -62,6 +62,20 @@ class MeetingsController < ApplicationController
       format.html { redirect_to meetings_url }
       format.json { head :no_content }
     end
+  end
+  
+  def checkout_all
+    @meeting.attendances.un_checked_out.each do |a|
+      a.checkout
+    end
+    flash[:notice] = "Everyone in the meeting has been checked out."
+    redirect_to @meeting
+  end
+  
+  def undo_all
+    @meeting.attendances.destroy_all
+    flash[:notice] = "All Checkins have been deleted... as if no one ever showed up."
+    redirect_to @meeting
   end
 
   private

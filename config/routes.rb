@@ -156,7 +156,14 @@ NewrevF::Application.routes.draw do
     end
   end
   resources :settings
-  resources :meetings
+  
+  resources :meetings do
+    member do
+      get 'checkout_all'
+      get 'undo_all'
+    end
+  end
+  
   resources :checkin do
     collection do
       get 'checkin_selected'
@@ -233,10 +240,18 @@ NewrevF::Application.routes.draw do
       get 'edit_image'
       get 'image_from_facebook'
       put 'update_image'
+      get 'setup_move_for'
+      post 'move'
+      get 'setup_merge_for'
+      post 'merge'
     end
     
     collection do
       get 'search'
+      get 'search_household'
+      get 'choose_household'
+      get 'search_person'
+      get 'choose_person'
     end
   end
 

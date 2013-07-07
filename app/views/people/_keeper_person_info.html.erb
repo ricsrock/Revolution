@@ -1,0 +1,11 @@
+<ul class="block-grid four-up mobile-two-up">
+	<li class="field">Full Name:</li>
+	<li><%= @keeper.full_name %></li>
+	<li class="field">Default Group:</li>
+	<li><%= @keeper.default_group.name %></li>
+	<li class="field">Household Position:</li>
+	<li><%= @keeper.household_position %></li>
+	<li class="field">Birthdate:</li>
+	<li><%= @keeper.birthdate %></li>
+	<%= render partial: "/shared/admin_box", locals: { object: @keeper } %>
+</ul>

@@ -1,0 +1,9 @@
+<% if ! @results.empty? %>
+	<ul class="unstyled">
+		<% @results.each do |r| %>
+			<li>
+				<%= link_to household_info_for_search_results(r).html_safe, choose_household_people_path(household_id: r), remote: true %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

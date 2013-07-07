@@ -1,0 +1,9 @@
+<% if ! @results.empty? %>
+	<ul class="unstyled">
+		<% @results.each do |r| %>
+			<li>
+				<%= link_to name_with_id(r).html_safe, choose_person_people_path(person_id: r), remote: true %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

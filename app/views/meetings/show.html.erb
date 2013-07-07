@@ -27,7 +27,6 @@
 		    <tr>
 		      <th>Name</th>
 			  <th></th>
-		      <th></th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -37,13 +36,15 @@
 					<td>
 						<%= link_to 'checkout', checkout_attendance_path(a), class: "button round tiny" %>
 					</td>
-					<td>
-						undo button
-					</td>
 				</tr>
 			<% end %>
 		  </tbody>
 		</table>
+		<div class="row">
+			<div class="twelve columns">
+				<%= link_to "Checkout All", checkout_all_meeting_path(@meeting), class: "button radius small right" %>
+			</div>
+		</div>
 	</div>
 <% end %>
 
@@ -73,5 +74,10 @@
 			<% end %>
 		  </tbody>
 		</table>
+		<div class="row">
+			<div class="twelve columns">
+				<%= link_to "Undo All", undo_all_meeting_path(@meeting), confirm: "Are you sure? This action will destroy all attendance record for this meeting... as if no one ever showed up. Click 'Cancel' to change your mind.", class: "button radius small right" %>
+			</div>
+		</div>
 	</div>
 <% end %>

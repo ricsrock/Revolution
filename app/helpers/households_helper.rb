@@ -24,4 +24,14 @@ module HouseholdsHelper
     household.people.sort_by {|p| p.sort_order}.collect {|s| s.family_name + ' (' + s.age.to_s + ')'}.to_sentence
   end
   
+  def household_name_with_id(household)
+    "#{household.name} (#{household.id.to_s})"
+  end
+  
+  def household_info_for_search_results(household)
+    "<div><strong>#{household.name} (#{household.id.to_s})</strong></div>" +
+    "<div>" + names_with_ages(household) + "</div>" +
+    "<div>" +  household.address1 + ' ' + household.city + ', ' + household.state + "</div><br>"
+  end
+  
 end

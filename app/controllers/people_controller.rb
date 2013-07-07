@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :edit_image, :image_from_facebook]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :edit_image, :image_from_facebook, :setup_move_for, :move, :setup_merge_for, :merge]
 
   load_and_authorize_resource
   skip_load_and_authorize_resource only: [:new, :create]
@@ -86,6 +86,63 @@ class PeopleController < ApplicationController
   def search
     @people = Person.order(:last_name).order(:first_name).where('last_name LIKE ? OR first_name LIKE ?',"%#{params[:term].strip}%", "%#{params[:term].strip}%")
     render json: @people.map(&:id_and_full_name)
+  end
+  
+  def setup_move_for
+    @results = []
+  end
+  
+  def move
+    @person = Person.find(params[:id])
+    @new_household = Household.find(params[:new_household_id])
+    @person.household_id = @new_household.id
+    @person.save!
+    flash[:notice] = "#{@person.full_name} has been moved to the #{@new_household.name} household."
+    redirect_to @new_household
+  end
+  
+  def search_household
+    @results = Household.where('name LIKE ?', "%#{params[:q].strip}%").order('households.name, households.id ASC')
+      .includes(:people).references(:people).limit(20)
+  end
+  
+  def choose_household
+    @new_household = Household.find(params[:household_id])
+  end
+  
+  def setup_merge_for
+    @results = []
+  end
+  
+  def search_person
+    term = params[:q]
+    terms = term.split(',')
+    if terms.length == 1
+      conditions = ["last_name LIKE ?", "%#{terms.first.strip}%"]
+    else
+      conditions = ["last_name LIKE ? AND first_name LIKE ?", "%#{terms.first.strip}%", "%#{terms.last.strip}%"]
+    end
+    @results = Person.where(conditions).order('last_name, first_name ASC').limit(20)
+  end
+  
+  def choose_person
+    @keeper = Person.find(params[:person_id])
+  end
+  
+  def merge
+    @person = Person.find(params[:id])
+    @keeper = Person.find(params[:keeper_id])
+    @person.merge_phones_into(@keeper)
+    @person.merge_emails_into(@keeper)
+    @person.merge_attendances_into(@keeper)
+    @person.merge_enrollments_into(@keeper)
+    @person.merge_taggings_into(@keeper)
+    @person.merge_attendance_trackers_into(@keeper)
+    @person.merge_contacts_into(@keeper)
+    @person.merge_contributions_into(@keeper)
+    @person.destroy
+    flash[:notice] = "Records have been merged."
+    redirect_to @keeper
   end
   
   private
