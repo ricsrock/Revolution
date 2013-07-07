@@ -1,1 +1,3 @@
-<%= link_to 'Search', search_self_checkin_index_path(terms: @search), remote: true, class: "button radius" %>
+<%= link_to search_self_checkin_index_path(terms: @search), remote: true, class: "button radius" do %>
+	<i class="icon-search"></i> Search
+<% end %>

@@ -10,7 +10,9 @@
 			<%= button_tag(:type => 'submit', class: "button radius") do %>
 				<i class="icon-check"></i> Checkin Selected
 			<% end %>
-			<%= link_to "Search Again", self_checkin_index_path, class: "button radius success right" %>
+			<%= link_to(self_checkin_index_path, class: "button radius success right") do %>
+				<i class="icon-search"></i> Search Again
+			<% end %>
 		<% end %>
 	<% end %>
 </div>

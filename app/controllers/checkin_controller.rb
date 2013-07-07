@@ -5,6 +5,11 @@ include CheckinHelper
 
   def index
     @households = []
+    if current_user.current_instance_preference?
+      @instance = Instance.find(current_user.current_instance_preference)
+    else
+      @instance = Instance.current
+    end
   end
   
   def checkin_selected
