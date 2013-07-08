@@ -35,6 +35,7 @@
 	<%= search_form_for @search, url: mark_event_path(@event), builder: SimpleForm::FormBuilder do |f| %>
 		<%= f.input :full_name_cont, placeholder: 'Last FirstName' %>
 		<%= f.input :attendance_status_eq, collection: Person::STATUSES, label: 'Attendance Status' %>
+		<%= f.input :enrollments_group_id_eq, collection: Group.all_leaves.order(:name), label: "Enrolled In Group" %>
 		<%= f.submit nil, class: 'button radius' %>
 	<% end %>
 <% end -%>
