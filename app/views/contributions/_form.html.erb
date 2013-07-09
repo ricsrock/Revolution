@@ -1,4 +1,4 @@
-<%= simple_form_for @contribution, remote: true do |f| %>  
+<%= simple_form_for @contribution do |f| %>  
 	<div class="row">
 		<div id="contributor-info" class="three columns">
 			<%= render :partial => 'contributor_info' %>
@@ -13,10 +13,12 @@
 		<%= render 'donation_fields', f: donation_form %>
 	<% end %>
 
-	<div class="twelve columns"><%= link_to_add_fields "Add Donation", f, :donations %><br><br></div>
+	<div class="twelve columns">
+		<span data-no-turbolink><%= link_to_add_fields "Add Donation", f, :donations %></span><br><br>
+	</div>
 	<%= f.hidden_field :batch_id, value: @batch ? @batch.id : @batch_id %>
 		<div class="six columns">
-			<%= f.button :submit, {class: 'button radius'}%>
+			<span data-no-turbolink><%= f.button :submit, {class: 'button radius'} %></span>
 		</div>
 		<div class="six columns" style="text-align: right;">
 			<%= link_to "Done", batches_url, class: "button radius" %>

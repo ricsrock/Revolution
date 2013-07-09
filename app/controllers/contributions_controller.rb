@@ -38,7 +38,9 @@ class ContributionsController < ApplicationController
       @form = ActionView::Helpers::FormBuilder.new(:contribution, @contribution, view_context, {}, proc{})
       flash[:alert] = "Contribution could not be saved. Errors: #{@contribution.errors.full_messages {|m|}.to_sentence}. Please try again."
     end
-    respond_with( @contribution, layout: !request.xhr? )
+    redirect_to enter_contributions_path(batch_id: @batch_id)
+    
+    # respond_with( @contribution, layout: !request.xhr? )
     
     # respond_to do |format|
     #   if @contribution.save
