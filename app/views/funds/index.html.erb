@@ -3,12 +3,14 @@
 <table class="twelve responsive">
   <thead>
 	  <tr>
+		<th>Name</th>
 	    <th></th>
 	  </tr>
   </thead>
   <tbody>
 	<% @funds.each do |fund| %>
 	  <tr>
+		<td><%= link_to fund.name, fund %></td>
 	    <td><%= link_to '', edit_fund_path(fund), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
 	    	<%= link_to '', fund, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
 	   </td>

@@ -56,6 +56,10 @@ class Instance < ActiveRecord::Base
     self.event.date.to_s + ' - ' + self.event.event_type.name + ' ' + self.instance_type.name
   end
   
+  def type_id
+    instance_type.type_id
+  end
+  
 
 
 end

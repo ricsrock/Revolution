@@ -12,5 +12,13 @@ class Meeting < ActiveRecord::Base
    def current_attendances
      self.attendances.where(checkout_time: nil)
    end
+   
+   def checked_out_attendances
+     self.attendances.checked_out
+   end
+   
+   def update_num_marked
+     self.update_attribute(:num_marked, self.checked_out_attendances.size)
+   end
 
 end

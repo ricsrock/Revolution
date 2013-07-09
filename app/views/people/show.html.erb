@@ -46,6 +46,7 @@
 	<li><%= @person.gender %></li>
 	<li class="field">Allergies:</li>
 	<li><%= @person.allergies %></li>
+	<%= render partial: "/shared/admin_box", locals: { object: @person } %>
 	<li class="field" style="padding-left: 40px;">
 		<%= button_icon 'Edit', edit_person_path(@person), 'edit', nil , "small round" %> &nbsp;
 	</li>

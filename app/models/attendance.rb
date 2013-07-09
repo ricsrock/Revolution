@@ -35,10 +35,20 @@ class Attendance < ActiveRecord::Base
       record.person.set_second_attend
       record.person.update_enrollment_for_group_id(record.meeting.group.id) # remove from group if no attendances
       AttendanceTracker.update_for_attendance(record.person_id, record.meeting.group_id)
+      record.meeting.update_num_marked
+  }
+  
+  after_save {
+    |record|
+      record.meeting.update_num_marked
   }
   
   def self.un_checked_out
     where(checkout_time: nil)
+  end
+  
+  def self.checked_out
+    where(Attendance.arel_table[:checkout_time].not_eq(nil))
   end
   
   def checkout

@@ -1,4 +1,9 @@
 <%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @fund.name %></li>
+	<li class="field"> </li>
+	<li> </li>
+	<%= render partial: "/shared/admin_box", locals: { object: @fund } %>
 <% end  %>
   
 

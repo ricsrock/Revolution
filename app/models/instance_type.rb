@@ -27,4 +27,8 @@ class InstanceType < ActiveRecord::Base
     end  
   end
   
+  def type_id
+    'instance_type_' + id.to_s
+  end
+  
 end

@@ -75,24 +75,33 @@ class EventsController < ApplicationController
     @search = Person.order('last_name, first_name ASC').search(params[:q])
     @people = @search.result(distinct: true)
     #@instance_names = @event.instances.collect {|i| i.instance_type.name.parameterize.underscore}
-    @instances = @event.instances
+    @instances = @event.instances.includes(:instance_type).order('instance_types.name ASC')
   end
   
   def post
-    @first_service = @event.instances.where('instance_types.name LIKE ?', '1st Service%').includes(:instance_type).references(:instance_type).first
-    if params[:instance_type_1]
-      params[:instance_type_1].each do |id|
-        @person = Person.find(id)
-        @person.checkin(instance_id: @first_service.id)
+    @instances = @event.instances
+    @instances.each do |instance|
+      if params[instance.type_id.to_sym]
+        params[instance.type_id.to_sym].each do |id|
+          @person = Person.find(id)
+          @person.checkin(instance_id: instance.id, checkout_time: Time.now)
+        end
       end
     end
-    @second_service = @event.instances.where('instance_types.name LIKE ?', '2nd Service%').includes(:instance_type).references(:instance_type).first
-    if params[:instance_type_2]
-      params[:instance_type_2].each do |id|
-        @person = Person.find(id)
-        @person.checkin(instance_id: @second_service.id)
-      end
-    end
+    # @first_service = @event.instances.where('instance_types.name LIKE ?', '1st Service%').includes(:instance_type).references(:instance_type).first
+    # if params[:instance_type_1]
+    #   params[:instance_type_1].each do |id|
+    #     @person = Person.find(id)
+    #     @person.checkin(instance_id: @first_service.id)
+    #   end
+    # end
+    # @second_service = @event.instances.where('instance_types.name LIKE ?', '2nd Service%').includes(:instance_type).references(:instance_type).first
+    # if params[:instance_type_2]
+    #   params[:instance_type_2].each do |id|
+    #     @person = Person.find(id)
+    #     @person.checkin(instance_id: @second_service.id)
+    #   end
+    # end
     redirect_to mark_event_path(@event)
   end
 
