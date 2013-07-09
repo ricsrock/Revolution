@@ -12,6 +12,7 @@ $('#results-list').click(function(event){
 $(document).on('page:fetch', function() {
   $("#loading-indicator").fadeIn();
 });
+
 $(document).on('page:change', function() {
   $("#loading-indicator").hide();
 });

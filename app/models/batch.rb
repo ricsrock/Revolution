@@ -6,7 +6,6 @@ class Batch < ActiveRecord::Base
   
   acts_as_stampable
   
-  
   ransacker :range_selector do |parent|
     nil
   end
