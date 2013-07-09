@@ -1,5 +1,5 @@
-@PageSpinner =
-  spin: (ms=5)->
+PageSpinner =
+  spin: (ms=1)->
     @spinner = setTimeout( (=> @add_spinner()), ms)
     $(document).on 'page:change', =>
       @remove_spinner()
@@ -14,7 +14,7 @@
   '
   spinner: null
   add_spinner: ->
-    $('body').append(@spinner_html)
+    $('body').append(spinner_html)
     $('body div#page-spinner').modal()
   remove_spinner: ->
     clearTimeout(@spinner)

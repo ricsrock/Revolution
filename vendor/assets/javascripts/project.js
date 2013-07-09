@@ -9,6 +9,13 @@ $('#results-list').click(function(event){
     event.stopPropagation();
 });
 
+$(document).on('page:fetch', function() {
+  $("#loading-indicator").fadeIn();
+});
+$(document).on('page:change', function() {
+  $("#loading-indicator").hide();
+});
+
 $(function(){
 	$(".search-query").observe_field(1, function( ) {
 	 	var form = $(this).parents("form");

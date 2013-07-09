@@ -314,4 +314,31 @@ dl.horizontal dd {
 	background-color: #F3CACA !important;
 }
 
+#loading-indicator {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -60px;
+  margin-left: -40px;
+  width: 100px;
+  height: 100px;
+  background: #333;
+  color: white;
+  float: left;
+  z-index: 20000;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  opacity: 0.5;
+}
+
+.spinner {
+  position: relative;
+  top: 30px !important;
+  left: 30px !important;
+  font-size: 40px;
+}
+
+
 
