@@ -83,7 +83,7 @@ class ContributionsController < ApplicationController
   
   def enter
     @batch = Batch.find(params[:batch_id])
-    @contribution = Contribution.new
+    @contribution = Contribution.new(date: @batch.date_collected.to_date.to_s(:db))
   end
   
   def find_person
