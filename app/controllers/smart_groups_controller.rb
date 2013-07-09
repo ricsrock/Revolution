@@ -1,7 +1,7 @@
 class SmartGroupsController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_smart_group, only: [:show, :edit, :update, :destroy, :export, :export_by_household, :sms, :mass_contact]
+  before_action :set_smart_group, only: [:show, :edit, :update, :destroy, :export, :export_by_household, :sms, :mass_contact, :sign_in_sheet_for]
 
   # GET /smart_groups
   # GET /smart_groups.json
@@ -30,7 +30,20 @@ class SmartGroupsController < ApplicationController
         filename = @smart_group.name.downcase.gsub(/[^0-9a-z]/, "_") + ".pdf"
         send_data pdf.render, filename: filename,
                               type: "application/pdf",
-                              disposition: "inline"
+                              disposition: "attachment"
+      end
+    end
+  end
+  
+  def sign_in_sheet_for
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = SignInSheetPdf.new(@smart_group, view_context)
+        filename = @smart_group.name.downcase.gsub(/[^0-9a-z]/, "_") + ".pdf"
+        send_data pdf.render, filename: filename,
+                              type: "application/pdf",
+                              disposition: "attachment"
       end
     end
   end

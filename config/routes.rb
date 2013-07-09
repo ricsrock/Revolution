@@ -127,6 +127,7 @@ NewrevF::Application.routes.draw do
       get 'export_by_household'
       get 'sms'
       get 'mass_contact'
+      get 'sign_in_sheet_for'
     end
   end
 

@@ -19,13 +19,14 @@
 			<%= link_icon 'print pdf', smart_group_path(@smart_group, format: 'pdf'), 'print', "2" %>
 		</div>
 		<div class="two columns">
+			<%= link_icon 'print sign-in sheet', sign_in_sheet_for_smart_group_path(@smart_group, format: 'pdf'), 'print', "2" %>
+		</div>
+		<div class="two columns">
 			<%= link_icon 'sms', sms_smart_group_path(@smart_group), 'comment', "2" %>
 		</div>
 		<div class="two columns">
 			<%= link_icon 'mass contact', mass_contact_smart_group_path(@smart_group), 'magnet', "2" %>
 		</div>
-		
-		
 	</div>
 <% end %>
 

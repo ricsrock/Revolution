@@ -7,6 +7,7 @@
 	<li><%= @batch.contributions_num %></li>
 	<li class="field">Comments:</li>
 	<li><%= @batch.comments %></li>
+	<%= render partial: "/shared/admin_box", locals: { object: @batch } %>
 <% end  %>
   
 

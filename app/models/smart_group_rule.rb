@@ -102,7 +102,7 @@ class SmartGroupRule < ActiveRecord::Base
       content.split(',').flatten.each(&:strip!)
       
     when "attendance_status"
-      content
+      content.split(',').flatten.each(&:strip!)
       
     when "birthday"
       months_from_now = self.content.to_i
