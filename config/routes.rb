@@ -1,4 +1,5 @@
 NewrevF::Application.routes.draw do
+  mount Resque::Server, :at => "/resque"
   get "orphans/people"
   
   get "preferences/edit_fav_instance", to: "preferences#edit_fav_instance", as: :edit_fav_instance

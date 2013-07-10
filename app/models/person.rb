@@ -115,7 +115,7 @@ class Person < ActiveRecord::Base
     values = Person::ADVANCE_DECLINE_VALUES
     values.each do |v|
       people = Person.send(v.sub(" ", "").underscore.downcase.pluralize.to_sym)
-      people.to_a.each { |p| p.tag_for_advance_decline_instance(v) unless self.has_tag_in_last_six_days?(v) }
+      people.to_a.each { |p| p.tag_for_advance_decline_instance(v) unless p.has_tag_in_last_six_days?(v) }
     end
   end
   
@@ -145,7 +145,7 @@ class Person < ActiveRecord::Base
     @tagging.save
   end
   
-  def has_tag_last_six_days?(tag_name)
+  def has_tag_in_last_six_days?(tag_name)
     taggings = self.taggings.last_six_days
     taggings.collect {|t| t.tag.name}.include?(tag_name)
   end

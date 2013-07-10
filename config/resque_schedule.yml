@@ -1,0 +1,5 @@
+send_test_email:
+    cron: "* * * * *"
+    class: EmailWorker
+    queue: email_queue
+    description: "Send a test email"

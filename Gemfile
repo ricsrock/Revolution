@@ -50,6 +50,8 @@ gem 'mailgun'
 gem 'prawn'
 gem 'prawn-print', :git => 'git://github.com/barsoom/prawn-print.git'
 gem "ransack", :git => "https://github.com/ernie/ransack", :branch => 'rails-4'
+gem 'resque', :require => "resque/server"
+gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'rmagick', '2.13.2'#, :path => "vendor/gems/rmagick-2.13.2"
 gem 'tunnlr_connector', :require => "tunnlr"
 gem 'twilio-ruby'
