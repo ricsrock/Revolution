@@ -247,6 +247,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mailgun (0.7)
+      multimap
+      rest-client
     method_source (0.8.1)
     mime-types (1.23)
     minitest (4.7.5)
@@ -255,6 +258,7 @@ GEM
       sass (>= 3.2.0)
       sassy-math (>= 1.5)
     multi_json (1.7.7)
+    multimap (1.1.2)
     mysql (2.9.1)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
@@ -295,6 +299,8 @@ GEM
       thor (>= 0.18.1, < 2.0)
     raindrops (0.10.0)
     rake (10.1.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     rmagick (2.13.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
@@ -404,6 +410,7 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   launchy
+  mailgun
   mysql (= 2.9.1)
   prawn
   prawn-print!

@@ -35,12 +35,16 @@ NewrevF::Application.configure do
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   
-  config.action_mailer.delivery_method = :sendmail
-  # Defaults to:
-  # config.action_mailer.sendmail_settings = {
-  #   :location => '/usr/sbin/sendmail',
-  #   :arguments => '-i -t'
-  # }
+  config.action_mailer.delivery_method = :smtp  
+  ActionMailer::Base.smtp_settings = {
+    :port           => 587, 
+    :address        => 'smtp.mailgun.org',
+    :user_name      => 'postmaster@local.rivervalleychurch.net',
+    :password       => '0zejk8qwnp11',
+    :domain         => 'local.rivervalleychurch.net',
+    :authentication => :plain,
+  }
+  
   
   config.middleware.use ExceptionNotifier,
     :email => {
