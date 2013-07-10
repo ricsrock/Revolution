@@ -4,7 +4,7 @@
 <table class="twelve responsive">
   <thead>
 	  <tr>
-	    <th>Start Date</th>
+	    <th><%= sort_link @q, :start_date, 'Start Date' %></th>
 		<th>Tag</th>
 		<th>Person</th>
 		<th>Comments</th>
@@ -14,7 +14,7 @@
   <tbody>
 	<% @taggings.each do |tagging| %>
 	  <tr>
-		<td><%= tagging.start_date.to_time.strftime('%x') %></td>
+		<td><%= tagging.start_date.to_time.strftime('%x') rescue nil %></td>
 		<td><%= name_with_group(tagging) %></td>
 		<td><%= tagging.person.full_name %></td>
 		<td><%= tagging.comments %></td>

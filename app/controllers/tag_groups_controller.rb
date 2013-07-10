@@ -6,7 +6,7 @@ class TagGroupsController < ApplicationController
   # GET /tag_groups
   # GET /tag_groups.json
   def index
-    @tag_groups = TagGroup.all
+    @tag_groups = TagGroup.all.order(:name)
   end
 
   # GET /tag_groups/1

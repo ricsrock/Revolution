@@ -9,7 +9,7 @@ class Contribution < ActiveRecord::Base
   
   validate :must_have_at_least_one_donation
   
-  accepts_nested_attributes_for :donations, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :donations, :reject_if => proc { |attributes| attributes.any? {|k,v| v.blank?} }, allow_destroy: true
   
   acts_as_stampable
   

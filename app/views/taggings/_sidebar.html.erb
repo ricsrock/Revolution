@@ -5,9 +5,11 @@
 		<span id="tags">
 			<%= render :partial => 'tag_check_boxes', locals: { f: f } %>
 		</span>
+		<br>
+		<%= f.input :person_groups_id_eq_any, collection: CheckinGroup.order(:name), as: :check_boxes, label: "Enrolled In Group" %>
 		<%= f.submit "Search", class: "button tiny round" %>
 	<% end %><br><br>
 	<% if @search_params %>
-		<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Tags") %>
+		<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Tags"), class: 'button round small' %>
 	<% end %>
 </div>
