@@ -4,7 +4,7 @@ class Contact < ActiveRecord::Base
   acts_as_stampable
   
   
-  ACTIONS = [ "Multi-Close", "Export"]
+  ACTIONS = [ "Multi-Close", "Export", "Transfer Multiple"]
   STATUSES = [ "Open", "In Progress", "Closed" ]
   
   belongs_to :contact_type, :class_name => "ContactType", :foreign_key => "contact_type_id"

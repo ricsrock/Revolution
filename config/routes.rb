@@ -69,6 +69,7 @@ NewrevF::Application.routes.draw do
       get :manage
       put :act_on_multiple
       put :multi_close
+      put :multi_transfer
       put :export
       get :new_quick
       post :create_quick

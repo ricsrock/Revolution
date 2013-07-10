@@ -140,6 +140,8 @@ class ContactsController < ApplicationController
         action_to_take = "multi_close"
       when "Export"
         action_to_take = "export"
+      when "Transfer Multiple"
+        action_to_take = "multi_transfer"
       else
         action_to_take = "unknown"
       end
@@ -168,6 +170,25 @@ class ContactsController < ApplicationController
     flash[:notice] = "#{counter} contacts successfully closed."
     redirect_to manage_contacts_path
   end
+  
+  def multi_transfer
+    ids = params[:contact_ids]
+    counter = 0
+    ids.each do |id|
+      contact = Contact.find(id)
+      follow_up = FollowUp.new(follow_up_type_id: params[:follow_up][:follow_up_type_id],
+                               notes: params[:follow_up][:notes] + ' (transferred by multi-transfer)')
+      follow_up.contact_id = id
+      if follow_up.save
+        if contact.transfer!(params[:follow_up][:transfer_user_id], follow_up.id)
+          counter += 1
+        end
+      end
+    end
+    flash[:notice] = "#{counter} contacts successfully transferred."
+    redirect_to manage_contacts_path
+  end
+  
   
   def export
     contacts = []
