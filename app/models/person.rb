@@ -5,6 +5,7 @@ class Person < ActiveRecord::Base
   FILTER_VALUES = ["All", "Recent Attenders", "Newcomers", "Active Attenders"]
   STATUSES = ["Active", "Inactive", "Guest", "Deceased"]
   ADVANCE_DECLINE_VALUES = ["Guest Advance", "Guest Decline", "Inactive Advance", "Active Decline"]
+  AUTO_CONTACT_VALUES = ["Missed You Letter", "Active At Risk"]
   
   belongs_to :household, inverse_of: :people
   belongs_to :default_group, :class_name => "Group", :foreign_key => "default_group_id"
@@ -13,9 +14,9 @@ class Person < ActiveRecord::Base
   has_many :phones, :as => :phonable, dependent: :destroy
   has_many :emails, :as => :emailable, dependent: :destroy
   has_many :attendances, dependent: :destroy
-  has_many :attended_meetings, through: :attendances, source: :meeting, uniq: true
-  has_many :attended_instances, through: :attended_meetings, source: :instance, uniq: true
-  has_many :attended_events, through: :attended_instances, source: :event, uniq: true
+  has_many :attended_meetings, -> { uniq }, through: :attendances, source: :meeting#, uniq: true
+  has_many :attended_instances, -> { uniq }, through: :attended_meetings, source: :instance#, uniq: true
+  has_many :attended_events, -> { uniq }, through: :attended_instances, source: :event#, uniq: true
   has_many :enrollments, dependent: :destroy
   has_many :groups, through: :enrollments
   has_many :taggings, dependent: :destroy
@@ -65,41 +66,53 @@ class Person < ActiveRecord::Base
     
   def self.actives
     people = Arel::Table.new(:people)
-    where(people[:attend_count].gt(2)).where(people[:max_date].gt((Time.now - 5.weeks).to_date.to_s(:db)))
+    where(people[:attend_count].gt(2)).where(people[:max_date].gt((Time.zone.now - 5.weeks).to_date.to_s(:db)))
     # where('people.attend_count > ?', '2').where('people.max_date > ?', (Time.now - 5.weeks).to_date.to_s(:db))
   end
   
   def self.inactives
     people = Arel::Table.new(:people)
-    where(people[:max_date].eq(nil).or(people[:max_date].lt((Time.now - 5.weeks).to_date.to_s(:db))))
+    where(people[:max_date].eq(nil).or(people[:max_date].lt((Time.zone.now - 5.weeks).to_date.to_s(:db))))
   end
   
   def self.guests
     people = Arel::Table.new(:people)
-    where(people[:attend_count].lt(3)).where(people[:max_date].gt((Time.now - 5.weeks).to_date.to_s(:db)))
+    where(people[:attend_count].lt(3)).where(people[:max_date].gt((Time.zone.now - 5.weeks).to_date.to_s(:db)))
   end
   
   def self.guest_advances
     people = Arel::Table.new(:people)
-    where(people[:attend_count].eq(3)).where(people[:max_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+    where(people[:attend_count].eq(3)).where(people[:max_date].gt((Time.zone.now - 6.days).to_date.to_s(:db)))
   end
   
   def self.guest_declines
     people = Arel::Table.new(:people)
     where(people[:attend_count].in(2..3)).
-    where(people[:max_date].in((Time.now - 41.days).to_date.to_s(:db)..(Time.now - 5.weeks).to_date.to_s(:db)))
+    where(people[:max_date].in((Time.zone.now - 41.days).to_date.to_s(:db)..(Time.zone.now - 5.weeks).to_date.to_s(:db)))
   end
   
   def self.inactive_advances
     people = Arel::Table.new(:people)
-    where(people[:max_date].gt((Time.now - 6.days).to_date.to_s(:db))).         #attended this week
-    where(people[:second_attend].lt((Time.now - 34.days).to_date.to_s(:db)))    #second most recent attend was over 5 weeks ago (34 days or more)
+    where(people[:max_date].gt((Time.zone.now - 6.days).to_date.to_s(:db))).         #attended this week
+    where(people[:second_attend].lt((Time.zone.now - 34.days).to_date.to_s(:db)))    #second most recent attend was over 5 weeks ago (34 days or more)
   end
   
   def self.active_declines
     people = Arel::Table.new(:people)
     where(people[:attend_count].gt(2)).                                                                           #attended 3 or more times
-    where(people[:max_date].in((Time.now - 41.days).to_date.to_s(:db)..(Time.now - 5.weeks).to_date.to_s(:db)))   #most recent attend over 5 weeks ago as of this week
+    where(people[:max_date].in((Time.zone.now - 41.days).to_date.to_s(:db)..(Time.zone.now - 5.weeks).to_date.to_s(:db)))   #most recent attend over 5 weeks ago as of this week
+  end
+  
+  def self.active_at_risks
+    people = Arel::Table.new(:people)
+    self.actives.where(people[:max_date].lt((Time.zone.now - 4.weeks).to_date.to_s(:db)))
+  end
+  
+  def self.missed_you_letters
+    people = Arel::Table.new(:people)
+    where(people[:attend_count].lt(4)).
+    where(people[:max_date].gt((Time.zone.now - 2.weeks).to_date.to_s(:db))).
+    where(people[:max_date].lt((Time.zone.now - 1.week).to_date.to_s(:db)))
   end
   
   def self.set_statuses
@@ -116,6 +129,14 @@ class Person < ActiveRecord::Base
     values.each do |v|
       people = Person.send(v.sub(" ", "").underscore.downcase.pluralize.to_sym)
       people.to_a.each { |p| p.tag_for_advance_decline_instance(v) unless p.has_tag_in_last_six_days?(v) }
+    end
+  end
+  
+  def self.create_auto_contacts
+    values = Person::AUTO_CONTACT_VALUES
+    values.each do |v|
+      people = Person.send(v.gsub(" ", "").underscore.pluralize.to_sym)
+      people.to_a.each { |p| p.create_auto_contact(v) unless p.has_contact_in_last_six_days?(v) }
     end
   end
   
@@ -145,9 +166,23 @@ class Person < ActiveRecord::Base
     @tagging.save
   end
   
+  def create_auto_contact(v)
+    @contact_type = ContactType.find_by_name(v)
+    @contact = Contact.new(:contact_type_id => @contact_type.id, :contactable_id => self.id, contactable_type: 'Person',
+                           :created_by => "system",
+                           :comments => "created by system for #{v} instance. Max Date: #{self.max_date}, Attend Count: #{self.attend_count}, Second Attend Date: #{second_attend rescue nil}")
+    @contact.save
+  end
+  
+  
   def has_tag_in_last_six_days?(tag_name)
     taggings = self.taggings.last_six_days
     taggings.collect {|t| t.tag.name}.include?(tag_name)
+  end
+  
+  def has_contact_in_last_six_days?(contact_type_name)
+    contacts = self.contacts.last_six_days
+    contacts.collect {|c| c.contact_type.name}.include?(contact_type_name)
   end
   
   

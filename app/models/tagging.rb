@@ -41,7 +41,7 @@ class Tagging < ActiveRecord::Base
   end
   
   def self.last_six_days
-    where('taggings.created_at > ?', Time.now - 6.days)
+    where('taggings.created_at > ?', Time.zone.now - 6.days)
   end
   
 end

@@ -12,7 +12,11 @@ NewrevF::Application.routes.draw do
 
   resources :meeting_times
 
-  resources :reports
+  resources :reports do
+    collection do
+      get 'auto_contacts'
+    end
+  end
 
   resources :donations
   resources :checkin_backgrounds do

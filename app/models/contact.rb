@@ -65,6 +65,10 @@ class Contact < ActiveRecord::Base
     end
   end
   
+  def self.last_six_days
+    where('contacts.created_at > ?', Time.zone.now - 6.days)
+  end
+  
   def self.magic_includes
     includes(:contact_type, :responsible_user).references(:contact_types, :users).joins("LEFT OUTER JOIN people as people_magic ON (contacts.contactable_id = people_magic.id AND contacts.contactable_type = 'Person')
                                                                                          LEFT OUTER JOIN households as households_magic ON (contacts.contactable_id = households_magic.id AND contacts.contactable_type = 'Household')

@@ -4,6 +4,14 @@
 	</div>
 </div>
 
+<% if current_user.admin? %>
+	<div class="row">
+		<div class="twelve columns">
+			<%= link_to 'Create AutoContacts & Tags', auto_contacts_reports_path, class: 'button round small' %>
+		</div>
+	</div>
+<% end %>
+
 <div class="row">
 	<div class="six columns">
 		<%= field_set_tag "My Tasks (#{current_user.contacts.open.size})" do %>

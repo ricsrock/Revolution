@@ -88,6 +88,13 @@ class ReportsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def auto_contacts
+    Person.create_auto_contacts
+    Person.create_advance_decline_tags
+    flash[:notice] = "AutoContacts and Advance/Decline Tags have been created successfully."
+    redirect_to root_url
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
