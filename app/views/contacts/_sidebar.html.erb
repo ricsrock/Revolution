@@ -9,6 +9,8 @@
   <%= f.input :status_eq_any, collection: Contact::STATUSES, as: :check_boxes, label: "Status" %>
   <br>
   <%= f.input :range_selector_cont, collection: NamedDateRanges::RANGES, label: "Date Range", prompt: true, selected: @range %>
+  <%= f.input :contactable_of_Person_type_groups_id_eq_any, collection: CheckinGroup.order(:name), as: :check_boxes, label: "Enrolled In Group" %>
+
 
   <%= f.submit "Search", class: 'button radius small' %>
 <% end %>
