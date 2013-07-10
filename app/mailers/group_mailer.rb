@@ -16,7 +16,7 @@ class GroupMailer < ActionMailer::Base
   def test
     mail(
       to: "lowell@rivervalleychurch.net",
-      subject: 'test',
+      subject: "Test At #{Time.now.to_s(:db)}",
       from: "admin@info.rivervalleychurch.net"
     )
   end

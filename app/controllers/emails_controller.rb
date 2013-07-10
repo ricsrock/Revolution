@@ -72,7 +72,7 @@ class EmailsController < ApplicationController
     end
     if @errors.empty?
       @recipient_ids.each do |id|
-        GroupMailer.delay.message_per_person(id, current_user.id, @subject, @message)
+        GroupMailer.message_per_person(id, current_user.id, @subject, @message).deliver!
       end
       flash[:notice] = "Your message is being sent."
     else
