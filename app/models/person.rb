@@ -448,7 +448,8 @@ class Person < ActiveRecord::Base
 	  # otherwise, enroll them into the new group
     else
       self.enroll!(to_group)
-	  end  
+	  end
+	  self.update_attribute(:default_group_id, to_group.id)
 	end
 		
 	def search_order

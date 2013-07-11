@@ -43,6 +43,7 @@ class ReportsController < ApplicationController
 
   # GET /reports/1/edit
   def edit
+    @search_params = @report.parameters
     @record_type = @report.record_type
     @record_type_id = @record_type.id
     @group_bys = @record_type.group_bys
