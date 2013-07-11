@@ -8,25 +8,28 @@
 <% end  %>
 
 <%= field_set_tag "Actions" do %>
-	<div data-no-turbolink class="row">
-		<div class="two columns">
+	<dl data-no-turbolink class="sub-nav padded-list">
+		<dd>
 			<%= link_icon 'export people', export_smart_group_path(@smart_group), 'user', "2" %>
-		</div>
-		<div class="two columns">
+		</dd>
+		<dd>
 			<%= link_icon 'export households', export_by_household_smart_group_path(@smart_group), 'home', "2" %>
-		</div>
-		<div class="two columns">
+		</dd>
+		<dd>
 			<%= link_icon 'print pdf', smart_group_path(@smart_group, format: 'pdf'), 'print', "2" %>
-		</div>
-		<div class="two columns">
+		</dd>
+		<dd>
 			<%= link_icon 'print sign-in sheet', sign_in_sheet_for_smart_group_path(@smart_group, format: 'pdf'), 'print', "2" %>
-		</div>
-		<div class="two columns">
+		</dd>
+		<dd>
 			<%= link_icon 'sms', sms_smart_group_path(@smart_group), 'comment', "2" %>
-		</div>
-		<div class="two columns">
+		</dd>
+		<dd>
 			<%= link_icon 'mass contact', mass_contact_smart_group_path(@smart_group), 'magnet', "2" %>
-		</div>
+		</dd>
+		<dd>
+			<%= link_foundicon 'Export vCards', export_vcards_smart_group_path(@smart_group), 'general foundicon-address-book', '2' %>
+		</dd>
 	</div>
 <% end %>
 

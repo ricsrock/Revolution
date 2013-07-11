@@ -345,5 +345,9 @@ dl.horizontal dd {
 	color: #992840;
 }
 
+.padded-list dd {
+	padding:10px;
+}
+
 
 

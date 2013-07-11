@@ -385,7 +385,7 @@ GEM
       raindrops (~> 0.7)
     vegas (0.1.11)
       rack (>= 1.0.0)
-    vpim (0.695)
+    vpim-rails (0.665)
     warden (1.2.1)
       rack (>= 1.0)
     websocket (1.0.7)
@@ -453,5 +453,5 @@ DEPENDENCIES
   twilio-ruby
   uglifier (>= 1.0.3)
   unicorn
-  vpim
+  vpim-rails
   zurb-foundation (= 3.2.5)

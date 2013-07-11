@@ -134,6 +134,7 @@ NewrevF::Application.routes.draw do
       get 'sms'
       get 'mass_contact'
       get 'sign_in_sheet_for'
+      get 'export_vcards'
     end
   end
 
@@ -223,6 +224,9 @@ NewrevF::Application.routes.draw do
       get 'search_people'
       get 'enroll_person'
       get 'export_people'
+      get 'setup_promote_for'
+      post 'promote'
+      get 'export_vcards'
     end
     collection do
       get 'jump_to'
@@ -251,6 +255,7 @@ NewrevF::Application.routes.draw do
       post 'move'
       get 'setup_merge_for'
       post 'merge'
+      get 'export_vcard'
     end
     
     collection do

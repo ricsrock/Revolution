@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController
   before_filter :authenticate_user!
-  before_action :set_person, only: [:show, :edit, :update, :destroy, :edit_image, :image_from_facebook, :setup_move_for, :move, :setup_merge_for, :merge]
+  before_action :set_person, only: [:show, :edit, :update, :destroy, :edit_image, :image_from_facebook, :setup_move_for, :move,
+                                    :setup_merge_for, :merge, :export_vcard]
 
   load_and_authorize_resource
   skip_load_and_authorize_resource only: [:new, :create]
@@ -143,6 +144,12 @@ class PeopleController < ApplicationController
     @person.destroy
     flash[:notice] = "Records have been merged."
     redirect_to @keeper
+  end
+  
+  def export_vcard
+    card = @person.to_vcard
+    filename = @person.full_name.gsub(" ", "").underscore + ".vcf"
+    send_data @person.to_vcard, filename: "filename.vcf", disposition: "attachment"
   end
   
   private

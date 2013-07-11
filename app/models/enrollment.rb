@@ -18,6 +18,10 @@ class Enrollment < ActiveRecord::Base
                 
   before_validation :set_default_start_time, on: :create
   
+  def self.for_group_id(id)
+    where(group_id: id)
+  end
+  
   def set_default_start_time
     self.start_time ||= Time.now.to_s(:db)
   end

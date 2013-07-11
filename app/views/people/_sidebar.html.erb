@@ -1,13 +1,19 @@
 <h5 class="subheader">Actions</h5><hr>
 
-<div class="row">
+<div class="row" data-no-turbolink>
 	<div class="twelve columns">
-		<%= link_to 'Move to Household', setup_move_for_person_path(@person), class: 'button round radius small expand'%>
+		<%= link_to(setup_move_for_person_path(@person), class: 'button round radius small expand') { "<i class='icon-share-alt'></i>&nbsp;&nbsp;&nbsp;Move to Household".html_safe } %>
 	</div>
 	<div class="twelve columns">
-		<%= link_to 'Merge Record', setup_merge_for_person_path(@person), class: 'button round radius small expand'%>
+		<%= link_to(setup_merge_for_person_path(@person), class: 'button round radius small expand') { "<i class='icon-exchange'></i>&nbsp;&nbsp;&nbsp;Merge Record".html_safe } %>
 	</div>
 	<div class="twelve columns">
-		<%= link_to 'Export vCard', @person, class: 'button round radius small expand'%>
+		<span data-no-turbolink>
+			<%= link_to(export_vcard_person_path(@person), data: { no_turbolink: true },
+				class: 'button round radius small expand') { "<i class='general foundicon-address-book'></i>&nbsp;&nbsp;&nbsp;Export vCard".html_safe } %>
+		</span>
+	</div>
+	<div class="twelve columns">
+		<%= link_to(image_from_facebook_person_path(@person), class: 'button expand small round') { "<i class='icon-facebook-sign'></i>&nbsp;&nbsp;&nbsp;Get Facebook Pic".html_safe }if @person.facebook_url.present? %>
 	</div>
 </div>

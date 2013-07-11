@@ -1,3 +1,7 @@
 <div id="group">
 	<%= render :partial => "#{@group.partial_name}" %>
 </div>
+
+<div id="actions">
+	<%= render partial: "actions", locals: { group: @group } %>
+</div>

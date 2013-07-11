@@ -13,7 +13,6 @@
 				<div class="twelve columns center"><%= image_tag(@person.image_url, class: 'person-image') %></div><br>
 				<div class="twelve columns center">
 					<%= button_icon 'edit image', edit_image_person_path(@person), 'camera', nil, 'tiny round' %><br>
-					<%= button_icon 'get facebook pic', image_from_facebook_person_path(@person), 'camera', nil, 'tiny round' if @person.facebook_url.present? %>
 				</div>
 			</div>
 			<div class="nine columns">

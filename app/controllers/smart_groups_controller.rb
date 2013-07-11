@@ -1,7 +1,8 @@
 class SmartGroupsController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_smart_group, only: [:show, :edit, :update, :destroy, :export, :export_by_household, :sms, :mass_contact, :sign_in_sheet_for]
+  before_action :set_smart_group, only: [:show, :edit, :update, :destroy, :export, :export_by_household, :sms,
+                                         :mass_contact, :sign_in_sheet_for, :export_vcards]
 
   # GET /smart_groups
   # GET /smart_groups.json
@@ -57,6 +58,15 @@ class SmartGroupsController < ApplicationController
     filename = @smart_group.name.downcase.gsub(/[^0-9a-z]/, "_") + "_households" + ".csv"
     send_data Person.to_households_csv(@smart_group.result.group('people.household_id')), filename: filename
   end
+  
+  def export_vcards
+    batch_of_cards = ''
+    @smart_group.result.each do |person|
+      batch_of_cards << person.to_vcard if person.to_vcard
+    end
+    send_data batch_of_cards, :filename => @smart_group.name.downcase.gsub(/[^0-9a-z]/, "_") + "_vcards" + ".vcf"
+  end
+  
   
   
   # GET /smart_groups/new

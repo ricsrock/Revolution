@@ -1,6 +1,22 @@
 <%= field_set_tag "Actions" do %>
-	<%= link_icon 'SMS', sms_group_path(@group), 'comment', '2' %>
-	<%= link_icon 'Email', email_group_path(@group), 'envelope', '2' %>
-	<%= link_icon 'Print Roster', group_path(@group, format: 'pdf'), 'print', "2" %>
-	<span data-no-turbolink><%= link_icon 'Export People', export_people_group_path(@group), 'download-alt', "2" %></span>
+	<dl class="sub-nav padded-list">
+		<dd>
+			<%= link_icon 'SMS', sms_group_path(@group), 'comment', '2' %>
+		</dd>
+		<dd>
+			<%= link_icon 'Email', email_group_path(@group), 'envelope', '2' %>
+		</dd>
+		<dd>
+			<%= link_icon 'Print Roster', group_path(@group, format: 'pdf'), 'print', "2" %>
+		</dd>
+		<dd>
+			<span data-no-turbolink><%= link_icon 'Export People', export_people_group_path(@group), 'download-alt', "2" %></span>
+		</dd>
+		<dd>
+			<%= link_icon 'Promote', setup_promote_for_group_path(@group), 'rocket', '2' %>
+		</dd>
+		<dd>
+			<span data-no-turbolink><%= link_foundicon 'Export vCards', export_vcards_group_path(@group), 'general foundicon-address-book', '2' %></span>
+		</dd>
+	</dl>
 <% end %>

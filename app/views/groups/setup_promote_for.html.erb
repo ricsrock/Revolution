@@ -1,0 +1,30 @@
+<h3 class="subheader"><a><i class='icon-rocket'></i></a> Promoting from Group: <a><%= @group.name %></a></h3>
+<div class="panel">
+	This action will 'promote' the selected people to the group that you select. Their enrollment in the current group will be ended as of today and they will be enrolled into the selected group unless they are already enrolled in that group.
+</div>
+
+<%= form_tag promote_group_path(@group) do %>
+	<div class="row	">
+		<div class="tweleve columns">
+			<div class="four columns">
+				<label>Promote To Group:</label>
+			</div>
+			<div class="eight columns">
+				<%= select_tag 'promote_to_id', options_from_collection_for_select(Group.order(:name), :id, :name) %>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<% @group.enrollments.current.includes(:person).order('people.last_name').each do |enrollment| %>
+			<div class="twelve columns <%= cycle('even','odd') %> padded">
+				<div class="one columns">
+					<%= check_box_tag 'selected_ids[]', enrollment.person.id %>
+				</div>
+				<div class="eleven columns">
+					<%= enrollment.person.full_name rescue nil %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+	<%= submit_tag 'Promote Selected', class: 'button radius' %>
+<% end %>

@@ -1,3 +1,6 @@
+require 'vpim/vcard'
+require 'open-uri'
+
 class Person < ActiveRecord::Base
   
   POSITIONS = [ "Primary Contact", "Spouse", "Dependent", "Friend", "Relative", "Deceased" ]
@@ -287,6 +290,59 @@ class Person < ActiveRecord::Base
 	
 	def to_vcard
 	 #TODO: Finish this!
+	 begin
+	 card = Vpim::Vcard::Maker.make2 do |maker|
+	   # make a vCard
+	   maker.add_name do |name|
+       name.given = first_name
+       name.family = last_name
+     end
+     
+     maker.add_addr do |addr|
+       addr.location = 'home'
+       addr.street = household.address1
+       addr.locality = household.city
+       addr.region = household.state
+       addr.postalcode = household.zip.to_s
+     end
+     
+     phones.each do |phone|
+       maker.add_tel(phone.number) do |tel|
+         tel.location = phone.comm_type.name
+       end
+     end
+     
+     household.phones.each do |phone|
+       maker.add_tel(phone.number) do |tel|
+         tel.location = phone.comm_type.name
+       end
+     end
+     
+     emails.each do |email|
+       maker.add_email(email.email) do |m|
+         m.location = email.comm_type.name
+       end
+     end
+     
+     household.emails.each do |email|
+       maker.add_email(email.email) do |m|
+         m.location = email.comm_type.name
+       end
+     end
+     
+     maker.birthday = birthdate if birthdate
+     
+     if self.image?
+       maker.add_photo do |photo|
+         photo.image = open(self.image_url).read # a fake string, real data is too large :-)"
+         photo.type = 'jpeg'
+       end
+     end
+     
+   end
+   card.to_s
+   rescue
+   end
 	end
 	
 	def birthdate_to_s
@@ -381,6 +437,18 @@ class Person < ActiveRecord::Base
 	  self.contributions.each do |o|
 	    o.update_attribute(:contributable_id, keeper.id)
     end
+	end
+	
+	def promote!(from_group, to_group)
+	  enrollment = self.enrollments.for_group_id(from_group.id).first
+	  enrollment.unenroll!
+	  # if person already has an enrollment for the new group, make it active
+	  if self.group_ids.include?(to_group.id)
+	    self.enrollments.for_group_id(to_group.id).first.update_attribute(:end_time, nil)
+	  # otherwise, enroll them into the new group
+    else
+      self.enroll!(to_group)
+	  end  
 	end
 		
 	def search_order

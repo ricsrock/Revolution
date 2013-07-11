@@ -1,7 +1,8 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :sms, :email, :enroll, :export_people]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :sms, :email, :enroll,
+                                   :export_people, :setup_promote_for, :promote, :export_vcards]
 
   # GET /groups
   # GET /groups.json
@@ -168,6 +169,32 @@ class GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @person = Person.find(params[:person_id])
     @group.enroll!(@person)
+  end
+  
+  def setup_promote_for
+    
+  end
+  
+  def promote
+    @from_group = Group.find(params[:id])
+    @to_group = Group.find(params[:promote_to_id])
+    @ids = params[:selected_ids]
+    @ids.each do |id|
+      person = Person.find(id)
+      person.promote!(@from_group, @to_group)
+    end
+    flash[:notice] = "The selected people were succesfully promoted."
+    redirect_to group_url(@to_group)
+  end
+  
+  def export_vcards
+    batch_of_cards = ''
+    @group.enrollments.current.each do |enrollment|
+      if enrollment.person
+        batch_of_cards << enrollment.person.to_vcard if enrollment.person.to_vcard
+      end
+    end
+    send_data batch_of_cards, :filename => "group_#{@group.id}_cards.vcf"
   end
   
   private
