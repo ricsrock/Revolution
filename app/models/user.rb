@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   
   belongs_to :person, :class_name => "Person", :foreign_key => "person_id"
   
-  has_many :contacts, :class_name => "Contact", :foreign_key => "responsible_user_id"
+  has_many :contacts, :class_name => "Contact", :foreign_key => "responsible_user_id", dependent: :restrict_with_exception
   has_many :favorites, dependent: :destroy
   has_many :favorite_smart_groups, through: :favorites, source: :favoritable, source_type: "SmartGroup", foreign_key: "favoritable_id"
 
@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
   
   def self.active
     where('users.confirmed_at IS NOT NULL')
+  end
+  
+  def responsible_contact_types
+    ContactType.where(default_responsible_user_id: self.id)
   end
   
   def admin?
@@ -155,7 +159,12 @@ class User < ActiveRecord::Base
   end
   
   def unconfirm!
-    update_attribute(:confirmed_at, nil)
+    if self.responsible_contact_types.active.empty?
+      update_attribute(:confirmed_at, nil)
+    else
+      errors.add(:base, "This user can't be un-confirmed because he/she is currently responsible for one or more active contact types. Deactivate or re-assign the contact types and try again.")
+      false
+    end
   end
   
   def current_instance_preference?

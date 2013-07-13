@@ -19,6 +19,9 @@
 				<div class="six columns padded">
 					<%= link_to 'Manage Contacts', manage_contacts_path, class: "button round tiny" %>
 				</div>
+				<div class="six columns padded">
+					<%= link_to 'Create Unattributed Contact', new_contact_path, class: "button round tiny" %>
+				</div>
 			</div>
 			<% current_user.contacts.open.order(:created_at).each do |contact| %>
 				<div class="twelve columns <%= cycle('odd', 'even') %> padded">

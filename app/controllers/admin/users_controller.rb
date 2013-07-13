@@ -71,8 +71,12 @@ class Admin::UsersController < ApplicationController
   end
   
   def unconfirm
-    @user.unconfirm!
-    redirect_to :back, notice: "User has been unconfirmed and can no longer login"
+    if @user.unconfirm!
+      flash[:notice] = "The user has been successfully deactivated."
+    else
+      flash[:alert] = "The user could not be de-activated: #{@user.errors.full_messages.collect {|m| m}.to_sentence}"
+    end
+    redirect_to :back
   end
   
   private

@@ -1,9 +1,15 @@
-<h3 class="subheader">New Contact for <%= link_to @contactable.full_name, @contactable %></h3>
+<% if @contactable %>
+	<h3 class="subheader">New Contact for <%= link_to @contactable.full_name, @contactable %></h3>
+<% else %>
+	<h3 class="subheader">New Unattributed Contact</h3>
+<% end %>
 <div>
 	<%= form_tag filter_contacts_url, method: :get, remote: true do %>
 		<%= select_tag "contact_form_selector", options_from_collection_for_select(ContactForm.all, :id, :name), prompt: "-- select form --", class: "filter-contacts-by-form" %>
-		<%= hidden_field_tag :contactable_id, @contactable.id %>
-		<%= hidden_field_tag :contactable_type, @contactable.class.name %>
+		<% if @contactable %>
+			<%= hidden_field_tag :contactable_id, @contactable.id %>
+			<%= hidden_field_tag :contactable_type, @contactable.class.name %>
+		<% end %>
 	<% end %>
 </div>
 

@@ -10,19 +10,21 @@
 		<th>Auto-Notify</th>
 		<th>Quick Contact</th>
 		<th>Confidential</th>
+		<th>Status</th>
 	    <th></th>
 	  </tr>
   </thead>
   <tbody>
 	<% @contact_types.each do |contact_type| %>
 	  <tr>
-	    <td><%= contact_type.name %></td>
+	    <td><%= link_to contact_type.name, contact_type %></td>
 	    <td><%= contact_type.default_responsible_user.full_name %></td>
 	    <td><%= contact_type.default_responsible_ministry_id %></td>
 	    <td><%= check_box_tag 'hi', '1', contact_type.multiple_close, disabled: true %></td>
 	    <td><%= check_box_tag 'hi', '1', contact_type.notiphy, disabled: true %></td>
 	    <td><%= check_box_tag 'hi', '1', contact_type.quick_contact, disabled: true %></td>
 	    <td><%= check_box_tag 'hi', '1', contact_type.confidential, disabled: true %></td>
+		<td><%= ct_status_label(contact_type) %></td>
 	    <td><%= link_to '', edit_contact_type_path(contact_type), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
 	    	<%= link_to '', contact_type, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
 	   </td>
@@ -30,6 +32,8 @@
 	<% end %>
   </tbody>
 </table>
+
+<%= paginate @contact_types %>
 
 <br />
 

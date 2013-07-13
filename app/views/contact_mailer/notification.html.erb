@@ -8,6 +8,18 @@
     <p>
       Here's the contact detail:
     </p>
+	<p>
+		<label>Created By: </label><%= @contact.created_by %>
+	</p>
+	<p>
+		<label>Contact Type: </label><%= @contact.contact_type.name %>
+	</p>
+	<p>
+		<label>Attributed To: </label><%= @contact.stamp %>
+	</p>
+	<p>
+		<label>Comments: </label><%= @contact.comments %>
+	</p>
     <p>
       Please take appropriate action to follow-up and update Revolution! with your progress.
     </p>

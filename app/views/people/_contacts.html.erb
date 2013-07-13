@@ -4,7 +4,7 @@
 			<div class="row twelve columns">
 				<h5 class="subheader">
 					Contacts
-					<%= link_to '', new_contact_path(person_id: person.id), class: "general-enclosed foundicon-plus right", title: "add contact" %>
+					<%= link_to '', new_contact_path(contactable_id: person.id, contactable_type: 'Person'), class: "general-enclosed foundicon-plus right", title: "add contact" %>
 				</h5>
 			</div><hr>
 			<% if person.contacts.empty? %>

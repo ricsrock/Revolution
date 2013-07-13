@@ -1,8 +1,8 @@
 <%= four_up_two_up_widget_box("Contact For #{@contact.stamp}") do %>
 	<li class="field">Contact Type:</li>
 	<li><%= @contact.contact_type.name %></li>
-	<li class="field">Person:</li>
-	<li><%= link_to @contact.person.full_name, @contact.person rescue nil %></li>
+	<li class="field">Attribution:</li>
+	<li><%= attribution(@contact) %></li>
 	<li class="field">Responsible User:</li>
 	<li><%= @contact.responsible_user.full_name %></li>
 	<li class="field">Comments:</li>

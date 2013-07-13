@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130710143434) do
+ActiveRecord::Schema.define(version: 20130713152706) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -191,8 +191,10 @@ ActiveRecord::Schema.define(version: 20130710143434) do
     t.boolean  "quick_contact"
     t.integer  "default_follow_up_type_id"
     t.boolean  "confidential"
+    t.datetime "deactivated_at"
   end
 
+  add_index "contact_types", ["deactivated_at"], name: "index_contact_types_on_deactivated_at", using: :btree
   add_index "contact_types", ["default_follow_up_type_id"], name: "index_contact_types_on_default_follow_up_type_id", using: :btree
   add_index "contact_types", ["default_responsible_ministry_id"], name: "index_contact_types_on_default_responsible_ministry_id", using: :btree
   add_index "contact_types", ["default_responsible_user_id"], name: "index_contact_types_on_default_responsible_user_id", using: :btree

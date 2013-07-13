@@ -60,7 +60,12 @@ NewrevF::Application.routes.draw do
     end
   end
   
-  resources :contact_types
+  resources :contact_types do
+    member do
+      get 'deactivate'
+      get 'activate'
+    end
+  end
 
   resources :contacts do
     collection do

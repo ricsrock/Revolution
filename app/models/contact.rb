@@ -168,7 +168,11 @@ class Contact < ActiveRecord::Base
   end
   
   def notify_user
-    ContactMailer.delay.notification(self) if self.should_notify?
+    logger.info " ----------- notify_user was called --------------"
+    logger.info " ---------------- self#should_notify?: #{self.should_notify?} ---------------"
+    if self.should_notify?
+      ContactMailer.notification(self).deliver!
+    end
   end
   
 end

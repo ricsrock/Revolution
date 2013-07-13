@@ -28,9 +28,9 @@ class ContactsController < ApplicationController
     # @contact = Contact.new
     @contacts = []
     @clazz = params[:contactable_type]
-    @contactable = @clazz.constantize.find(params[:contactable_id])
-    ContactForm.first.contact_types.each do |contact_type|
-      @contacts << Contact.new(contactable_id: @contactable.id, contactable_type: @contactable.class.name, contact_type_id: contact_type.id)
+    @contactable = @clazz.constantize.find(params[:contactable_id]) if @clazz
+    ContactForm.first.contact_types.active.each do |contact_type|
+      @contacts << Contact.new(contactable_id: @contactable.try(:id), contactable_type: @contactable.class ? @contactable.class.name : false, contact_type_id: contact_type.id)
     end
   end
 
@@ -56,7 +56,7 @@ class ContactsController < ApplicationController
   
   def create_multiple
     @clazz = params[:contactable_type]
-    @contactable = @clazz.constantize.find(params[:contactable_id])
+    @contactable = @clazz.constantize.find(params[:contactable_id]) if @clazz
     number_saved = 0
     contacts = params[:contacts]
     contacts.each_value do |attributes|
@@ -68,7 +68,7 @@ class ContactsController < ApplicationController
       end
     end
     flash[:notice] = "#{number_saved} contacts were successfully created."
-    redirect_to @contactable
+    redirect_to @contactable || root_url
   end
   
   def mass_create
@@ -120,9 +120,9 @@ class ContactsController < ApplicationController
   def filter
     @contact_form = ContactForm.find(params[:contact_form_selector])
     @clazz = params[:contactable_type]
-    @contactable = @clazz.constantize.find(params[:contactable_id])
+    @contactable = @clazz.constantize.find(params[:contactable_id]) if @clazz
     @contacts = []
-    @contact_form.contact_types.each {|c| @contacts << Contact.new(contactable_id: @contactable.id, contactable_type: @contactable.class.name, contact_type_id: c.id)}
+    @contact_form.contact_types.active.each {|c| @contacts << Contact.new(contactable_id: @contactable.try(:id), contactable_type: @contactable.class.name, contact_type_id: c.id)}
   end
   
   def manage

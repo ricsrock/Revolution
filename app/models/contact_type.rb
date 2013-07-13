@@ -24,4 +24,28 @@ class ContactType < ActiveRecord::Base
     where(quick_contact: true).order(:name)
   end
   
+  def self.active
+    where('deactivated_at IS NULL')
+  end
+  
+  def deactivate!
+    self.update_attribute(:deactivated_at, Time.now)
+  end
+  
+  def activate!
+    self.update_attribute(:deactivated_at, nil)
+  end
+  
+  def status
+    if self.deactivated_at.blank?
+      "Active"
+    else 
+      "In-Active"
+    end
+  end
+  
+  def active?
+    self.deactivated_at.blank? ? true : false
+  end
+  
 end

@@ -17,6 +17,8 @@
 	<li><%= @user.confirmed_at %></li>
 	<li class="field">Security Role(s):</li>
 	<li><%= @user.roles.collect {|r| r.name}.to_sentence %></li>
+	<li class="field">Contact Types:</li>
+	<li><%= @user.responsible_contact_types.collect {|c| link_to(c.name, c)}.to_sentence.html_safe %></li>
 <% end  %>
   
 

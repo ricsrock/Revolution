@@ -2,7 +2,7 @@
 	<li class="field">Name:</li>
 	<li><%= @contact_type.name %></li>
 	<li class="field">Default Responsible User:</li>
-	<li><%= @contact_type.default_responsible_user.full_name %></li>
+	<li><%= link_to @contact_type.default_responsible_user.full_name, admin_user_path(@contact_type.default_responsible_user) %></li>
 	<li class="field">Default Responsible Ministry:</li>
 	<li><%= @contact_type.default_responsible_ministry_id %></li>
 	<li class="field">Multiple-Close?:</li>
@@ -13,11 +13,17 @@
 	<li><%= check_box_tag 'hi', '1', @contact_type.quick_contact, disabled: true %></li>
 	<li class="field">Default Follow-Up Type:</li>
 	<li><%= @contact_type.default_follow_up_type.name rescue nil %></li>
-	
+	<li class="field">Status:</li>
+	<li><%= ct_status_label(@contact_type) %></li>
 <% end  %>
   
 
 <div class="form-actions">
   <%= button_icon 'Index', contact_types_path, 'list', nil, 'small round'  %>
   <%= button_icon 'Edit', edit_contact_type_path(@contact_type), 'edit', nil, 'small round' %>
+  <% if @contact_type.active? %>
+	<%= link_to 'Deactivate', deactivate_contact_type_path(@contact_type), class: 'button round small alert' %>
+  <% else %>
+	<%= link_to 'Activate', activate_contact_type_path(@contact_type), class: 'button round small success' %>
+  <% end %>
 </div>

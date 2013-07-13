@@ -1,14 +1,16 @@
-<%= form_tag create_multiple_contacts_path(contactable_id: @contactable, contactable_type: @contactable.class.name), method: :post do %>
+<%= form_tag create_multiple_contacts_path(contactable_id: @contactable, contactable_type: @contactable ? @contactable.class.name : nil), method: :post do %>
 	<div id="form">	
 		<% @contacts.each do |contact| %>
 			<div class="row <%= cycle('odd', 'even') %> padded">
 				<%= simple_fields_for "contacts[#{contact.object_id}]", contact do |f| %>
 					<%= f.input :included, as: :boolean, label: contact.contact_type.name, wrapper_html: { class: "three columns padded" } %>
-					<%= f.input :responsible_user_id, collection: User.all, label_method: :full_name, prompt: "-- accept default --", wrapper_html: { class: "three columns padded" } %>
+					<%= f.input :responsible_user_id, collection: User.active.order(:last_name), label_method: :full_name, prompt: "-- accept default --", wrapper_html: { class: "three columns padded" } %>
 					<%= f.input :comments, wrapper_html: { class: "four columns padded" } %>
 					<%= f.input :contact_type_id, as: :hidden, input_html: { value: contact.contact_type.id } %>
-					<%= f.input :contactable_id, as: :hidden, input_html: { value: @contactable.id } %>
-					<%= f.input :contactable_type, as: :hidden, input_html: { value: @contactable.class.name } %>
+					<% if @contactable %>
+						<%= f.input :contactable_id, as: :hidden, input_html: { value: @contactable.id } %>
+						<%= f.input :contactable_type, as: :hidden, input_html: { value: @contactable.class.name } %>
+					<% end %>
 				<% end %>
 			</div>
 		<% end %>

@@ -34,6 +34,14 @@ module ContactsHelper
     else
       ''
     end 
+  end
+  
+  def attribution(contact)
+    if contact.contactable
+      link_to(contact.stamp, contact.contactable)
+    else
+      contact.stamp
+    end
   end  
   
 end

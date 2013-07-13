@@ -1,7 +1,7 @@
 class ContactTypesController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_contact_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact_type, only: [:show, :edit, :update, :destroy, :deactivate, :activate]
 
   # GET /contact_types
   # GET /contact_types.json
@@ -62,6 +62,16 @@ class ContactTypesController < ApplicationController
       format.html { redirect_to contact_types_url }
       format.json { head :no_content }
     end
+  end
+  
+  def deactivate
+    @contact_type.deactivate!
+    redirect_to :back
+  end
+  
+  def activate
+    @contact_type.activate!
+    redirect_to :back
   end
 
   private
