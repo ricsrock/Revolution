@@ -3,8 +3,14 @@
 		<div class="result-item">
 			<div><%= icon('user') %> <%= full_name(result) %> (#<%= result.id %>)</div>
 			<div><%= result.household.address1 rescue nil %>, <%= result.household.city rescue nil %></div>
-			<div><strong>Email: </strong><%= best_email(result) %></div>
-			<div><strong>Phone: </strong><%= best_phone(result) %></div>
+			<div><i class="icon-user"></i><strong> Email: </strong><%= best_email(result) %></div>
+			<div><i class="icon-user"></i><strong> Phone: </strong><%= best_phone(result) %></div>
+			<% if result.household.emails.first %>
+				<div><i class="icon-home"></i><strong> Email: </strong><%= result.household.first_email %></div>
+			<% end %>
+			<% if result.household.best_phone %>
+				<div><i class="icon-home"></i><strong> Phone: </strong><%= result.household.best_number %></div>
+			<% end %>
 		</div>
 	<% end %>
 	<div style="float:right;"><%= link_to 'add contact', new_contact_path(contactable_id: result.id, contactable_type: 'Person') %></div>
