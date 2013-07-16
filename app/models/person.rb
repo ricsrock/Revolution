@@ -156,6 +156,10 @@ class Person < ActiveRecord::Base
     attendances.where('events.date >= ?', Time.now.beginning_of_year.to_date).includes(meeting: {instance: :event}).references(:meetings, :instances, :events)
   end
   
+  def attended_groups
+    Group.where('attendances.person_id = ?', self.id).select('DISTINCT groups.*').includes(:meetings => :attendances).references(:meetings, :attendances)
+  end
+  
   def unique_events_this_year
     attended_events.where('events.date >= ?', Time.zone.now.beginning_of_year.to_date.to_s(:db))
   end

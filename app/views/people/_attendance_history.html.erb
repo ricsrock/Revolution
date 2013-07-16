@@ -1,0 +1,43 @@
+&nbsp;
+<div class="row">
+	<div class="twelve columns">
+		<div class="eleven columns centered">
+			<dl class="sub-nav">
+				<dd>Sort By:</dd>
+				<dd data-no-turbolink><%= sort_link(@att_search, :meeting_instance_event_date, {}, remote: true) %></dd>
+				<dd data-no-turbolink><%= sort_link(@att_search, :meeting_group_name, {}, remote: true) %></dd>
+			</dl>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="twelve columns">
+		<div class="eleven columns centered">
+			<%= search_form_for @att_search, url: person_path(@person), builder: SimpleForm::FormBuilder, remote: true do |f| %>
+				<%= f.input :meeting_group_id_eq, collection: @person.attended_groups.order(:name), label: 'Group Name', wrapper_html: { class: 'four columns' } %>
+				<%= f.submit "Filter", class: 'button round small' %>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<hr>
+
+<% @att_result.each do |attendance| %>
+	<div class="row">
+		<div class="twelve columns">
+			<div class="eleven columns centered">
+				<div>
+					<ul class="block-grid four-up mobile-two-up">
+						<li><%= attendance.date %></li>
+						<li><%= attendance.event.name rescue nil %></li>
+						<li><%= attendance.instance.name rescue nil %></li>
+						<li><%= attendance.group.name rescue nil %></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>
+<%= paginate @att_result, url: filter_attendances_people_path, remote: true %>

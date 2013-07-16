@@ -15,6 +15,9 @@ class PeopleController < ApplicationController
   # GET /people/1
   # GET /people/1.json
   def show
+    @att_search = @person.attendances.page(params[:page]).search(params[:q])
+    @att_search.sorts = 'meeting_instance_event_date desc' if @att_search.sorts.empty?
+    @att_result = @att_search.result(distinct: true)
   end
 
   # GET /people/new
@@ -150,6 +153,10 @@ class PeopleController < ApplicationController
     card = @person.to_vcard
     filename = @person.full_name.gsub(" ", "").underscore + ".vcf"
     send_data @person.to_vcard, filename: "filename.vcf", disposition: "attachment"
+  end
+  
+  def filter_attendances
+    
   end
   
   private

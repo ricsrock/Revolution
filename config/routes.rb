@@ -269,6 +269,7 @@ NewrevF::Application.routes.draw do
       get 'choose_household'
       get 'search_person'
       get 'choose_person'
+      get 'filter_attendances'
     end
   end
 
