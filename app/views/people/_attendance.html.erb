@@ -7,9 +7,9 @@
 						<div class="panel">
 							<ul class="block-grid four-up mobile-two-up">
 								<li><%= attendance.date %></li>
-								<li><%= attendance.event.name %></li>
-								<li><%= attendance.instance.name %></li>
-								<li><%= attendance.group.name %></li>
+								<li><%= attendance.event.name rescue nil %></li>
+								<li><%= attendance.instance.name rescue nil %></li>
+								<li><%= attendance.group.name rescue nil %></li>
 							</ul>
 						</div>
 					</div>
