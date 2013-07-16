@@ -59,6 +59,18 @@ class Attendance < ActiveRecord::Base
     meeting.instance.event.date
   end
   
+  def event
+    meeting.instance.event
+  end
+  
+  def instance
+    meeting.instance
+  end
+  
+  def group
+    meeting.group
+  end
+  
   def set_call_number
     self.call_number = Attendance.do_call_number
     until Attendance.find_by_call_number_this_event(call_number, self).nil?

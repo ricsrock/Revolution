@@ -4,6 +4,7 @@ class Instance < ActiveRecord::Base
   
   has_many :meetings
   has_many :attendances, through: :meetings
+  has_many :uniq_people, -> { uniq }, through: :attendances, source: :person
   
   validates :instance_type_id, :event_id, :presence => true
   
@@ -58,6 +59,10 @@ class Instance < ActiveRecord::Base
   
   def type_id
     instance_type.type_id
+  end
+  
+  def name
+    instance_type.name
   end
   
 

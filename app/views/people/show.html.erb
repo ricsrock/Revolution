@@ -69,7 +69,7 @@
   <dd class="active"><a href="#communication">Communication</a></dd>
   <dd><a href="#tags">Tags</a></dd>
   <dd><a href="#contacts">Contacts</a></dd>
-  <dd><a href="#simple3">Simple Tab 3</a></dd>
+  <dd><a href="#attendance">Attendance</a></dd>
   <dd><a href="#simple4">Simple Tab 4</a></dd>
 </dl>
 <ul class="tabs-content">
@@ -86,8 +86,10 @@
 		<%= render :partial => 'contacts', locals: {person: @person} %>
 	</div>
   </li>
-  <li id="simple3Tab">
-	<div>This is simple tab 3s content.</div>
+  <li id="attendanceTab">
+	<div id="contacts">
+		<%= render partial: "attendance", locals: { person: @person } %>
+	</div>
   </li>
   <li id="simple4Tab">
 	<div>This is simple tab 4s content.</div>

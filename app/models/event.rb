@@ -4,6 +4,7 @@ class Event < ActiveRecord::Base
   has_many :instances, dependent: :destroy
   has_many :meetings, through: :instances
   has_many :attendances, through: :meetings
+  has_many :uniq_people, -> { uniq }, through: :attendances, source: :person
   
   validates :event_type_id, :date, :presence => true
   validates :date, uniqueness: { scope: :event_type_id, message: "You already have an event of this type on this date." }

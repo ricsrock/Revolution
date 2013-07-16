@@ -214,7 +214,7 @@ class ContactsController < ApplicationController
     else
       flash[:alert] = "The contact could not be created. Try again."
     end
-    redirect_to person_path(@contact.person)
+    redirect_to person_path(@contact.contactable)
   end
 
   private
