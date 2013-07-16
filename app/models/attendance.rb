@@ -56,19 +56,19 @@ class Attendance < ActiveRecord::Base
   end
   
   def date
-    meeting.instance.event.date
+    meeting.try(:instance).try(:event).try(:date)
   end
   
   def event
-    meeting.instance.event
+    meeting.try(:instance).try(:event)
   end
   
   def instance
-    meeting.instance
+    meeting.try(:instance)
   end
   
   def group
-    meeting.group
+    meeting.try(:group)
   end
   
   def set_call_number
