@@ -3,6 +3,7 @@
 <%= simple_form_for @contact, url: create_quick_contacts_path, method: :post do |f| %>
 	<%= f.input :comments %>
 	<%= f.input :contact_type_id, as: :hidden, input_html: { value: @contact_type.id } %>
-	<%= f.input :person_id, as: :hidden, input_html: { value: @person.id } %>
+	<%= f.input :contactable_id, as: :hidden, input_html: { value: @person.id } %>
+	<%= f.input :contactable_type, as: :hidden, input_html: { value: 'Person' } %>
 	<%= f.submit nil, class: "button radius" %>
 <% end %>
