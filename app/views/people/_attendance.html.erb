@@ -1,0 +1,20 @@
+<%= widget_box 'Attendance History' do %>
+	<div id="widget-content">
+		<% @person.attendances.each do |attendance| %>
+			<div class="row">
+				<div class="twelve columns">
+					<div class="eleven columns centered">
+						<div class="panel">
+							<ul class="block-grid four-up mobile-two-up">
+								<li><%= attendance.date %></li>
+								<li><%= attendance.event.name %></li>
+								<li><%= attendance.instance.name %></li>
+								<li><%= attendance.group.name %></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+	</div>
+<% end %>
