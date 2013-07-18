@@ -11,6 +11,12 @@
 		<div class="twelve columns">
 			<h5 class="subheader"><%= link_to checkin_group.name, checkin_group.becomes(Group) %></h5>
 		</div>
+		<div class="twelve columns">
+			<dl class='sub-nav'>
+				<dd>Suppress Stickers: <%= check_box_tag 'hi', checkin_group.suppress_stickers, checkin_group.suppress_stickers, disabled: true %></dd>
+				<dd>Default Room: <%= checkin_group.default_room.name %></dd>
+			</dl>
+		</div>
 		&nbsp;
 	</div>
 <% end %>
