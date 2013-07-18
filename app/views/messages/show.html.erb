@@ -6,7 +6,7 @@
 	<li class="field">Body:</li>
 	<li><%= @message.body %></li>
 	<li class="field">Sender:</li>
-	<li><%= @message.from_person.full_name %></li>
+	<li><%= @message.from_person.full_name rescue nil %></li>
 <% end  %>
   
 
@@ -18,7 +18,7 @@
 <div id="thread row">
 	<% @message.descendants.each do |message| %>
 		<div class="panel radius callout offset-by-<%= translate_number(message.ancestry_depth.to_s) %>">
-			<%= message.from_person.full_name %> said:<br>
+			<%= message.from_person.full_name rescue nil %> said:<br>
 			"<%= message.body %>"<br>
 			To: <%= message.recipients.collect {|r| r.person.full_name}.to_sentence %> <%= message.ancestry_depth %>
 		</div>
