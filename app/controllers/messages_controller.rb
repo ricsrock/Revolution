@@ -93,7 +93,7 @@ class MessagesController < ApplicationController
     # see if this text is parse-able...
     @body = params[:Body]
     if @body.downcase.strip.starts_with?('checkin')
-      session[:conversation_id] = params[:From]
+      session[:conversation_id] #||= params[:From]
       m = params[:Body]
       s = m.split(' ')
       data = s.split('-')
