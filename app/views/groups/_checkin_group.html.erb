@@ -13,6 +13,8 @@
 	<li><%= @group.staff_ratio %></li>
 	<li class="field">Meeting Is Called:</li>
 	<li><%= @group.meeting_is_called %></li>
+	<li class="field">Suppress Stickers:</li>
+	<li><%= check_box_tag 'hi', @group.suppress_stickers, @group.suppress_stickers, disabled: true %></li>
 	<%= render partial: 'admin_box', locals: { group: @group } %>
 <% end  %>
   

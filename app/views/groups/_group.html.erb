@@ -13,8 +13,6 @@
 		<li><%= @group.staff_ratio %></li>
 		<li class="field">Meeting Is Called:</li>
 		<li><%= @group.meeting_is_called %></li>
-		<li class="field">Checkin Group?:</li>
-		<li><%= check_box_tag @group, @group.checkin_group, @group.checkin_group, disabled: true %></li>
 		<%= render partial: 'admin_box', locals: { group: @group } %>
 <% end  %>
   

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130713152706) do
+ActiveRecord::Schema.define(version: 20130718183402) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -475,6 +475,7 @@ ActiveRecord::Schema.define(version: 20130713152706) do
     t.string   "type"
     t.integer  "cadence_id"
     t.text     "description"
+    t.boolean  "suppress_stickers",           default: false
   end
 
   add_index "groups", ["active"], name: "index_groups_on_active", using: :btree

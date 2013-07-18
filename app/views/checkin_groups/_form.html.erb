@@ -4,5 +4,7 @@
 	<%= f.input :default_room_id, collection: Room.all.order(:name) %>
 	<%= f.input :meeting_is_called %>
 	<%= f.input :parent_id, :collection => nested_set_options(Group, @group) {|i| "#{'-' * i.level} #{i.name}" }, :label => "Select Parent Group" %>
+	<%= f.input :suppress_stickers, label: " Suppress Stickers? If checked, checkin stickers will not be printed for this group." %>
+	<br><br>
 	<%= f.submit class: 'button radius' %>
 <% end %>
