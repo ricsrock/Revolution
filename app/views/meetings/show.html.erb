@@ -2,7 +2,7 @@
 	<li class="field">Instance:</li>
 	<li><%= link_to @meeting.instance.instance_type.name, @meeting.instance %></li>
 	<li class="field">Group:</li>
-	<li><%= @meeting.group.name %></li>
+	<li><%= link_to @meeting.group.name, group_path(@meeting.group) %></li>
 	<li class="field">Room:</li>
 	<li><%= @meeting.room.name %></li>
 	<li class="field">Real Date:</li>
