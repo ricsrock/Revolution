@@ -93,7 +93,7 @@ class MessagesController < ApplicationController
     # see if this text is parse-able...
     @body = params[:Body]
     case
-    when @body.starts_with?('checkmein')
+    when @body.downcase.starts_with?('checkmein')
       session[:conversation_id]
       m = params[:Body]
       s = m.split(' ')
