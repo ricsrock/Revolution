@@ -92,12 +92,12 @@ class MessagesController < ApplicationController
     
     # see if this text is parse-able...
     @body = params[:Body]
-    if @body.downcase.starts_with?('checkmein')
-      session[:conversation_id]
+    if @body.downcase.strip.starts_with?('checkin')
+      session[:conversation_id] = params[:From]
       m = params[:Body]
       s = m.split(' ')
       data = s.split('-')
-      send_response(params[:From], "hi there") if data.size == 2
+      send_response(params[:From], "hi there, I see that you want to be checked in") if data.size == 2
     else
       # not parse-able. Assume it's a response to a previous message...
       logger.info "conversation id: #{session[:conversation_id]}"
@@ -114,7 +114,7 @@ class MessagesController < ApplicationController
         child_message.recipients << Recipient.create(person_id: parent_message.from_person.id, number: parent_message.sender)
       
         #notify the sender of the parent message...
-        send_notification(parent_message.sender, params[:Body], child_person)
+        send_notification(parent_message.sender, child_message.body, child_person)
       end
     end
   end
