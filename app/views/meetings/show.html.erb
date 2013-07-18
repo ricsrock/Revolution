@@ -20,64 +20,49 @@
 </div>
 <br><br>
 
-<%= widget_box("Currently Checked In (#{@meeting.current_attendances.length})") do %>
+<%= widget_box("Meeting Activity") do %>
 	<div class="widget-content">
-		<table class="twelve responsive">
-			<thead>
-		    <tr>
-		      <th>Name</th>
-			  <th></th>
-		    </tr>
-		  </thead>
-		  <tbody>
-			<% @meeting.current_attendances.each do |a| %>
-				<tr>
-					<td><%= a.person.full_name %></td>
-					<td>
-						<%= link_to 'checkout', checkout_attendance_path(a), class: "button round tiny" %>
-					</td>
-				</tr>
-			<% end %>
-		  </tbody>
-		</table>
-		<div class="row">
-			<div class="twelve columns">
-				<%= link_to "Checkout All", checkout_all_meeting_path(@meeting), class: "button radius small right" %>
+		<div class="twelve columns">
+			<div class="six columns">
+				<h5 class="subheader"><strong>Currently Checked-In: <%= @meeting.current_attendances.size %></strong></h5>
+			</div>
+			<div class="six columns">
+				<h5 class="subheader"><strong>Meeting History: <%= @meeting.attendances.size %></strong></h5>
 			</div>
 		</div>
-	</div>
-<% end %>
-
-<%= widget_box("Meeting History (#{@meeting.attendances.length})") do %>
-	<div class="widget-content">
-		<table class="twelve responsive">
-			<thead>
-		    <tr>
-		      <th>Name</th>
-			  <th>Checked In At</th>
-		      <th>Checked Out At</th>
-			  <th></th>
-		    </tr>
-		  </thead>
-		  <tbody>
-			<% @meeting.attendances.each do |a| %>
-				<tr>
-					<td><%= a.person.full_name %></td>
-					<td><%= a.checkin_time %></td>
-					<td><%= a.checkout_time %></td>
-					<td>
-						<%= link_to 'undo', attendance_path(a), method: :delete, confirm: "Are you sure you want to permanently delete this checkin?",
-						 					class: "button round tiny" %>
-						
-					</td>
-				</tr>
-			<% end %>
-		  </tbody>
-		</table>
-		<div class="row">
-			<div class="twelve columns">
+		<% @meeting.attendances.includes(:person).order('people.last_name, people.first_name asc').each do |attendance| %>
+			<div class="twelve columns <%= cycle('odd-alt', 'even-alt') %> padded">
+				<div class="three columns padded">
+					<%= attendance.person.full_name %>
+				</div>
+				<div class="three columns padded">
+					<%= attendance.checkin_time %>
+				</div>
+				<div class="three columns padded">
+					<%= attendance.checkout_time %>
+				</div>
+				<div class="two columns padded">
+					<%= link_to 'checkout', checkout_attendance_path(attendance), class: "button round tiny" unless attendance.checked_out? %>
+				</div>	
+				<div class="one columns padded">
+					<%= link_to 'undo', attendance_path(attendance), method: :delete, confirm: "Are you sure you want to permanently delete this checkin?",
+					 					class: "button round tiny" %>
+					
+				</div>
+				
+			</div>
+		<% end %>
+		<div class="twelve columns padded">
+			<div class="eight columns padded">
+				&nbsp;
+			</div>
+			<div class="two columns padded">
+				<%= link_to "Checkout All", checkout_all_meeting_path(@meeting), class: "button radius small right" %>
+			</div>
+			<div class="two columns padded">
 				<%= link_to "Undo All", undo_all_meeting_path(@meeting), confirm: "Are you sure? This action will destroy all attendance record for this meeting... as if no one ever showed up. Click 'Cancel' to change your mind.", class: "button radius small right" %>
 			</div>
 		</div>
+		&nbsp;
 	</div>
 <% end %>

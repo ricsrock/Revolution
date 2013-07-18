@@ -189,6 +189,14 @@ ul.unstyled {
 	background-color: transparent;
 }
 
+.odd-alt {
+	background-color: #F2F2F2;
+}
+
+.even-alt {
+	background-color: #FFFEFE;
+}
+
 .checkin-row {
 	padding: 3px;
 	border-radius: 4px;

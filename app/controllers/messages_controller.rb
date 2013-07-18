@@ -89,21 +89,34 @@ class MessagesController < ApplicationController
     # session["counter"] += 1
     # puts twiml.text
     # send_reply(params[:From], message)
-    logger.info "conversation id: #{session[:conversation_id]}"
-    child_number = params[:From]
-    parent_message = Message.where('recipients.number LIKE ?', child_number).joins(:recipients).order('messages.created_at DESC').first
-    if parent_message
-      session[:conversation_id] ||= parent_message.id
-      #message_attributes = {from: params[:From], body: params[:Body]}
-      # reply_to.add_child_and_notify(message_attributes)
-      child_message = parent_message.children.create(from: child_number, body: params[:Body])
-      #set recipients of child_message... sender of parent_message
-      #number = child_message.sender
-      child_person = Person.where('phones.number = ?', child_number[-10..-1]).joins(:phones).first
-      child_message.recipients << Recipient.create(person_id: parent_message.from_person.id, number: parent_message.sender)
+    
+    # see if this text is parse-able...
+    @body = params[:Body]
+    case
+    when @body.starts_with?('checkmein')
+      session[:conversation_id]
+      m = params[:Body]
+      s = m.split(' ')
+      data = s.split('-')
+      send_response(params[:From], "hi there") if data.size == 2
+    else
+      # not parse-able. Assume it's a response to a previous message...
+      logger.info "conversation id: #{session[:conversation_id]}"
+      child_number = params[:From]
+      parent_message = Message.where('recipients.number LIKE ?', child_number).joins(:recipients).order('messages.created_at DESC').first
+      if parent_message
+        session[:conversation_id] ||= parent_message.id
+        #message_attributes = {from: params[:From], body: params[:Body]}
+        # reply_to.add_child_and_notify(message_attributes)
+        child_message = parent_message.children.create(from: child_number, body: params[:Body])
+        #set recipients of child_message... sender of parent_message
+        #number = child_message.sender
+        child_person = Person.where('phones.number = ?', child_number[-10..-1]).joins(:phones).first
+        child_message.recipients << Recipient.create(person_id: parent_message.from_person.id, number: parent_message.sender)
       
-      #notify the sender of the parent message...
-      send_notification(parent_message.sender, child_message.body, child_person)
+        #notify the sender of the parent message...
+        send_notification(parent_message.sender, child_message.body, child_person)
+      end
     end
   end
 
@@ -137,6 +150,18 @@ class MessagesController < ApplicationController
             :body => message.body
           )
         end
+    end
+    
+    def send_response(to, body)
+      @account_sid = CONFIG[:twilio_account_sid]
+      @auth_token = CONFIG[:twilio_auth_token]
+      @client = Twilio::REST::Client.new @account_sid, @auth_token
+      from = "+13183034399"
+      @client.account.sms.messages.create(
+          :from => from,
+          :to => to,
+          :body => body
+        )
     end
     
     def send_notification(to, body, from_person)

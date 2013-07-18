@@ -55,6 +55,10 @@ class Attendance < ActiveRecord::Base
     self.update_attribute(:checkout_time, Time.now)
   end
   
+  def checked_out?
+    self.checkout_time.present? ? true : false
+  end
+  
   def date
     meeting.try(:instance).try(:event).try(:date)
   end
