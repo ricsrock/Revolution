@@ -19,16 +19,39 @@ class Instance < ActiveRecord::Base
     end
   end
   
-  def self.current # you can be 30 minutes late and still be checked into first service... after that, you get checked into 2nd service
+  # usd by person#checkin to choose what servuice instance to check people into
+  # should return nil if there's no event today or in the future!
+  # you can be 30 minutes late and still be checked into first service... after that, you get checked into 2nd service or whatever service is last on the current date
+  # if an instance_id option is provided to person#checkin, that instance is used and this logic is ignored
+  # def self.current 
+  #   # find the event that is today or the next event in time...
+  #   event = Event.where('date >= ?', Time.zone.now.to_date.to_s(:db)).order('date ASC').first
+  #   instance = event.instances.select {|i| i.starts_at >= Time.zone.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
+  #   if instance
+  #     instance
+  #   else
+  #     event = Event.where('date > ?', Time.zone.now.to_date.to_s(:db)).order('date ASC').first
+  #     instance = event.instances.select {|i| i.starts_at >= Time.zone.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
+  #   end
+  # end
+  
+  def self.current 
+    # find the event that is today or the next event in time...
     event = Event.where('date >= ?', Time.zone.now.to_date.to_s(:db)).order('date ASC').first
-    instance = event.instances.select {|i| i.starts_at >= Time.zone.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
-    if instance
-      instance
-    else
-      event = Event.where('date > ?', Time.zone.now.to_date.to_s(:db)).order('date ASC').first
+    if event
       instance = event.instances.select {|i| i.starts_at >= Time.zone.now - 30.minutes}.sort_by(&:starts_at).first # this needs to set to the instance that starts next or most recently
+      if instance
+        instance
+      else
+        # this needs to set to the instance that starts last for the found event
+        instance = event.instances.sort_by(&:starts_at).last
+        instance
+      end
+    else
+      nil
     end
   end
+  
   
   def self.future
     Instance.where('events.date >= ?', Time.zone.today.to_date.to_s(:db)).includes(:event, :instance_type).references(:events, :instance_types).order('events.date, instance_types.name ASC')

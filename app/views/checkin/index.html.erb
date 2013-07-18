@@ -38,10 +38,11 @@
 		<% end %>
 		</div>
 	</div>
-<% end %>
 
-<% content_for :sidebar do -%>
-	<div id="instance-overview">
-		<%= render :partial => 'instance_overview' %>
-	</div>
-<% end -%>
+	<% content_for :sidebar do -%>
+		<div id="instance-overview">
+			<%= render :partial => 'instance_overview' %>
+		</div>
+	<% end -%>
+
+<% end %>

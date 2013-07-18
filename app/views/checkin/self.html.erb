@@ -15,6 +15,14 @@
 				</div>
 			</div>
 		</div>
+	<% elsif Instance.current.nil? %>
+		<div class="row">
+			<div class="twelve columns">
+				<div class='alert-box alert'>
+					There is no current event to check people into. Please create an event with one or more service instances.
+				</div>
+			</div>
+		</div>
 	<% end %>
 	<div class="twelve columns">
 		<div class="six columns" id="search_text">
