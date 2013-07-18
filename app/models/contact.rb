@@ -24,7 +24,7 @@ class Contact < ActiveRecord::Base
   
   attr_accessor :included
   
-  delegate :first_name, :last_name, :address1, :address2, :city, :state, :zip, :best_number, :first_email, :last_first_name, :full_name, to: :contactable, allow_nil: true
+  delegate :first_name, :last_name, :address1, :address2, :city, :state, :zip, :best_number, :first_email, :best_email, :last_first_name, :full_name, to: :contactable, allow_nil: true
   
   ransacker :range_selector do |parent|
     nil
@@ -156,7 +156,7 @@ class Contact < ActiveRecord::Base
     attributes << self.state
     attributes << self.zip
     attributes << self.best_number
-    attributes << self.first_email
+    attributes << self.best_email
     attributes << self.contact_type.name
     attributes << self.comments
     attributes << self.created_by

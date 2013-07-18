@@ -65,6 +65,10 @@ class Household < ActiveRecord::Base
     self.emails.first ? self.emails.first.email : "no email"
   end
   
+  def best_email
+    first_email
+  end
+  
   def responsible_people
     self.people.where('people.household_position LIKE ? OR people.household_position LIKE ?', "Primary Contact", "Spouse")
       .order(:household_position).collect {|p| p.family_name}.to_sentence

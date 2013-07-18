@@ -20,8 +20,17 @@
 				<div class="one columns">
 					<%= check_box_tag 'selected_ids[]', enrollment.person.id %>
 				</div>
-				<div class="eleven columns">
+				<div class="four columns">
 					<%= enrollment.person.full_name rescue nil %>
+				</div>
+				<div class="one columns">
+					Age: <strong><%= enrollment.person.age %></strong>
+				</div>
+				<div class="two columns">
+					DOB: <%= enrollment.person.birthdate %>
+				</div>
+				<div class="four columns">
+					Age On Sept. 30, <%= Date.today.year %>: <strong><%= enrollment.person.age_on(Date.today.change(day: 30, month: 9, year: Date.today.year)) %></strong>
 				</div>
 			</div>
 		<% end %>

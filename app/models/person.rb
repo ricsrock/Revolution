@@ -145,10 +145,21 @@ class Person < ActiveRecord::Base
   
   def age
     unless self.birthdate.blank?
-      age = (Time.now - self.birthdate.to_time)/1.year
-      age.floor
+      dob = self.birthdate.to_date
+      now = Time.zone.now.to_date
+      now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
     else
        0
+    end
+  end
+  
+  def age_on(date)
+    unless self.birthdate.blank?
+      now = date.to_date
+      dob = self.birthdate.to_date
+      now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    else
+      0
     end
   end
   
@@ -229,7 +240,7 @@ class Person < ActiveRecord::Base
   end
   
   def best_number
-    self.mobile_number ? mobile_number : self.phones.present? ? self.phones.first.number : 'no phone'
+    self.mobile_number ? mobile_number : self.phones.present? ? self.phones.first.number : self.household.phones.present? ? self.household.best_number : 'no phone'
   end
   
   def no_mobile_number?
@@ -245,7 +256,7 @@ class Person < ActiveRecord::Base
   end
   
   def best_email
-    self.primary_email ? primary_email : self.any_email ? self.any_email : false
+    self.primary_email ? primary_email : self.any_email ? self.any_email : self.household.first_email
   end
   
   def first_email
