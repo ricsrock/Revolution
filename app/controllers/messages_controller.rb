@@ -114,7 +114,7 @@ class MessagesController < ApplicationController
         child_message.recipients << Recipient.create(person_id: parent_message.from_person.id, number: parent_message.sender)
       
         #notify the sender of the parent message...
-        send_notification(parent_message.sender, child_message.body, child_person)
+        send_notification(parent_message.sender, params[:Body], child_person)
       end
     end
   end
