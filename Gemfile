@@ -54,7 +54,7 @@ gem 'resque', :require => "resque/server"
 gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'rmagick', '2.13.2'#, :path => "vendor/gems/rmagick-2.13.2"
 gem 'tunnlr_connector', :require => "tunnlr"
-gem 'twilio-ruby'
+gem 'twilio-ruby', '~> 3.10.0'
 gem 'vpim-rails'
 gem "exception_notification", github: "smartinez87/exception_notification", branch: "master"
 
