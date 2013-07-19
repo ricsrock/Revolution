@@ -93,8 +93,8 @@ class MessagesController < ApplicationController
     # see if this text is parse-able...
     @body = params[:Body]
     if @body.downcase.strip.starts_with?('checkin')
-      # hey! we've got a parse-able text! Someone wants to checkin!
-      session[:conversation_id] #||= params[:From]
+      # hey! We've got a parse-able text! Someone wants to checkin!
+      session[:conversation_id] ||= params[:From]
       m = params[:Body]
       s = m.split(' ')
       data = s.last.split('-')
