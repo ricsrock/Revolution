@@ -100,7 +100,12 @@ class MessagesController < ApplicationController
       data = s.last.split('-')
       meeting = Meeting.find_by_id(data.last)
       if meeting
-        body = "The meeting is: #{meeting.group.name}, #{meeting.date}."
+        person = Person.where('phones.number = ?', params[:From][-10..-1]).joins(:phones).first
+        if person
+          body = "The meeting is: #{meeting.group.name}, #{meeting.date}, and the person is: #{person.full_name}"
+        else
+          body = "The meeting is: #{meeting.group.name}, #{meeting.date}, but we couldn't find a person matching your phone number."
+        end
       else
         body = "It looks like you want to checkin to a meeting, but we couldn't find a meeting to match your message content."
       end
