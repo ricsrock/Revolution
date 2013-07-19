@@ -24,5 +24,10 @@ class Meeting < ActiveRecord::Base
    def date
      instance.try(:event).try(:date)
    end
+   
+   # Used for text checkin. Can only text-checkin to a meeting within a 2-day date window. 
+   def current?
+     self.date && (self.date >= Time.zone.now.to_date - 1.day) && (self.date <= Time.zone.now.to_date + 1.day)
+   end
 
 end

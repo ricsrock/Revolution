@@ -96,10 +96,12 @@ class MessagesController < ApplicationController
       # hey! We've got a parse-able text! Someone wants to checkin!
       session[:conversation_id] ||= params[:From]
       m = params[:Body]
-      s = m.split(' ')
-      data = s.last.split('-')
-      meeting = Meeting.find_by_id(data.last)
-      if meeting
+      #s = m.split(' ')
+      data = m.split(' ')
+      meeting = Meeting.find_by_id(data.last.strip)
+      # meeting#current specifies that the meeting must have a date that is within a 2-day window of now.
+      # You can't text-checkin into far-past or far-future events.
+      if meeting && meeting.current?
         person = Person.where('phones.number = ?', params[:From][-10..-1]).joins(:phones).first
         if person
           if person.enrolled_in_group?(meeting.group)
@@ -111,7 +113,7 @@ class MessagesController < ApplicationController
           body = "Meeting: #{meeting.group.name}, #{meeting.date}, but we couldn't find a person matching your phone number."
         end
       else
-        body = "It looks like you want to checkin to a meeting, but we couldn't find a meeting to match your message content."
+        body = "It looks like you want to checkin to a meeting, but we couldn't find a valid meeting to match your message content."
       end
       send_response(params[:From], "Hi there! #{body}")
       
