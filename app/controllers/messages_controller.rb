@@ -113,7 +113,7 @@ class MessagesController < ApplicationController
       else
         body = "It looks like you want to checkin to a meeting, but we couldn't find a meeting to match your message content."
       end
-      send_response(params[:From], "hi there, I see that you want to be checked in: #{body}")
+      send_response(params[:From], "Hi there! #{body}")
       
     # nothing parse-able...
     else
