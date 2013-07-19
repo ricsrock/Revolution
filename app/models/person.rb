@@ -545,6 +545,10 @@ class Person < ActiveRecord::Base
     end
   end
   
+  def enrolled_in_group?(group)
+    self.groups.collect {|g| g.id}.include?(group.id)
+  end
+  
   def update_enrollment_for_group_id(group_id)
     group = Group.find(group_id)
     if attendances_for_group_id(group.id).empty?
