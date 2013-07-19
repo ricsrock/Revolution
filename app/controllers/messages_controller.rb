@@ -96,8 +96,8 @@ class MessagesController < ApplicationController
       session[:conversation_id] #||= params[:From]
       m = params[:Body]
       s = m.split(' ')
-      data = s.split('-')
-      send_response('+13186555808', "hi there, I see that you want to be checked in: #{params[:From]}")
+      data = s.last.split('-')
+      send_response('+13186555808', "hi there, I see that you want to be checked in: #{data}")
     else
       # not parse-able. Assume it's a response to a previous message...
       logger.info "conversation id: #{session[:conversation_id]}"
