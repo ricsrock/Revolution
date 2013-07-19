@@ -49,7 +49,7 @@ class Meeting < ActiveRecord::Base
    
    # Used for text checkin. Can only text-checkin to a meeting within a 2-day date window. 
    def current?
-     self.date && (self.date >= Time.zone.now.to_date - 1.day) && (self.date <= Time.zone.now.to_date + 1.day)
+     self.date && (self.date >= Time.zone.now.to_date - 1.day) && (self.date <= Time.zone.now.to_date + 1.day) && self.checkin_code.present?
    end
    
    def status
