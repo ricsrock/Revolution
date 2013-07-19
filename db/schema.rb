@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130718183402) do
+ActiveRecord::Schema.define(version: 20130719202451) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -658,8 +658,10 @@ ActiveRecord::Schema.define(version: 20130718183402) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "num_marked"
+    t.string   "checkin_code"
   end
 
+  add_index "meetings", ["checkin_code"], name: "index_meetings_on_checkin_code", using: :btree
   add_index "meetings", ["deleted_at"], name: "index_meetings_on_deleted_at", using: :btree
   add_index "meetings", ["group_id"], name: "index_meetings_on_group_id", using: :btree
   add_index "meetings", ["instance_id"], name: "index_meetings_on_instance_id", using: :btree

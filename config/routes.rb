@@ -174,6 +174,7 @@ NewrevF::Application.routes.draw do
     member do
       get 'checkout_all'
       get 'undo_all'
+      get 'set_checkin_code'
     end
   end
   

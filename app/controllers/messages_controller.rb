@@ -98,7 +98,7 @@ class MessagesController < ApplicationController
       m = params[:Body]
       #s = m.split(' ')
       data = m.split(' ')
-      meeting = Meeting.find_by_id(data.last.strip)
+      meeting = Meeting.find_by_checkin_code(data.last.strip)
       # meeting#current specifies that the meeting must have a date that is within a 2-day window of now.
       # You can't text-checkin into far-past or far-future events.
       if meeting && meeting.current?

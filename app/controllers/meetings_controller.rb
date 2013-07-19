@@ -1,7 +1,7 @@
 class MeetingsController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_meeting, only: [:show, :edit, :update, :destroy, :checkout_all, :undo_all]
+  before_action :set_meeting, only: [:show, :edit, :update, :destroy, :checkout_all, :undo_all, :set_checkin_code]
   
   respond_to :html, :js
 
@@ -75,6 +75,16 @@ class MeetingsController < ApplicationController
   def undo_all
     @meeting.attendances.destroy_all
     flash[:notice] = "All Checkins have been deleted... as if no one ever showed up."
+    redirect_to @meeting
+  end
+  
+  def set_checkin_code
+    @meeting.set_checkin_code
+    if @meeting.save
+      flash[:notice] = "Checkin code has been set."
+    else
+      flash[:error] = "Could not set checkin code. Try again."
+    end
     redirect_to @meeting
   end
 

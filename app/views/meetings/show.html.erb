@@ -17,12 +17,15 @@
 	<li><%= @meeting.num_marked %></li>
 	<li class="field">Status for Text-Checkin:</li>
 	<li><%= status_label(@meeting) %></li>
+	<li class="field">Checkin Code:</li>
+	<li><%= @meeting.checkin_code %></li>
 <% end  %>
   
 
 <div class="form-actions">
   <%= button_icon 'Index', meetings_path, 'list', nil, 'small round'  %>
   <%= button_icon 'Edit', edit_meeting_path(@meeting), 'edit', nil, 'small round' %>
+  <%= link_to 'Set Checkin Code', set_checkin_code_meeting_path(@meeting), class: 'button round small' %>
 </div>
 <br><br>
 
