@@ -93,12 +93,20 @@ class MessagesController < ApplicationController
     # see if this text is parse-able...
     @body = params[:Body]
     if @body.downcase.strip.starts_with?('checkin')
+      # hey! we've got a parse-able text! Someone wants to checkin!
       session[:conversation_id] #||= params[:From]
       m = params[:Body]
       s = m.split(' ')
       data = s.last.split('-')
-      meeting = Meeting.find(data.last)
-      send_response(params[:From], "hi there, I see that you want to be checked in: #{meeting.group.name rescue nil}")
+      meeting = Meeting.find_by_id(data.last)
+      if meeting
+        body = "The meeting is: #{meeting.group.name}, #{meeting.date}."
+      else
+        body = "It looks like you want to checkin to a meeting, but we couldn't find a meeting to match your message content."
+      end
+      send_response(params[:From], "hi there, I see that you want to be checked in: #{body}")
+      
+    # nothing parse-able...
     else
       # not parse-able. Assume it's a response to a previous message...
       logger.info "conversation id: #{session[:conversation_id]}"

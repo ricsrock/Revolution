@@ -20,5 +20,9 @@ class Meeting < ActiveRecord::Base
    def update_num_marked
      self.update_attribute(:num_marked, self.checked_out_attendances.size)
    end
+   
+   def date
+     instance.try(:event).try(:date)
+   end
 
 end
