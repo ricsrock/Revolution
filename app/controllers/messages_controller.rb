@@ -103,12 +103,12 @@ class MessagesController < ApplicationController
         person = Person.where('phones.number = ?', params[:From][-10..-1]).joins(:phones).first
         if person
           if person.enrolled_in_group?(meeting.group)
-            body = "The meeting is: #{meeting.group.name}, #{meeting.date}, and the person is: #{person.full_name}, and you are enrolled in the group."
+            body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, and you are enrolled in the group. Bingo!"
           else
-            body = "The meeting is: #{meeting.group.name}, #{meeting.date}, and the person is: #{person.full_name}, but you are not enrolled in the group."
+            body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, but you are not enrolled in the group."
           end
         else
-          body = "The meeting is: #{meeting.group.name}, #{meeting.date}, but we couldn't find a person matching your phone number."
+          body = "Meeting: #{meeting.group.name}, #{meeting.date}, but we couldn't find a person matching your phone number."
         end
       else
         body = "It looks like you want to checkin to a meeting, but we couldn't find a meeting to match your message content."
