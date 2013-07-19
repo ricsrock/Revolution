@@ -105,7 +105,13 @@ class MessagesController < ApplicationController
         person = Person.where('phones.number = ?', params[:From][-10..-1]).joins(:phones).first
         if person
           if person.enrolled_in_group?(meeting.group)
-            body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, and you are enrolled in the group. Bingo!"
+            # checkin this person!
+            attendance = person.checkin(group_id: meeting.group.id, instance_id: meeting.instance.id)
+            if attendance.persisted?
+              body = "You've been successfully checked into #{attendance.group.name}!"
+            else
+              body = "Sorry. Couldn't check you in: #{attendance.errors.full_messages.to_sentence}"
+            #body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, and you are enrolled in the group. Bingo!"
           else
             body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, but you are not enrolled in the group."
           end

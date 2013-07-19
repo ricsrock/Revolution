@@ -1,0 +1,20 @@
+<% unless @group.has_children? %>
+	<%= widget_box(@title || "Meetings") do %>
+		<% unless @group.meetings.empty? %>
+			<% @group.meetings.order('events.date DESC').includes(instance: :event).limit(20).each do |meeting| %>
+				<div class="twelve columns padded <%= cycle('even-alt', 'odd-alt') %>">
+					<div class="twelve columns padded">
+						<%= link_to(meeting.date || 'no date', meeting_path(meeting))  %>
+					</div>
+				</div>
+			<% end %>
+		<% else %>
+			<div class="twelve columns padded">
+				<div class="twelve columns padded">
+					This group has no meetings
+				</div>
+			</div>
+		<% end %>
+		&nbsp;
+	<% end %>
+<% end %>

@@ -1,6 +1,7 @@
 $("#group").html("<%= j render partial: @partial_name, locals: { group: @group } %>");
 $("#enrollments").delay(1000).html("<%= j render partial: 'enrollments', locals: { group: @group } %>");
 $("#actions").delay(1000).html("<%= j render partial: 'actions', locals: { group: @group } %>");
+$("#meetings").delay(1000).html("<%= j render partial: 'meetings', locals: { group: @group, title: 'Meetings' } %>");
 
 $(".group-jumper").observe_field(1, function( ) {
 	var data = {'group_id' : $(this).val()};
