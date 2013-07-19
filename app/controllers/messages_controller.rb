@@ -112,6 +112,7 @@ class MessagesController < ApplicationController
             else
               body = "Sorry. Couldn't check you in: #{attendance.errors.full_messages.to_sentence}"
             #body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, and you are enrolled in the group. Bingo!"
+            end
           else
             body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, but you are not enrolled in the group."
           end
