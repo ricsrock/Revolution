@@ -1,4 +1,8 @@
 <%= four_up_two_up_widget_box("Meeting Information") do %>
+	<li class="field">Event:</li>
+	<li><%= link_to @meeting.instance.event.name, @meeting.instance.event %></li>
+	<li class="field">Event Date:</li>
+	<li><%= @meeting.instance.event.date %></li>
 	<li class="field">Instance:</li>
 	<li><%= link_to @meeting.instance.instance_type.name, @meeting.instance %></li>
 	<li class="field">Group:</li>
