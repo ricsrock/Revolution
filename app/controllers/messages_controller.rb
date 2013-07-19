@@ -97,7 +97,8 @@ class MessagesController < ApplicationController
       m = params[:Body]
       s = m.split(' ')
       data = s.last.split('-')
-      send_response(params[:From], "hi there, I see that you want to be checked in: #{data}")
+      meeting = Meeting.find(data.last)
+      send_response(params[:From], "hi there, I see that you want to be checked in: #{meeting.group.name rescue nil}")
     else
       # not parse-able. Assume it's a response to a previous message...
       logger.info "conversation id: #{session[:conversation_id]}"
