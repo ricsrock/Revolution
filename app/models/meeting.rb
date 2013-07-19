@@ -29,5 +29,9 @@ class Meeting < ActiveRecord::Base
    def current?
      self.date && (self.date >= Time.zone.now.to_date - 1.day) && (self.date <= Time.zone.now.to_date + 1.day)
    end
+   
+   def status
+     self.current? ? 'Open' : 'Closed'
+   end
 
 end
