@@ -26,6 +26,8 @@
   <%= button_icon 'Index', meetings_path, 'list', nil, 'small round'  %>
   <%= button_icon 'Edit', edit_meeting_path(@meeting), 'edit', nil, 'small round' %>
   <%= link_to 'Set Checkin Code', set_checkin_code_meeting_path(@meeting), class: 'button round small' %>
+  <%= link_to 'Select Random Attendee', random_person_from_meeting_path(@meeting), "data-reveal-id" => "myModal", :remote => true, class: "button round small" %>
+  <%= link_to 'Kiosk', kiosk_meeting_path(@meeting), class: 'button round small' %>
 </div>
 <br><br>
 
@@ -36,7 +38,7 @@
 				<h5 class="subheader"><strong>Currently Checked-In: <%= @meeting.current_attendances.size %></strong></h5>
 			</div>
 			<div class="six columns">
-				<h5 class="subheader"><strong>Meeting History: <%= @meeting.attendances.size %></strong></h5>
+				<h5 class="subheader"><strong>Total Attended: <%= @meeting.attendances.size %></strong></h5>
 			</div>
 		</div>
 		<% @meeting.attendances.includes(:person).order('people.last_name, people.first_name asc').each do |attendance| %>

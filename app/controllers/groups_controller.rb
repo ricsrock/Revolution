@@ -168,7 +168,12 @@ class GroupsController < ApplicationController
   def enroll_person
     @group = Group.find(params[:id])
     @person = Person.find(params[:person_id])
-    @group.enroll!(@person)
+    @result = @group.enroll!(@person)
+    if @result == true
+      flash[:notice] = "Person was successfully enrolled."
+    else
+      flash[:error] = "Person could not be enrolled: #{@result.errors.full_messages.to_sentence}."
+    end
   end
   
   def setup_promote_for

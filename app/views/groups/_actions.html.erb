@@ -16,6 +16,9 @@
 			<%= link_icon 'Promote', setup_promote_for_group_path(@group), 'rocket', '2' %>
 		</dd>
 		<dd>
+			<%= link_icon 'Enroll', enroll_group_path(@group), 'signin', '2' unless @group.has_children? %>
+		</dd>
+		<dd>
 			<span data-no-turbolink><%= link_foundicon 'Export vCards', export_vcards_group_path(@group), 'general foundicon-address-book', '2' %></span>
 		</dd>
 	</dl>

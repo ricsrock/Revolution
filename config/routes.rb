@@ -171,10 +171,19 @@ NewrevF::Application.routes.draw do
   resources :settings
   
   resources :meetings do
+    collection do
+      get 'search'
+      get 'key_pressed'
+      get 'checkin'
+    end
     member do
       get 'checkout_all'
       get 'undo_all'
       get 'set_checkin_code'
+      get 'random_person_from'
+      get 'kiosk'
+      get 'sign_up'
+      post 'new_person'
     end
   end
   

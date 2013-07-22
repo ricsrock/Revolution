@@ -6,7 +6,7 @@ class Meeting < ActiveRecord::Base
    has_many :attendances
    
    validates :instance_id, :group_id, :room_id, :presence => true
-   validates :checkin_code, :uniqueness => true
+   validates :checkin_code, :uniqueness => true, if: Proc.new { |m| m.checkin_code.present? }
   
    acts_as_stampable
    
@@ -20,10 +20,12 @@ class Meeting < ActiveRecord::Base
    end
    
    def set_checkin_code
-     self.checkin_code = Meeting.do_checkin_code
-     until Meeting.find_by_this_checkin_code(checkin_code).nil?
+     unless self.checkin_code.present?
        self.checkin_code = Meeting.do_checkin_code
-       logger.info "======== do checkin code ==========="
+       until Meeting.find_by_this_checkin_code(checkin_code).nil?
+         self.checkin_code = Meeting.do_checkin_code
+         logger.info "======== do checkin code ==========="
+       end
      end
    end
 

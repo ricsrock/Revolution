@@ -8,7 +8,7 @@ class Person < ActiveRecord::Base
   FILTER_VALUES = ["All", "Recent Attenders", "Newcomers", "Active Attenders"]
   STATUSES = ["Active", "Inactive", "Guest", "Deceased"]
   ADVANCE_DECLINE_VALUES = ["Guest Advance", "Guest Decline", "Inactive Advance", "Active Decline"]
-  AUTO_CONTACT_VALUES = ["Missed You Letter", "Active At Risk"]
+  AUTO_CONTACT_VALUES = ["Missed You Letter", "Active At Risk", "Newcomer Call", "Guest Reception Invite", "1st Visit Letter", "2nd Visit Letter", "3rd Visit Letter"]
   
   belongs_to :household, inverse_of: :people
   belongs_to :default_group, :class_name => "Group", :foreign_key => "default_group_id"
@@ -118,6 +118,36 @@ class Person < ActiveRecord::Base
     where(people[:max_date].lt((Time.zone.now - 1.week).to_date.to_s(:db)))
   end
   
+  def self.first_visit_letters
+    people = Arel::Table.new(:people)
+    where(people[:worship_attends].eq(1)).
+    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+  end
+  
+  def self.second_visit_letters
+    people = Arel::Table.new(:people)
+    where(people[:worship_attends].eq(2)).
+    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+  end
+  
+  def self.third_visit_letters
+    people = Arel::Table.new(:people)
+    where(people[:worship_attends].eq(3)).
+    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+  end
+  
+  def self.newcomer_calls
+    people = Arel::Table.new(:people)
+    where(people[:worship_attends].eq(4)).
+    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+  end
+  
+  def self.guest_reception_invites
+    people = Arel::Table.new(:people)
+    where(people[:worship_attends].eq(1)).
+    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+  end
+  
   def self.set_statuses
     statuses = Person::STATUSES
     statuses.delete('Deceased')
@@ -138,7 +168,16 @@ class Person < ActiveRecord::Base
   def self.create_auto_contacts
     values = Person::AUTO_CONTACT_VALUES
     values.each do |v|
-      people = Person.send(v.gsub(" ", "").underscore.pluralize.to_sym)
+      if v.starts_with?("1")
+        m = "First Visit Letter"
+      elsif v.starts_with?("2")
+        m = "Second Visit Letter"
+      elsif v.starts_with?("3")
+        m = "Third Visit Letter"
+      else
+        m = v
+      end
+      people = Person.send(m.gsub(" ", "").underscore.pluralize.to_sym)
       people.to_a.each { |p| p.create_auto_contact(v) unless p.has_contact_in_last_six_days?(v) }
     end
   end
