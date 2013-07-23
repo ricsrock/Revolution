@@ -10,6 +10,6 @@
 		<%= f.submit "Search", class: "button tiny round" %>
 	<% end %><br><br>
 	<% if @search_params %>
-		<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Tags"), class: 'button round small' %>
+		<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Tags", range: @range), class: 'button round small' %>
 	<% end %>
 </div>
