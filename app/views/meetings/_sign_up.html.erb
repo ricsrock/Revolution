@@ -1,0 +1,9 @@
+<h3 class="subheader">Create New Account</h3><hr>
+
+<%= simple_form_for :person, url: new_person_meeting_path(@meeting), remote: true do |f| %>
+	<%= f.input :first_name, placeholder: 'Required', wrapper_html: { class: 'six columns' } %>
+	<%= f.input :last_name, placeholder: 'Required', wrapper_html: { class: 'six columns' } %>
+	<%= f.input :gender, collection: Person::GENDERS, prompt: false, wrapper_html: { class: 'six columns' } %>
+	<%= f.input :cell_phone, placeholder: 'Only numbers. Optional', wrapper_html: { class: 'six columns' } %>
+	<%= submit_tag "Create Account", class: 'button radius' %>
+<% end %>

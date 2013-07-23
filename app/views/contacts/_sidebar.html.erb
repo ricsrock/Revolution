@@ -15,6 +15,6 @@
   <%= f.submit "Search", class: 'button radius small' %>
 <% end %>
 <% if @search_params %>
-	<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Contacts"), class: 'button round small' %>
+	<%= link_to "Create Report", new_report_path(parameters: @search_params, record_type: "Contacts", range: @range), class: 'button round small' %>
 <% end %>
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130719202451) do
+ActiveRecord::Schema.define(version: 20130723012312) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -1000,6 +1000,7 @@ ActiveRecord::Schema.define(version: 20130719202451) do
     t.datetime "updated_at"
     t.integer  "group_by_id"
     t.integer  "layout_id"
+    t.string   "range"
   end
 
   add_index "reports", ["group_by_id"], name: "index_reports_on_group_by_id", using: :btree

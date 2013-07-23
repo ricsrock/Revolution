@@ -1,0 +1,5 @@
+$('#myModal').trigger('reveal:close');
+$('#messages').html("<%= j render partial: 'layouts/messages' %>");
+<% flash.discard %>
+$('#messages').delay(5000).fadeOut();
+$('#messages').show();

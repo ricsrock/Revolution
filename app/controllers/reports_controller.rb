@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
   # GET /reports/1
   # GET /reports/1.json
   def show
-    @p = YAML::load(@report.parameters)
+    @p = Contact.fix_params(YAML::load(@report.parameters))
     #@q = Tagging.search(@q) --- how do I knwo the model?
     @q = @report.model_name.constantize.magic_includes.search(@p)
     @objects = @q.result(distinct: true)
@@ -33,8 +33,9 @@ class ReportsController < ApplicationController
 
   # GET /reports/new
   def new
-    @report = Report.new
+    @report = Report.new(range: params[:range])
     @search_params = YAML::dump(params[:parameters])
+    @range = params[:range]
     @record_type = RecordType.find_by_name(params[:record_type])
     @record_type_id = @record_type.id
     @group_bys = @record_type.group_bys
@@ -105,6 +106,6 @@ class ReportsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
-      params.require(:report).permit(:name, :record_type_id, :group_by_id, :layout_id, :parameters, :layout, :created_by, :updated_by)
+      params.require(:report).permit(:name, :record_type_id, :group_by_id, :layout_id, :parameters, :layout, :created_by, :updated_by, :range)
     end
 end

@@ -1,0 +1,40 @@
+<div class="twelve columns">
+	<div class="alert-box <%= flash_class('info') %>">
+	  <div id="flash_info">
+		<i class="<%= which_icon('info') %>"></i>
+		Checking into <%= @meeting.group.name %>, <%= @meeting.date %> 
+	  </div>
+      <%# content_tag :div, msg, :id => "flash_#{name}" %>
+	  <a href="" class="close">&times;</a>
+ 	</div>
+</div>
+
+
+<div class="twelve columns">
+	<div class="six columns" id="search_text">
+		<%= render :partial => 'search_text' %>
+	</div>
+	<div class="six columns" id="search_choice">
+		<%= render :partial => '/checkin/search_choice' %>
+	</div>
+</div>
+
+<div id="results_area" class="twelve columns" style="height:400px;overflow:auto;">
+	<%= render :partial => 'results' %>
+</div>
+
+
+<div class="twelve columns">
+	<div class="centered" id="pad_area" style="text-align:center;">
+		<%= render partial: @pad %>
+	</div>
+</div>
+
+<div class="twelve columns">
+	<div class="two columns centered" id="search_button" style="text-align:center;">
+		<%# render :partial => 'search_button', locals: { search: @search, meeting_id: @meeting } %>
+		<%= link_to "Sign Up!", sign_up_meeting_path(@meeting), class: 'button radius success large', data: { reveal_id: 'myModal' }, remote: true %>
+	</div>
+</div>
+
+

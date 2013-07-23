@@ -6,6 +6,7 @@
     <%= f.input :record_type_id, as: :hidden, input_html: { value: @record_type_id } %>
     <%= f.association :group_by, collection: @group_bys, label_method: :column_name %>
     <%= f.input :parameters, as: :hidden, input_html: { value: @search_params } %>
+	<%= f.input :range %>
     <%= f.association :layout, collection: @layouts %>
   </div>
 

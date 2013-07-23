@@ -1,0 +1,17 @@
+<% unless @results.empty? %>
+	<% @results.each do |person| %>
+		<div class="panel radius">
+			<div class="twelve columns">
+				<div class="six columns">
+					<h4 class="subheader"><strong>
+						<%= link_to person.full_name, checkin_meetings_path(meeting_id: @meeting, person_id: person.id) %>
+					</strong></h4>
+				</div>
+				<div class="six columns">
+					<h4 class="subheader"><strong><%= person.household.address1 rescue nil %></strong></h4>
+				</div>
+			</div>
+			&nbsp;
+		</div>
+	<% end %>
+<% end %>
