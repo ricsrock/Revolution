@@ -1,0 +1,14 @@
+<% @contact.contactable.phones.each do |phone| %>
+	<div class="twelve columns">
+		<div class="four columns"><%= number_to_phone phone.number, area_code: true %></div>
+		<div class="four columns"><%= phone.comm_type.name %></div>
+		<div class="four columns"><%= phone.comments %></div>
+	</div>
+<% end %>
+<% @contact.contactable.emails.each do |email| %>
+	<div class="twelve columns">
+		<div class="four columns"><%= email.email %></div>
+		<div class="four columns"><%= email.comm_type.name %></div>
+		<div class="four columns"><%= email.comments %></div>
+	</div>
+<% end %>

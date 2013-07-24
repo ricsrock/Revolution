@@ -15,10 +15,10 @@
 	<thead>
 		<tr>
 			<th>Select</th>
-			<th>Contact Type</th>
-			<th>Attributed To</th>
-			<th>Status</th>
-			<th>Created At</th>
+			<th><%= sort_link @q, :contact_type_name, 'Contact Type' %></th>
+			<th><%= sort_link @q, :stamp, 'Attributed To' %></th>
+			<th><%= sort_link @q, :status, 'Status' %></th>
+			<th><%= sort_link @q, :created_at, 'Created At' %></th>
 			<th>Follow-Up</th>
 		</tr>
 	</thead>

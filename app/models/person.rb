@@ -403,6 +403,10 @@ class Person < ActiveRecord::Base
 	  self.birthdate.blank? ? '' : self.birthdate.to_s(:db)
 	end
 	
+	def checked_into_instance?(instance)
+	  instance.uniq_people.collect {|p| p.id}.include?(self.id)
+	end
+	
 	def checkin(options={})
     meeting = Meeting.where(instance_id: options[:instance_id] || Instance.current, group_id: options[:group_id] || self.default_group_id).first
     if meeting

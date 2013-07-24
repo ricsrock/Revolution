@@ -144,7 +144,8 @@ class PeopleController < ApplicationController
     @person.merge_attendance_trackers_into(@keeper)
     @person.merge_contacts_into(@keeper)
     @person.merge_contributions_into(@keeper)
-    @person.destroy
+    @abandoned = Person.find(@person.id)
+    @abandoned.destroy
     flash[:notice] = "Records have been merged."
     redirect_to @keeper
   end

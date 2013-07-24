@@ -11,4 +11,34 @@
 	<li><%= @contact.status %></li>
 	<li class="field">Age:</li>
 	<li>This contact is <%= time_ago_in_words @contact.created_at %> old.</li>
+	&nbsp;
+	<% if @contact.contactable %>
+		<div class="twelve columns">
+			<div class="twelve columns">
+				<h5 class="subheader">How to Contact</h5>
+			</div>
+			<div class="six columns">
+				<h6 class="subheader">Household Info</h6>
+				<ul class="unstyled">
+					<li><%= @contact.contactable.address1 %></li>
+					<li><%= @contact.contactable.address2 %></li>
+					<li><%= @contact.contactable.city %>, <%= @contact.contactable.state %> <%= @contact.contactable.zip %></li>
+				</ul>
+				<% if @contact.contactable && @contact.contactable.is_a?(Person) %>
+					<%= render partial: 'contacts/communication', locals: { resource: @contact.contactable.household } %>
+				<% elsif @contact.contactable && @contact.contactable.is_a?(Household) %>
+					<%= render partial: 'contacts/communication', locals: { resource: @contact.contactable } %>
+				<% end %>
+			</div>
+			<div class="six columns">
+				<% if @contact.contactable && @contact.contactable.is_a?(Person) %>
+					<h6 class="subheader">Person Info</h6>
+					<%= render partial: 'contacts/communication', locals: { resource: @contact.contactable } %>
+				<% end %>
+			</div>
+		</div>
+		<div class="twelve columns">
+			&nbsp;
+		</div>
+	<% end %>
 <% end  %>

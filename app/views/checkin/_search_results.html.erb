@@ -18,7 +18,7 @@
 						<%= person.default_group_name %>
 					</div>
 					<div class="four columns">
-						<%= check_box_tag "person_check[]", person.id, false, style: "width:30px;height:30px;"%>
+						<%= check_box_tag "person_check[]", person.id, @current_instance && person.checked_into_instance?(@current_instance), disabled: @current_instance && person.checked_into_instance?(@current_instance), style: "width:30px;height:30px;"%>
 					</div>
 				</div>
 			<% end %>

@@ -64,6 +64,11 @@ include CheckinHelper
     if @households.empty?
       flash[:blue] = "No results. Please try your search again."
     end
+    if current_user.current_instance_preference?
+      @current_instance = Instance.find(current_user.current_instance_preference)
+    else
+      @current_instance = Instance.current
+    end
   end
   
   def key_pressed
@@ -109,6 +114,11 @@ include CheckinHelper
     term = params[:terms]
     term.blank? ? term = "xxxxxxxzzzzzzzzzxxxxxxxx" : term
     @households = Household.where('name LIKE ? OR phones.number LIKE ?', term, '%' + term).includes(:phones)
+    if current_user.current_instance_preference?
+      @current_instance = Instance.find(current_user.current_instance_preference)
+    else
+      @current_instance = Instance.current
+    end
   end
   
   private
