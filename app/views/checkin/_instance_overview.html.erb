@@ -2,7 +2,7 @@
 <h5 class="subheader right">current/total</h5>
 <% @instance.meetings.each do |m| %>
 	<div class="row">
-		<div class="twelve columns">
+		<div class="twelve columns padded">
 			<%= link_to m.group.name, m %> <span class="right">(<%= m.current_attendances.length %>/<%= m.attendances.length %>)</span>
 		</div>
 	</div>

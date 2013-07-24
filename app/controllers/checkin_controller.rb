@@ -113,7 +113,7 @@ include CheckinHelper
   def search_self
     term = params[:terms]
     term.blank? ? term = "xxxxxxxzzzzzzzzzxxxxxxxx" : term
-    @households = Household.where('name LIKE ? OR phones.number LIKE ?', term, '%' + term).includes(:phones)
+    @households = Household.where('name LIKE ? OR phones.number LIKE ? OR people.last_name LIKE ?', term, '%' + term, term).includes(:phones).joins(:people)
     if current_user.current_instance_preference?
       @current_instance = Instance.find(current_user.current_instance_preference)
     else
