@@ -20,7 +20,8 @@ class TaggingsByTagPdf < Prawn::Document
         attrs << tagging.person.attendance_status
         data << attrs
       end
-      pdf.table data, row_colors: ["f0f0f0", "fcfcfc"], header: true, cell_style: {borders: []}, width: 540
+      pdf.table data, row_colors: ["f0f0f0", "fcfcfc"], header: true, cell_style: {borders: []},
+                      column_widths: [65, 108, 311, 56], width: 540
       pdf.move_down 20
     end    
   end
