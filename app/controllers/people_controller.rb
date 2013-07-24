@@ -120,6 +120,7 @@ class PeopleController < ApplicationController
   
   def search_person
     term = params[:q]
+    term = 'xzxzxzxzxzxzxzxzxzx' if term == ""
     terms = term.split(',')
     dup_id = params[:duplicate_id]
     if terms.length == 1
