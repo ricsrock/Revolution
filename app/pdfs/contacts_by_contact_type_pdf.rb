@@ -2,10 +2,10 @@ class ContactsByContactTypePdf < Prawn::Document
   def self.summary(pdf, contacts, view)
     @view = view
     pdf.move_down 5
-    pdf.text "There are #{contacts.size} contacts to report.", style: :italic
+    pdf.text "#{@view.pluralize(contacts.size, 'contact')} to report.", style: :italic
     pdf.move_down 20
     contacts.sort_by {|c| c.contact_type.name}.group_by {|t| t.contact_type.name}.each do |contact_type, contacts|
-      pdf.text contact_type + ' ('+ contacts.size.to_s + ')'
+      pdf.text contact_type + ' ('+ @view.pluralize(contacts.size, 'contact') + ')'
       pdf.stroke_horizontal_rule
       pdf.move_down 20
       data = []
@@ -41,10 +41,10 @@ class ContactsByContactTypePdf < Prawn::Document
   def self.detail(pdf, contacts, view)
     @view = view
     pdf.move_down 5
-    pdf.text "There are #{contacts.size} contacts to report.", style: :italic
+    pdf.text "#{@view.pluralize(contacts.size, 'contact')} to report.", style: :italic
     pdf.move_down 20
     contacts.sort_by {|c| c.contact_type.name}.group_by {|t| t.contact_type.name}.each do |contact_type, contacts|
-      pdf.text contact_type + ' ('+ contacts.size.to_s + ')'
+      pdf.text contact_type + ' ('+ @view.pluralize(contacts.size, 'contact') + ')'
       pdf.stroke_horizontal_rule
       pdf.move_down 20
       contacts.sort_by {|c| c.stamp}.each do |contact|

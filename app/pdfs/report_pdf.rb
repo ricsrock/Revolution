@@ -15,9 +15,9 @@ class ReportPdf < Prawn::Document
     when "Tags"
       case @report.group_by.column_name
       when "Tag"
-        TaggingsByTagPdf.send(@report.layout.name.downcase.to_sym, self, @objects)
+        TaggingsByTagPdf.send(@report.layout.name.downcase.to_sym, self, @objects, @view)
       when "Person"
-        TaggingsByPersonPdf.send(@report.layout.name.downcase.to_sym, self, @objects)
+        TaggingsByPersonPdf.send(@report.layout.name.downcase.to_sym, self, @objects, @view)
       end
     when "Contacts"
       case @report.group_by.column_name

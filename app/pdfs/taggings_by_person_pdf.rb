@@ -1,10 +1,11 @@
 class TaggingsByPersonPdf < Prawn::Document
-  def self.summary(pdf, taggings)
+  def self.summary(pdf, taggings, view)
+    @view = view
     pdf.move_down 5
-    pdf.text "There are #{taggings.size} tags to report.", style: :italic
+    pdf.text "#{@view.pluralize(taggings.size, 'tags')} to report.", style: :italic
     pdf.move_down 20
     taggings.sort_by {|ta| ta.person.last_first_name}.group_by {|t| t.person.full_name_with_id}.each do |person, taggings|
-      pdf.text person + ' ('+ taggings.size.to_s + ')'
+      pdf.text person + ' ('+ @view.pluralize(taggings.size, 'tag') + ')'
       pdf.stroke_horizontal_rule
       #do a table...
       pdf.move_down 20
@@ -24,7 +25,8 @@ class TaggingsByPersonPdf < Prawn::Document
     end
   end
   
-  def self.detail(pdf, taggings)
+  def self.detail(pdf, taggings, view)
+    @view = view
     pdf.move_down 5
     pdf.text "There are #{taggings.size} tags to report.", style: :italic
     pdf.move_down 20

@@ -2,11 +2,11 @@ class ContactsByPersonPdf < Prawn::Document
   def self.summary(pdf, contacts, view)
     @view = view
     pdf.move_down 5
-    pdf.text "There are #{contacts.size} contacts to report.", style: :italic
+    pdf.text "#{@view.pluralize(contacts.size, 'contact')} to report.", style: :italic
     pdf.move_down 20
     contacts = contacts.select { |c| c.contactable.present? }
     contacts.sort_by {|c| c.stamp}.group_by {|t| t.stamp}.each do |stamp, contacts|
-      pdf.text stamp + ' - ('+ contacts.size.to_s + ' contacts)'
+      pdf.text stamp + ' - ('+ @view.pluralize(contacts.size, 'contact') + ')'
       pdf.stroke_horizontal_rule
       pdf.move_down 20
       data = []
@@ -39,11 +39,11 @@ class ContactsByPersonPdf < Prawn::Document
   def self.detail(pdf, contacts, view)
     @view = view
     pdf.move_down 5
-    pdf.text "There are #{contacts.size} contacts to report.", style: :italic
+    pdf.text "#{@view.pluralize(contacts.size, 'contact')} to report.", style: :italic
     pdf.move_down 20
     contacts = contacts.select { |c| c.contactable.present? }
     contacts.sort_by {|c| c.stamp}.group_by {|t| t.stamp}.each do |stamp, contacts|
-      pdf.text stamp + ' - ('+ contacts.size.to_s + ' contacts)'
+      pdf.text stamp + ' - ('+ @view.pluralize(contacts.size, 'contact') + ')'
       pdf.stroke_horizontal_rule
       pdf.move_down 5
       pdf.text "#{@view.contact_names_with_ages(contacts.first)}", style: :italic
