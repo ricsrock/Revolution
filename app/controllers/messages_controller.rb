@@ -147,9 +147,12 @@ class MessagesController < ApplicationController
   end
   
   def receive_call
-    Twilio::TwiML::Response.new do |r|
+    response = Twilio::TwiML::Response.new do |r|
       r.Say "Thanks for calling River Valley Church. I don't know what to do after this. Goodbye."
-    end.text
+    end
+    
+    render text: response.text, content_type: 'application/xml'
+    
   end
 
   private
