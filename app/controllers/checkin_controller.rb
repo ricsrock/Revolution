@@ -110,7 +110,6 @@ include CheckinHelper
     end
   end
   
-  # This seems to be NOT providing the current_instance to the view. Why not?
   def search_self
     term = params[:terms]
     term.blank? ? term = "xxxxxxxzzzzzzzzzxxxxxxxx" : term
