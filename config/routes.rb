@@ -97,6 +97,7 @@ NewrevF::Application.routes.draw do
   resources :messages do
     collection do
       post 'receive'
+      post 'receive_call'
     end
   end
 
@@ -147,6 +148,7 @@ NewrevF::Application.routes.draw do
   
   # admin namesapce...
   namespace :admin do
+    get 'dashboard/index'
     resources :users do
       member do
         get 'confirm'

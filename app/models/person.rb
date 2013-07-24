@@ -121,39 +121,39 @@ class Person < ActiveRecord::Base
   def self.first_visit_letters
     people = Arel::Table.new(:people)
     where(people[:worship_attends].eq(1)).
-    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+    where(people[:max_worship_date].gt((Time.zone.now - 6.days).to_date.to_s(:db)))
   end
   
   def self.second_visit_letters
     people = Arel::Table.new(:people)
     where(people[:worship_attends].eq(2)).
-    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+    where(people[:max_worship_date].gt((Time.zone.now - 6.days).to_date.to_s(:db)))
   end
   
   def self.third_visit_letters
     people = Arel::Table.new(:people)
     where(people[:worship_attends].eq(3)).
-    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+    where(people[:max_worship_date].gt((Time.zone.now - 6.days).to_date.to_s(:db)))
   end
   
   def self.newcomer_calls
     people = Arel::Table.new(:people)
     where(people[:worship_attends].eq(4)).
-    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+    where(people[:max_worship_date].gt((Time.zone.now - 6.days).to_date.to_s(:db)))
   end
   
   def self.guest_reception_invites
     people = Arel::Table.new(:people)
     where(people[:worship_attends].eq(1)).
-    where(people[:max_worship_date].gt((Time.now - 6.days).to_date.to_s(:db)))
+    where(people[:max_worship_date].gt((Time.zone.now - 6.days).to_date.to_s(:db)))
   end
   
+  # when is this called?
   def self.set_statuses
     statuses = Person::STATUSES
     statuses.delete('Deceased')
     statuses.each do |status|
-      people = Person.send(status.downcase.pluralize.to_sym)
-      people.to_a.each {|p| p.change_status(status) unless p.attendance_status == status}
+      Person.send(status.downcase.pluralize.to_sym).update_all(attendance_status: status)
     end
   end
   

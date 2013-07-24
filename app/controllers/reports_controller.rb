@@ -92,6 +92,7 @@ class ReportsController < ApplicationController
   end
   
   def auto_contacts
+    Person.set_statuses
     Person.create_auto_contacts
     Person.create_advance_decline_tags
     flash[:notice] = "AutoContacts and Advance/Decline Tags have been created successfully."

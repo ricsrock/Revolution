@@ -23,7 +23,7 @@
 					<%= link_to 'Create Unattributed Contact', new_contact_path, class: "button round tiny" %>
 				</div>
 			</div>
-			<% current_user.contacts.open.order(:created_at).each do |contact| %>
+			<% current_user.contacts.open.includes(:contact_type).order(:created_at).each do |contact| %>
 				<div class="twelve columns <%= cycle('odd', 'even') %> padded">
 					<div class="twelve columns">
 						<%= title(contact) %>

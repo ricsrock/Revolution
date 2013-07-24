@@ -145,6 +145,12 @@ class MessagesController < ApplicationController
       end
     end
   end
+  
+  def receive_call
+    Twilio::TwiML::Response.new do |r|
+      r.Say "Thanks for calling River Valley Church. I don't know what to do after this. Goodbye."
+    end.text
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

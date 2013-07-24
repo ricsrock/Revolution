@@ -60,7 +60,7 @@ include CheckinHelper
   end
   
   def search
-    @households = Household.where('name LIKE ? OR phones.number LIKE ? OR people.last_name LIKE ?', params[:search][:q], "%"+params[:search][:q], params[:search][:q]).includes(:phones).joins(:people)
+    @households = Household.where('(name LIKE ? OR phones.number LIKE ? OR people.last_name LIKE ?) AND (people.household_id IS NOT NULL)', params[:search][:q], "%"+params[:search][:q], params[:search][:q]).includes(:phones).joins(:people)
     if @households.empty?
       flash[:blue] = "No results. Please try your search again."
     end
@@ -113,7 +113,7 @@ include CheckinHelper
   def search_self
     term = params[:terms]
     term.blank? ? term = "xxxxxxxzzzzzzzzzxxxxxxxx" : term
-    @households = Household.where('name LIKE ? OR phones.number LIKE ? OR people.last_name LIKE ?', term, '%' + term, term).includes(:phones).joins(:people)
+    @households = Household.where('(name LIKE ? OR phones.number LIKE ? OR people.last_name LIKE ?) AND (people.household_id IS NOT NULL)', term, '%' + term, term).includes(:phones).joins(:people)
     if current_user.current_instance_preference?
       @current_instance = Instance.find(current_user.current_instance_preference)
     else

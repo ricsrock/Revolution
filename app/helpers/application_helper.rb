@@ -22,6 +22,14 @@ module ApplicationHelper
     raw "<div class='widget-box'><div class='widget-title'><h4>" + title + "</h4></div>" + capture(&block) + "</div>"
   end
   
+  def make_row(&block)
+    raw "<div class='row'>" + capture(&block) + "</div>"
+  end
+  
+  def make_col(columns, &block)
+    raw "<div class= '#{columns} columns'>" + capture(&block) + "</div>"
+  end
+  
   def icon(name, size=1)
       #icon("camera-retro")
       #<i class="icon-camera-retro"></i> 
