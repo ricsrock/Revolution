@@ -3,7 +3,7 @@
 	<div class="six columns">
 	</div>
 	<div class="six columns">
-		<%= text_field_tag :q, nil, :class => 'live-search-person', :type => "search", :placeholder => 'Last, FirstName' %>
+		<%= text_field_tag :q, nil, data: { duplicate_id: @person.id }, :class => 'live-search-person', :type => "search", :placeholder => 'Last, FirstName' %>
 		<div id="results">
 			<%= render :partial => 'people_results' %>
 		</div>

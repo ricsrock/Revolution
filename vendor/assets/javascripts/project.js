@@ -84,7 +84,7 @@ $(function(){
 	});
 	$(".live-search-person").observe_field(1, function( ) {
 		var url = '/people/search_person';
-		var data = { 'q' : $(this).val() };
+		var data = { 'q' : $(this).val(), 'duplicate_id' : $(this).data('duplicate-id') };
 		$.get(url, data);
 	});
 	

@@ -121,10 +121,11 @@ class PeopleController < ApplicationController
   def search_person
     term = params[:q]
     terms = term.split(',')
+    dup_id = params[:duplicate_id]
     if terms.length == 1
-      conditions = ["last_name LIKE ?", "%#{terms.first.strip}%"]
+      conditions = ["last_name LIKE ? AND id != ?", "%#{terms.first.strip}%", dup_id]
     else
-      conditions = ["last_name LIKE ? AND first_name LIKE ?", "%#{terms.first.strip}%", "%#{terms.last.strip}%"]
+      conditions = ["last_name LIKE ? AND first_name LIKE ? AND id != ?", "%#{terms.first.strip}%", "%#{terms.last.strip}%", dup_id]
     end
     @results = Person.where(conditions).order('last_name, first_name ASC').limit(20)
   end
