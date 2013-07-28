@@ -102,6 +102,7 @@ class MeetingsController < ApplicationController
     @by = "Name"
     @pad = "alpha_keyboard"
     @search = ""
+    session[:sign_up_step] = session[:sign_up_params] = nil
     render(layout: 'self_checkin')
   end
   
@@ -130,6 +131,12 @@ class MeetingsController < ApplicationController
   def checkin
     @meeting = Meeting.find(params[:meeting_id])
     @person = Person.find(params[:person_id])
+    attendance = @person.checkin(instance_id: @meeting.instance.id, group_id: @meeting.group.id)
+    if attendance.persisted?
+      flash[:notice] = "You have been checked in!"
+    else
+      flash[:error] = "Sorry, you couldn't be checked in: #{attendance.errors.full_messages.to_sentence}."
+    end
     redirect_to kiosk_meeting_path(@meeting)
   end
   

@@ -248,6 +248,35 @@ class Person < ActiveRecord::Base
     where(people[:attendance_status].not_eq(status))
   end
   
+  def self.stubb(sign_up, meeting)
+    group = meeting.group
+    paramaters = {
+      household: {
+        name: "#{group.name} Guest",
+        address1: '2900 Douglas',
+        address2: '',
+        city: 'Bossier City',
+        state: 'LA',
+        zip: '71111',
+        people_attributes: [
+          { 
+            first_name: sign_up.first_name.capitalize,
+            last_name: sign_up.last_name.capitalize,
+            gender: sign_up.gender,
+            default_group_id: group.id
+            }
+          ]
+      }
+    }
+    household = Household.create(paramaters[:household])
+    person = household.people.where(first_name: sign_up.first_name).order('created_at DESC').first
+    if sign_up.phone.present?
+      comm_type = CommType.find_by_name('Mobile')
+      person.phones.create(number: sign_up.phone, comm_type_id: comm_type.id)
+    end
+    person
+  end
+  
   def attendances_for_group_id(group_id)
     self.attendances.where('meetings.group_id = ?', group_id).joins(:meeting => [:instance => :event])
   end
@@ -341,7 +370,7 @@ class Person < ActiveRecord::Base
       "6" + "     " + self.birthdate_to_s
     end
 	end
-	
+		
 	def to_vcard
 	 #TODO: Finish this!
 	 begin

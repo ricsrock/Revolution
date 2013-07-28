@@ -7,7 +7,7 @@
 			<div id="results">
 				<%= render :partial => 'search_results' %>
 			</div>
-			<%= button_tag(:type => 'submit', class: "button radius", data: { no_turbolink: true }) do %>
+			<%= button_tag(:type => 'submit', class: "button radius", data: { no_turbolink: true, disable_with: 'Submitting...' }) do %>
 				<i class="icon-check"></i> Checkin Selected
 			<% end %>
 			<%= link_to(self_checkin_index_path, class: "button radius success right") do %>

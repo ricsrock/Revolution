@@ -1,0 +1,16 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">First_name:</li>
+	<li><%= @sign_up.first_name %></li>
+	<li class="field">Last_name:</li>
+	<li><%= @sign_up.last_name %></li>
+	<li class="field">Gender:</li>
+	<li><%= @sign_up.gender %></li>
+	<li class="field">Phone:</li>
+	<li><%= @sign_up.phone %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', sign_ups_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_sign_up_path(@sign_up), 'edit', nil, 'small round' %>
+</div>

@@ -1,0 +1,17 @@
+<%= simple_form_for(@call) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :from %>
+    <%= f.input :to %>
+    <%= f.input :sid %>
+    <%= f.input :rec_sid %>
+    <%= f.input :rec_url %>
+    <%= f.input :rec_duration %>
+    <%= f.input :for_user_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

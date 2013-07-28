@@ -3,7 +3,7 @@
 		<% Checkin::ALPHA_KEYBOARD[0..11].each do |l| %>
 			<span>
 				 <% unless l[0].blank? %>
-				 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0], :search => @search || "", :pad => @pad), disable_with: '-', remote: true, style: "width:#{l[1]}em;", class: "key_button" %>
+				 <%= link_to "#{l[0]}", key_pressed_sign_ups_path(:key => l[0], :search => @search || "", meeting_id: @meeting), remote: true, style: "width:#{l[1]}em;", class: "key_button" %>
 				 <% else %>
 						<a style="width:<%= l[1] %>em;height:3.3em;" class="dead_button" disabled="disabled"></a>
 				 <% end %>
@@ -14,7 +14,7 @@
 		<% Checkin::ALPHA_KEYBOARD[12..22].each do |l| %>
 			<span>
 				 <% unless l[0].blank? %>
-				 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0],:search => @search || "", :pad => @pad), disable_with: '-', remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+				 <%= link_to "#{l[0]}", key_pressed_sign_ups_path(:key => l[0],:search => @search || "", meeting_id: @meeting) , remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
 				 <% else %>
 						<a style="width:<%= l[1] %>em;height:3.3em;" class="dead_button" disabled="disabled"></a>
 				 <% end %>
@@ -25,7 +25,7 @@
 		<% Checkin::ALPHA_KEYBOARD[23..31].each do |l| %>
 			<span>
 				 <% unless l[0].blank? %>
-				 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0],:search => @search || "", :pad => @pad), disable_with: '-', remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+				 <%= link_to "#{l[0]}", key_pressed_sign_ups_path(:key => l[0],:search => @search || "", meeting_id: @meeting), remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
 				 <% else %>
 						<a style="width:<%= l[1] %>em;height:3.3em;" class="dead_button" disabled="disabled"></a>
 				 <% end %>

@@ -2,7 +2,7 @@
 		<% Checkin::NUM_PAD[0..2].each do |l| %>
 			<span>
 				 <% unless l[0].blank? %>
-				 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0], :search => @search || "", :pad => @pad), disable_with: '-', remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+				 <%= link_to "#{l[0]}", key_pressed_sign_ups_path(:key => l[0], :pad => @pad), remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
 				 <% else %>
 						<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
 				 <% end %>
@@ -13,7 +13,7 @@
 	<% Checkin::NUM_PAD[3..5].each do |l| %>
 		<span>
 			 <% unless l[0].blank? %>
-			 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0], :search => @search || "", :pad => @pad), disable_with: '-', remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+			 <%= link_to "#{l[0]}", key_pressed_sign_ups_path(:key => l[0], :pad => @pad), remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
 			 <% else %>
 					<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
 			 <% end %>
@@ -26,7 +26,7 @@
 	<% Checkin::NUM_PAD[6..8].each do |l| %>
 		<span>
 			 <% unless l[0].blank? %>
-			 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0], :search => @search || "", :pad => @pad), disable_with: '-', remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+			 <%= link_to "#{l[0]}", key_pressed_sign_ups_path(:key => l[0], :pad => @pad), remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
 			 <% else %>
 					<a style="width:<%= l[1] %>em;height:1em;"class="dead_button" disabled="disabled"></a>
 			 <% end %>
@@ -39,7 +39,7 @@
 	<% Checkin::NUM_PAD[9..11].each do |l| %>
 		<span>
 			 <% unless l[0].blank? %>
-			 <%= link_to "#{l[0]}", key_pressed_checkin_index_path(:key => l[0], :search => @search || "", :pad => @pad), disable_with: '-', remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
+			 <%= link_to "#{l[0]}", key_pressed_sign_ups_path(:key => l[0], :pad => @pad), remote: true, :style => "width:#{l[1]}em;", :class => "key_button" %>
 			 <% else %>
 					<a style="width:<%= l[1] %>em;height:3.3em;"class="dead_button" disabled="disabled"></a>
 			 <% end %>

@@ -1,0 +1,13 @@
+<h3>New Sign_up</h3>
+
+<%= simple_form_for(@sign_up) do |f| %>
+  <%= f.error_notification %>
+  <%= render "#{@sign_up.current_step}_step", f: f %>
+  <div class="form-actions">
+	<%= f.submit '<< Back', name: 'back_button', class: 'button radius' unless @sign_up.first_step? %>
+    <%= f.submit 'Continue >>', class: 'button radius right' %>
+  </div>
+<% end %>
+
+
+<%= button_icon 'Index', sign_ups_path, 'list', nil, "small round" %>

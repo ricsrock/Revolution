@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
-  before_filter :authenticate_user!, except: [:receive, :receive_call]
+  before_filter :authenticate_user!, except: [:receive, :receive_call, :save_recording]
   
   before_action :set_message, only: [:show, :edit, :update, :destroy]
-  skip_before_filter :verify_authenticity_token, only: :receive
+  skip_before_filter :verify_authenticity_token, only: [:receive, :receive_call, :save_recording]
   
   # GET /messages
   # GET /messages.json
@@ -147,15 +147,26 @@ class MessagesController < ApplicationController
   end
   
   def receive_call
-    response = Twilio::TwiML::Response.new do |r|
-      r.Say "Thanks for calling River Valley Church. I don't know what to do after this. Goodbye."
+    @call = Call.create(from: params[:From], to: params[:To], sid: params[:CallSid])
+    response = Twilio::TwiML.build do |res|
+      res.say "Thanks for calling River Valley Church. I don't know what to do after this. Lowell will teach me something cool very soon. Leave a message."
+      res.record action: 'save_recording', method: :get
     end
-    
-    render text: response.text, content_type: 'application/xml'
-    
+    render text: response, content_type: 'application/xml'
   end
-
+  
+  def save_recording
+    @call = Call.find_by_sid(params[:CallSid])
+    @call.update_attributes(rec_sid: params[:RecordingSid], rec_url: params[:RecordingUrl], rec_duration: params[:RecordingDuration])
+    response = Twilio::TwiML.build do |res|
+      res.say "Your message has been received. Goodbye."
+      res.hangup
+    end
+    render text: response, content_type: 'application/xml'
+  end
+  
   private
+    
     # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])
@@ -169,42 +180,51 @@ class MessagesController < ApplicationController
     end
     
     def send_message(message)
-      @account_sid = CONFIG[:twilio_account_sid]
-      @auth_token = CONFIG[:twilio_auth_token]
-      @client = Twilio::REST::Client.new @account_sid, @auth_token
-      from = "+13183034399"
+      # @account_sid = CONFIG[:twilio_account_sid]
+      # @auth_token = CONFIG[:twilio_auth_token]
+      # @client = Twilio::REST::Client.new @account_sid, @auth_token
+      # from = "+13183034399"
+      # @recipients = []
+      # message.recipients.each do |r|
+      #   @recipients << r.number
+      # end
+      # session[:user_id]
+      # @recipients.each do |number|
+      #   @client.account.sms.messages.create(
+      #       :from => from,
+      #       :to => number,
+      #       :body => message.body
+      #     )
+      #   end
       @recipients = []
       message.recipients.each do |r|
         @recipients << r.number
       end
       session[:user_id]
       @recipients.each do |number|
-        @client.account.sms.messages.create(
-            :from => from,
-            :to => number,
-            :body => message.body
-          )
-        end
+        Twilio::SMS.create to: number, from: "+13183034399", body: message.body
+      end
     end
     
     def send_response(to, body)
-      @account_sid = CONFIG[:twilio_account_sid]
-      @auth_token = CONFIG[:twilio_auth_token]
-      @client = Twilio::REST::Client.new @account_sid, @auth_token
-      from = "+13183034399"
-      @client.account.sms.messages.create(
-          :from => from,
-          :to => to,
-          :body => body
-        )
+      # @account_sid = CONFIG[:twilio_account_sid]
+      # @auth_token = CONFIG[:twilio_auth_token]
+      # @client = Twilio::REST::Client.new @account_sid, @auth_token
+      # from = "+13183034399"
+      # @client.account.sms.messages.create(
+      #     :from => from,
+      #     :to => to,
+      #     :body => body
+      #   )
+      Twilio::SMS.create to: to, from: "+13183034399", body: body
     end
     
     def send_notification(to, body, from_person)
-      @account_sid = CONFIG[:twilio_account_sid]
-      @auth_token = CONFIG[:twilio_auth_token]
-      @client = Twilio::REST::Client.new @account_sid, @auth_token
+      # @account_sid = CONFIG[:twilio_account_sid]
+      # @auth_token = CONFIG[:twilio_auth_token]
+      # @client = Twilio::REST::Client.new @account_sid, @auth_token
       from = "+13183034399"
-      @client.account.sms.messages.create(
+      Twilio::SMS.create(
           :from => from,
           :to => to,
           :body => "You have a reply from #{from_person.full_name} #{from_person.mobile_number}: " + body + " conversation id: #{session[:conversation_id]}"

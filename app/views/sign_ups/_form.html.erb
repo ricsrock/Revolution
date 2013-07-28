@@ -1,0 +1,24 @@
+<div class="panel radius" style="margin-top: 20px;">
+	<h3 class="subheader">New SignUp</h3>
+
+	<%= simple_form_for @sign_up, remote: true do |f| %>
+	  <%= f.error_notification %>
+	  <span id="step_field">
+	  	 <%= render "#{@sign_up.current_step}_step", f: f %>
+	  </span>
+		<div class="row">
+			<div class="two columns">
+				<%= f.submit '<< Back', name: 'back_button', class: 'button radius large' unless @sign_up.first_step? %>
+			</div>
+			<div class="eight columns" style="text-align: center;">
+				<%= link_to 'Cancel', cancel_sign_ups_path, class: 'button radius large alert' %>
+			</div>
+			<div class="two columns">
+				<%= f.submit 'Continue >>', class: 'button radius right large' %>
+			</div>
+		</div>
+	<% end %>
+	&nbsp;<br><br>
+</div>
+
+

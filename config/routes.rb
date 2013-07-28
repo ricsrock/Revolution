@@ -1,4 +1,13 @@
 NewrevF::Application.routes.draw do
+  resources :sign_ups do
+    collection do
+      get 'key_pressed'
+      get 'cancel'
+    end
+  end
+
+  resources :calls
+
   mount Resque::Server, :at => "/resque"
   get "orphans/people"
   
@@ -98,6 +107,7 @@ NewrevF::Application.routes.draw do
     collection do
       post 'receive'
       post 'receive_call'
+      get 'save_recording'
     end
   end
 

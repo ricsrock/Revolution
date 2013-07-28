@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130724201859) do
+ActiveRecord::Schema.define(version: 20130725132502) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -138,6 +138,23 @@ ActiveRecord::Schema.define(version: 20130724201859) do
   end
 
   add_index "cadences", ["name"], name: "index_cadences_on_name", using: :btree
+
+  create_table "calls", force: true do |t|
+    t.string   "from"
+    t.string   "to"
+    t.string   "sid"
+    t.string   "rec_sid"
+    t.string   "rec_url"
+    t.string   "rec_duration"
+    t.integer  "for_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "calls", ["for_user_id"], name: "index_calls_on_for_user_id", using: :btree
+  add_index "calls", ["from"], name: "index_calls_on_from", using: :btree
+  add_index "calls", ["rec_sid"], name: "index_calls_on_rec_sid", using: :btree
+  add_index "calls", ["sid"], name: "index_calls_on_sid", using: :btree
 
   create_table "ccolors", force: true do |t|
     t.string   "name"
@@ -1095,6 +1112,19 @@ ActiveRecord::Schema.define(version: 20130724201859) do
     t.integer  "current_instance"
     t.datetime "advance_decline_run_date"
   end
+
+  create_table "sign_ups", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "gender"
+    t.string   "phone"
+    t.string   "step"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "meeting_id"
+  end
+
+  add_index "sign_ups", ["meeting_id"], name: "index_sign_ups_on_meeting_id", using: :btree
 
   create_table "smart_group_properties", force: true do |t|
     t.string "prose"

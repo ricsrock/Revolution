@@ -1,0 +1,36 @@
+<h3>Listing Calls</h3>
+
+<table class="twelve responsive">
+  <thead>
+	  <tr>
+			<th>From</th>
+			<th>To</th>
+			<th>Sid</th>
+			<th>Rec_sid</th>
+			<th>Rec_url</th>
+			<th>Rec_duration</th>
+			<th>For_user_id</th>
+	    <th></th>
+	  </tr>
+  </thead>
+  <tbody>
+	<% @calls.each do |call| %>
+	  <tr>
+	    <td><%= call.from %></td>
+	    <td><%= call.to %></td>
+	    <td><%= call.sid %></td>
+	    <td><%= call.rec_sid %></td>
+	    <td><%= call.rec_url %></td>
+	    <td><%= call.rec_duration %></td>
+	    <td><%= call.for_user_id %></td>
+	    <td><%= link_to '', edit_call_path(call), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    	<%= link_to '', call, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+	   </td>
+	  </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to "New Call", new_call_path, class: "button radius"  %>

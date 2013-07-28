@@ -1,0 +1,22 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">From:</li>
+	<li><%= @call.from %></li>
+	<li class="field">To:</li>
+	<li><%= @call.to %></li>
+	<li class="field">Sid:</li>
+	<li><%= @call.sid %></li>
+	<li class="field">Rec_sid:</li>
+	<li><%= @call.rec_sid %></li>
+	<li class="field">Rec_url:</li>
+	<li><%= @call.rec_url %></li>
+	<li class="field">Rec_duration:</li>
+	<li><%= @call.rec_duration %></li>
+	<li class="field">For_user_id:</li>
+	<li><%= @call.for_user_id %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', calls_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_call_path(@call), 'edit', nil, 'small round' %>
+</div>

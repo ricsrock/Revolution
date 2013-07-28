@@ -1,0 +1,6 @@
+<% if @sign_up.new_record? %>
+	$("#results_area").html("<%= j render partial: '/sign_ups/form' %>");
+	$("#pad_area").html("<%= j render partial: @pad %>");
+<% else %>
+	window.location.replace("<%= @redirect_path %>");
+<% end %>
