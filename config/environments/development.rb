@@ -40,7 +40,7 @@ NewrevF::Application.configure do
     :port           => 587, 
     :address        => 'smtp.mailgun.org',
     :user_name      => 'postmaster@local.rivervalleychurch.net',
-    :password       => '0zejk8qwnp11',
+    :password       => Figaro.env.mailgun_pwd,
     :domain         => 'local.rivervalleychurch.net',
     :authentication => :plain,
   }

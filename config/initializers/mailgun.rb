@@ -1,7 +1,7 @@
 # Initialize your Mailgun object:
 # Mailgun.configure do |config|
-#   config.api_key = '9k3myagekk4ll23x5ykwefv5z0geldu6'
-#   config.domain  = 'local.rivervalleychurch.net'
+#   config.api_key = 'key'
+#   config.domain  = 'domain'
 # end
 # 
 # @mailgun = Mailgun()

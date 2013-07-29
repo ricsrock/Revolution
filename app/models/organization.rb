@@ -1,5 +1,5 @@
 class Organization < ActiveRecord::Base
-  has_many :contributions, as: :contributable, dependent: :restrict
+  has_many :contributions, as: :contributable, dependent: :restrict_with_exception
   has_many :associates, dependent: :destroy
   has_many :phones, as: :phonable, dependent: :destroy
   has_many :emails, as: :emailable, dependent: :destroy

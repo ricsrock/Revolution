@@ -1,0 +1,20 @@
+# Add application configuration variables here, as shown below.
+#
+# For Revolution! to work properly, you'll need the following config variables:
+    
+# We use mailgun because it's awesome, but you can handle email however you like    
+# MAILGUN_PWD: your_mailgun_password
+
+# Revolution! relies on Twilio for SMS communication. You'll need to enter your Twilio account info here
+# TWILIO_ACCOUNT_SID: your_twilio_account_sid
+# TWILIO_AUTH_TOKEN: your_twilio_auth_token
+# TWILIO_FROM: your_twilio_from_number
+
+# Revolution! uses AWS to store images. You'll need to enter your AWS account info here
+# FOG_AWS_ACCESS_KEY_ID: your_aws_access_key
+# FOG_AWS_SECRET_ACCESS_KEY: your_aws_secret_access_key
+# FOG_DIRECTORY: the_name_of_your_aws_directory
+
+# From config/initializers/secret_token.rb --- only if you are sharing your code publicly 
+# SECRET_KEY_BASE: your_apps_secret_token
+

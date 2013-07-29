@@ -67,29 +67,7 @@ class MessagesController < ApplicationController
     end
   end
   
-  def receive
-    # flash[:notice] = params[:Body]
-    # if session[:user_id]
-    #   puts "there's a cookie"
-    # else
-    #   puts "no cookie"
-    # end
-    # render action: :receive
-    # session["counter"] ||= 0
-    # session[:number] = params[:From]
-    # sms_count = session["counter"]
-    # if sms_count == 0
-    #   message = "Hello, thanks for the new message."
-    # else 
-    #   message = "Hello, thanks for message number #{sms_count + 1} ID: #{session[:number]}"
-    # end
-    # twiml = Twilio::TwiML::Response.new do |r|
-    #   r.Sms message
-    # end
-    # session["counter"] += 1
-    # puts twiml.text
-    # send_reply(params[:From], message)
-    
+  def receive    
     # see if this text is parse-able...
     @body = params[:Body]
     if @body.downcase.strip.starts_with?('checkin')
@@ -111,7 +89,6 @@ class MessagesController < ApplicationController
               body = "You've been successfully checked into #{attendance.group.name}!"
             else
               body = "Sorry. Couldn't check you in: #{attendance.errors.full_messages.to_sentence}"
-            #body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, and you are enrolled in the group. Bingo!"
             end
           else
             body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, but you are not enrolled in the group."
@@ -175,55 +152,27 @@ class MessagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def message_params
       params[:message][:user_id] = current_user.id
-      params[:message][:from] = "+13183034399"
+      params[:message][:from] = Figaro.env.twilio_from
       params.require(:message).permit!
     end
     
     def send_message(message)
-      # @account_sid = CONFIG[:twilio_account_sid]
-      # @auth_token = CONFIG[:twilio_auth_token]
-      # @client = Twilio::REST::Client.new @account_sid, @auth_token
-      # from = "+13183034399"
-      # @recipients = []
-      # message.recipients.each do |r|
-      #   @recipients << r.number
-      # end
-      # session[:user_id]
-      # @recipients.each do |number|
-      #   @client.account.sms.messages.create(
-      #       :from => from,
-      #       :to => number,
-      #       :body => message.body
-      #     )
-      #   end
       @recipients = []
       message.recipients.each do |r|
         @recipients << r.number
       end
       session[:user_id]
       @recipients.each do |number|
-        Twilio::SMS.create to: number, from: "+13183034399", body: message.body
+        Twilio::SMS.create to: number, from: Figaro.env.twilio_from, body: message.body
       end
     end
     
     def send_response(to, body)
-      # @account_sid = CONFIG[:twilio_account_sid]
-      # @auth_token = CONFIG[:twilio_auth_token]
-      # @client = Twilio::REST::Client.new @account_sid, @auth_token
-      # from = "+13183034399"
-      # @client.account.sms.messages.create(
-      #     :from => from,
-      #     :to => to,
-      #     :body => body
-      #   )
-      Twilio::SMS.create to: to, from: "+13183034399", body: body
+      Twilio::SMS.create to: to, from: Figaro.env.twilio_from, body: body
     end
     
     def send_notification(to, body, from_person)
-      # @account_sid = CONFIG[:twilio_account_sid]
-      # @auth_token = CONFIG[:twilio_auth_token]
-      # @client = Twilio::REST::Client.new @account_sid, @auth_token
-      from = "+13183034399"
+      from = Figaro.env.twilio_from
       Twilio::SMS.create(
           :from => from,
           :to => to,

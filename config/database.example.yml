@@ -5,8 +5,8 @@
 #   gem 'sqlite3'
 development:
   adapter: mysql
-  database: rev_restore4
-  username: root
+  database: db_name
+  username: user_name
   password:
   socket: /tmp/mysql.sock
 
@@ -22,9 +22,9 @@ test:
 
 production:
   adapter: mysql
-  database: rev_db
-  username: root
-  password: r0oT
+  database: db_name
+  username: user_name
+  password: password
   socket: /tmp/mysql.sock
   pool: 5
   timeout: 5000
