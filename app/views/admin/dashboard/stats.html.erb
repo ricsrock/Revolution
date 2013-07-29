@@ -1,3 +1,6 @@
 <h3 class="subheader">Stats</h3>
 
 <h4 class="subheader">Income This Week: <%= number_to_currency @income_this_week %></h4>
+<h6 class="subheader"><%= pluralize(@batches_this_week.size, 'batch') %></h6>
+<h4 class="subheader">Attendance This Week: <%= @attendances_this_week.size %></h4>
+<h6 class="subheader"><%= pluralize(@events_this_week.size, 'event') %></h6>

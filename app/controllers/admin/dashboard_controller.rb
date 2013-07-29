@@ -13,7 +13,9 @@ class Admin::DashboardController < ApplicationController
   end
   
   def stats
-    batches_this_week = Batch.where('date_collected >= ? AND date_collected <= ?', do_range('This Week').start_date.to_time.to_s(:db), do_range('This Week').end_date.to_time.to_s(:db))
-    @income_this_week = batches_this_week.collect {|b| b.amount_recorded}.sum
+    @batches_this_week = Batch.where('date_collected >= ? AND date_collected <= ?', do_range('This Week').start_date.to_time.to_s(:db), do_range('This Week').end_date.to_time.to_s(:db))
+    @income_this_week = @batches_this_week.collect {|b| b.amount_recorded}.sum
+    @events_this_week = Event.where('date >= ? AND date <= ?', do_range('This Week').start_date.to_s(:db), do_range('This Week').end_date.to_s(:db))
+    @attendances_this_week = @events_this_week.collect {|v| v.attendances}.sum
   end
 end
