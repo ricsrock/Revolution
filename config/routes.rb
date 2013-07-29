@@ -159,6 +159,8 @@ Revolution::Application.routes.draw do
   # admin namesapce...
   namespace :admin do
     get 'dashboard/index'
+    get 'dashboard/records'
+    get 'dashboard/stats'
     resources :users do
       member do
         get 'confirm'

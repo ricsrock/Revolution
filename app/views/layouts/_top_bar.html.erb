@@ -42,7 +42,12 @@
 		<li class="divider"></li>
         <li class="has-dropdown"><a href="#">Admin</a>
 			<ul class="dropdown">
-				<li><%= link_icon "Dashboard", admin_dashboard_index_path, 'dashboard', nil %></li>
+				<li class="has-dropdown"><a href="#"><i class='icon-dashboard'></i> Dashboard</a>
+					<ul class="dropdown">
+						<li><%= link_to "Records", admin_dashboard_records_path %></li>
+						<li><%= link_to "Stats", admin_dashboard_stats_path %></li>
+					</ul>
+				</li>
 				<li><%= link_to "Users", admin_users_url %></li>
 				<li><%= link_to "Security Roles", roles_url %></li>
 				<li><%= link_icon "Reports", reports_url, 'list-alt', nil %></li>

@@ -5,6 +5,8 @@
 	<li><%= @event.event_type.name %></li>
 	<li class="field">Date:</li>
 	<li><%= @event.date %></li>
+	<li class="field">Number Marked:</li>
+	<li><%= @event.attendances.size %></li>
 <% end  %>
   
 
@@ -17,11 +19,12 @@
 <br>
 <%= widget_box("Instances") do %>
 	<div class="widget-content">
-		<ul class="block-grid one-up mobile-one-up">
+		<ul class="block-grid two-up mobile-two-up">
 			<% @event.instances.each do |i| %>
 				<li>
 					<%= link_to i.instance_type.name, i %>
 				</li>
+				<li><%= i.attendances.size %> marked</li>
 			<% end %>
 		</ul>
 	</div>

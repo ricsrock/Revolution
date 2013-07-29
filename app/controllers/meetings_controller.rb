@@ -108,7 +108,7 @@ class MeetingsController < ApplicationController
   
   def search
     @meeting = Meeting.find(params[:meeting_id])
-    @results = @meeting.group.people.where('first_name LIKE ? OR last_name LIKE ?', "%#{params[:terms]}%", "%#{params[:terms]}%")
+    @results = @meeting.group.people.where('first_name LIKE ? OR last_name LIKE ?', "#{params[:terms]}%", "#{params[:terms]}%")
   end
   
   def key_pressed
@@ -124,7 +124,7 @@ class MeetingsController < ApplicationController
     if @search == ""
       @results = []
     else
-      @results = @meeting.group.people.where('first_name LIKE ? OR last_name LIKE ?', "%#{@search}%", "%#{@search}%").order('last_name, first_name ASC')
+      @results = @meeting.group.people.where('first_name LIKE ? OR last_name LIKE ?', "#{@search}%", "#{@search}%").order('last_name, first_name ASC')
     end
   end
   

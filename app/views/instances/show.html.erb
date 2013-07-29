@@ -3,6 +3,8 @@
 	<li><%= link_to @instance.event.name, @instance.event %></li>
 	<li class="field">Instance Type:</li>
 	<li><%= @instance.instance_type.name %></li>
+	<li class="field">Number Marked:</li>
+	<li><%= @instance.attendances.size %></li>
 <% end  %>
   
 
