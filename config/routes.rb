@@ -1,4 +1,4 @@
-NewrevF::Application.routes.draw do
+Revolution::Application.routes.draw do
   resources :sign_ups do
     collection do
       get 'key_pressed'

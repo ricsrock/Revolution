@@ -23,7 +23,7 @@
   
   <%= csrf_meta_tags %>
 </head>
-<body style="background: url(<%= current_user.favorite_checkin_background.try(:graphic_url) || CheckinBackground.first.graphic_url %>) no-repeat center center fixed; 
+<body style="background: url(<%= current_user.favorite_checkin_background.try(:graphic_url) || CheckinBackground.first.try(:graphic_url) %>) no-repeat center center fixed; 
 -webkit-background-size: cover;
 -moz-background-size: cover;
 -o-background-size: cover;

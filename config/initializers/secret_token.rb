@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-NewrevF::Application.config.secret_key_base = Figaro.env.secret_key_base
+Revolution::Application.config.secret_key_base = Figaro.env.secret_key_base

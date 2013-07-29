@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-NewrevF::Application.load_tasks
+Revolution::Application.load_tasks
