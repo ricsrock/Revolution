@@ -6,7 +6,7 @@
 	<% resource.phones.each do |phone| %>
 		<div class="twelve columns <%= cycle('odd-alt', 'even-alt') %>">
 			<div class="six columns"><%= number_to_phone phone.number, area_code: true %></div>
-			<div class="two columns"><%= phone.comm_type.name %></div>
+			<div class="two columns"><%= phone.comm_type.name rescue nil %></div>
 			<div class="four columns"><%= phone.comments %></div>
 		</div>
 	<% end %>
@@ -20,7 +20,7 @@
 	<% resource.emails.each do |email| %>
 		<div class="twelve columns <%= cycle('odd-alt', 'even-alt') %>">
 			<div class="six columns"><%= email.email %></div>
-			<div class="two columns"><%= email.comm_type.name %></div>
+			<div class="two columns"><%= email.comm_type.name rescue nil %></div>
 			<div class="four columns"><%= email.comments %></div>
 		</div>
 	<% end %>

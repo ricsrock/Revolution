@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130725132502) do
+ActiveRecord::Schema.define(version: 20130730124102) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(version: 20130725132502) do
     t.integer  "for_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "audio"
   end
 
   add_index "calls", ["for_user_id"], name: "index_calls_on_for_user_id", using: :btree
@@ -1027,6 +1028,9 @@ ActiveRecord::Schema.define(version: 20130725132502) do
   create_table "requirements", force: true do |t|
     t.string "name"
     t.text   "description"
+  end
+
+  create_table "rev_clean_install", force: true do |t|
   end
 
   create_table "role_permissions", force: true do |t|

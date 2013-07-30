@@ -134,7 +134,8 @@ class MessagesController < ApplicationController
   
   def save_recording
     @call = Call.find_by_sid(params[:CallSid])
-    @call.update_attributes(rec_sid: params[:RecordingSid], rec_url: params[:RecordingUrl], rec_duration: params[:RecordingDuration])
+    @call.update_attributes(rec_sid: params[:RecordingSid], rec_url: params[:RecordingUrl], rec_duration: params[:RecordingDuration],
+                            audio: params[:RecordingUrl] + '.mp3')
     response = Twilio::TwiML.build do |res|
       res.say "Your message has been received. Goodbye."
       res.hangup
