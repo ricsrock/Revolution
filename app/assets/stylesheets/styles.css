@@ -357,5 +357,17 @@ dl.horizontal dd {
 	padding:10px;
 }
 
+.contact-popup {
+	background-color: white;
+	-webkit-border-radius: 10px;
+  	-moz-border-radius: 10px;
+  	border-radius: 10px;
+	-moz-box-shadow: 10px 10px 5px #888;
+	-webkit-box-shadow: 10px 10px 5px #888;
+	box-shadow: 5px 5px 5px #888;
+	border: 1px solid #CACACA;
+	padding: 5px;
+}
+
 
 

@@ -89,6 +89,9 @@ Revolution::Application.routes.draw do
       post :create_quick
       post :mass_create
     end
+    member do
+      get 'popup'
+    end
   end
 
   resources :comm_types

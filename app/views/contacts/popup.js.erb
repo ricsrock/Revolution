@@ -1,0 +1,5 @@
+$("#contact_<%= @contact.id %>").html("<%= j render partial: 'popup', locals: { contact: @contact } %>");
+$('.dismiss-popup').click(function(e) {
+	$('.contact-popup').hide();
+	e.preventDefault();
+});

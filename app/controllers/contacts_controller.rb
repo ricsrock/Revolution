@@ -216,6 +216,10 @@ class ContactsController < ApplicationController
     end
     redirect_to person_path(@contact.contactable)
   end
+  
+  def popup
+    @contact = Contact.find(params[:id])
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

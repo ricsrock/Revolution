@@ -25,8 +25,12 @@
 			</div>
 			<% current_user.contacts.open.includes(:contact_type).order(:created_at).each do |contact| %>
 				<div class="twelve columns <%= cycle('odd', 'even') %> padded">
-					<div class="twelve columns">
+					<div class="twelve columns" style="position:relative;">
+						<%= link_to(popup_contact_path(contact), remote: true) do "<i class='icon-info-sign'></i>".html_safe end %>
 						<%= title(contact) %>
+					</div>
+					<div id="contact_<%= contact.id %>" style="position:relative;z-index:2000;">
+						
 					</div>
 					<div class="twelve columns">
 						<div class="four columns small left padded"><%= time_ago_in_words contact.created_at %> old</div>

@@ -1,0 +1,24 @@
+<div class="twelve columns contact-popup" style="position:absolute;z-index:2000;">
+	<div class="twelve columns">
+		<h6 class="subheader"><strong><%= @contact.stamp %></strong></h6>
+	</div>
+	<% if @contact.contactable.is_a?(Person) %>
+		<% @person = @contact.contactable %>
+		<div class="twelve columns">
+			<div class="six columns">
+				Age: <%= @person.age %>
+			</div>
+			<div class="six columns">
+				Default Group: <%= @person.default_group.name rescue nil %>
+			</div>
+		</div>
+	<% end %>
+	<div class="twelve columns">
+		<p class="subheader">
+			<%= @contact.comments %>
+		</p>
+	</div>
+	<div class="twelve columns">
+		<%= link_to('#') do "<i class='icon-remove dismiss-popup right subheader'></i>".html_safe end %>
+	</div>
+</div>
