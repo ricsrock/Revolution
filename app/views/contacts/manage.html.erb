@@ -17,6 +17,7 @@
 			<th>Select</th>
 			<th><%= sort_link @q, :contact_type_name, 'Contact Type' %></th>
 			<th><%= sort_link @q, :stamp, 'Attributed To' %></th>
+			<th>Info</th>
 			<th><%= sort_link @q, :status, 'Status' %></th>
 			<th><%= sort_link @q, :created_at, 'Created At' %></th>
 			<th>Follow-Up</th>
@@ -28,6 +29,7 @@
 				<td><%= check_box_tag 'contact[selected_ids][]', contact.id %></td>
 				<td><%= contact.contact_type.name %></td>
 				<td><%= contact.stamp rescue nil %></td>
+				<td><%= info(contact) %></td>
 				<td><%= contact.status %></td>
 				<td><%= contact.created_at.to_time.to_s(:long) %></td>
 				<td><%= button_icon('follow-up', contact_path(contact), 'ok', nil, 'tiny round') %></td>

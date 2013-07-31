@@ -42,6 +42,14 @@ module ContactsHelper
     else
       contact.stamp
     end
+  end
+  
+  def info(contact)
+    if contact.contactable.is_a?(Person)
+      "#{contact.contactable.default_group.name rescue nil}"
+    elsif contact.contactable.is_a?(Household)
+      "Household Contact"
+    end
   end  
   
 end
