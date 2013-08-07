@@ -1,5 +1,18 @@
 <h3 class="subheader"><a class="icon-home"></a> Listing Households</h3>
 
+<div class="row">
+	<% a = ('A'..'Z').to_a %>
+	<div class="twelve columns pagination-centered">
+		<ul class="pagination">
+			<% a.each do |letter| %>
+				<li class="<%= params[:letter] == letter ? 'current' : '' %>">
+					<%= link_to letter, households_url(letter: letter) %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>
+
 <table class="twelve responsive">
   <thead>
     <tr>

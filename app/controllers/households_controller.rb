@@ -5,7 +5,12 @@ class HouseholdsController < ApplicationController
   # GET /households
   # GET /households.json
   def index
-    @households = Household.page(params[:page]).order(:name)
+    if params[:letter]
+      letter = "#{params[:letter]}%"
+    else
+      letter = "%"
+    end
+    @households = Household.page(params[:page]).order(:name).where('name LIKE ?', letter)
   end
 
   # GET /households/1
