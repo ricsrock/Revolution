@@ -31,6 +31,7 @@ gem 'jquery-turbolinks'
 
 gem "acts_as_stampable", "~> 0.0.3"
 gem 'ancestry'
+gem "auto_strip_attributes"
 gem 'awesome_nested_set'
 gem 'cancan'
 gem 'carrierwave'

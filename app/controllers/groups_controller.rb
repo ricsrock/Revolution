@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_filter :authenticate_user!
   
   before_action :set_group, only: [:show, :edit, :update, :destroy, :sms, :email, :enroll,
-                                   :export_people, :setup_promote_for, :promote, :export_vcards]
+                                   :export_people, :setup_promote_for, :promote, :export_vcards, :profile]
 
   # GET /groups
   # GET /groups.json
@@ -200,6 +200,19 @@ class GroupsController < ApplicationController
       end
     end
     send_data batch_of_cards, :filename => "group_#{@group.id}_cards.vcf"
+  end
+  
+  def profile
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = GroupProfilePdf.new(@group, view_context)
+        filename = @group.name.gsub(/[^0-9a-z]/, "_") + "_profile" + ".pdf"
+        send_data pdf.render, filename: filename,
+                              type: "application/pdf",
+                              disposition: "inline"
+      end
+    end
   end
   
   private

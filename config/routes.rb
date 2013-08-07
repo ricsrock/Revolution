@@ -260,6 +260,7 @@ Revolution::Application.routes.draw do
       get 'setup_promote_for'
       post 'promote'
       get 'export_vcards'
+      get 'profile'
     end
     collection do
       get 'jump_to'

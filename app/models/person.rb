@@ -45,6 +45,8 @@ class Person < ActiveRecord::Base
   delegate :zip, to: :household
   
   acts_as_stampable
+  auto_strip_attributes :first_name, :last_name, :squish => true
+  
   
   # ransacker :full_name do |parent|
   #   Arel::Nodes::InfixOperation.new('||',

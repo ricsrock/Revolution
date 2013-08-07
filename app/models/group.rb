@@ -102,7 +102,11 @@ class Group < ActiveRecord::Base
   end
   
   def descendants_enrollments
-    Enrollment.where('group_id IN (?) AND (enrollments.end_time > ? OR enrollments.end_time IS NULL)', self.self_and_descendants.collect {|g| g.id}, Time.zone.now.to_s(:db)).select(:person_id).uniq.includes(:person => [:emails, :phones => [:comm_type], :household => [:phones => :comm_type]]).references(:people, :households, :emails, :phones, :comm_types).order('people.last_name, people.first_name ASC')
+    Enrollment.where('group_id IN (?) AND (enrollments.end_time > ? OR enrollments.end_time IS NULL)',
+               self.self_and_descendants.collect {|g| g.id},
+               Time.zone.now.to_s(:db)).select(:person_id).uniq.includes(:person => [:emails, :phones => [:comm_type],
+               :household => [:phones => :comm_type]]).references(:people, :households, :emails, :phones, :comm_types).
+               order('people.last_name, people.first_name ASC')
   end
   
   def enroll!(person)

@@ -14,11 +14,11 @@ class Household < ActiveRecord::Base
   geocoded_by :address
   acts_as_gmappable :process_geocoding => false, :address => :address
   acts_as_stampable
+  auto_strip_attributes :name, :address1, :city, :state, :zip, :squish => true
   
   before_validation :set_address
   after_save :run_geocode, :if => lambda{ |obj| obj.address_changed? }
-  
-  
+    
   def set_address
     logger.info "set_address was called"
     s = ''
