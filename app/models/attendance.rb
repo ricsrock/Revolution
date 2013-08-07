@@ -77,7 +77,7 @@ class Attendance < ActiveRecord::Base
   
   def set_call_number
     self.call_number = Attendance.do_call_number
-    until Attendance.find_by_call_number_this_event(call_number, self).nil?
+    until Attendance.find_by_call_number_this_event(self.call_number, self).nil?
       self.call_number = Attendance.do_call_number
       logger.info "******** do call number **********"
     end
@@ -98,7 +98,7 @@ class Attendance < ActiveRecord::Base
   
   def self.find_by_call_number_this_event(code, attendance)
     event = attendance.meeting.instance.event
-    event.attendances.where(security_code: code).first
+    event.attendances.where(call_number: code).first
   end
   
   
