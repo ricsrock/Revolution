@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_event, only: [:show, :edit, :update, :destroy, :mark, :post]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :mark, :post, :show_attendances_for]
 
   # GET /events
   # GET /events.json
@@ -104,6 +104,11 @@ class EventsController < ApplicationController
     #   end
     # end
     redirect_to mark_event_path(@event)
+  end
+  
+  def show_attendances_for
+    @att_search = @event.attendances.includes(:person, meeting: :group).search(params[:q])
+    @attendances = @att_search.result
   end
 
   private

@@ -1,0 +1,27 @@
+<h3 class="subheader">Listing All Attendances for Event: <%= @event.name %></h3>
+
+<table class="responsive" width=100%>
+	<tr>
+		<th><%= sort_link @att_search, :group_name, 'Group' %></th>
+		<th>Person</th>
+		<th><%= sort_link @att_search, :security_code, 'Security Code' %></th>
+		<th><%= sort_link @att_search, :call_number, 'Call Number' %></th>
+	</tr>
+	<% @attendances.each do |a| %>
+		<tr>
+			<td><%= a.meeting.group.name %></td>
+			<td><%= a.person.full_name %></td>
+			<td><%= a.security_code %></td>
+			<td><%= a.call_number %></td>
+		</tr>
+	<% end %>
+</table>
+
+<% content_for :sidebar do -%>
+	<%= search_form_for @att_search, url: show_attendances_for_event_path(@event), builder: SimpleForm::FormBuilder do |f| %>
+		<%# f.input :meeting_group_id_eq, collection: @person.attended_groups.order(:name), label: 'Group Name', wrapper_html: { class: 'four columns' } %>
+		<%= f.input :call_number_matches %>
+		<%= f.submit "Filter", class: 'button round small' %>
+	<% end %>
+	
+<% end -%>

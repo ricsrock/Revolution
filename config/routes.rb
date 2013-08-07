@@ -224,6 +224,7 @@ Revolution::Application.routes.draw do
       get 'search'
     end
     member do
+      get 'show_attendances_for'
       get 'mark'
       post 'post'
     end
