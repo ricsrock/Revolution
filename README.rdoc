@@ -1,28 +1,34 @@
-== README
+=== Revolution! is a church data management system for Ruby On Rails v4.0.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is in active development while in use in a real-world setting everyday. Check back often for updates.
 
-Things you may want to cover:
+---
 
-* Ruby version
+Features:
+* Track people information and household information
+* Track attendance
+* Security checkin system. Uses touch screen interface. Prints child sticker, teacher copy & secure parent receipt. Uses Dymo label printers
+* Checkin via text message for any enabled event
+* Keep in touch with people with contacts (think people-related ToDo's for system users)
+* Record contributions
+* Communicate with people via email and/or text messaging (uses Twilio for SMS)
+* Groups management for small groups and any other type of group
+* Responsive layout for small screens; iPad, mobile phone, etc.
 
-* System dependencies
+---
 
-* Configuration
+=== Setup
 
-* Database creation
+There will be pain.
 
-* Database initialization
+You'll need a system running Rails v.4.
 
-* How to run the test suite
+Create your database and configure database.example.yml to connect to it (remove 'example').
 
-* Services (job queues, cache servers, search engines, etc.)
+Run the bundle command to install the necessary gems.
 
-* Deployment instructions
+Run rake db:seed to setup initial data including an initial user and login information. Follow the on-screen instructions to login.
 
-* ...
+See config/application.example.yml for more info about configuring Twilio & AWS for image storage (remove 'example').
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
