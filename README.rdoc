@@ -27,7 +27,7 @@ Create your database and configure database.example.yml to connect to it (remove
 
 Run the bundle command to install the necessary gems.
 
-Run rake db:seed to setup initial data including an initial user and login information. Follow the on-screen instructions to login.
+Run rake db:setup to create the db schema and load initial data including an initial user and login information. Follow the on-screen instructions to login.
 
 See config/application.example.yml for more info about configuring Twilio & AWS for image storage (remove 'example').
 
