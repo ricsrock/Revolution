@@ -1,5 +1,5 @@
 class Permission < ActiveRecord::Base
-  RESOURCES = %w[Contacts SmartGroups Groups Contributions Reports CheckinBackgrounds]
+  RESOURCES = %w[Contacts SmartGroups Groups Contributions Reports CheckinBackgrounds People Events Meetings SignUps Checkins]
   
   validates :ability_name, :resource_name, :presence => true
   validates :ability_name, uniqueness: { scope: :resource_name }

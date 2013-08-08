@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
   
   def initialize(user)
-    alias_action :manage, :to => :read
+    # alias_action :manage, :to => :read
     user.permissions.each do |permission|
       # if permission.subject_id.nil?
       can permission.ability_name.to_sym, permission.resource_name.singularize.constantize
@@ -17,6 +17,10 @@ class Ability
       can :manage, Batch
       can :manage, Donation
       can :manage, Contribution
+    end
+    
+    if user.has_role?('checkin_user')
+      can :manage, :checkin
     end
     
     if user.has_role?('admin')

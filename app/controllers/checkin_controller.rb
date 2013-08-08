@@ -1,5 +1,6 @@
 class CheckinController < ApplicationController
   before_filter :authenticate_user!
+  authorize_resource class: false
 
   before_filter :set_cache_buster
 

@@ -1,5 +1,6 @@
 class FundsController < ApplicationController
   before_filter :authenticate_user!
+  authorize_resource
   
   before_action :set_fund, only: [:show, :edit, :update, :destroy]
 

@@ -1,5 +1,6 @@
 class ContactTypesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :verify_admin
   
   before_action :set_contact_type, only: [:show, :edit, :update, :destroy, :deactivate, :activate]
 

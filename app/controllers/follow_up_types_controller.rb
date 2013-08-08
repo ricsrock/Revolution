@@ -1,5 +1,6 @@
 class FollowUpTypesController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :verify_admin
   
   before_action :set_follow_up_type, only: [:show, :edit, :update, :destroy]
 

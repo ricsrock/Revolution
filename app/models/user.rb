@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :roles
   has_many :permissions, through: :roles
   
+  validates :email, :login, :presence => true, :uniqueness => true
+  validates :first_name, :last_name, :person_id, :presence => true
+  
   cattr_accessor :the_user
   
   # Include default devise modules. Others available are:

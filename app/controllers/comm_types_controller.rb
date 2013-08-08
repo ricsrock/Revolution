@@ -56,12 +56,10 @@ class CommTypesController < ApplicationController
   # DELETE /comm_types/1
   # DELETE /comm_types/1.json
   def destroy
-    @comm_type.destroy
-  rescue => e
-    if e
-      flash[:alert] = "#{e}"
+    if @comm_type.destroy
+      flash[:notice] = 'Communication Type destroyed.'
     else
-      flash[:notice] = "Communication Type was successfully destroyed."
+      flash[:error] = "Communication Type couldn't be destroyed."
     end
     respond_to do |format|
       format.html { redirect_to comm_types_url }

@@ -1,5 +1,6 @@
 class TagGroupsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :verify_admin
   
   before_action :set_tag_group, only: [:show, :edit, :update, :destroy]
 

@@ -181,10 +181,11 @@ role.save
 #Setup initial user
 user = User.new(first_name: 'Joe', last_name: 'Admin', login: 'jadmin', password: 'unsecure', password_confirmation: 'unsecure',
                 email: 'joe@mydomain.com')
-user.save
-user.confirm!
-admin = Role.find_by_name('admin')
-user.roles << admin
+if user.save
+  user.confirm!
+  admin = Role.find_by_name('admin')
+  user.roles << admin
+end
 
 #Setup essential tags
 tag_group = TagGroup.new(name: 'Status Advance/Decline')
@@ -236,6 +237,18 @@ pp 'You can login with username: jadmin, password: unsecure'
 # Make sure you've validated uniqueness of any models for records added from here down... so you don't create dups when you re-run rake db:seed
 p = SmartGroupProperty.new(short: 'household_name', prose: 'whose household name matches', instructions: 'type any part of a household name')
 p.save
+
+# Mo permissions
+resources = %w[People Events Meetings SignUps Checkins]
+actions = %w[create read update destroy]
+
+resources.each do |resource|
+  actions.each do |action|
+    p = Permission.new(resource_name: resource, ability_name: action, created_by: 'system')
+    p.save
+  end
+end
+
 
 
 
