@@ -11,6 +11,8 @@ class Ability
       # end
     end
     
+    #ToDo: Finish this!
+    
     if user.has_role?('financial')
       can :manage, Batch
       can :manage, Donation
