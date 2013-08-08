@@ -45,13 +45,14 @@ class GroupProfilePdf < Prawn::Document
       @enrollments = @group.enrolled('current').sort_by {|e| e.person.last_first_name}
     end
     data = []
-    headers = %w[Name Age Birthday]
+    headers = %w[Name Age Birthday CheckinGroup]
     data << headers
     @enrollments.each do |enrollment|
       row = []
       row << enrollment.person.full_name
       row << enrollment.person.age
       row << enrollment.person.birthdate
+      row << enrollment.person.default_group.name
       data << row
     end
     table data, row_colors: ["f0f0f0", "fcfcfc"], header: true, cell_style: {borders: []}, width: 540
