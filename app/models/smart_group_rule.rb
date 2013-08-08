@@ -127,6 +127,9 @@ class SmartGroupRule < ActiveRecord::Base
       array = content.split('!').flatten.each(&:strip!)
       (Time.now - array[0].to_i.weeks).to_date.to_s(:db)
      
+    when "household_name"
+       "%#{self.content}%"
+       
     end
   end
   
@@ -167,6 +170,8 @@ class SmartGroupRule < ActiveRecord::Base
         else
           Arel::Nodes::And.new([Arel::Nodes::Equality.new(left[0], nil), Arel::Nodes::Equality.new(left[1], nil)])
         end
+      elsif smart_group_property.short == "household_name"
+        Arel::Nodes::Matches.new(left, right)
       else
         Arel::Nodes::Equality.new(left, right)
       end

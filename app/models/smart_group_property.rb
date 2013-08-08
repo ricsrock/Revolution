@@ -45,6 +45,8 @@ class SmartGroupProperty < ActiveRecord::Base
       people[:household_position]
     when "attendance_status"
       people[:attendance_status]
+    when "household_name"
+      households[:name]
     when "birthday"
       birthdate = Arel::Attribute.new(Arel::Table.new(:people), :birthdate)
       Arel::Nodes::NamedFunction.new('MONTH', [birthdate])

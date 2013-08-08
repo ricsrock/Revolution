@@ -233,6 +233,9 @@ pp 'All done!'
 pp 'You can login with username: jadmin, password: unsecure'
 
 
+# Make sure you've validated uniqueness of any models for records added from here down... so you don't create dups when you re-run rake db:seed
+p = SmartGroupProperty.new(short: 'household_name', prose: 'whose household name matches', instructions: 'type any part of a household name')
+p.save
 
 
 
