@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Setup SmartGroup properties & operators...
-SmartGroup.destroy_all
-Operator.destroy_all
-SmartGroupProperty.destroy_all
+# SmartGroup.destroy_all
+# Operator.destroy_all
+# SmartGroupProperty.destroy_all
 
 #create operators...
 operators = [

@@ -150,8 +150,10 @@ class SmartGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def smart_group_params
-      params[:smart_group][:smart_group_rules_attributes].each_value do |rule|
-        rule[:content] = rule[:content] + ' !' + rule[:extra] if rule[:extra]
+      if params[:smart_group] && params[:smart_group][:smart_group_rules_attributes]
+        params[:smart_group][:smart_group_rules_attributes].each_value do |rule|
+          rule[:content] = rule[:content] + ' !' + rule[:extra] if rule[:extra]
+        end
       end
       params.require(:smart_group).permit(:id, :name, :definition,
                                           smart_group_rules_attributes: [:id, :smart_group_id, :content, :property_id, :operator_id, :_destroy])
