@@ -19,7 +19,8 @@ class ContactsByPersonPdf < Prawn::Document
         data << attrs
       end
       
-      pdf.table data, row_colors: ["f0f0f0", "fcfcfc"], cell_style: {borders: []}, width: 540
+      pdf.table data, row_colors: ["f0f0f0", "fcfcfc"], cell_style: {borders: []},
+                      width: 540, column_widths: [108, 432]
       pdf.move_down 20
       
       # contacts.sort_by {|c| c.person.last_first_name}.each do |contact|

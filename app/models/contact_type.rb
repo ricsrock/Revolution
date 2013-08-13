@@ -5,6 +5,7 @@ class ContactType < ActiveRecord::Base
   has_many :contacts, dependent: :restrict_with_exception
   
   validates :default_responsible_user_id, :name, :presence => true
+  validates :name, :uniqueness => true
   validates :default_follow_up_type_id,
             presence: { message: "You must choose a default follow-up type to use this as a quick contact" },
             if: Proc.new { |a| a.quick_contact? } # checked but no follow-up type
