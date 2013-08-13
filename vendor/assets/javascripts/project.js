@@ -82,14 +82,14 @@ $(function(){
 		var data = { 'q' : $(this).val() };
 		$.get(url, data);
 	});
+	
+	// Used by merge records screen: people/setup_merge_for
 	$(".live-search-person").observe_field(1, function( ) {
 		var url = '/people/search_person';
 		var data = { 'q' : $(this).val(), 'duplicate_id' : $(this).data('duplicate-id') };
 		$.get(url, data);
 	});
-	
-	
-	
+		
 	$(".property_selector").observe_field(1, function( ) {
 		var data = $this.val();
 		alert(data);
