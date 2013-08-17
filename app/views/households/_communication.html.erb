@@ -1,0 +1,10 @@
+<%= widget_box("Communication") do %>
+	<div class="widget-content">
+		<div id="phones">			
+			<%= render :partial => 'shared/phones', :locals => {:object => @household} %>
+		</div>
+		<div id="emails">			
+			<%= render :partial => 'shared/emails', :locals => {:object => @household} %>
+		</div>
+	</div>
+<% end %>

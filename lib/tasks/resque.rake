@@ -8,7 +8,7 @@ namespace :resque do
     require 'resque/scheduler'
     
     # you probably already have this somewhere
-    Resque.redis = 'localhost:6379'
+    Resque.redis = 'pub-redis-13684.us-east-1-3.1.ec2.garantiadata.com:13684'
 
     # If you want to be able to dynamically change the schedule,
     # uncomment this line.  A dynamic schedule can be updated via the

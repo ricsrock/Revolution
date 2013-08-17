@@ -31,7 +31,8 @@ class Household < ActiveRecord::Base
   end
   
   def run_geocode
-    Resque.enqueue(GeocoderWorker, self.id)
+    # Resque.enqueue(GeocoderWorker, self.id)
+    GeocoderWorker.perform_async(self.id)
   end
   
   def geocode!

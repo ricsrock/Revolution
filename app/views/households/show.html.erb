@@ -41,17 +41,20 @@
 	</div>
 </div>
 
-<%= widget_box("Communication") do %>
-	<div class="widget-content">
-		<div id="phones">			
-			<%= render :partial => 'shared/phones', :locals => {:object => @household} %>
-		</div>
-		<div id="emails">			
-			<%= render :partial => 'shared/emails', :locals => {:object => @household} %>
-		</div>
+<dl class="tabs">
+  <dd class="active"><a href="#communication">Communication</a></dd>
+  <dd><a href="#contacts">Contacts</a></dd>
+</dl>
+<ul class="tabs-content">
+  <li class="active" id="communicationTab">
+	<%= render :partial => 'communication', locals: { household: @household } %>
+  </li>
+  <li id="contactsTab">
+	<div id="contacts">
+		<%= render :partial => 'contacts', locals: { household: @household } %>
 	</div>
-<% end %>
-
+  </li>
+</ul>
 
 <%= button_icon 'Edit', edit_household_path(@household), 'edit', nil, "small round" %> &nbsp;
 <%= button_icon 'Index', households_path, 'list', nil, "small round" %><br><br>

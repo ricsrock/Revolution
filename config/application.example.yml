@@ -15,6 +15,11 @@
 # FOG_AWS_SECRET_ACCESS_KEY: your_aws_secret_access_key
 # FOG_DIRECTORY: the_name_of_your_aws_directory
 
+# REDIS_CLOUD_HOST: your_redis_cloud_host_without_the_port_specification
+# REDIS_CLOUD_PORT: your_redis_cloud_port_number
+# REDIS_CLOUD_PASSWORD: your_redis_cloud_password
+
+
 # From config/initializers/secret_token.rb --- only if you are sharing your code publicly 
 # SECRET_KEY_BASE: your_apps_secret_token
 

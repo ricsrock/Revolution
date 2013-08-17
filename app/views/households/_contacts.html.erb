@@ -1,0 +1,41 @@
+<%= widget_box("Contacts") do %>
+	<div class="widget-content">
+		<div id="contacts">	
+			<div class="row twelve columns">
+				<h5 class="subheader">
+					Contacts
+					<%= link_to '', new_contact_path(contactable_id: household.id, contactable_type: 'Household'), class: "general-enclosed foundicon-plus right", title: "add contact" %>
+				</h5>
+			</div><hr>
+			<% if household.contacts.empty? %>
+				<div class="panel radius">
+					<p class="lead">This household has no contacts.</p>
+				</div>
+			<% else %>
+				<table class="twelve responsive">
+					<tr>
+						<th>Date</th>
+						<th>Contact Type</th>
+						<th>Responsible User</th>
+						<th>Status</th>
+						<th>Comments</th>
+						<th></th>
+					</tr>
+					<% household.contacts.order(:created_at).each do |contact| %>
+						<tr>
+							<td><%= link_to contact.created_at.to_time.to_s(:long), contact %></td>
+							<td><%= contact.contact_type.name %></td>
+							<td><%= contact.responsible_user.full_name %></td>
+							<td><%= contact.status %></td>
+							<td><%= contact.comments %></td>
+							<td>
+								<%# link_to '', edit_tagging_path(tagging), class: "general-enclosed foundicon-edit", "data-reveal-id" => "myModal", :remote => true %>&nbsp;&nbsp;
+								<%# link_to '', tagging_path(tagging), method: :delete, data: {confirm: "Are you sure you want to destroy this tag record forever?"}, class: "general-enclosed foundicon-minus" %>
+							</td>
+						</tr>
+					<% end %>		
+				</table>
+			<% end %>
+		</div>
+	</div>
+<% end %>
