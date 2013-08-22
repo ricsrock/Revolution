@@ -92,7 +92,7 @@ class Person < ActiveRecord::Base
   
   def self.guest_declines
     people = Arel::Table.new(:people)
-    where(people[:attend_count].in(2..3)).
+    where(people[:attend_count].in(1..2)).
     where(people[:max_date].in((Time.zone.now - 41.days).to_date.to_s(:db)..(Time.zone.now - 5.weeks).to_date.to_s(:db)))
   end
   
@@ -104,7 +104,7 @@ class Person < ActiveRecord::Base
   
   def self.active_declines
     people = Arel::Table.new(:people)
-    where(people[:attend_count].gt(2)).                                                                           #attended 3 or more times
+    where(people[:attend_count].gt(2)).                                                                                     #attended 3 or more times
     where(people[:max_date].in((Time.zone.now - 41.days).to_date.to_s(:db)..(Time.zone.now - 5.weeks).to_date.to_s(:db)))   #most recent attend over 5 weeks ago as of this week
   end
   

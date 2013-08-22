@@ -8,6 +8,7 @@ $.get('/labels/teacher_copy_allergies.label', function(labelXml) {
 	label.setObjectText("allergies", "<%= attendance.person.allergies %>");
 	var printers = dymo.label.framework.getPrinters();
 	if (printers.length == 0)
+		alert("No DYMO printers are installed. Install DYMO printers.");
 	    throw "No DYMO printers are installed. Install DYMO printers.";
 	var printerName = "";
 	for (var i = 0; i < printers.length; ++i)

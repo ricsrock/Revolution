@@ -7,6 +7,7 @@ $.get('/labels/teacher_copy.label', function(labelXml) {
 	label.setObjectText("responsible_people", "<%= attendance.person.household.responsible_people %>");
 	var printers = dymo.label.framework.getPrinters();
 	if (printers.length == 0)
+		alert("No DYMO printers are installed. Install DYMO printers.");
 	    throw "No DYMO printers are installed. Install DYMO printers.";
 	var printerName = "";
 	for (var i = 0; i < printers.length; ++i)
