@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Hi, <%= @inquiry.person.first_name %>!</h3>
+    <p>
+      We're thrilled that you've expressed interest in small groups. Here's the group detail:
+    </p>
+	<p>
+		<label>Group: </label><%= @inquiry.group.name %>
+	</p>
+	<p>
+		<%= @inquiry.group.blurb %>
+	</p>
+	<p>
+		<label>Meets: </label><%= meets(@inquiry.group.becomes(SmallGroup)) %>
+	</p>
+	<p>
+		<h4>Leader(s):</h4>
+		<ul>
+			<% @inquiry.group.becomes(SmallGroup).primary_leaderships.each do |l| %>
+				<li>
+					<%= l.person.full_name %> (<%= l.title %>): <%= l.person.best_email %> or <%= number_to_phone l.person.best_number %>
+				</li>
+			<% end %>
+		</ul>
+	</p>
+	<p>
+		<h4>Support Leader(s):</h4>
+		<ul>
+			<% @inquiry.group.becomes(SmallGroup).support_leaderships.each do |l| %>
+				<li>
+					<%= l.person.full_name %> (<%= l.title %>): <%= l.person.best_email %> or <%= number_to_phone l.person.best_number %>
+				</li>
+			<% end %>
+		</ul>
+	</p>
+    <p>
+      Please let us know if we can help you more.
+    </p>
+	<p>
+		Best to you!
+	</p>
+	<p>
+		<%= @user.full_name %>
+	</p>
+  </body>
+</html>

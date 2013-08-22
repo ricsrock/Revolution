@@ -1,13 +1,20 @@
 <%= form_tag create_multiple_inquiries_path(person_id: @person), method: :post do %>
+	<% if @person.best_email == "no email" %>
+		<div class='alert-box alert'>
+			This person has no email address! No email will be sent!
+		</div><br>
+	<% end %>
 	<div id="form">	
-		<% @groups.each do |group| %>
-			<div class="row <%= cycle('odd', 'even') %> padded">
-				<%= simple_fields_for "groups[#{group.object_id}]", group do |f| %>
-					<%= f.input :included, as: :boolean, label: group.name, wrapper_html: { class: "three columns padded" } %>
-					<%= f.input :group_id, as: :hidden, input_html: { value: group.id } %>
-				<% end %>
-			</div>
-		<% end %>
+		<ul class='block-grid eight-up'>
+			<% @groups.each do |group| %>
+				<li class="row <%= cycle('odd', 'even') %> padded">
+					<%= simple_fields_for "groups[#{group.object_id}]", group do |f| %>
+						<%= f.input :included, as: :boolean, label: "#{group.inquiry_number} (#{group.name})", wrapper_html: { class: "three columns padded" } %>
+						<%= f.input :group_id, as: :hidden, input_html: { value: group.id } %>
+					<% end %>
+				</li>
+			<% end %>
+		</ul>
 	  <div class="form-actions">
 	    <%= submit_tag 'Create Inquiries', class: "button radius" %>
 	  </div>

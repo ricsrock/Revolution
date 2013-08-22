@@ -8,7 +8,7 @@ class SmallGroup < Group
   
   # has_one :frequency
   
-  validates :inquiry_number, :uniqueness => true
+  validates :inquiry_number, :uniqueness => true, if: proc { |a| a.inquiry_number.present? }
   
   
   accepts_nested_attributes_for :primary_leaderships, reject_if: :all_blank, allow_destroy: true
@@ -39,6 +39,10 @@ class SmallGroup < Group
   
   def self.archived
     where('groups.archived_at IS NOT NULL AND groups.archived_at < ?', Time.zone.now.to_s(:db))
+  end
+  
+  def self.inquirable
+    where('groups.inquiry_number IS NOT NULL').order(:inquiry_number)
   end
   
   def self.status(params_hash)

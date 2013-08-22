@@ -3,6 +3,7 @@
 <dl class="sub-nav">
 	<dt>Sort:</dt>
 	<dd><%= sort_link @q, :name, "Name" %></dd>
+	<dd><%= sort_link @q, :inquiry_number, "Inquiry Number" %></dd>
 </dl>
 
 
@@ -11,11 +12,19 @@
 		<div class="twelve columns">
 			<h5 class="subheader"><%= link_to small_group.name, small_group.becomes(Group) %> <%= group_status_label(small_group) %></h5>
 		</div>
+		<div class='twelve columns'>
+			<p>
+				<%= small_group.blurb %>
+			</p>
+		</div>
 		<div class="twelve columns">
-			<ul class='block-grid four-up mobile-two-up'>
+			<ul class='block-grid two-up'>
 				<li>Inquiry Number: <%= small_group.inquiry_number %></li>
-				<li>hi</li>
+				<li>Meets <%= meets(small_group) %></li>
 			</ul>
+		</div>
+		<div class="twelve columns">
+			<%= link_to 'edit', edit_small_group_path(small_group) %>
 		</div>
 		&nbsp;
 	</div>

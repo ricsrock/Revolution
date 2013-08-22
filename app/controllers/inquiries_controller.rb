@@ -13,7 +13,7 @@ class InquiriesController < ApplicationController
   # GET /inquiries/new
   def new
     # @inquiry = Inquiry.new
-    @groups = SmallGroup.all.order(:name) # change this to find groups with an inquiry number
+    @groups = SmallGroup.inquirable
     @person = Person.find(params[:person_id])
   end
 
@@ -44,6 +44,7 @@ class InquiriesController < ApplicationController
         inquiry = Inquiry.new(person_id: person_id, group_id: attributes[:group_id])
         if inquiry.save!
           number_saved += 1
+          InquiryMailer.notification(inquiry, current_user).deliver!
         end
       end
     end
