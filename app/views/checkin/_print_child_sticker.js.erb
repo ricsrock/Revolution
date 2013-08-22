@@ -9,19 +9,19 @@ $.get('/labels/child_sticker.label', function(labelXml) {
 	label.setObjectText("group_name", "<%= attendance.meeting.group.name %>");
 	label.setObjectText("celebration_sentence_1", "<%= celebration_sentence_1(attendance) %>");
 	label.setObjectText("celebration_sentence_2", "<%= celebration_sentence_2(attendance) %>");
-	var printers = dymo.label.framework.getPrinters();
-	if (printers.length == 0)
-		alert("No DYMO printers are installed. Install DYMO printers.");
-	    throw "No DYMO printers are installed. Install DYMO printers.";
-	var printerName = "";
-	for (var i = 0; i < printers.length; ++i)
-	{
-	    var printer = printers[i];
-	    if (printer.printerType == "LabelWriterPrinter")
-	    {
-	        printerName = printer.name;
-	        break;
-	    }
-	}
-	label.print(printerName);
+	// var printers = dymo.label.framework.getPrinters();
+	// if (printers.length == 0)
+	// 	alert("No DYMO printers are installed. Install DYMO printers.");
+	//     throw "No DYMO printers are installed. Install DYMO printers.";
+	// var printerName = "";
+	// for (var i = 0; i < printers.length; ++i)
+	// {
+	//     var printer = printers[i];
+	//     if (printer.printerType == "LabelWriterPrinter")
+	//     {
+	//         printerName = printer.name;
+	//         break;
+	//     }
+	// }
+	label.print("LabelWriterPrinter");
 }, "text");
