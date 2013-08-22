@@ -40,6 +40,7 @@ gem 'daemons'
 gem 'delayed_job_active_record', '4.0.0.beta2'
 gem "devise", github: "plataformatec/devise", branch: "rails4"
 gem "devise-encryptable"
+gem 'druthers'
 gem "faker"
 gem "figaro"
 gem "fog", "~> 1.3.1"

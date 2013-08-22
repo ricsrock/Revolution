@@ -1,0 +1,20 @@
+<%= widget_box 'Inquiries' do %>
+	<div id="widget-content">
+		<div id="inquiries">
+			<table class="twelve responsive">
+				<tr>
+					<th>Date</th>
+					<th>Group</th>
+					<th>By</th>
+				</tr>
+				<% @person.inquiries.order(:created_at).each do |i| %>
+					<tr>
+						<td><%= i.created_at %></td>
+						<td><%= i.group.name %></td>
+						<td><%= i.created_by %></td>
+					</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+<% end %>

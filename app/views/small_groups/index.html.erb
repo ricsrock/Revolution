@@ -9,7 +9,13 @@
 <% @small_groups.each do |small_group| %>
 	<div class="panel radius">
 		<div class="twelve columns">
-			<h5 class="subheader"><%= link_to small_group.name, small_group.becomes(Group) %></h5>
+			<h5 class="subheader"><%= link_to small_group.name, small_group.becomes(Group) %> <%= group_status_label(small_group) %></h5>
+		</div>
+		<div class="twelve columns">
+			<ul class='block-grid four-up mobile-two-up'>
+				<li>Inquiry Number: <%= small_group.inquiry_number %></li>
+				<li>hi</li>
+			</ul>
 		</div>
 		&nbsp;
 	</div>
@@ -24,4 +30,7 @@
 		<%= f.input :status_cont, collection: SmallGroup::STATUSES, label: "Status", selected: @status %>
 		<%= f.submit "Search", class: 'button small round' %>
 	<% end %>
+	<hr></hr>
+	<h5 class='subheader'>Actions</h5>
+	<%= link_to 'Reset Inquiry Numbers', reset_inquiry_numbers_small_groups_path, class: 'button round small' %>
 <% end -%>

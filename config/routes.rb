@@ -1,4 +1,10 @@
 Revolution::Application.routes.draw do
+  resources :inquiries do
+    collection do
+      post :create_multiple
+    end
+  end
+
   resources :sign_ups do
     collection do
       get 'key_pressed'
@@ -267,7 +273,11 @@ Revolution::Application.routes.draw do
       get 'about'
     end
   end
-  resources :small_groups
+  resources :small_groups do
+    collection do
+      get 'reset_inquiry_numbers'
+    end
+  end
   resources :checkin_groups
   resources :lists
 

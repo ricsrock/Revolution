@@ -27,6 +27,7 @@ class Person < ActiveRecord::Base
   has_many :attendance_trackers, dependent: :destroy
   has_many :contacts, as: :contactable, dependent: :restrict_with_exception
   has_many :contributions, as: :contributable, dependent: :restrict_with_exception
+  has_many :inquiries, dependent: :destroy
   
   validates :first_name, :gender, :default_group_id, :attendance_status, presence: true
   validates :attendance_status, inclusion: { :in => Person::STATUSES }

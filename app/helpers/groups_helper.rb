@@ -19,6 +19,17 @@ module GroupsHelper
     @result
   end
   
+  def group_status_label(group)
+    if group.status == 'Active'
+      @result = "<span class='label radius success'>Active</span>"
+    elsif group.status == 'Archived'
+      @result = "<span class='label radius alert'>Archived</span>"
+    else
+      @result = "<span class='label radius'>Unknown</span>"
+    end
+    @result.html_safe
+  end
+  
   def status_label(group)
     if group.status == 'Active'
       @result = "<span class='label radius success'>Active</span>"
@@ -29,6 +40,7 @@ module GroupsHelper
     end
     @result.html_safe
   end
+  
   
   def group_icon(group)
     case group.type

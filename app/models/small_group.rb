@@ -8,6 +8,8 @@ class SmallGroup < Group
   
   # has_one :frequency
   
+  validates :inquiry_number, :uniqueness => true
+  
   
   accepts_nested_attributes_for :primary_leaderships, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :support_leaderships, reject_if: :all_blank, allow_destroy: true
@@ -73,6 +75,10 @@ class SmallGroup < Group
       # params_hash.merge!(created_at_lt: do_range(range_name).end_date.to_time.to_s(:db))
       params_hash
     end
+  end
+  
+  def reset_inquiry_number!
+    self.update_attribute(:inquiry_number, nil)
   end
     
 end

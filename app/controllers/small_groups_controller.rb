@@ -52,6 +52,12 @@ class SmallGroupsController < ApplicationController
     end
   end
   
+  def reset_inquiry_numbers
+    SmallGroup.all.each { |s| s.reset_inquiry_number! }
+    flash[:notice] = "All Small Group inquiry numbers have been reset."
+    redirect_to small_groups_url
+  end
+  
   
   
   private
@@ -63,7 +69,7 @@ class SmallGroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def small_group_params
       params.require(:small_group).permit(:name, :default_room_id, :staff_ratio, :meeting_is_called, :checkin_group, :cadence_id, :parent_id, :id,
-                                          :blurb, :description, weekday_ids: [], meeting_time_ids: [],
+                                          :blurb, :description, :inquiry_number, weekday_ids: [], meeting_time_ids: [],
                                           primary_leaderships_attributes: [:person_name, :title, :_destroy, :id],
                                           support_leaderships_attributes: [:person_name, :title, :_destroy, :id],
                                           frequency: [:name, :cadence_id])

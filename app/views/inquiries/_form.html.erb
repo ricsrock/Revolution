@@ -1,0 +1,15 @@
+<%= form_tag create_multiple_inquiries_path(person_id: @person), method: :post do %>
+	<div id="form">	
+		<% @groups.each do |group| %>
+			<div class="row <%= cycle('odd', 'even') %> padded">
+				<%= simple_fields_for "groups[#{group.object_id}]", group do |f| %>
+					<%= f.input :included, as: :boolean, label: group.name, wrapper_html: { class: "three columns padded" } %>
+					<%= f.input :group_id, as: :hidden, input_html: { value: group.id } %>
+				<% end %>
+			</div>
+		<% end %>
+	  <div class="form-actions">
+	    <%= submit_tag 'Create Inquiries', class: "button radius" %>
+	  </div>
+	</div>
+<% end %>

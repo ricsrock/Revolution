@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813243032) do
+ActiveRecord::Schema.define(version: 20130822180956) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -494,6 +494,7 @@ ActiveRecord::Schema.define(version: 20130813243032) do
     t.integer  "cadence_id"
     t.text     "description"
     t.boolean  "suppress_stickers",           default: false
+    t.integer  "inquiry_number"
   end
 
   add_index "groups", ["active"], name: "index_groups_on_active", using: :btree
@@ -558,6 +559,18 @@ ActiveRecord::Schema.define(version: 20130813243032) do
   add_index "households", ["longitude"], name: "index_households_on_longitude", using: :btree
   add_index "households", ["name"], name: "index_households_on_name", using: :btree
   add_index "households", ["zip"], name: "index_households_on_zip", using: :btree
+
+  create_table "inquiries", force: true do |t|
+    t.integer  "person_id"
+    t.integer  "group_id"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "inquiries", ["group_id"], name: "index_inquiries_on_group_id", using: :btree
+  add_index "inquiries", ["person_id"], name: "index_inquiries_on_person_id", using: :btree
 
   create_table "instance_types", force: true do |t|
     t.string   "name"
@@ -1113,9 +1126,13 @@ ActiveRecord::Schema.define(version: 20130813243032) do
   add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
   create_table "settings", force: true do |t|
-    t.integer  "current_instance"
-    t.datetime "advance_decline_run_date"
+    t.string   "key"
+    t.text     "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
+
+  add_index "settings", ["key"], name: "key_udx", unique: true, using: :btree
 
   create_table "sign_ups", force: true do |t|
     t.string   "first_name"

@@ -188,6 +188,8 @@ GEM
     devise-encryptable (0.1.1)
       devise (>= 2.1.0.rc)
     diff-lcs (1.2.1)
+    druthers (0.0.2)
+      activerecord (>= 3.0)
     erubis (2.7.0)
     excon (0.13.4)
     execjs (1.4.0)
@@ -423,6 +425,7 @@ DEPENDENCIES
   delayed_job_active_record (= 4.0.0.beta2)
   devise!
   devise-encryptable
+  druthers
   exception_notification!
   factory_girl_rails
   faker

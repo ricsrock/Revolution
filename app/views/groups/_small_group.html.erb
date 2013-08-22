@@ -19,14 +19,17 @@
 		<li class="field">Support Leader(s):</li>
 		<li><%= @group.support_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
 		<li class="field">Status:</li>
-		<li><%= status_label(@group) %></li>
+		<li><%= group_status_label(@group) %></li>
 		<li class="field">Archived At:</li>
 		<li><%= @group.archived_at %></li>
+		<li class='field'>Inquiry Number:</li>
+		<li><%= @group.inquiry_number %></li>
 		<%= render partial: 'admin_box', locals: { group: @group } %>
 	</ul>
 </div>
 
 <div class="form-actions">
+	<%= link_to 'Small Groups Index', small_groups_url, class: 'button round small' %>
 	<%= link_to 'Edit', edit_small_group_path(@group), class: "button round small" %>
 	<% if @group.status == 'Active' %>
 		<%= link_to 'Archive', archive_group_path(@group), class: "button round small" %>

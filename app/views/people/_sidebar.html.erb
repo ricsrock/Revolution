@@ -16,4 +16,7 @@
 	<div class="twelve columns">
 		<%= link_to(image_from_facebook_person_path(@person), class: 'button expand small round') { "<i class='icon-facebook-sign'></i>&nbsp;&nbsp;&nbsp;Get Facebook Pic".html_safe }if @person.facebook_url.present? %>
 	</div>
+	<div class="twelve columns">
+		<%= link_to 'Add Inquiries', new_inquiry_path(person_id: @person), class: 'button expand small round' %>
+	</div>
 </div>

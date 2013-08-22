@@ -70,7 +70,7 @@
   <dd><a href="#tags">Tags</a></dd>
   <dd><a href="#contacts">Contacts</a></dd>
   <dd><a href="#attendance">Attendance</a></dd>
-  <dd><a href="#simple4">Simple Tab 4</a></dd>
+  <dd><a href="#inquiries">Inquiries</a></dd>
 </dl>
 <ul class="tabs-content">
   <li class="active" id="communicationTab">
@@ -91,8 +91,10 @@
 		<%= render partial: "attendance", locals: { person: @person } %>
 	</div>
   </li>
-  <li id="simple4Tab">
-	<div>This is simple tab 4s content.</div>
+  <li id="inquiriesTab">
+	<div id="inquiries">
+		<%= render 'inquiries' %>
+	</div>
   </li>
 </ul>
 

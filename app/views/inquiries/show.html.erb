@@ -1,0 +1,16 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Person_id:</li>
+	<li><%= @inquiry.person_id %></li>
+	<li class="field">Group_id:</li>
+	<li><%= @inquiry.group_id %></li>
+	<li class="field">Created_by:</li>
+	<li><%= @inquiry.created_by %></li>
+	<li class="field">Updated_by:</li>
+	<li><%= @inquiry.updated_by %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', inquiries_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_inquiry_path(@inquiry), 'edit', nil, 'small round' %>
+</div>

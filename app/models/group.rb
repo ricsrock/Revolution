@@ -34,6 +34,8 @@ class Group < ActiveRecord::Base
   
   acts_as_stampable
   
+  attr_accessor :included
+  
   # before_destroy :group_with_descendants_cannot_be_destroyed
   
   ransacker :status do |parent|
@@ -83,7 +85,7 @@ class Group < ActiveRecord::Base
   
   
   def archive!
-    self.update_attribute(:archived_at, Time.now.to_s(:db))
+    self.update_attribute(:archived_at, (Time.now - 1.minute).to_s(:db))
   end
   
   def activate!
