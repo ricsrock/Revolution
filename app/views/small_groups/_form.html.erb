@@ -7,6 +7,7 @@
 	<%= f.association :meeting_times, as: :check_boxes, label_method: :s_time, label: "Meeting Time(s)" %>
 	<br>
 	<%= f.input :cadence_id, :collection => Cadence.all.order(:name) %>
+	<%= f.input :location_name, :input_html => {data: {autocomplete_source: search_locations_path}}, placeholder: "Type to search. Pick from the list or type a new location name." %>
 	<%= f.input :inquiry_number %>
 	<%= f.input :parent_id, :collection => nested_set_options(Group, @group) {|i| "#{'-' * i.level} #{i.name}" }, :label => "Select Parent Group" %>
 	

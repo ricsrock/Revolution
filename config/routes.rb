@@ -1,4 +1,10 @@
 Revolution::Application.routes.draw do
+  resources :locations do
+    collection do
+      get 'search'
+    end
+  end
+
   resources :inquiries do
     collection do
       post :create_multiple

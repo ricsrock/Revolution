@@ -20,6 +20,8 @@
 		<li><%= @group.support_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
 		<li class="field">Status:</li>
 		<li><%= group_status_label(@group) %></li>
+		<li class="field">Location:</li>
+		<li><%= @group.location_name %></li>
 		<li class="field">Archived At:</li>
 		<li><%= @group.archived_at %></li>
 		<li class='field'>Inquiry Number:</li>

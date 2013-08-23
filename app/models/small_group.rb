@@ -5,6 +5,7 @@ class SmallGroup < Group
   has_many :support_leaderships, :as => :leadable, dependent: :destroy
   
   belongs_to :cadence
+  belongs_to :location#, inverse_of: :small_groups
   
   # has_one :frequency
   
@@ -14,6 +15,13 @@ class SmallGroup < Group
   accepts_nested_attributes_for :primary_leaderships, reject_if: :all_blank, allow_destroy: true
   accepts_nested_attributes_for :support_leaderships, reject_if: :all_blank, allow_destroy: true
   # accepts_nested_attributes_for :frequency, reject_if: :all_blank, allow_destroy: true
+  
+  attr_accessor :location_name
+  
+  def location_name=(value)
+    location = Location.find_or_create_by(name: value)
+    self.location = location
+  end
   
   before_validation(on: :create) do 
     primary_leaderships.each    { |pl| pl.leadable   = self }
@@ -87,6 +95,10 @@ class SmallGroup < Group
   
   def reset_inquiry_number!
     self.update_attribute(:inquiry_number, nil)
+  end
+  
+  def location_name
+    self.location.present? ? self.location.name : 'not assigned'
   end
     
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130823130609) do
+ActiveRecord::Schema.define(version: 20130823181849) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -495,6 +495,7 @@ ActiveRecord::Schema.define(version: 20130823130609) do
     t.text     "description"
     t.boolean  "suppress_stickers",           default: false
     t.integer  "inquiry_number"
+    t.integer  "location_id"
   end
 
   add_index "groups", ["active"], name: "index_groups_on_active", using: :btree
@@ -508,6 +509,7 @@ ActiveRecord::Schema.define(version: 20130823130609) do
   add_index "groups", ["is_childcare_provided_id"], name: "index_groups_on_is_childcare_provided_id", using: :btree
   add_index "groups", ["leader_name_for_printing_id"], name: "index_groups_on_leader_name_for_printing_id", using: :btree
   add_index "groups", ["lft"], name: "index_groups_on_lft", using: :btree
+  add_index "groups", ["location_id"], name: "index_groups_on_location_id", using: :btree
   add_index "groups", ["meeting_cadence_id"], name: "index_groups_on_meeting_cadence_id", using: :btree
   add_index "groups", ["meeting_place_id"], name: "index_groups_on_meeting_place_id", using: :btree
   add_index "groups", ["meets_at_household_id"], name: "index_groups_on_meets_at_household_id", using: :btree
@@ -665,6 +667,18 @@ ActiveRecord::Schema.define(version: 20130823130609) do
   add_index "leaderships", ["leadable_type"], name: "index_leaderships_on_leadable_type", using: :btree
   add_index "leaderships", ["person_id"], name: "index_leaderships_on_person_id", using: :btree
   add_index "leaderships", ["type"], name: "index_leaderships_on_type", using: :btree
+
+  create_table "locations", force: true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "meeting_times", force: true do |t|
     t.datetime "time"

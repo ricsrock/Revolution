@@ -1,0 +1,20 @@
+<%= four_up_two_up_widget_box("Basic Information") do %>
+	<li class="field">Name:</li>
+	<li><%= @location.name %></li>
+	<li class="field">Address1:</li>
+	<li><%= @location.address1 %></li>
+	<li class="field">Address2:</li>
+	<li><%= @location.address2 %></li>
+	<li class="field">City:</li>
+	<li><%= @location.city %></li>
+	<li class="field">State:</li>
+	<li><%= @location.state %></li>
+	<li class="field">Zip:</li>
+	<li><%= @location.zip %></li>
+<% end  %>
+  
+
+<div class="form-actions">
+  <%= button_icon 'Index', locations_path, 'list', nil, 'small round'  %>
+  <%= button_icon 'Edit', edit_location_path(@location), 'edit', nil, 'small round' %>
+</div>

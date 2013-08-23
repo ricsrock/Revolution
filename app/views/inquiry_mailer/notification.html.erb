@@ -18,6 +18,9 @@
 		<label>Meets: </label><%= meets(@inquiry.group.becomes(SmallGroup)) %>
 	</p>
 	<p>
+		<label>Location: </label><%= @inquiry.group.location_name %>
+	</p>
+	<p>
 		<h4>Leader(s):</h4>
 		<ul>
 			<% @inquiry.group.becomes(SmallGroup).primary_leaderships.each do |l| %>

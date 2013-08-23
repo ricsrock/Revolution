@@ -138,7 +138,7 @@ class Group < ActiveRecord::Base
   def has_children?
     self.children.present?
   end
-  
+    
   def move_enrollments_to(group)
     self.enrollments.update_all(group_id: group.id)
   end
