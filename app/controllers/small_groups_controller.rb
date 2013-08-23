@@ -32,7 +32,7 @@ class SmallGroupsController < ApplicationController
         format.html { redirect_to @small_group.becomes(Group), notice: 'Group was successfully created.' }
         format.json { render action: 'show', status: :created, location: @small_group }
       else
-        flash[:error] = "There were errors: #{@small_group.errors.messages[:base].to_sentence rescue nil}"
+        flash[:error] = "There were errors: #{@small_group.errors.messages[:base].to_sentence rescue nil}. #{@small_group.errors.full_messages.to_sentence}."
         format.html { render action: 'new' }
         format.json { render json: @small_group.errors, status: :unprocessable_entity }
       end
