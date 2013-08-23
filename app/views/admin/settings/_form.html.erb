@@ -1,0 +1,6 @@
+<%= simple_form_for [:admin, @setting] do |f| %>
+	<%= f.input :key, label: 'Name', wrapper_html: { class: 'large six-columns' } %>
+	<%# f.input :value %>
+	<%= f.input :field_type, collection: Setting::FIELD_TYPES, wrapper_html: { class: 'large six-columns' } %>
+	<%= f.submit %>
+<% end %>

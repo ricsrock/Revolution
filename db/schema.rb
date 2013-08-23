@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822213737) do
+ActiveRecord::Schema.define(version: 20130823130609) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -1130,6 +1130,10 @@ ActiveRecord::Schema.define(version: 20130822213737) do
     t.text     "value"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "created_by"
+    t.string   "updated_by"
+    t.datetime "locked_at"
+    t.string   "field_type"
   end
 
   add_index "settings", ["key"], name: "key_udx", unique: true, using: :btree

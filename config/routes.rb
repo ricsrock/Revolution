@@ -181,6 +181,7 @@ Revolution::Application.routes.draw do
         get 'convert'
       end
     end
+    resources :settings
   end
   
   get 'checkin/search' => 'checkin#search', as: :checkin_search

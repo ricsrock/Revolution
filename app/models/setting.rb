@@ -1,4 +1,9 @@
 class Setting < ActiveRecord::Base
+  FIELD_TYPES = %w[text_area string boolean date datetime]
+  
+  acts_as_stampable
+  
+  serialize :value
   
   def_druthers :inquiry_email_body
   
