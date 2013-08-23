@@ -1,0 +1,12 @@
+<h3 class='subheader'>Details for Setting: <%= @setting.key.titleize %></h3>
+
+<ul class='block-grid four-up'>
+	<li class='field'>Field Type:</li>
+	<li><%= @setting.field_type %></li>
+	<li class='field'>Locked At:</li>
+	<li><%= @setting.locked_at %></li>
+	<%= render partial: 'shared/admin_box', locals: { object: @setting } %>
+</ul>
+
+<h4 class='subheader'>Current Value <small><%= link_to 'change', change_admin_setting_path(@setting) %></small></h4>
+<%= render partial: "admin/settings/show/#{@setting.field_type}" %>

@@ -7,8 +7,11 @@
 	</tr>
 	<% @settings.each do |setting| %>
 		<tr>
-			<td><%= setting.key %></td>
+			<td><%= link_to setting.key.titleize, admin_setting_path(setting) %></td>
 			<td><%= setting.value %></td>
+			<td><%= link_to '', edit_admin_setting_path(setting), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+				<%= link_to '', admin_setting_path(setting), method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
+		   </td>
 		</tr>
 	<% end %>
 </table>

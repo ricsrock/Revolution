@@ -1,0 +1,6 @@
+<h3 class='subheader'>Change Setting: <%= @setting.key.titleize %></h3>
+
+<%= simple_form_for [:admin, @setting], url: set_admin_setting_path(@setting), method: :post do |f| %>
+	<%= render partial: "admin/settings/change/#{@setting.field_type}", locals: { f: f } %>
+	<%= f.submit class: 'button radius' %>
+<% end %>

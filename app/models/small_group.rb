@@ -15,6 +15,10 @@ class SmallGroup < Group
   accepts_nested_attributes_for :support_leaderships, reject_if: :all_blank, allow_destroy: true
   # accepts_nested_attributes_for :frequency, reject_if: :all_blank, allow_destroy: true
   
+  before_validation(on: :create) do 
+    primary_leaderships.each    { |pl| pl.leadable   = self }
+    support_leaderships.each    { |sl| sl.leadable   = self }
+  end
   
   ransacker :archived_yes do |parent|
     nil
