@@ -1,6 +1,6 @@
 <%= four_up_two_up_widget_box("Basic Information") do %>
 	<li class="field">Time:</li>
-	<li><%= @meeting_time.time %></li>
+	<li><%= @meeting_time.time.to_time.to_s(:time) %></li>
 <% end  %>
   
 
