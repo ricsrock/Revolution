@@ -4,6 +4,7 @@ class InquiryMailer < ActionMailer::Base
   
   def notification(inquiry, current_user)
     @inquiry = inquiry
+    @message = Setting.inquiry_email_body
     @user = current_user
     mail(
       to: inquiry.person.best_email,

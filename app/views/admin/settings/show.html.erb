@@ -10,3 +10,6 @@
 
 <h4 class='subheader'>Current Value <small><%= link_to 'change', change_admin_setting_path(@setting) %></small></h4>
 <%= render partial: "admin/settings/show/#{@setting.field_type}" %>
+
+<br>
+<%= link_to 'Index', admin_settings_url, class: 'button round small' %>

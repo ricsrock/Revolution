@@ -19,7 +19,7 @@ class Admin::SettingsController < ApplicationController
       respond_to do |format|
         format.json { render :json => @setting.to_json, :status => 200 }
         format.xml  { head :ok }
-        format.html { redirect_to :action => :index, notice: "Setting was successfully created" }
+        format.html { redirect_to admin_settings_url, notice: "Setting was successfully created" }
       end
     else
       respond_to do |format|

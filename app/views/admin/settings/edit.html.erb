@@ -1,3 +1,8 @@
 <h3 class='subheader'>Editing Setting</h3>
+<div class='alert-box alert'>
+	There are very few reasons to change these settings. Please make sure you know what you are doing! <%= link_to 'Do the right thing.', admin_settings_url %>
+</div>
 
 <%= render 'form' %>
+<br>
+<%= link_to 'Cancel', admin_settings_url, class: 'button round small' %>

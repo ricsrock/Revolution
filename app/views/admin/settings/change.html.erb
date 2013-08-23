@@ -1,6 +1,12 @@
 <h3 class='subheader'>Change Setting: <%= @setting.key.titleize %></h3>
 
+<div class='alert-box info'>
+	Please make sure you know what you are doing before you change this setting's current value.
+</div>
+
 <%= simple_form_for [:admin, @setting], url: set_admin_setting_path(@setting), method: :post do |f| %>
-	<%= render partial: "admin/settings/change/#{@setting.field_type}", locals: { f: f } %>
+	<%= render partial: "admin/settings/change/#{@setting.field_type}", locals: { f: f } %><br>
 	<%= f.submit class: 'button radius' %>
 <% end %>
+<br>
+<%= link_to 'Cancel', admin_settings_url, class: 'button round small' %>
