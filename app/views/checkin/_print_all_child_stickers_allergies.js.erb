@@ -1,0 +1,50 @@
+var childaSet = new dymo.label.framework.LabelSetBuilder();
+
+<% @attendances.select {|a| a.person.has_allergies?}.each do |attendance| %>
+	<% unless attendance.group.suppress_stickers? %>
+		var record = childaSet.addRecord();
+		record.setText("first_name", "<%= attendance.person.first_name %>");
+		record.setText("last_name", "<%= attendance.person.last_name %>");
+		record.setText("responsible_people", "<%= attendance.person.household.responsible_people %>");
+		record.setText("event_date", "<%= attendance.date.to_s(:long) %>");
+		record.setText("security_phrase", "<%= attendance.security_code %>");
+		record.setText("call_number", "<%= attendance.call_number %>");
+		record.setText("group_name", "<%= attendance.meeting.group.name %>");
+		record.setText("celebration_sentence_1", "<%= celebration_sentence_1(attendance) %>");
+		record.setText("celebration_sentence_2", "<%= celebration_sentence_2(attendance) %>");
+	<% end %>
+<% end %>
+
+<% if @attendances.any? { |a| a.person.has_allergies? } %>
+	$.get('/labels/child_sticker_allergies.label', function(labelXml) {
+		var label = dymo.label.framework.openLabelXml(labelXml);
+		var printers = dymo.label.framework.getPrinters();
+		if (printers.length == 0)
+			alert("No DYMO printers are installed. Install DYMO printers.");
+		    // throw "No DYMO printers are installed. Install DYMO printers.";
+		var printerName = "";
+		for (var i = 0; i < printers.length; ++i)
+		{
+		    var printer = printers[i];
+		    if (printer.printerType == "LabelWriterPrinter")
+		    {
+		        printerName = printer.name;
+		        break;
+		    }
+		}
+		try
+	    {
+	        if (!label)
+	            throw "Label is not loaded";
+
+	        if (!childaSet)
+	            throw "Label data is not loaded";
+
+	        label.print(printerName, '', childaSet);
+	    }
+	    catch (e)
+	    {
+	        alert(e.message || e);
+	    } 	
+	}, "text");
+<% end %>

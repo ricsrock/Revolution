@@ -1,0 +1,34 @@
+var teacheraSet = new dymo.label.framework.LabelSetBuilder();
+
+<% @attendances.select {|a| a.person.has_allergies?}.each do |attendance| %>
+	<% unless attendance.group.suppress_stickers? %>
+		var record = teacheraSet.addRecord();
+		record.setText("event_date", "<%= attendance.date.to_s(:long) %>");
+		record.setText("security_phrase", "<%= attendance.security_code %>");
+		record.setText("call_number", "<%= attendance.call_number %>");
+		record.setText("full_name", "<%= attendance.person.full_name %>");
+		record.setText("responsible_people", "<%= attendance.person.household.responsible_people %>");
+		record.setText("allergies", "<%= attendance.person.allergies %>");
+	<% end %>
+<% end %>
+
+<% if @attendances.any? { |a| a.person.has_allergies? } %>
+	$.get('/labels/teacher_copy_allergies.label', function(labelXml) {
+		var label = dymo.label.framework.openLabelXml(labelXml);
+		var printers = dymo.label.framework.getPrinters();
+		if (printers.length == 0)
+			alert("No DYMO printers are installed. Install DYMO printers.");
+		    // throw "No DYMO printers are installed. Install DYMO printers.";
+		var printerName = "";
+		for (var i = 0; i < printers.length; ++i)
+		{
+		    var printer = printers[i];
+		    if (printer.printerType == "LabelWriterPrinter")
+		    {
+		        printerName = printer.name;
+		        break;
+		    }
+		}
+		label.print(printerName, '', teacheraSet);
+	}, "text");
+<% end %>

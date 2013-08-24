@@ -1,3 +1,9 @@
+<%= render :partial => 'print_all_parent_receipts', locals: { attendances: @attendances } %>
+<%= render :partial => 'print_all_teacher_copies', locals: { attendances: @attendances } %>
+<%= render :partial => 'print_all_teacher_copies_allergies', locals: { attendances: @attendances } %>
+<%= render :partial => 'print_all_child_stickers', locals: { attendances: @attendances } %>
+<%= render :partial => 'print_all_child_stickers_allergies', locals: { attendances: @attendances } %>
+
 <% if @referrer == "/checkin/self" %>
 	$("#search_text").html("<%= j render partial: 'search_text' %>");
 	$("#search_choice").html("<%= j render partial: 'search_choice' %>");
@@ -31,19 +37,3 @@ $("#the_phone_number_last_4_button").bind("click", function() {
 		$("#property_operator").html(html);
 	});
 });
-
-
-
-<% @attendances.each do |attendance| %>
-	<% unless attendance.group.suppress_stickers %>
-		<% if attendance.person.has_allergies? %>
-			<%= render :partial => 'print_child_sticker_allergies', locals: { attendance: attendance } %>
-			<%= render :partial => 'print_parent_receipt', locals: { attendance: attendance } %>
-			<%= render :partial => 'print_teacher_copy_allergies', locals: { attendance: attendance } %>
-		<% else %>
-			<%= render :partial => 'print_child_sticker', locals: { attendance: attendance } %>
-			<%= render :partial => 'print_parent_receipt', locals: { attendance: attendance } %>
-			<%= render :partial => 'print_teacher_copy', locals: { attendance: attendance } %>
-		<% end %>
-	<% end %>
-<% end %>

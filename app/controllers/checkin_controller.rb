@@ -30,7 +30,8 @@ include CheckinHelper
       if attendance.persisted?
         @true << attendance.person.full_name
         @success_people_ids << person.id
-        @attendances << attendance
+        # @attendances << attendance
+        @attendances << Attendance.where(id: attendance.id).includes(:person => :household, :meeting => [:group, :instance => :event]).first
         logger.info "---------- attendance is persisted"
       else
         logger.info "------------ attendance is NOT persisted"

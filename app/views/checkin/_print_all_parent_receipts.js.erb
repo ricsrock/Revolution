@@ -1,0 +1,46 @@
+var labelSet = new dymo.label.framework.LabelSetBuilder();
+
+<% @attendances.each do |attendance| %>
+	<% unless attendance.group.suppress_stickers? %>
+		var record = labelSet.addRecord();
+		record.setText("event_date", "<%= attendance.date.to_s(:long) %>");
+		record.setText("week_x_of_y", "<%= week_x_of_y(attendance) %>");
+		record.setText("security_phrase", "<%= attendance.security_code %>");
+		record.setText("call_number", "<%= attendance.call_number %>");
+		record.setText("discrete_birthdate", "<%= attendance.person.discrete_birthdate %>");
+		record.setText("celebration_sentence_1", "<%= celebration_sentence_1(attendance) %>");
+		record.setText("celebration_sentence_2", "<%= celebration_sentence_2(attendance) %>");
+	<% end %>
+<% end %>
+
+$.get('/labels/parent_receipt.label', function(labelXml) {
+	var label = dymo.label.framework.openLabelXml(labelXml);
+	var printers = dymo.label.framework.getPrinters();
+	if (printers.length == 0)
+		alert("No DYMO printers are installed. Install DYMO printers.");
+	    // throw "No DYMO printers are installed. Install DYMO printers.";
+	var printerName = "";
+	for (var i = 0; i < printers.length; ++i)
+	{
+	    var printer = printers[i];
+	    if (printer.printerType == "LabelWriterPrinter")
+	    {
+	        printerName = printer.name;
+	        break;
+	    }
+	}
+	try
+    {
+        if (!label)
+            throw "Label is not loaded";
+
+        if (!labelSet)
+            throw "Label data is not loaded";
+
+        label.print(printerName, '', labelSet);
+    }
+    catch (e)
+    {
+        alert(e.message || e);
+    } 
+}, "text");
