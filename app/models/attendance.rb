@@ -13,8 +13,11 @@ class Attendance < ActiveRecord::Base
   
   after_create {
     |record|
-      record.person.set_first_attend
-      record.person.set_recent_attend
+      # record.person.set_first_attend
+      # Attendance.delay.set_first_attend(record.id)
+      # record.person.set_recent_attend
+      # Attendance.delay.set_recent_attend(record.id)
+      PersonWorker.perform_async(record.person.id)
       record.person.set_max_worship_date if record.meeting.group.name == 'Adult Worship'
       record.person.set_worship_attends if record.meeting.group.name == 'Adult Worship'
       record.person.set_attend_count
@@ -42,6 +45,18 @@ class Attendance < ActiveRecord::Base
     |record|
       record.meeting.update_num_marked
   }
+  
+  def self.set_first_attend(attendance_id)
+    attendance = Attendance.find(attendance_id)
+    logger.info "********** setting first attend from class method *****************"
+    attendance.person.set_first_attend
+  end
+  
+  def self.set_recent_attend(attendance_id)
+    attendance = Attendance.find(attendance_id)
+    logger.info "********** setting first attend from class method *****************"
+    attendance.person.set_recent_attend
+  end
   
   def self.un_checked_out
     where(checkout_time: nil)

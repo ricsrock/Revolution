@@ -1,22 +1,22 @@
-<h3>Listing Inquiries</h3>
+<h3 class='subheader'>Listing Inquiries</h3>
 
 <table class="twelve responsive">
   <thead>
 	  <tr>
-			<th>Person_id</th>
-			<th>Group_id</th>
-			<th>Created_by</th>
-			<th>Updated_by</th>
+			<th>Person</th>
+			<th>Group</th>
+			<th>Created By</th>
+			<th>Created At</th>
 	    <th></th>
 	  </tr>
   </thead>
   <tbody>
 	<% @inquiries.each do |inquiry| %>
 	  <tr>
-	    <td><%= inquiry.person_id %></td>
-	    <td><%= inquiry.group_id %></td>
+	    <td><%= inquiry.person.full_name %></td>
+	    <td><%= inquiry.group.name %></td>
 	    <td><%= inquiry.created_by %></td>
-	    <td><%= inquiry.updated_by %></td>
+	    <td><%= inquiry.created_at %></td>
 	    <td><%= link_to '', edit_inquiry_path(inquiry), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
 	    	<%= link_to '', inquiry, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
 	   </td>
@@ -27,4 +27,8 @@
 
 <br />
 
-<%= link_to "New Inquiry", new_inquiry_path, class: "button radius"  %>
+<%# link_to "New Inquiry", new_inquiry_path, class: "button radius"  %>
+
+<% content_for :sidebar do -%>
+	<%= render 'sidebar' %>
+<% end -%>

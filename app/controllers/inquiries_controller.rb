@@ -3,7 +3,8 @@ class InquiriesController < ApplicationController
 
   # GET /inquiries
   def index
-    @inquiries = Inquiry.all
+    @q = Inquiry.search(params[:q])
+    @inquiries = @q.result(distinct: true)
   end
 
   # GET /inquiries/1

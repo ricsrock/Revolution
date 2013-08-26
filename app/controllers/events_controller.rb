@@ -85,7 +85,7 @@ class EventsController < ApplicationController
         params[instance.type_id.to_sym].each do |id|
           @person = Person.find(id)
           @attendance_record = @person.checkin(instance_id: instance.id, checkout_time: Time.now)
-          logger.info "=========== Attendance Record: #{@attendance_record.inspect} ============="
+          # logger.info "=========== Attendance Record: #{@attendance_record.inspect} ============="
         end
       end
     end
