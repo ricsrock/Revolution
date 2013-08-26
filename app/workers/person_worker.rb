@@ -12,7 +12,7 @@ class PersonWorker
       @meeting = Meeting.find(meeting_id)
       @person.set_max_worship_date if @meeting.group.name == 'Adult Worship'
       @person.set_worship_attends if @meeting.group.name == 'Adult Worship'
-      @person.enroll_in_group(@meeting.group.id)
+      @person.enroll_in_group_id(@meeting.group.id)
     end
     
   end
