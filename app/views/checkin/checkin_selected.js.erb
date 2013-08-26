@@ -1,8 +1,29 @@
-<%= render :partial => 'print_all_parent_receipts', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_teacher_copies', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_teacher_copies_allergies', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_child_stickers', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_child_stickers_allergies', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_parent_receipts', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_teacher_copies', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_teacher_copies_allergies', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_child_stickers', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_child_stickers_allergies', locals: { attendances: @attendances } %>
+
+$("body").append("<div id='stickers' style='display:none;'></div>");
+$("#stickers").append("<%= j render partial: 'custom_child_stickers', locals: { attendances: @attendances} %>");
+
+var thePopup = window.open( '', "Stickers", "menubar=0,location=0,height=700,width=700" );
+thePopup.document.open("text/html");
+// thePopup.document.write(
+//     '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">'+
+//     '<html><head>'+
+//     '  <link rel="stylesheet" href="styles/style.css">'+
+//     '</head><body>'+
+//     '</body></html>'+
+// );
+thePopup.document.write('<html><head><link href="/stylesheets/checkin.css" media="all" rel="Stylesheet" type="text/css" /></head><body style="width:100%;text-align:center;top-margin:0px;"></body></html>');
+thePopup.document.close();
+$('#stickers').clone().appendTo( thePopup.document.body ).show();
+thePopup.print();
+// thePopup.close();
+
+$("#stickers").html("");
+
 
 <% if @referrer == "/checkin/self" %>
 	$("#search_text").html("<%= j render partial: 'search_text' %>");

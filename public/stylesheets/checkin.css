@@ -1,0 +1,42 @@
+body {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.sticker {
+	border: red 2px solid;
+}
+
+/* Put sticker (or label) dimensions - in pixels - here, as height and width of this div */
+#sticker {
+	width:693px;
+	height:1200px;
+	border: red solid 2px;
+	position:relative;
+	page-break-after:always;
+}
+
+#container {
+   height:100%;
+}
+
+#header {
+	background-color: #000;
+	color: #FFF;
+	padding:5px;
+	font-weight:bold;
+}
+
+#footer {
+   position:absolute;
+   bottom:0px;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background:#000;
+   color:#FFF;
+   font-weight:bold;
+}
+
+#footer p {
+  vertical-align: middle; 
+  text-align: center; 
+}

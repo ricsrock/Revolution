@@ -18,6 +18,7 @@
 //= require jquery_ujs
 //= require foundation
 //= require DYMO.Label.Framework.latest
+//= require jquery.printElement
 //= require responsive-tables
 //= require jquery.observe_field
 //= require project
