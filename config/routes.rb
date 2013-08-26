@@ -1,4 +1,11 @@
+require 'sidekiq/web'
+
 Revolution::Application.routes.draw do
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
   resources :locations do
     collection do
       get 'search'

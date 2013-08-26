@@ -58,6 +58,8 @@ gem "ransack", :git => "https://github.com/ernie/ransack", :branch => 'rails-4'
 # gem 'resque-scheduler', :require => 'resque_scheduler'
 gem 'rmagick', '2.13.2'#, :path => "vendor/gems/rmagick-2.13.2"
 gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
 gem 'tunnlr_connector', :require => "tunnlr"
 # gem 'twilio-ruby', '~> 3.10.0'
 gem 'twilio-rb'
