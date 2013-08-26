@@ -17,13 +17,13 @@ class Attendance < ActiveRecord::Base
       # Attendance.delay.set_first_attend(record.id)
       # record.person.set_recent_attend
       # Attendance.delay.set_recent_attend(record.id)
-      PersonWorker.perform_async(record.person.id)
-      record.person.set_max_worship_date if record.meeting.group.name == 'Adult Worship'
-      record.person.set_worship_attends if record.meeting.group.name == 'Adult Worship'
-      record.person.set_attend_count
-      record.person.set_attendance_status
-      record.person.set_second_attend
-      record.person.enroll_in_group_id(record.meeting.group.id)
+      PersonWorker.perform_async(record.person.id, record.meeting.id)
+      # record.person.set_max_worship_date if record.meeting.group.name == 'Adult Worship'
+      # record.person.set_worship_attends if record.meeting.group.name == 'Adult Worship'
+      # record.person.set_attend_count
+      # record.person.set_attendance_status
+      # record.person.set_second_attend
+      # record.person.enroll_in_group_id(record.meeting.group.id)
       AttendanceTracker.update_for_attendance(record.person_id, record.meeting.group_id)
   }
   
