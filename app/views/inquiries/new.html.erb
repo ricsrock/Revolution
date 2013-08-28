@@ -23,7 +23,7 @@
 		<ul class="no-bullet">
 			<% @person.emails.each do |m| %>
 				<li>
-					<%= m.email %> (<%= m.comm_type.name %>) <%= primary_phone_check_box(m) %>
+					<%= m.email %> (<%= m.comm_type.name rescue nil %>) <%= primary_phone_check_box(m) %>
 				</li>
 			<% end %>
 		</ul>

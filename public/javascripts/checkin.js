@@ -1,3 +1,3 @@
 $(function(){
-	$("#first_name").bigText();
+	// $("#first_name").bigText();
 });

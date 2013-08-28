@@ -57,3 +57,7 @@ body {
 .name {
 	color: white;
 }
+
+.first-name {
+	font-size: 30px;
+}
