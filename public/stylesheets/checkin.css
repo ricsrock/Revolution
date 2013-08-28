@@ -13,6 +13,7 @@ body {
 	height:320px;
 	position:relative;
 	page-break-after:always;
+	text-align:center;
 }
 
 #container {
@@ -30,7 +31,6 @@ body {
    -moz-border-radius-topleft: 10px;
    border-top-right-radius: 10px;
    border-top-left-radius: 10px;
-   height: 100px;
 }
 
 #footer {

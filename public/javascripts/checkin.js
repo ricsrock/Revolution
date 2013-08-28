@@ -1,3 +1,3 @@
 $(function(){
-	$("#header").bigText();
+	$("#first_name").bigText();
 });

@@ -9,7 +9,7 @@
 			<% @groups.each do |group| %>
 				<li class="row <%= cycle('odd', 'even') %> padded">
 					<%= simple_fields_for "groups[#{group.object_id}]", group do |f| %>
-						<%= f.input :included, as: :boolean, label: "#{group.inquiry_number} (#{group.name})", wrapper_html: { class: "three columns padded" } %>
+						<%= f.input :included, as: :boolean, label: "#{group.inquiry_number}", wrapper_html: { class: "three columns padded" } %>
 						<%= f.input :group_id, as: :hidden, input_html: { value: group.id } %>
 					<% end %>
 				</li>
