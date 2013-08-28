@@ -9,8 +9,8 @@ body {
 
 /* Put sticker (or label) dimensions - in pixels - here, as height and width of this div */
 #sticker {
-	width:180px;
-	height:320px;
+	width:190px;
+	height:360px;
 	position:relative;
 	page-break-after:always;
 	text-align:center;
@@ -51,7 +51,9 @@ body {
 
 #footer p {
   vertical-align: middle; 
-  text-align: center; 
+  font-size: 40px;
+  position:relative;
+  bottom:40px;
 }
 
 .name {
@@ -60,4 +62,14 @@ body {
 
 .first-name {
 	font-size: 30px;
+}
+
+.teacher-copy {
+	font-size: 20px;
+}
+
+.allergies {
+	background-color: white !important;
+	color:#000 !important;
+	border:#000 solid 4px;
 }

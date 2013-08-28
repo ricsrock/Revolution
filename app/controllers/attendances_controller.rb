@@ -1,12 +1,13 @@
 class AttendancesController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_attendance, only: [:show, :edit, :update, :destroy, :checkout, :child_sticker]
+  before_action :set_attendance, only: [:show, :edit, :update, :destroy, :checkout, :child_sticker, :teacher_copy, :parent_receipt]
 
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.page(params[:page]).all
+    @q = Attendance.page(params[:page]).search(params[:search])
+    @attendances = @q.result(distinct: true)
   end
 
   # GET /attendances/1
@@ -73,6 +74,16 @@ class AttendancesController < ApplicationController
   end
   
   def child_sticker
+    @attendances = [@attendance]
+    render layout: 'sticker'
+  end
+  
+  def teacher_copy
+    @attendances = [@attendance]
+    render layout: 'sticker'
+  end
+  
+  def parent_receipt
     @attendances = [@attendance]
     render layout: 'sticker'
   end

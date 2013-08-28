@@ -1,20 +1,7 @@
 <% @attendances.each do |attendance| %>
-	<div id="sticker">
-		<div id="header">
-			<div id="first_name">
-				<div class="first-name name">
-					<%= attendance.person.first_name %>
-				</div>
-			</div>
-			<div class="last-name name">
-				<%= attendance.person.last_name %>
-			</div>
-		</div>
-		<div id="content">
-		
-		</div>
-		<div id="footer">
-			<p><%= attendance.call_number %></p>
-		</div>
-	</div>
+	<% if attendance.person.has_allergies? %>
+		<%= render :partial => '/checkin/stickers/child_sticker_allergies', locals: { attendance: attendance } %>
+	<% else %>
+		<%= render :partial => '/checkin/stickers/child_sticker', locals: { attendance: attendance } %>
+	<% end %>
 <% end %>

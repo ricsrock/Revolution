@@ -209,6 +209,8 @@ Revolution::Application.routes.draw do
     member do
       get 'checkout'
       get 'child_sticker'
+      get 'teacher_copy'
+      get 'parent_receipt'
     end
   end
   resources :settings

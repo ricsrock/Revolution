@@ -1,0 +1,3 @@
+<% @attendances.each do |attendance| %>
+	<%= render :partial => '/checkin/stickers/parent_receipt', locals: { attendance: attendance } %>
+<% end %>
