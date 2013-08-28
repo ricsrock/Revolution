@@ -1,9 +1,10 @@
 class InquiriesController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_inquiry, only: [:show, :edit, :update, :destroy]
 
   # GET /inquiries
   def index
-    @q = Inquiry.search(params[:q])
+    @q = Inquiry.page(params[:page]).search(params[:q])
     @inquiries = @q.result(distinct: true)
   end
 
@@ -67,6 +68,18 @@ class InquiriesController < ApplicationController
   def destroy
     @inquiry.destroy
     redirect_to inquiries_url, notice: 'Inquiry was successfully destroyed.'
+  end
+  
+  def notify_group_leaders
+    @q = Inquiry.search(params[:q])
+    @inquiries = @q.result(distinct: true)
+    @grouped = @inquiries.group_by {|i, inquiries| i.group_id}
+    @grouped.each do |group_id, inquiries|
+      @group = Group.find(group_id)
+      people_ids = inquiries.collect {|a| a.person_id}.uniq
+      InquiryMailer.notify_group_leader(@group, people_ids, current_user).deliver! if @group.primary_leaderships.present?
+    end
+    redirect_to inquiries_url
   end
 
   private

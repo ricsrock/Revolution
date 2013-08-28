@@ -3,6 +3,8 @@ class SmallGroup < Group
   
   has_many :primary_leaderships, :as => :leadable, dependent: :destroy
   has_many :support_leaderships, :as => :leadable, dependent: :destroy
+  has_many :primary_leaders, through: :primary_leaderships, source: :person
+  has_many :support_leaders, through: :support_leaderships, source: :person
   
   belongs_to :cadence
   belongs_to :location#, inverse_of: :small_groups

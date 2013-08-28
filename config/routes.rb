@@ -15,6 +15,7 @@ Revolution::Application.routes.draw do
   resources :inquiries do
     collection do
       post :create_multiple
+      get :notify_group_leaders
     end
   end
 

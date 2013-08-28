@@ -1,1 +1,8 @@
-Filter Stuff Here
+<h5 class='subheader'>Filter/Search Inquiries</h5><hr>
+<%= search_form_for @q, :builder => SimpleForm::FormBuilder do |f| %>
+	<%= f.input :created_at_gteq, as: :string, label: 'Created After', input_html: { class: 'datepicker' } %>
+	<%= f.input :created_at_lteq, as: :string, label: 'Created Before', input_html: { class: 'datepicker' } %>
+	<%= f.submit class: 'button radius small' %>
+<% end %>
+
+<%= link_to 'Notify These Group Leaders', notify_group_leaders_inquiries_path(params[:q]), class: 'button round small' if params[:q] %>

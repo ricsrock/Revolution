@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Hi <%= @group.primary_leaders.collect {|p| p.first_name}.to_sentence %>!</h3>
+    <p>
+     	Great news: People are interested in your group! We wanted to pass their contact info along so you can get in touch with them and provide more information about your group.
+    </p>
+	<p>
+		<label>Your Group: </label><%= @group.name %>
+	</p>
+	<h4>Interested People</h4>
+	<% @people.each do |person| %>
+		<p>
+			<h5><%= person.full_name %></h5>
+			<ul>
+				<li><%= person.best_email %></li>
+				<li><%= number_to_phone person.best_number, area_code: true %></li>
+			</ul>
+		</p>
+	<% end %>
+    <p>
+      Please let us know if we can help you more.
+    </p>
+	<p>
+		Best to you!
+	</p>
+	<p>
+		<%= @user.full_name %>
+	</p>
+  </body>
+</html>
