@@ -1,4 +1,48 @@
 <h3 class='subheader'>New Inquiry for <%= link_to @person.full_name, @person %></h3>
+<div class='panel radius'>
+	<div class='six columns'>
+		<h5 class="subheader">Person Phones</h5>
+		<ul class="no-bullet">
+			<% @person.phones.each do |p| %>
+				<li>
+					<%= number_to_phone p.number, area_code: true %> (<%= p.comm_type.name %>) <%= primary_phone_check_box(p) %>
+				</li>
+			<% end %>
+		</ul>
+		<h5 class="subheader">Household Phones</h5>
+		<ul class="no-bullet">
+			<% @person.household.phones.each do |p| %>
+				<li>
+					<%= number_to_phone p.number, area_code: true %> (<%= p.comm_type.name %>) <%= primary_phone_check_box(p) %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class='six columns'>
+		<h5 class="subheader">Person Emails</h5>
+		<ul class="no-bullet">
+			<% @person.emails.each do |m| %>
+				<li>
+					<%= m.email %> (<%= m.comm_type.name %>) <%= primary_phone_check_box(m) %>
+				</li>
+			<% end %>
+		</ul>
+		<h5 class="subheader">Household Emails</h5>
+		<ul class="no-bullet">
+			<% @person.household.emails.each do |m| %>
+				<li>
+					<%= m.email %> (<%= m.comm_type.name %>) <%= primary_phone_check_box(m) %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+	<div class="twelve columns">
+		<em>These inquiry notification emails will be sent to <%= @person.full_name %> at <%= @person.best_email %>.</em>
+	</div>
+	<div class='row'>
+		
+	</div>
+</div>
 
 <%= render 'form' %>
 
