@@ -1,15 +1,15 @@
-<%= render :partial => 'print_all_parent_receipts', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_teacher_copies', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_teacher_copies_allergies', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_child_stickers', locals: { attendances: @attendances } %>
-<%= render :partial => 'print_all_child_stickers_allergies', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_parent_receipts', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_teacher_copies', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_teacher_copies_allergies', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_child_stickers', locals: { attendances: @attendances } %>
+<%# render :partial => 'print_all_child_stickers_allergies', locals: { attendances: @attendances } %>
 
 // --- you need this...
-// $("body").append("<div id='stickers' style='display:none;'></div>");
-// $("#stickers").append("<%= j render partial: 'custom_child_stickers', locals: { attendances: @attendances} %>");
-// 
-// var thePopup = window.open( '', "Stickers", "menubar=0,location=0,height=700,width=700" );
-// thePopup.document.open("text/html");
+$("body").append("<div id='stickers' style='display:none;'></div>");
+$("#stickers").append("<%= j render partial: 'custom_child_stickers', locals: { attendances: @attendances} %>");
+
+var thePopup = window.open( '', "Stickers", "menubar=0,location=0,height=700,width=700" );
+thePopup.document.open("text/html");
 
 // --- you don't need this...
 // thePopup.document.write(
@@ -21,14 +21,14 @@
 // );
 
 // --- you need this...
-// thePopup.document.write('<html><head><link href="/stylesheets/checkin.css" media="all" rel="Stylesheet" type="text/css" /></head><body style="width:100%;text-align:center;top-margin:0px;"></body></html>');
-// thePopup.document.close();
-// $('#stickers').clone().appendTo( thePopup.document.body ).show();
+thePopup.document.write('<html><head><link href="/stylesheets/checkin.css" media="all" rel="Stylesheet" type="text/css" /><script src="/javascripts/jquery-1.10.1.min.js"><script src="/javascripts/jquery-bigtext.js"><script src="/javascripts/checkin.js"></script></head><body style="width:100%;text-align:center;top-margin:0px;"></body></html>');
+thePopup.document.close();
+$('#stickers').clone().appendTo( thePopup.document.body ).show();
 // thePopup.print();
 // thePopup.close();
 
 //--- you need this...
-// $("#stickers").html("");
+$("#stickers").html("");
 
 
 <% if @referrer == "/checkin/self" %>

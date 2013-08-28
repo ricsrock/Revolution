@@ -208,6 +208,7 @@ Revolution::Application.routes.draw do
   resources :attendances do
     member do
       get 'checkout'
+      get 'child_sticker'
     end
   end
   resources :settings

@@ -1,13 +1,18 @@
 <% @attendances.each do |attendance| %>
 	<div id="sticker">
-			<div id="header">
-				<%= attendance.person.full_name %>
-			</div>
-			<div id="content">
-			
-			</div>
-			<div id="footer">
-				<p><%= attendance.call_number %></p>
-			</div>
+		<div id="header">
+			<span id="first_name" class="first-name name">
+				<%= attendance.person.first_name %>
+			</span>
+			<span class="last-name name">
+				<%= attendance.person.last_name %>
+			</span>
+		</div>
+		<div id="content">
+		
+		</div>
+		<div id="footer">
+			<p><%= attendance.call_number %></p>
+		</div>
 	</div>
 <% end %>

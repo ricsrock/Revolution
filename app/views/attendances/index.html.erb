@@ -3,13 +3,14 @@
 <table class="twelve responsive">
   <thead>
 	  <tr>
-			<th>Person_id</th>
-			<th>Meeting_id</th>
-			<th>Checkin_time</th>
-			<th>Checkout_time</th>
-			<th>Checkin_type_id</th>
-			<th>Security_code</th>
-			<th>Call_number</th>
+		<th>Person_id</th>
+		<th>Meeting_id</th>
+		<th>Checkin_time</th>
+		<th>Checkout_time</th>
+		<th>Checkin_type_id</th>
+		<th>Security_code</th>
+		<th>Call_number</th>
+		<th>Child Sticker</th>
 	    <th></th>
 	  </tr>
   </thead>
@@ -23,6 +24,7 @@
 	    <td><%= attendance.checkin_type_id %></td>
 	    <td><%= attendance.security_code %></td>
 	    <td><%= attendance.call_number %></td>
+	    <td><%= link_to 'Child Sticker', child_sticker_attendance_path(attendance) %></td>
 	    <td><%= link_to '', edit_attendance_path(attendance), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
 	    	<%= link_to '', attendance, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
 	   </td>

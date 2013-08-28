@@ -4,7 +4,7 @@ class MeetingTimesController < ApplicationController
   # GET /meeting_times
   # GET /meeting_times.json
   def index
-    @meeting_times = MeetingTime.all
+    @meeting_times = MeetingTime.order(:time).all
   end
 
   # GET /meeting_times/1

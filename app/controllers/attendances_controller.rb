@@ -1,12 +1,12 @@
 class AttendancesController < ApplicationController
   before_filter :authenticate_user!
   
-  before_action :set_attendance, only: [:show, :edit, :update, :destroy, :checkout]
+  before_action :set_attendance, only: [:show, :edit, :update, :destroy, :checkout, :child_sticker]
 
   # GET /attendances
   # GET /attendances.json
   def index
-    @attendances = Attendance.all
+    @attendances = Attendance.page(params[:page]).all
   end
 
   # GET /attendances/1
@@ -70,6 +70,11 @@ class AttendancesController < ApplicationController
     @attendance.checkout
     flash[:notice] = "#{@attendance.person.full_name} was checked out."
     redirect_to meeting_path(@attendance.meeting)
+  end
+  
+  def child_sticker
+    @attendances = [@attendance]
+    render layout: 'sticker'
   end
 
   private
