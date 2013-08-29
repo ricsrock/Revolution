@@ -185,6 +185,11 @@ class Person < ActiveRecord::Base
     end
   end
   
+  def self.with_email
+    where("EXISTS(SELECT 1 from emails where (people.id = emails.emailable_id AND emails.emailable_type = 'Person')) OR
+           EXISTS(SELECT 1 from emails where (people.household_id = emails.emailable_id AND emails.emailable_type = 'Household'))")
+  end
+  
   def age
     unless self.birthdate.blank?
       dob = self.birthdate.to_date

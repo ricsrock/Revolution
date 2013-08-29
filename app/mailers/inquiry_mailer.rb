@@ -18,7 +18,7 @@ class InquiryMailer < ActionMailer::Base
     @group = group
     @user = current_user
     mail(
-      to: @group.primary_leaders.collect {|p| p.best_email},
+      to: @group.primary_leaders.with_email.collect {|p| p.best_email},
       from: "#{@user.full_name} <#{@user.email}>",
       subject: "Interest In Your Group: #{@group.name}"
     )
