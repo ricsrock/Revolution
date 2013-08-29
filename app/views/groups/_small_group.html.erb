@@ -41,6 +41,7 @@
 	<% end %>
 	<%= link_to 'Delete', group_path(@group), :method => 'delete', :confirm => 'Are you sure?', :class => 'button round alert small' %>
 	<%= link_to 'Enroll', enroll_group_path(@group), class: "button round small" %>
+	<%= link_to 'Add Inquiries', new_by_group_inquiries_path(id: @group.id), class: 'button round small' %>
 </div>
 
 <% content_for :sidebar do -%>

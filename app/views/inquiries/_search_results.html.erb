@@ -1,0 +1,5 @@
+<ul class='no-bullet'>
+	<% @results.each do |person| %>
+		<li><%= link_to person.full_name, include_person_inquiries_path(person_id: person.id), data: { remote: true } %></li>
+	<% end %>
+</ul>

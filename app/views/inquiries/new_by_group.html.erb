@@ -1,0 +1,23 @@
+<h3 class='subheader'>New Inquiries for Group: <%= link_to @group.name, @group.becomes(Group) %></h3>
+
+<div class="row">
+	<div class="six columns">
+		<h4 class='subheader'>Search for People</h4>
+		<%= text_field_tag :search_people, '', placeholder: 'First LastName' %>
+		<div id="results_area"></div>
+	</div>
+	<div class="six columns">
+		<h4 class='subheader'>Included People</h4>
+		<%= form_tag create_by_group_inquiries_path(group_id: @group.id), method: :post do %>
+			
+			<div class="twelve columns" id="included_people">
+				
+			</div>
+			&nbsp;
+			<br>
+			&nbsp;
+			<%= submit_tag 'Save Inquiries', class: 'button radius' %>
+		<% end %>
+	</div>
+</div>
+

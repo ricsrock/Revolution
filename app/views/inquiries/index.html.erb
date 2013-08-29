@@ -17,7 +17,7 @@
 	    <td><%= inquiry.group.name %></td>
 	    <td><%= inquiry.created_by %></td>
 	    <td><%= inquiry.created_at %></td>
-	    <td><%= link_to '', edit_inquiry_path(inquiry), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
+	    <td>
 	    	<%= link_to '', inquiry, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
 	   </td>
 	  </tr>

@@ -16,6 +16,10 @@ Revolution::Application.routes.draw do
     collection do
       post :create_multiple
       get :notify_group_leaders
+      get :new_by_group
+      post :create_by_group
+      get :search_people
+      get :include_person
     end
   end
 

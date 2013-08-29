@@ -18,6 +18,10 @@ class InquiriesController < ApplicationController
     @groups = SmallGroup.inquirable
     @person = Person.find(params[:person_id])
   end
+  
+  def new_by_group
+    @group = Group.find(params[:id])
+  end
 
   # GET /inquiries/1/edit
   def edit
@@ -54,6 +58,27 @@ class InquiriesController < ApplicationController
     redirect_to @person || root_url
   end
   
+  def create_by_group
+    @group = Group.find(params[:group_id])
+    people_ids = params[:included_people]
+    counter = 0
+    if people_ids
+      people_ids.each do |id|
+        inquiry = Inquiry.new(person_id: id, group_id: @group.id)
+        if inquiry.save!
+          counter += 1
+          InquiryMailer.notification(inquiry, current_user).deliver! unless inquiry.person.best_email == 'no email'
+        end
+      end
+    end
+    if counter == 0
+      flash[:error] = "No inquiries were created. Try again."
+    else
+      flash[:notice] = "#{counter} inquiries successfully created."
+    end
+    redirect_to @group.becomes(Group) || root_url
+  end
+  
 
   # PATCH/PUT /inquiries/1
   def update
@@ -80,6 +105,22 @@ class InquiriesController < ApplicationController
       InquiryMailer.notify_group_leader(@group, people_ids, current_user).deliver! if @group.primary_leaderships.present?
     end
     redirect_to inquiries_url
+  end
+  
+  def search_people
+    term = params[:q]
+    term.blank? ? term = 'xzxzxzxzxzxzxzxz' : term = term
+    terms = term.split(' ')
+    if terms.size > 1
+      conditions = ['(first_name LIKE ? AND last_name LIKE ?) OR (last_name LIKE ? AND first_name LIKE ?)', "%#{terms.first}%", "%#{terms.last}%", "%#{terms.first}%", "%#{terms.last}%"]
+    else
+      conditions = ['first_name LIKE ? OR last_name LIKE ?', "%#{term}%", "%#{term}%"]
+    end
+    @results = Person.where(conditions).order('last_name, first_name ASC')
+  end
+  
+  def include_person
+    @person = Person.find(params[:person_id])
   end
 
   private

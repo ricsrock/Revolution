@@ -89,6 +89,13 @@ $(function(){
 		var data = { 'q' : $(this).val(), 'duplicate_id' : $(this).data('duplicate-id') };
 		$.get(url, data);
 	});
+	
+	$("#search_people").observe_field(1, function( ) {
+		var url = '/inquiries/search_people';
+		var data = { 'q' : $(this).val() };
+		$.get(url, data);
+	});
+	
 		
 	$(".property_selector").observe_field(1, function( ) {
 		var data = $this.val();

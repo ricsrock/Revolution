@@ -1,5 +1,7 @@
 <h5 class='subheader'>Filter/Search Inquiries</h5><hr>
 <%= search_form_for @q, :builder => SimpleForm::FormBuilder do |f| %>
+	<%= f.input :group_name_cont, label: 'Group Name' %>
+	<%= f.input :person_full_name_cont, label: 'Person', placeholder: 'First LastName' %>
 	<%= f.input :created_at_gteq, as: :string, label: 'Created After', input_html: { class: 'datepicker' } %>
 	<%= f.input :created_at_lteq, as: :string, label: 'Created Before', input_html: { class: 'datepicker' } %>
 	<%= f.submit class: 'button radius small' %>
