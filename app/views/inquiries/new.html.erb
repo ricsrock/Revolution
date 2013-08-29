@@ -5,7 +5,7 @@
 		<ul class="no-bullet">
 			<% @person.phones.each do |p| %>
 				<li>
-					<%= number_to_phone p.number, area_code: true %> (<%= p.comm_type.name %>) <%= primary_phone_check_box(p) %>
+					<%= number_to_phone p.number, area_code: true %> (<%= p.comm_type.name rescue nil %>) <%= primary_phone_check_box(p) %>
 				</li>
 			<% end %>
 		</ul>
@@ -13,7 +13,7 @@
 		<ul class="no-bullet">
 			<% @person.household.phones.each do |p| %>
 				<li>
-					<%= number_to_phone p.number, area_code: true %> (<%= p.comm_type.name %>) <%= primary_phone_check_box(p) %>
+					<%= number_to_phone p.number, area_code: true %> (<%= p.comm_type.name rescue nil %>) <%= primary_phone_check_box(p) %>
 				</li>
 			<% end %>
 		</ul>
@@ -31,7 +31,7 @@
 		<ul class="no-bullet">
 			<% @person.household.emails.each do |m| %>
 				<li>
-					<%= m.email %> (<%= m.comm_type.name %>) <%= primary_phone_check_box(m) %>
+					<%= m.email %> (<%= m.comm_type.name rescue nil %>) <%= primary_phone_check_box(m) %>
 				</li>
 			<% end %>
 		</ul>
