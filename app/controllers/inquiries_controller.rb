@@ -96,7 +96,7 @@ class InquiriesController < ApplicationController
   end
   
   def notify_group_leaders
-    @q = Inquiry.search(params[:q])
+    @q = Inquiry.search(params)
     @inquiries = @q.result(distinct: true)
     @grouped = @inquiries.group_by {|i, inquiries| i.group_id}
     @grouped.each do |group_id, inquiries|
