@@ -13,8 +13,8 @@
   <tbody>
 	<% @inquiries.each do |inquiry| %>
 	  <tr>
-	    <td><%= inquiry.person.full_name %></td>
-	    <td><%= inquiry.group.name %></td>
+	    <td><%= link_to inquiry.person.full_name, inquiry.person %></td>
+	    <td><%= link_to inquiry.group.name, inquiry.group.becomes(Group) %></td>
 	    <td><%= inquiry.created_by %></td>
 	    <td><%= inquiry.created_at %></td>
 	    <td>

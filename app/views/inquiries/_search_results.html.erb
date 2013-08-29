@@ -1,5 +1,20 @@
 <ul class='no-bullet'>
-	<% @results.each do |person| %>
-		<li><%= link_to person.full_name, include_person_inquiries_path(person_id: person.id), data: { remote: true } %></li>
+	<% @results.each do |result| %>
+		<li style='padding-top:10px;'>
+			<%= link_to(include_person_inquiries_path(person_id: result.id), data: { remote: true }) do %>
+				<div class="result-item">
+					<div><strong><%= icon('user') %> <%= full_name(result) %> (#<%= result.id %>)</strong></div>
+					<div><%= result.household.address1 rescue nil %>, <%= result.household.city rescue nil %></div>
+					<div><i class="icon-user"></i><strong> Email: </strong><%= best_email(result) %></div>
+					<div><i class="icon-user"></i><strong> Phone: </strong><%= best_phone(result) %></div>
+					<% if result.household.emails.first %>
+						<div><i class="icon-home"></i><strong> Email: </strong><%= result.household.first_email %></div>
+					<% end %>
+					<% if result.household.best_phone %>
+						<div><i class="icon-home"></i><strong> Phone: </strong><%= result.household.best_number %></div>
+					<% end %>
+				</div>
+			<% end %>
+		</li>
 	<% end %>
 </ul>
