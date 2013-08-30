@@ -18,6 +18,7 @@ module AttendancesHelper
       end
       last_part
     end
+    last_part || ''
   end
   
   def celebration_sentence(attendance)
