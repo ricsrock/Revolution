@@ -19,7 +19,7 @@
   <tbody>
 	<% @attendances.each do |attendance| %>
 	  <tr>
-	    <td><%= attendance.person_id %></td>
+	    <td><%= attendance.person.full_name %></td>
 	    <td><%= attendance.meeting_id %></td>
 	    <td><%= attendance.checkin_time %></td>
 	    <td><%= attendance.checkout_time %></td>

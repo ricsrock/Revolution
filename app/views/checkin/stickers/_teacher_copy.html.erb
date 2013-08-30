@@ -5,9 +5,24 @@
 		</div>
 	</div>
 	<div id="content">
-	
+		<div id="date">
+			<%= attendance.date.to_s(:long) %>
+		</div>
+		<div id="phrase">
+			<%= attendance.security_code %>
+		</div>
+		<hr class="sticker-rule">
+		<div id="full_name">
+			<%= attendance.person.full_name %>
+		</div>
+		<div id="people">
+			<%= attendance.person.household.responsible_people %>
+		</div>
+		<div id="allergies">
+			<%= attendance.person.allergies %>
+		</div>
 	</div>
-	<div id="footer">
+	<div id="footer" class="<%= attendance.person.has_allergies? ? 'allergies' : '' %>">
 		<p><%= attendance.call_number %></p>
 	</div>
 </div>

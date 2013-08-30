@@ -20,6 +20,10 @@ module AttendancesHelper
     end
   end
   
+  def celebration_sentence(attendance)
+    celebration_sentence_1(attendance) + ' ' + celebration_sentence_2(attendance)
+  end
+  
   def week_x_of_y(attendance)
     "Week #{attendance.date.to_time.strftime('%U')} of 52"
   end

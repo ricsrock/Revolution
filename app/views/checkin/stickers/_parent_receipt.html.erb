@@ -5,7 +5,22 @@
 		</div>
 	</div>
 	<div id="content">
-	
+		<div id="date">
+			<%= attendance.date.to_s(:long) %>
+		</div>
+		<div id="week">
+			<%= week_x_of_y(attendance) %>
+		</div>
+		<hr class="sticker-rule">
+		<div id="phrase">
+			<%= attendance.security_code %>
+		</div>
+		<div id="dob">
+			<%= attendance.person.discrete_birthdate %>
+		</div>
+		<div id="wow">
+			<%= celebration_sentence(attendance) %>
+		</div>
 	</div>
 	<div id="footer">
 		<p><%= attendance.call_number %></p>

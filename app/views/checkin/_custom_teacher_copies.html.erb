@@ -1,7 +1,3 @@
 <% @attendances.each do |attendance| %>
-	<% if attendance.person.has_allergies? %>
-		<%= render :partial => '/checkin/stickers/teacher_copy_allergies', locals: { attendance: attendance } %>
-	<% else %>
-		<%= render :partial => '/checkin/stickers/teacher_copy', locals: { attendance: attendance } %>
-	<% end %>
+	<%= render :partial => '/checkin/stickers/teacher_copy', locals: { attendance: attendance } %>
 <% end %>

@@ -10,9 +10,24 @@
 		</div>
 	</div>
 	<div id="content">
-	
+		<div id="date">
+			<%= attendance.date.to_s(:long) %>
+		</div>
+		<div id="people">
+			<%= attendance.person.household.responsible_people %>
+		</div>
+		<hr class="sticker-rule">
+		<div id="phrase">
+			<%= attendance.security_code %>
+		</div>
+		<div id="group">
+			<%= attendance.meeting.group.name %>
+		</div>
+		<div id="wow">
+			<%= celebration_sentence(attendance) %>
+		</div>
 	</div>
-	<div id="footer">
+	<div id="footer" class="<%= attendance.person.has_allergies? ? 'allergies' : '' %>">
 		<p><%= attendance.call_number %></p>
 	</div>
 </div>
