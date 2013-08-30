@@ -39,6 +39,7 @@ body {
 
 #full_name {
 	font-size:26px;
+	line-height:28px;
 }
 
 #group, #dob {
@@ -60,6 +61,10 @@ body {
    -moz-border-radius-bottomleft: 10px;
    border-bottom-right-radius: 10px;
    border-bottom-left-radius: 10px;
+}
+
+#people {
+	line-height:18px;
 }
 
 #week {
@@ -108,6 +113,7 @@ body {
 #allergies {
 	font-family: "Times New Roman", "Times", serif;
 	font-style:italic;
+	font-weight:bold;
 	position:absolute;
 	bottom:70px;
 	text-align:center;
