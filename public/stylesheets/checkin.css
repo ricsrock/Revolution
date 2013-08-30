@@ -97,10 +97,12 @@ body {
 
 #phrase {
 	font-family: "Comic Sans MS", cursive, sans-serif;
+	line-height:17px;
 }
 
 #wow {
 	font-size:13px;
+	line-height:15px;
 }
 
 #allergies {
