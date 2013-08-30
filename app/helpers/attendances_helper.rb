@@ -27,7 +27,7 @@ module AttendancesHelper
     first_part = ''
     last_part = ''
     if person.last_name.downcase.start_with?('guest')
-      first_part = i + " We're so glad you're with us"
+      first_part = i + " We're so glad you're with us for the"
       last_part = " today!"
     else
       first_part = i + " We're so glad to see you for the"
