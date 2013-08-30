@@ -22,7 +22,22 @@ module AttendancesHelper
   end
   
   def celebration_sentence(attendance)
-    celebration_sentence_1(attendance) + ' ' + celebration_sentence_2(attendance)
+    i = Interjection.all.collect {|a| a.name}.sample + '!'
+    person = attendance.person
+    first_part = ''
+    last_part = ''
+    if person.last_name.downcase.start_with?('guest')
+      first_part = i + " We're so glad you're with us"
+      last_part = " today!"
+    else
+      first_part = i + " We're so glad to see you for the"
+    end
+    if person.attend_count < 4
+      last_part = " #{person.attend_count.ordinalize} time!"
+    else
+      last_part = " #{person.unique_events_this_year.size.ordinalize} time this year!"
+    end
+    first_part + last_part
   end
   
   def week_x_of_y(attendance)
