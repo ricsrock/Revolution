@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130823181849) do
+ActiveRecord::Schema.define(version: 20130902152855) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"

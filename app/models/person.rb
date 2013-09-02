@@ -36,7 +36,7 @@ class Person < ActiveRecord::Base
   mount_uploader :image, ImageUploader
   
   before_save :set_last_name
-  before_validation :set_initial_status, on: :create
+  before_validation :set_initial_status, :set_attend_count, on: :create
   before_validation :set_facebook_uid
   
   delegate :address1, to: :household
@@ -720,6 +720,10 @@ class Person < ActiveRecord::Base
   
   def set_initial_status
     self.attendance_status = "Guest"
+  end
+  
+  def set_attend_count
+    self.attend_count = 0
   end
         
 end
