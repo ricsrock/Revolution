@@ -7,7 +7,7 @@ class Setting < ActiveRecord::Base
   
   # attr_accessor :key_is
   
-  def_druthers :inquiry_email_body
+  def_druthers :inquiry_email_body, :menu
   
   before_validation(on: :create) do
     self.key = self.key.parameterize.underscore
@@ -19,6 +19,10 @@ class Setting < ActiveRecord::Base
   
   def self.default_inquiry_email_body
     "Thanks for inquiring about small groups. Here's more info about this group."
+  end
+  
+  def self.default_menu
+    "Sorry, there is no menu defined. Please check back later."
   end
   
   # def key_is=(v)

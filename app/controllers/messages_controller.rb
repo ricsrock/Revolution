@@ -70,6 +70,8 @@ class MessagesController < ApplicationController
   def receive    
     # see if this text is parse-able...
     @body = params[:Body]
+    
+    # check for checkin request
     if @body.downcase.strip.starts_with?('checkin')
       # hey! We've got a parse-able text! Someone wants to checkin!
       session[:conversation_id] ||= params[:From]
@@ -100,6 +102,10 @@ class MessagesController < ApplicationController
         body = "It looks like you want to checkin to a meeting, but we couldn't find a valid meeting to match your message content."
       end
       send_response(params[:From], "Hi there! #{body}")
+    
+    # check for menu request...
+    elsif @body.downcase.strip.starts_with?('menu')
+      send_response(params[:From], "Hi there! #{Setting.menu}")
       
     # nothing parse-able...
     else

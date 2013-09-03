@@ -90,6 +90,10 @@ class Attendance < ActiveRecord::Base
     meeting.try(:group)
   end
   
+  def suppress_stickers?
+    self.meeting.group.suppress_stickers?
+  end
+  
   def set_call_number
     self.call_number = Attendance.do_call_number
     until Attendance.find_by_call_number_this_event(self.call_number, self).nil?
