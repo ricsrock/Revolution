@@ -712,6 +712,10 @@ class Person < ActiveRecord::Base
     end
   end  
   
+  def set_attend_count
+    self.attend_count = 0
+  end
+  
   private
   
   def set_last_name
@@ -720,10 +724,6 @@ class Person < ActiveRecord::Base
   
   def set_initial_status
     self.attendance_status = "Guest"
-  end
-  
-  def set_attend_count
-    self.attend_count = 0
   end
         
 end

@@ -25,6 +25,8 @@ class MeetingsController < ApplicationController
 
   # GET /meetings/1/edit
   def edit
+    @instance = @meeting.instance
+    @groups = CheckinGroup.all.order(:name)
   end
 
   # POST /meetings
