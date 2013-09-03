@@ -19,7 +19,7 @@
 	    <td><%= report.record_type.name %></td>
 	    <td><%= report.group_by.column_name %></td>
 	    <td><%= report.layout.name %></td>
-	    <td><%= report.date_range %></td>
+	    <td><%= report.range %></td>
 	    <td><%= report.updated_by %></td>
 	    <td><%= link_to '', edit_report_path(report), title: 'edit', class: "general-enclosed foundicon-edit" %>&nbsp;&nbsp;&nbsp;
 	    	<%= link_to '', report, method: :delete, data: { confirm: 'Are you sure?' }, title: 'destroy', class: "general-enclosed foundicon-remove" %>
