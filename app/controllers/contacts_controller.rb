@@ -10,11 +10,11 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
+    @range = params[:q][:range_selector_cont] if params[:q]
     params[:q] = Contact.fix_params(params[:q]) if params[:q]
     # params[:q][:person_last_name_or_person_first_name_cont_any] = params[:q][:person_last_name_or_person_first_name_cont_any].split(' ') if params[:q] && params[:q][:person_last_name_or_person_first_name_cont_any]
     @q = Contact.page(params[:page]).includes(:responsible_user, :contact_type, :contactable).search(params[:q])
     @contacts = @q.result(:distinct => true)
-    @range = params[:q][:range_selector_cont] if params[:q]
     @search_params = params[:q] if params[:q].present? #&& params[:q][:tag_tag_group_id_eq].present?
   end
 

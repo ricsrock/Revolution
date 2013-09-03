@@ -29,9 +29,9 @@ class Donation < ActiveRecord::Base
       logger.info "range selector is blank"
       params_hash
     else
-      logger.info "range selector has value: #{params_hash[:range_selector]}"
+      logger.info "range selector has value: #{params_hash[:range_selector_cont]}"
       range_name = params_hash[:range_selector_cont]
-      params_hash = params_hash.except!(:range_selector)
+      params_hash = params_hash.except!(:range_selector_cont)
       params_hash.merge!(contribution_date_gt: do_range(range_name).start_date.to_time)
       params_hash.merge!(contribution_date_lt: do_range(range_name).end_date.to_time)
       params_hash

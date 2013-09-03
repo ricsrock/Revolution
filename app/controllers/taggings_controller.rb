@@ -7,6 +7,7 @@ class TaggingsController < ApplicationController
   # GET /taggings
   # GET /taggings.json
   def index
+    @range = params[:q][:range_selector_cont] if params[:q]
     params[:q] = Tagging.fix_params(params[:q]) if params[:q]
     @q = Tagging.page(params[:page]).search(params[:q])
     @taggings = @q.result
@@ -14,7 +15,6 @@ class TaggingsController < ApplicationController
       @tags = TagGroup.where(id: params[:q][:tag_tag_group_id_eq]).first.tags
       @form = SimpleForm::FormBuilder.new(:q, @q, view_context, {}, proc{})
     end
-    @range = params[:q][:range_selector_cont] if params[:q]
     @search_params = params[:q] if params[:q].present? && params[:q][:tag_tag_group_id_eq].present?
   end
 

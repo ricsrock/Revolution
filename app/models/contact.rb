@@ -56,9 +56,9 @@ class Contact < ActiveRecord::Base
       logger.info "range selector is blank"
       params_hash
     else
-      logger.info "range selector has value: #{params_hash[:range_selector]}"
+      logger.info "range selector has value: #{params_hash[:range_selector_cont]}"
       range_name = params_hash[:range_selector_cont]
-      params_hash = params_hash.except!(:range_selector)
+      params_hash = params_hash.except!(:range_selector_cont)
       params_hash.merge!(created_at_gt: do_range(range_name).start_date.to_time.to_s(:db))
       params_hash.merge!(created_at_lt: do_range(range_name).end_date.to_time.to_s(:db))
       params_hash
