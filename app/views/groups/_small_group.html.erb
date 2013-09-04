@@ -15,9 +15,9 @@
 		<li class="field">Cadence:</li>
 		<li><%= @group.cadence.name rescue nil %></li>
 		<li class="field">Primary Leader(s):</li>
-		<li><%= @group.primary_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
+		<li><%= @group.primary_leaderships.collect {|p| p.name_and_title}.to_sentence rescue nil %></li>
 		<li class="field">Support Leader(s):</li>
-		<li><%= @group.support_leaderships.collect {|p| p.name_and_title}.to_sentence %></li>
+		<li><%= @group.support_leaderships.collect {|p| p.name_and_title}.to_sentence rescue nil %></li>
 		<li class="field">Status:</li>
 		<li><%= group_status_label(@group) %></li>
 		<li class="field">Location:</li>
