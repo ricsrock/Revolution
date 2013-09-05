@@ -88,7 +88,16 @@ class PeopleController < ApplicationController
   end
   
   def search
-    @people = Person.order(:last_name).order(:first_name).where('last_name LIKE ? OR first_name LIKE ?',"%#{params[:term].strip}%", "%#{params[:term].strip}%")
+    term = params[:term]
+    term = 'xzxzxzxzxzxzxzxzxzx' if term == ""
+    terms = term.gsub(',', ' ').split(' ')
+    if terms.length == 1
+      conditions = ["last_name LIKE ? OR first_name LIKE ?", "%#{term.strip}%", "%#{term.strip}%"]
+    else
+      conditions = ["(last_name LIKE ? AND first_name LIKE ?) OR (first_name LIKE ? AND last_name LIKE ?)",
+                    "%#{terms.first.strip}%", "%#{terms.last.strip}%", "%#{terms.first.strip}%", "%#{terms.last.strip}%"]
+    end
+    @people = Person.order(:last_name).order(:first_name).where(conditions)
     render json: @people.map(&:id_and_full_name)
   end
   
@@ -121,12 +130,13 @@ class PeopleController < ApplicationController
   def search_person
     term = params[:q]
     term = 'xzxzxzxzxzxzxzxzxzx' if term == ""
-    terms = term.split(',')
+    terms = term.gsub(',', ' ').split(' ')
     dup_id = params[:duplicate_id]
     if terms.length == 1
-      conditions = ["last_name LIKE ? AND id != ?", "%#{terms.first.strip}%", dup_id]
+      conditions = ["(last_name LIKE ? OR first_name LIKE ?) AND id != ?", "%#{term.strip}%", "%#{term.strip}%", dup_id]
     else
-      conditions = ["last_name LIKE ? AND first_name LIKE ? AND id != ?", "%#{terms.first.strip}%", "%#{terms.last.strip}%", dup_id]
+      conditions = ["((last_name LIKE ? AND first_name LIKE ?) OR (last_name LIKE ? AND first_name LIKE ?)) AND (id != ?)", 
+                    "%#{terms.first.strip}%", "%#{terms.last.strip}%", "%#{terms.last.strip}%", "%#{terms.first.strip}%", dup_id]
     end
     @results = Person.where(conditions).order('last_name, first_name ASC').limit(20)
   end
