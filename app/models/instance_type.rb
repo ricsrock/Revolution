@@ -15,8 +15,7 @@ class InstanceType < ActiveRecord::Base
   def available_groups
     Group.all(:conditions => ['groups.id NOT IN
                                   (SELECT auto_groups.group_id FROM auto_groups
-                                  WHERE (auto_groups.instance_type_id = ?)) AND
-                                  (groups.checkin_group = ?)', self.id, true], :order => :name)
+                                  WHERE (auto_groups.instance_type_id = ?))', self.id], :order => :name)
   end
   
   def starts_at

@@ -67,42 +67,90 @@ class MessagesController < ApplicationController
     end
   end
   
-  def receive    
-    # see if this text is parse-able...
+  def receive
     @body = params[:Body]
-    
-    # check for checkin request
-    if @body.downcase.strip.starts_with?('checkin')
-      # hey! We've got a parse-able text! Someone wants to checkin!
-      session[:conversation_id] ||= params[:From]
-      m = params[:Body]
-      #s = m.split(' ')
-      data = m.split(' ')
-      meeting = Meeting.find_by_checkin_code(data.last.strip)
-      # meeting#current specifies that the meeting must have a date that is within a 2-day window of now.
-      # You can't text-checkin into far-past or far-future events.
-      if meeting && meeting.current?
-        person = Person.where('phones.number = ?', params[:From][-10..-1]).joins(:phones).first
-        if person
-          if person.enrolled_in_group?(meeting.group)
-            # checkin this person!
-            attendance = person.checkin(group_id: meeting.group.id, instance_id: meeting.instance.id)
-            if attendance.persisted?
-              body = "You've been successfully checked into #{attendance.group.name}!"
-            else
-              body = "Sorry. Couldn't check you in: #{attendance.errors.full_messages.to_sentence}"
-            end
-          else
-            body = "Meeting: #{meeting.group.name}, #{meeting.date}, person: #{person.full_name}, but you are not enrolled in the group."
-          end
-        else
-          body = "Meeting: #{meeting.group.name}, #{meeting.date}, but we couldn't find a person matching your phone number."
-        end
+    if session[:scenario] && session[:scenario] == 'updateme'
+      #do something with this person!
+      # body = "So, you wanna be updated? Here's what I got: #{params[:Body]}" 
+      # send_response(params[:From], "Hi there! #{body}")
+      body = params[:Body]
+      data = body.split(' ')
+      if data.length > 2
+        last = data.last.strip
+        first = data[0..-2].join(' ').strip
+      elsif data.length == 2
+        last = data.last.strip
+        first = data.first.strip
       else
-        body = "It looks like you want to checkin to a meeting, but we couldn't find a valid meeting to match your message content."
+        last = data.first.strip
+        first = data.last.strip
+      end
+      conditions = ['first_name LIKE ? AND last_name LIKE ?', first, last]
+      person = Person.where(conditions)
+      if person.length == 1
+        mobile = CommType.where(name: 'Mobile').first
+        phone = person.first.phones.new(number: params[:From][-10..-1], primary: true, comm_type_id: mobile.id)
+        if phone.save
+          body = "Your phone number has been updated. Please try to checkin again."
+        else
+          body = "There was a problem updating your phone number. Sorry. A human wil have to bail me out. They'll be in touch."
+        end
+      elsif person.length > 1
+        body = "We found more that one person with the same name. Sorry."
+      else
+        body = "We couldn't find anyone by that name. Sorry."
       end
       send_response(params[:From], "Hi there! #{body}")
-    
+      session[:scenario] = nil
+      
+    # see if this text is parse-able...
+    # check for checkin request
+    elsif @body.downcase.strip.starts_with?('checkin')
+      # hey! We've got a parse-able text! Someone wants to checkin!
+      session[:conversation_id] ||= params[:From]
+      person = Person.where('phones.number = ?', params[:From][-10..-1]).joins(:phones).first
+      if person
+        #we know who we have on the line... try to check 'em in
+        m = params[:Body]
+        data = m.split(' ')
+        meeting = Meeting.find_by_checkin_code(data.last.strip)
+        # meeting#current specifies that the meeting must have a date that is within a 2-day window of now.
+        # You can't text-checkin into far-past or far-future events.
+        if meeting && meeting.current?
+          # checkin this person!
+          attendance = person.checkin(group_id: meeting.group.id, instance_id: meeting.instance.id, checkout_time: Time.now)
+          if attendance.persisted?
+            body = "You've been successfully checked into #{attendance.group.name}!"
+          else
+            body = "Sorry. Couldn't check you in: #{attendance.errors.full_messages.to_sentence}"
+          end
+        elsif group = Group.where(checkin_code: data.last.strip).first
+          if group
+            this_week = Date.today.beginning_of_week.to_s(:db)..Date.today.end_of_week.to_s(:db)
+            if meeting = Meeting.where('events.date IN (?)', this_week).where(group_id: group.id).includes(instance: :event).references(:events, :instances).first
+              # checkin this person!
+              attendance = person.checkin(group_id: meeting.group.id, instance_id: meeting.instance.id, checkout_time: Time.now)
+              if attendance.persisted?
+                body = "You've been successfully checked into #{attendance.group.name}!"
+              else
+                body = "Sorry. Couldn't check you in: #{attendance.errors.full_messages.to_sentence}"
+              end
+            else
+              body = "Sorry. It looks like you want to checkin, but we couldn't find a current meeting for #{group.name}."
+            end
+          else
+            body = "Sorry. It looks like you want to checkin, but we can't find a meeting matching your message information."
+          end
+        else
+          body = "Sorry. It looks like you want to checkin, but we can't find a meeting matching your message information."
+        end
+      else
+        #we don't know who we have on the line...
+        body = "We couldn't find a person matching your phone number. Text back your first & last name and we'll update your number in our system."
+        session[:scenario] = "updateme"
+      end
+      send_response(params[:From], "Hi there! #{body}") 
+         
     # check for menu request...
     elsif @body.downcase.strip.starts_with?('menu')
       send_response(params[:From], "Hi there! #{Setting.menu}")

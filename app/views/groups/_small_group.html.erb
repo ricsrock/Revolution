@@ -8,6 +8,8 @@
 		<li><%= @group.description %></li>
 		<li class="field">Blurb:</li>
 		<li><%= @group.blurb %></li>
+		<li class="field">Checkin Code:</li>
+		<li><%= @group.checkin_code %></li>
 		<li class="field">Weekday(s):</li>
 		<li><%= @group.weekdays.collect {|w| w.name}.to_sentence %></li>
 		<li class="field">Meeting Time(s):</li>

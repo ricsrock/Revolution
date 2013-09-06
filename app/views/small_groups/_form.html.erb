@@ -2,6 +2,7 @@
 	<%= f.input :name %>
 	<%= f.input :description, placeholder: "Internal use only" %>
 	<%= f.input :blurb, placeholder: "Published for marketing purposes" %>
+	<%= f.input :checkin_code, placeholder: "Required for text checkin" %>
 	<%= f.association :weekdays, as: :check_boxes, label: "Weekday(s)" %>
 	<br>
 	<%= f.association :meeting_times, collection: MeetingTime.order(:time).all, as: :check_boxes, label_method: :s_time, label: "Meeting Time(s)" %>

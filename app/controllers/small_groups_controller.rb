@@ -69,7 +69,7 @@ class SmallGroupsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def small_group_params
       params.require(:small_group).permit(:name, :default_room_id, :staff_ratio, :meeting_is_called, :checkin_group, :cadence_id, :parent_id, :id,
-                                          :blurb, :description, :inquiry_number, :location_name, weekday_ids: [], meeting_time_ids: [],
+                                          :blurb, :description, :checkin_code, :inquiry_number, :location_name, weekday_ids: [], meeting_time_ids: [],
                                           primary_leaderships_attributes: [:person_name, :title, :_destroy, :id],
                                           support_leaderships_attributes: [:person_name, :title, :_destroy, :id],
                                           frequency: [:name, :cadence_id])

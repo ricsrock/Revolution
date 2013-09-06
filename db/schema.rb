@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902152855) do
+ActiveRecord::Schema.define(version: 20130905172537) do
 
   create_table "adjectives", force: true do |t|
     t.string   "name"
@@ -496,12 +496,14 @@ ActiveRecord::Schema.define(version: 20130902152855) do
     t.boolean  "suppress_stickers",           default: false
     t.integer  "inquiry_number"
     t.integer  "location_id"
+    t.string   "checkin_code"
   end
 
   add_index "groups", ["active"], name: "index_groups_on_active", using: :btree
   add_index "groups", ["archived_at"], name: "index_groups_on_archived_at", using: :btree
   add_index "groups", ["attendance_requirement_id"], name: "index_groups_on_attendance_requirement_id", using: :btree
   add_index "groups", ["cadence_id"], name: "index_groups_on_cadence_id", using: :btree
+  add_index "groups", ["checkin_code"], name: "index_groups_on_checkin_code", using: :btree
   add_index "groups", ["curriculum_choice_id"], name: "index_groups_on_curriculum_choice_id", using: :btree
   add_index "groups", ["curriculum_cost_id"], name: "index_groups_on_curriculum_cost_id", using: :btree
   add_index "groups", ["default_room_id"], name: "index_groups_on_default_room_id", using: :btree

@@ -23,6 +23,7 @@ class Group < ActiveRecord::Base
   
   validates :name, :presence => true
   validates :parent_id, :presence => true, :unless => lambda { |s| s.root? }
+  validates :checkin_code, :uniqueness => true
     
   validates :type, inclusion: { in: Group::TYPES }, allow_nil: true
   
