@@ -174,13 +174,27 @@ cadences.each do |c|
   r.save
 end
 
+#Setup initial room
+room = Room.new(name: 'Initial')
+room.save
+
+#Setup initial group
+group = CheckinGroup.new(name: 'Initial', default_room_id: room.id)
+group.save
+
 #Setup Admin role
 role = Role.new(name: 'admin', alias: 'Administrator', description: 'Allows access to all functions in the system.')
 role.save
 
+#Setup initial household
+household = Household.new(name: 'Initial', address1: '000 Initial Street', address2: ' ', city: 'Anytown', state: 'LA', zip: '71111')
+household.save
+person = household.people.new(first_name: 'Joe', last_name: 'Initial', gender: 'Male', attendance_status: 'Guest', default_group_id: group.id)
+person.save
+
 #Setup initial user
 user = User.new(first_name: 'Joe', last_name: 'Admin', login: 'jadmin', password: 'unsecure', password_confirmation: 'unsecure',
-                email: 'joe@mydomain.com')
+                email: 'joe@mydomain.com', person_id: person.id)
 if user.save
   user.confirm!
   admin = Role.find_by_name('admin')
